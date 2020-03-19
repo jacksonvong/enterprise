@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Framework</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+    <script src="/framework/static/js/echarts.js"></script>
+    <script src="/framework/static/js/echarts-wordcloud.min.js"></script>
+    <!-- built files will be auto injected -->
+    <script src="//i.way-s.cn/js/vue/2.6.10/vue.js"></script>
+    <script src="//i.way-s.cn/js/iways-ui/index.js"></script>
+    <script src="//i.way-s.cn/js/iways-ui/umd/locale/zh-CN.js"></script>
+    <script src="//i.way-s.cn/js/iways-ui/umd/locale/en.js"></script>
+    <link rel="stylesheet" href="//i.way-s.cn/js/iways-ui/theme-chalk/index.css">
+    <!-- 引入第三方样式库 -->
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_504674_qzibtws5v5h.css" />
+  </body>
+</html>

@@ -1,0 +1,188 @@
+<template>
+  <a-modal
+    v-model="visible"
+    wrap-class-name="modal-car"
+    :z-index="1999"
+    :confirm-loading="confirmLoading"
+    :footer="null"
+    :closable="false"
+    :after-close="handleCancel"
+  >
+    <iw-cascader
+      v-if="type==='manfBrand'"
+      :values="dataForm.manfBrand"
+      :data="searchFormData.manfBrand"
+      :show-search="true"
+      :show-letter="true"
+      :column-name="['厂商']"
+      :leafs-per-column="2"
+      :default-visible="true"
+      :never-un-close="true"
+      :show-close="false"
+      title="厂商"
+      placement="bottomLeft"
+      size="default"
+      style="width: 120px;"
+      @change="handleManfChange"
+    />
+    <iw-cascader
+      v-if="type==='subModel'"
+      :values="dataForm.subModel"
+      :texts="dataForm.subModelText"
+      :data="searchFormData.subModel"
+      :show-search="true"
+      :show-letter="showLetter"
+      :filters="[{key: 1, value: '细分市场'}, {key: 2, value: '品牌'}]"
+      :selected-filter="selectedFilter"
+      :column-name="columnName"
+      :leafs-per-column="2"
+      :default-visible="true"
+      :never-un-close="true"
+      :show-close="false"
+      title="车型"
+      placement="bottomLeft"
+      size="default"
+      style="width: 120px;"
+      @filterChange="handleFilterChange"
+      @change="handleSubModelChange"
+    >
+      <span slot="desc" class="iw-footer-desc">
+        <abbr class="font-gray">车型国别：</abbr>
+        <abbr class="font-black">国产 </abbr>
+        <abbr class="font-orange">进口</abbr>
+      </span>
+    </iw-cascader>
+  </a-modal>
+</template>
+
+<script>
+import { Modal } from 'ant-design-vue'
+import IwCascader from '@/components/Select/cascader'
+import { copyObject } from '@/utils/helper'
+export default {
+  name: 'ModalSubModel',
+  components: {
+    AModal: Modal,
+    IwCascader
+  },
+  props: {
+    data: {
+      type: Array,
+      default() {
+        return []
+      }
+    },
+    value: {
+      type: Array,
+      default() {
+        return []
+      }
+    },
+    defaultValue: {
+      type: Array,
+      default() {
+        return []
+      }
+    },
+    texts: {
+      type: Array,
+      default() {
+        return
+      }
+    },
+    type: {
+      type: String,
+      default() {
+        return 'subModel' // ['manfBrand', subModel]
+      }
+    }
+  },
+  data() {
+    return {
+      visible: false,
+      ModalText: 'Content of the modal',
+      confirmLoading: false,
+      dataForm: {
+        manfBrand: [],
+        subModel: [],
+        subModelText: []
+      },
+      searchFormData: {
+        manfBrand: [], // 产商品牌
+        subModel: [] // 子车型
+      },
+      segmentSubModel: [],
+      brandSubModel: [],
+      showLetter: false,
+      columnName: ['细分市场', '二级细分市场', '车型'],
+      selectedFilter: 1
+    }
+  },
+  watch: {
+    data() {
+      if (this.type === 'manfBrand') {
+        this.$set(this.searchFormData, 'manfBrand', copyObject(this.data))
+      }
+      if (this.type === 'subModel') {
+        const data = copyObject(this.data)
+        this.segmentSubModel = data[0]
+        this.brandSubModel = data[1]
+        this.$set(this.searchFormData, 'subModel', this.segmentSubModel)
+        this.showLetter = false
+        this.columnName = ['细分市场', '二级细分市场', '车型']
+        this.selectedFilter = 1
+      }
+    },
+    value() {
+      if (this.type === 'manfBrand') {
+        this.dataForm.manfBrand = this.value
+      }
+      if (this.type === 'subModel') {
+        this.dataForm.subModel = this.value
+      }
+    }
+  },
+  methods: {
+    handleCancel() {
+      this.$emit('close')
+    },
+    handleFilterChange(value) {
+      this.selectedFilter = value
+      if (value === 1) {
+        this.searchFormData.subModel = this.segmentSubModel
+        this.columnName = ['细分市场', '二级细分市场', '车型']
+        this.dataForm.subModel = ['', '', this.dataForm.subModel[this.dataForm.subModel.length - 1]]
+        this.showLetter = false
+      } else if (value === 2) {
+        this.searchFormData.subModel = this.brandSubModel
+        this.columnName = ['品牌', '车型']
+        this.dataForm.subModel = ['', this.dataForm.subModel[this.dataForm.subModel.length - 1]]
+        this.showLetter = true
+      }
+    },
+    handleManfChange(value, text) {
+      this.dataForm.manfBrand = value
+      this.$emit('change', value, text)
+    },
+    handleSubModelChange(value, text) {
+      this.dataForm.subModel = value
+      this.$emit('change', value, text)
+    }
+  }
+}
+</script>
+
+<style lang="less" scope>
+  // 选车车弹窗
+  .modal-car{
+    .ant-modal{ background: none; min-width: 0; }
+    .ant-modal-content{ background: none; }
+    .ant-modal-body{
+      padding: 0; background: none;
+      >span >.iw-cascader{
+        >div:nth-child(1){ opacity: 0; height: 1px; overflow: hidden; }
+      }
+    }
+  }
+</style>
+

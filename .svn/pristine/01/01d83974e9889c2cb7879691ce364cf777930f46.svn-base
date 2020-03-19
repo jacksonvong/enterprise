@@ -1,0 +1,17 @@
+{
+  "status": 200,
+  "data": [
+    { 
+      "dataSourceId": 5,
+      "dataSourceName": "KP-终端销量",
+      "startYm": 201701,
+      "endYm": 201803
+    },
+    { 
+      "dataSourceId": 6,
+      "dataSourceName": "SX-销量统计数",
+      "startYm": 201701,
+      "endYm": 201803 }
+  ]
+}
+        

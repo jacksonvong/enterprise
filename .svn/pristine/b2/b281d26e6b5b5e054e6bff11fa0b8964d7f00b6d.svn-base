@@ -1,0 +1,131 @@
+export default [
+  {
+    'funcId': 21,
+    'funcCode': 'FUNC_21',
+    'funcName': '互联网大数据系统',
+    'funcIcon': null,
+    'funcUrl': '/zhiku/ner_xl',
+    'adtUrl': null,
+    'groupId': null,
+    'status': null,
+    'newFlag': 0,
+    'iwMenuId': null,
+    'introUrl': null,
+    'introText': null,
+    'onlineStatus': null,
+    'menuTreeNodes': [
+      {
+        'menuId': 108,
+        'pid': null,
+        'title': '互联网大数据概览',
+        'node': '0',
+        'code': null,
+        'icon': 'icon-che',
+        'params': '0',
+        'target': '_self',
+        'introText': null,
+        'introUrl': null,
+        'introImage': null,
+        'isMenu': 1,
+        'funcs': [
+          {
+            'menuId': 1081,
+            'pid': null,
+            'title': '车型概览',
+            'node': '0',
+            'code': null,
+            'icon': 'icon-che',
+            'url': '/big-data/overview',
+            'params': '0',
+            'target': '_self',
+            'introText': null,
+            'introUrl': null,
+            'introImage': null,
+            'isMenu': 1,
+            'funcs': null
+          }
+        ]
+      },
+      {
+        'menuId': 1088,
+        'pid': null,
+        'title': '车型分析',
+        'node': '0',
+        'code': null,
+        'icon': 'icon-che',
+        'params': '0',
+        'target': '_self',
+        'introText': null,
+        'introUrl': null,
+        'introImage': null,
+        'isMenu': 1,
+        'funcs': [
+          {
+            'menuId': 1081,
+            'pid': null,
+            'title': '车型综合分析',
+            'node': '0',
+            'code': null,
+            'icon': 'icon-che',
+            'url': '/big-data/model-analysis',
+            'params': '0',
+            'target': '_self',
+            'introText': null,
+            'introUrl': null,
+            'introImage': null,
+            'isMenu': 1,
+            'funcs': null
+          },
+          {
+            'menuId': 1082,
+            'pid': null,
+            'title': '竞品圈分析',
+            'node': '0',
+            'code': null,
+            'icon': 'icon-che',
+            'url': '/big-data/compcircle-analysis',
+            'params': '0',
+            'target': '_self',
+            'introText': null,
+            'introUrl': null,
+            'introImage': null,
+            'isMenu': 1,
+            'funcs': null
+          },
+          {
+            'menuId': 1083,
+            'pid': null,
+            'title': '声量分析',
+            'node': '0',
+            'code': null,
+            'icon': 'icon-che',
+            'url': '/big-data/sound',
+            'params': '0',
+            'target': '_self',
+            'introText': null,
+            'introUrl': null,
+            'introImage': null,
+            'isMenu': 1,
+            'funcs': null
+          },
+          {
+            'menuId': 1084,
+            'pid': null,
+            'title': '满意度分析',
+            'node': '0',
+            'code': null,
+            'icon': 'icon-che',
+            'url': '/big-data/satisfaction-analyse',
+            'params': '0',
+            'target': '_self',
+            'introText': null,
+            'introUrl': null,
+            'introImage': null,
+            'isMenu': 1,
+            'funcs': null
+          }
+        ]
+      }
+    ]
+  }
+]
