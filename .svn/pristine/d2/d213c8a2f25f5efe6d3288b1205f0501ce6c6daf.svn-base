@@ -1,0 +1,10 @@
+{
+  "status": 200,
+  "data": [
+    { "key": "ALL", "value": "综合数据", "endYm": "201901" },
+    { "key": "AUTOHOME", "value": "汽车之家", "endYm": "201901" },
+    { "key": "XCAR", "value": "爱卡汽车", "endYm": "201901" },
+    { "key": "PCAUTO", "value": "太平洋汽车", "endYm": "201901" }
+  ]
+}
+        
