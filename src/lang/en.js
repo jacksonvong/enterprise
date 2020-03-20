@@ -26,6 +26,7 @@ export default {
     subModelAndCompetitor: 'SubModel And Competitor',
     competitor: 'Competitor',
     reward: 'Reward',
+    dataType: 'DataType',
     money: 'Money',
     ratio: 'Ratio',
     any: 'Any'
