@@ -12,7 +12,7 @@ module.exports = {
     assetsPublicPath: '/enterprise/',
     proxyTable: {
       '/api': {
-        target: 'http://i.ways.cn',
+        target: 'https://i.way-s.cn',
         changeOrigin: true
       },
     },

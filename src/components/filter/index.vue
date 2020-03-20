@@ -63,27 +63,29 @@
         </li>
         <li v-if="show.dataSource" class="banner-filter-item">
           <span class="filter-item_label">
-            {{ $t('common.dataSource') }}
-            <iw-popover
-              trigger="hover"
-              placement="right-start"
-              :body-style="{padding: '10px'}"
-              :offset="{top: -13}"
-              :show-arrow="true"
-              :width="null"
-              popper-class="iw-data-source-desc"
-            >
-              <div slot="reference">
-                <div class="question-circle">
-                  <a-icon class="question" type="question" />
+            <span>{{ $t('common.dataSource') }}</span>
+            <span class="filter-item_label--tips">
+              <iw-popover
+                trigger="hover"
+                placement="right-start"
+                :body-style="{padding: '10px'}"
+                :offset="{top: -10}"
+                :show-arrow="true"
+                :width="null"
+                popper-class="iw-data-source-desc"
+              >
+                <div slot="reference">
+                  <div class="question-circle">
+                    <a-icon class="question" type="question" />
+                  </div>
                 </div>
-              </div>
-              <div v-if="searchFormData.dataSource.length">
-                <div v-for="(item, key) in searchFormData.dataSource" :key="key">
-                  {{ item.value }}: {{ item.endYm }}
+                <div v-if="searchFormData.dataSource.length">
+                  <div v-for="(item, key) in searchFormData.dataSource" :key="key">
+                    {{ item.value }}: {{ item.endYm }}
+                  </div>
                 </div>
-              </div>
-            </iw-popover>
+              </iw-popover>
+            </span>
           </span>
           <span class="filter-item_text">
             <iw-select
@@ -231,21 +233,13 @@
         <li v-if="show.dataType" class="banner-filter-item">
           <span class="filter-item_label">{{ $t('common.dataType') }}</span>
           <span class="filter-item_text">
-            <iw-cascader-table
+            <a-radio-group
               v-model="dataForm.dataType"
-              :data="searchFormData.dataType"
-              :show-search="true"
-              :leafs-per-column="3"
-              :title="$t('common.dataType')"
-              multiple
-              exclusion
-              show-selected
-              placement="bottomLeft"
-              size="mini"
-              style="width: 170px;"
-              class="iw-text-bold"
-              @change="handleDataTypeChange"
-            />
+              size="small"
+            >
+              <a-radio-button :value="1">{{ $t('common.money') }}</a-radio-button>
+              <a-radio-button :value="2">{{ $t('common.ratio') }}</a-radio-button>
+            </a-radio-group>
           </span>
         </li>
       </ul>
@@ -323,6 +317,7 @@ export default {
         dimensionType: 2,
         segment: [],
         reward: [],
+        dataType: 1,
         manfBrand: [],
         manfBrandText: [],
         subModel: [],
@@ -436,14 +431,13 @@ export default {
       this.$emit('change', this.dataFormFilter())
     },
     async handleDateTimeChange(value) {
-      console.log(value)
       if (this.dataForm.dataTimeType === 1) {
         this.dataForm.dataTime = value
-        this.$store.dispatch('setDataTime', value)
+        this.$store.dispatch('setDataTime', value instanceof Array ? value[value.length - 1] : value)
       }
       if (this.dataForm.dataTimeType === 2) {
         this.dataForm.dataTime2 = value
-        this.$store.dispatch('setDataTime2', value)
+        this.$store.dispatch('setDataTime2', value instanceof Array ? value[value.length - 1] : value)
       }
       this.spinning.params = true
       if (!this.isOverviewPage) {
@@ -950,6 +944,10 @@ export default {
           color: #9494AD;
           font-size: 12px;
           padding: 12px 15px 0;
+          .filter-item_label--tips {
+            position: absolute;
+            top: 10px;
+          }
           .filter-item_label--title {
             float: left;
           }
@@ -1007,28 +1005,7 @@ export default {
           }
           .ant-radio-button-wrapper {
             border: 0;
-            color: #333;
             font-weight: bold;
-            &.ant-radio-button-wrapper-checked {
-              // color: #2E5AA6;
-              color: #fff;
-              background: #2E5AA6;
-            }
-            &:first-child {
-              border-left: 0;
-            }
-            &:not(:first-child)::before {
-              background-color: transparent;
-            }
-            &:focus-within {
-              outline: 0;
-            }
-          }
-          .ant-radio-button-wrapper-checked {
-            box-shadow: -1px 0 0 0 transparent;
-          }
-          .ant-radio-button-wrapper-checked::before {
-            opacity: 0;
           }
         }
       }

@@ -21,6 +21,10 @@ module.exports = {
         "allowFirstLine": false
       }
     }],
+    "vue/html-closing-bracket-newline": ["off", {
+      "singleline": "never",
+      "multiline": "always"
+    }],
     "vue/name-property-casing": ["error", "PascalCase"],
     'accessor-pairs': 2,
     'arrow-spacing': [2, {

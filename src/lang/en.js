@@ -24,8 +24,10 @@ export default {
     subModel: 'SubModel',
     segment: 'Segment',
     subModelAndCompetitor: 'SubModel And Competitor',
-    reward: 'Reward',
     competitor: 'Competitor',
+    reward: 'Reward',
+    money: 'Money',
+    ratio: 'Ratio',
     any: 'Any'
   },
   download: {

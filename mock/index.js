@@ -8,7 +8,7 @@ function fromJSONFile(filename) {
   }
 }
 const proxy = {
-  'POST /api/net-big-data/common/get-dimension': fromJSONFile('common/get-dimension'),
+  'POST /api/net-big-data/common/get-platform-list': fromJSONFile('common/get-platform-list'),
   'POST /api/net-big-data/common/get-data-source': fromJSONFile('common/get-datasource'),
   'POST /api/net-big-data/common/get-datasource-and-time': fromJSONFile('common/get-datasource-and-time'),
   'POST /api/net-big-data/common/get-min-max-time': fromJSONFile('common/get-min-max-time'),

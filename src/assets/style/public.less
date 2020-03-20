@@ -260,6 +260,23 @@ body {
   // 单选框
   .ant-radio-button-wrapper {
     text-align: center;
+    color: #333;
+    &.ant-radio-button-wrapper-checked {
+      color: #fff;
+      background: #2E5AA6;
+    }
+    &:not(:first-child)::before {
+      background-color: transparent;
+    }
+    &:focus-within {
+      outline: 0;
+    }
+  }
+  .ant-radio-button-wrapper-checked {
+    box-shadow: -1px 0 0 0 transparent;
+  }
+  .ant-radio-button-wrapper-checked::before {
+    opacity: 0;
   }
   // 通知
   .ant-notification {

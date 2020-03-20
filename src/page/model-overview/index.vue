@@ -2,7 +2,7 @@
   <div class="model-overview">
     <iw-banner :title="$t('modelOverview.banner.title')" />
     <div :style="{'padding-top': $store.state.app.filter!=='fixed' ? '10px' : '76px'}" class="main-content">
-      <iw-banner-filter
+      <iw-filter
         :id="$store.state.app.filter!=='fixed'?'overview-analyse':''"
         :show="{
           dataSource: true,
@@ -16,11 +16,11 @@
 
 <script>
 import IwBanner from '@/components/banner/index'
-import IwBannerFilter from '@/components/banner/filter'
+import IwFilter from '@/components/filter/index'
 export default {
   components: {
     IwBanner,
-    IwBannerFilter
+    IwFilter
   },
   data() {
     return {

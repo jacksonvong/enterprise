@@ -24,8 +24,11 @@ export default {
     subModel: '车型',
     segment: '细分市场',
     subModelAndCompetitor: '本品与竞品',
-    reward: '奖励类型',
     competitor: '选择竞品',
+    reward: '奖励类型',
+    dataType: '数据类型',
+    money: '金额',
+    ratio: '比例',
     any: '不限'
   },
   download: {
