@@ -134,6 +134,7 @@ export default {
 @import '~@/assets/style/mixins';
 .leftmenu-box{
   position: fixed!important;
+  background: #fff;
   top: 64px;
   bottom: 0;
   left: 0;

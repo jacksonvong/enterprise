@@ -236,6 +236,7 @@
             <a-radio-group
               v-model="dataForm.dataType"
               size="small"
+              @change="handleDataTypeChange"
             >
               <a-radio-button :value="1">{{ $t('common.money') }}</a-radio-button>
               <a-radio-button :value="2">{{ $t('common.ratio') }}</a-radio-button>
@@ -490,10 +491,7 @@ export default {
       this.spinning.params = false
       this.$emit('change', this.dataFormFilter())
     },
-    async handleDataTypeChange(value, text) {
-      this.dataForm.dataType = value
-      this.spinning.params = true
-      this.spinning.params = false
+    async handleDataTypeChange() {
       this.$emit('change', this.dataFormFilter())
     },
     handleFilterChange(value) {
@@ -930,7 +928,7 @@ export default {
     background: #fff;
   }
   .banner-filter {
-    height: 64px;
+    height: 72px;
     background: #fff;
     overflow: hidden;
     .banner-filter-item {
@@ -944,6 +942,9 @@ export default {
           color: #9494AD;
           font-size: 12px;
           padding: 12px 15px 0;
+          i {
+            font-size: 10px;
+          }
           .filter-item_label--tips {
             position: absolute;
             top: 10px;
@@ -967,7 +968,7 @@ export default {
           }
           .question-circle {
             background: #9494AD;
-            padding: 0 3px;
+            padding: 0 4px;
             border-radius: 50%;
             cursor: pointer;
             margin: 0 4px;
@@ -983,15 +984,15 @@ export default {
             border: 0;
             box-shadow: none;
             padding: 0 15px;
-            height: 34px;
-            line-height: 34px;
+            height: 42px;
+            line-height: 42px;
           }
           .iw-range-editor.iw-input__inner {
             border: 0;
             box-shadow: none;
             padding: 0 15px;
-            height: 34px;
-            line-height: 34px;
+            height: 42px;
+            line-height: 42px;
           }
           .iw-text-bold {
             input {
@@ -1001,7 +1002,7 @@ export default {
             }
           }
           .ant-radio-group {
-            padding: 5px 8px;
+            padding: 9px 8px;
           }
           .ant-radio-button-wrapper {
             border: 0;

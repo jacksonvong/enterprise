@@ -1,0 +1,3037 @@
+{
+  "result_code": "200", 
+  "result_msg": "执行成功", 
+  "data": [
+    {
+      "model": "奖励变化", 
+      "cycle": "文件类型", 
+      "rewardType": "奖励大类", 
+      "rewardSubType": "奖励小类", 
+      "rewardName": "奖励名称", 
+      "months": [
+        "1月", 
+        "2月", 
+        "3月"
+      ], 
+      "subModelList": [
+        {
+          "manfBrand": null, 
+          "subModel": "飞度两厢", 
+          "msrp": "7.38~12.98万", 
+          "logoUrl": "http://www.waysdata.com/images/cms_picture/car_picture/广汽本田/本田/飞度/459_飞度两厢/广汽本田_本田_459_飞度两厢_飞度__20181019_100428.jpg", 
+          "cycleList": [
+            {
+              "cycleName": "年度", 
+              "typeList": [
+                {
+                  "rewardTypeName": "固定折扣", 
+                  "subClassListTotal": [
+                    {
+                      "rewardSubTypeName": "固定折扣", 
+                      "rewardSubTypeId": null, 
+                      "rewardListTotal": null, 
+                      "rewardList": [
+                        {
+                          "rewardName": "固定折扣", 
+                          "months": [
+                            "4,171", 
+                            "4,169", 
+                            "4,169"
+                          ], 
+                          "showDetail": null
+                        }
+                      ]
+                    }
+                  ], 
+                  "subClassList": [
+                    {
+                      "rewardSubTypeName": "固定折扣", 
+                      "rewardSubTypeId": "24", 
+                      "rewardListTotal": [
+                        {
+                          "rewardName": "固定折扣", 
+                          "months": [
+                            "4,171", 
+                            "4,169", 
+                            "4,169"
+                          ], 
+                          "showDetail": null
+                        }
+                      ], 
+                      "rewardList": [
+                        {
+                          "rewardName": "基本提车折让", 
+                          "months": [
+                            "4,171*", 
+                            "4,169*", 
+                            "4,169*"
+                          ], 
+                          "showDetail": null
+                        }
+                      ]
+                    }
+                  ]
+                }, 
+                {
+                  "rewardTypeName": "评比奖励", 
+                  "subClassListTotal": [
+                    {
+                      "rewardSubTypeName": "评比奖励", 
+                      "rewardSubTypeId": null, 
+                      "rewardListTotal": null, 
+                      "rewardList": [
+                        {
+                          "rewardName": "评比奖励", 
+                          "months": [
+                            "400", 
+                            "399", 
+                            "399"
+                          ], 
+                          "showDetail": null
+                        }
+                      ]
+                    }
+                  ], 
+                  "subClassList": [
+                    {
+                      "rewardSubTypeName": "综合评比奖励", 
+                      "rewardSubTypeId": "27", 
+                      "rewardListTotal": [
+                        {
+                          "rewardName": "综合评比奖励", 
+                          "months": [
+                            "400", 
+                            "399", 
+                            "399"
+                          ], 
+                          "showDetail": null
+                        }
+                      ], 
+                      "rewardList": [
+                        {
+                          "rewardName": "年度综合奖励", 
+                          "months": [
+                            "392*", 
+                            "391*", 
+                            "391*"
+                          ], 
+                          "showDetail": null
+                        }, 
+                        {
+                          "rewardName": "年终优秀评选", 
+                          "months": [
+                            "8*", 
+                            "8*", 
+                            "8*"
+                          ], 
+                          "showDetail": null
+                        }
+                      ]
+                    }
+                  ]
+                }, 
+                {
+                  "rewardTypeName": "销售奖励", 
+                  "subClassListTotal": [
+                    {
+                      "rewardSubTypeName": "销售奖励", 
+                      "rewardSubTypeId": null, 
+                      "rewardListTotal": null, 
+                      "rewardList": [
+                        {
+                          "rewardName": "销售奖励", 
+                          "months": [
+                            "834", 
+                            "834", 
+                            "834"
+                          ], 
+                          "showDetail": null
+                        }
+                      ]
+                    }
+                  ], 
+                  "subClassList": [
+                    {
+                      "rewardSubTypeName": "提车达成奖励", 
+                      "rewardSubTypeId": "44", 
+                      "rewardListTotal": [
+                        {
+                          "rewardName": "提车达成奖励", 
+                          "months": [
+                            "834", 
+                            "834", 
+                            "834"
+                          ], 
+                          "showDetail": null
+                        }
+                      ], 
+                      "rewardList": [
+                        {
+                          "rewardName": "双月订购计划达成奖励", 
+                          "months": [
+                            "834*", 
+                            "834*", 
+                            "834*"
+                          ], 
+                          "showDetail": null
+                        }
+                      ]
+                    }
+                  ]
+                }, 
+                {
+                  "rewardTypeName": "其他", 
+                  "subClassListTotal": [
+                    {
+                      "rewardSubTypeName": "其他", 
+                      "rewardSubTypeId": null, 
+                      "rewardListTotal": null, 
+                      "rewardList": [
+                        {
+                          "rewardName": "其他", 
+                          "months": [
+                            "0", 
+                            "0", 
+                            "0"
+                          ], 
+                          "showDetail": null
+                        }
+                      ]
+                    }
+                  ], 
+                  "subClassList": [
+                    {
+                      "rewardSubTypeName": "试乘试驾车支援", 
+                      "rewardSubTypeId": "41", 
+                      "rewardListTotal": [
+                        {
+                          "rewardName": "试乘试驾车支援", 
+                          "months": [
+                            "0", 
+                            "0", 
+                            "0"
+                          ], 
+                          "showDetail": null
+                        }
+                      ], 
+                      "rewardList": [
+                        {
+                          "rewardName": "试驾车补贴", 
+                          "months": [
+                            [
+                              {
+                                "rewardTypeName": "奖励大类", 
+                                "rewardSubTypeName": "奖励小类", 
+                                "rewardName": "奖励名称", 
+                                "rewardCycle": "考核周期", 
+                                "months": [
+                                  "202001", 
+                                  "202002", 
+                                  "202003"
+                                ]
+                              }, 
+                              {
+                                "rewardTypeName": "其他", 
+                                "rewardSubTypeName": "试乘试驾车支援", 
+                                "rewardName": "试驾车补贴", 
+                                "rewardCycle": "年度", 
+                                "months": [
+                                  "1,000", 
+                                  "1,000", 
+                                  "1,000"
+                                ]
+                              }
+                            ], 
+                            [
+                              {
+                                "rewardTypeName": "奖励大类", 
+                                "rewardSubTypeName": "奖励小类", 
+                                "rewardName": "奖励名称", 
+                                "rewardCycle": "考核周期", 
+                                "months": [
+                                  "202001", 
+                                  "202002", 
+                                  "202003"
+                                ]
+                              }, 
+                              {
+                                "rewardTypeName": "其他", 
+                                "rewardSubTypeName": "试乘试驾车支援", 
+                                "rewardName": "试驾车补贴", 
+                                "rewardCycle": "年度", 
+                                "months": [
+                                  "1,000", 
+                                  "1,000", 
+                                  "1,000"
+                                ]
+                              }
+                            ], 
+                            [
+                              {
+                                "rewardTypeName": "奖励大类", 
+                                "rewardSubTypeName": "奖励小类", 
+                                "rewardName": "奖励名称", 
+                                "rewardCycle": "考核周期", 
+                                "months": [
+                                  "202001", 
+                                  "202002", 
+                                  "202003"
+                                ]
+                              }, 
+                              {
+                                "rewardTypeName": "其他", 
+                                "rewardSubTypeName": "试乘试驾车支援", 
+                                "rewardName": "试驾车补贴", 
+                                "rewardCycle": "年度", 
+                                "months": [
+                                  "1,000", 
+                                  "1,000", 
+                                  "1,000"
+                                ]
+                              }
+                            ]
+                          ], 
+                          "showDetail": "详细"
+                        }
+                      ]
+                    }
+                  ]
+                }, 
+                {
+                  "rewardTypeName": "飞度两厢年度小计（只包含固定折扣和考核奖励）", 
+                  "total": true, 
+                  "subClassList": [
+                    {
+                      "rewardSubTypeName": "", 
+                      "rewardList": [
+                        {
+                          "rewardName": "", 
+                          "months": [
+                            "5,405", 
+                            "5,402", 
+                            "5,402"
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }, 
+            {
+              "cycleName": "月度", 
+              "typeList": [
+                {
+                  "rewardTypeName": "人员奖励", 
+                  "subClassListTotal": [
+                    {
+                      "rewardSubTypeName": "人员奖励", 
+                      "rewardSubTypeId": null, 
+                      "rewardListTotal": null, 
+                      "rewardList": [
+                        {
+                          "rewardName": "人员奖励", 
+                          "months": [
+                            "0", 
+                            "0", 
+                            "0"
+                          ], 
+                          "showDetail": null
+                        }
+                      ]
+                    }
+                  ], 
+                  "subClassList": [
+                    {
+                      "rewardSubTypeName": "人员奖励", 
+                      "rewardSubTypeId": "15", 
+                      "rewardListTotal": [
+                        {
+                          "rewardName": "人员奖励", 
+                          "months": [
+                            "0", 
+                            "0", 
+                            "0"
+                          ], 
+                          "showDetail": null
+                        }
+                      ], 
+                      "rewardList": [
+                        {
+                          "rewardName": "优秀总经理购车奖励", 
+                          "months": [
+                            [
+                              {
+                                "rewardTypeName": "奖励大类", 
+                                "rewardSubTypeName": "奖励小类", 
+                                "rewardName": "奖励名称", 
+                                "rewardCycle": "考核周期", 
+                                "months": [
+                                  "202001", 
+                                  "202002", 
+                                  "202003"
+                                ]
+                              }, 
+                              {
+                                "rewardTypeName": "人员奖励", 
+                                "rewardSubTypeName": "人员奖励", 
+                                "rewardName": "优秀总经理购车奖励", 
+                                "rewardCycle": "月度", 
+                                "months": [
+                                  "0-10,000", 
+                                  "0-10,000", 
+                                  "0-10,000"
+                                ]
+                              }
+                            ], 
+                            [
+                              {
+                                "rewardTypeName": "奖励大类", 
+                                "rewardSubTypeName": "奖励小类", 
+                                "rewardName": "奖励名称", 
+                                "rewardCycle": "考核周期", 
+                                "months": [
+                                  "202001", 
+                                  "202002", 
+                                  "202003"
+                                ]
+                              }, 
+                              {
+                                "rewardTypeName": "人员奖励", 
+                                "rewardSubTypeName": "人员奖励", 
+                                "rewardName": "优秀总经理购车奖励", 
+                                "rewardCycle": "月度", 
+                                "months": [
+                                  "0-10,000", 
+                                  "0-10,000", 
+                                  "0-10,000"
+                                ]
+                              }
+                            ], 
+                            [
+                              {
+                                "rewardTypeName": "奖励大类", 
+                                "rewardSubTypeName": "奖励小类", 
+                                "rewardName": "奖励名称", 
+                                "rewardCycle": "考核周期", 
+                                "months": [
+                                  "202001", 
+                                  "202002", 
+                                  "202003"
+                                ]
+                              }, 
+                              {
+                                "rewardTypeName": "人员奖励", 
+                                "rewardSubTypeName": "人员奖励", 
+                                "rewardName": "优秀总经理购车奖励", 
+                                "rewardCycle": "月度", 
+                                "months": [
+                                  "0-10,000", 
+                                  "0-10,000", 
+                                  "0-10,000"
+                                ]
+                              }
+                            ]
+                          ], 
+                          "showDetail": "详细"
+                        }
+                      ]
+                    }
+                  ]
+                }, 
+                {
+                  "rewardTypeName": "特殊客户群奖励", 
+                  "subClassListTotal": [
+                    {
+                      "rewardSubTypeName": "特殊客户群奖励", 
+                      "rewardSubTypeId": null, 
+                      "rewardListTotal": null, 
+                      "rewardList": [
+                        {
+                          "rewardName": "特殊客户群奖励", 
+                          "months": [
+                            "0", 
+                            "0", 
+                            "0"
+                          ], 
+                          "showDetail": null
+                        }
+                      ]
+                    }
+                  ], 
+                  "subClassList": [
+                    {
+                      "rewardSubTypeName": "保有客户支援", 
+                      "rewardSubTypeId": "18", 
+                      "rewardListTotal": [
+                        {
+                          "rewardName": "保有客户支援", 
+                          "months": [
+                            "0", 
+                            "0", 
+                            "0"
+                          ], 
+                          "showDetail": null
+                        }
+                      ], 
+                      "rewardList": [
+                        {
+                          "rewardName": "老客户增换购/转介绍", 
+                          "months": [
+                            [
+                              {
+                                "rewardTypeName": "奖励大类", 
+                                "rewardSubTypeName": "奖励小类", 
+                                "rewardName": "奖励名称", 
+                                "rewardCycle": "考核周期", 
+                                "months": [
+                                  "202001", 
+                                  "202002", 
+                                  "202003"
+                                ]
+                              }, 
+                              {
+                                "rewardTypeName": "特殊客户群奖励", 
+                                "rewardSubTypeName": "保有客户支援", 
+                                "rewardName": "老客户增换购/转介绍", 
+                                "rewardCycle": "月度", 
+                                "months": [
+                                  "1,000", 
+                                  "1,000", 
+                                  "1,000"
+                                ]
+                              }
+                            ], 
+                            [
+                              {
+                                "rewardTypeName": "奖励大类", 
+                                "rewardSubTypeName": "奖励小类", 
+                                "rewardName": "奖励名称", 
+                                "rewardCycle": "考核周期", 
+                                "months": [
+                                  "202001", 
+                                  "202002", 
+                                  "202003"
+                                ]
+                              }, 
+                              {
+                                "rewardTypeName": "特殊客户群奖励", 
+                                "rewardSubTypeName": "保有客户支援", 
+                                "rewardName": "老客户增换购/转介绍", 
+                                "rewardCycle": "月度", 
+                                "months": [
+                                  "1,000", 
+                                  "1,000", 
+                                  "1,000"
+                                ]
+                              }
+                            ], 
+                            [
+                              {
+                                "rewardTypeName": "奖励大类", 
+                                "rewardSubTypeName": "奖励小类", 
+                                "rewardName": "奖励名称", 
+                                "rewardCycle": "考核周期", 
+                                "months": [
+                                  "202001", 
+                                  "202002", 
+                                  "202003"
+                                ]
+                              }, 
+                              {
+                                "rewardTypeName": "特殊客户群奖励", 
+                                "rewardSubTypeName": "保有客户支援", 
+                                "rewardName": "老客户增换购/转介绍", 
+                                "rewardCycle": "月度", 
+                                "months": [
+                                  "1,000", 
+                                  "1,000", 
+                                  "1,000"
+                                ]
+                              }
+                            ]
+                          ], 
+                          "showDetail": "详细"
+                        }
+                      ]
+                    }
+                  ]
+                }, 
+                {
+                  "rewardTypeName": "其他奖励", 
+                  "subClassListTotal": [
+                    {
+                      "rewardSubTypeName": "其他奖励", 
+                      "rewardSubTypeId": null, 
+                      "rewardListTotal": null, 
+                      "rewardList": [
+                        {
+                          "rewardName": "其他奖励", 
+                          "months": [
+                            "0", 
+                            "0", 
+                            "0"
+                          ], 
+                          "showDetail": null
+                        }
+                      ]
+                    }
+                  ], 
+                  "subClassList": [
+                    {
+                      "rewardSubTypeName": "电商奖励", 
+                      "rewardSubTypeId": "22", 
+                      "rewardListTotal": [
+                        {
+                          "rewardName": "电商奖励", 
+                          "months": [
+                            "0", 
+                            "0", 
+                            "0"
+                          ], 
+                          "showDetail": null
+                        }
+                      ], 
+                      "rewardList": [
+                        {
+                          "rewardName": "下订享好礼", 
+                          "months": [
+                            [
+                              {
+                                "rewardTypeName": "奖励大类", 
+                                "rewardSubTypeName": "奖励小类", 
+                                "rewardName": "奖励名称", 
+                                "rewardCycle": "考核周期", 
+                                "months": [
+                                  "202001", 
+                                  "202002", 
+                                  "202003"
+                                ]
+                              }, 
+                              {
+                                "rewardTypeName": "其他奖励", 
+                                "rewardSubTypeName": "电商奖励", 
+                                "rewardName": "下订享好礼", 
+                                "rewardCycle": "月度", 
+                                "months": [
+                                  "700", 
+                                  "700", 
+                                  "800"
+                                ]
+                              }
+                            ], 
+                            [
+                              {
+                                "rewardTypeName": "奖励大类", 
+                                "rewardSubTypeName": "奖励小类", 
+                                "rewardName": "奖励名称", 
+                                "rewardCycle": "考核周期", 
+                                "months": [
+                                  "202001", 
+                                  "202002", 
+                                  "202003"
+                                ]
+                              }, 
+                              {
+                                "rewardTypeName": "其他奖励", 
+                                "rewardSubTypeName": "电商奖励", 
+                                "rewardName": "下订享好礼", 
+                                "rewardCycle": "月度", 
+                                "months": [
+                                  "700", 
+                                  "700", 
+                                  "800"
+                                ]
+                              }
+                            ], 
+                            [
+                              {
+                                "rewardTypeName": "奖励大类", 
+                                "rewardSubTypeName": "奖励小类", 
+                                "rewardName": "奖励名称", 
+                                "rewardCycle": "考核周期", 
+                                "months": [
+                                  "202001", 
+                                  "202002", 
+                                  "202003"
+                                ]
+                              }, 
+                              {
+                                "rewardTypeName": "其他奖励", 
+                                "rewardSubTypeName": "电商奖励", 
+                                "rewardName": "下订享好礼", 
+                                "rewardCycle": "月度", 
+                                "months": [
+                                  "700", 
+                                  "700", 
+                                  "800"
+                                ]
+                              }
+                            ]
+                          ], 
+                          "showDetail": "详细"
+                        }
+                      ]
+                    }, 
+                    {
+                      "rewardSubTypeName": "其他奖励", 
+                      "rewardSubTypeId": "23", 
+                      "rewardListTotal": [
+                        {
+                          "rewardName": "其他奖励", 
+                          "months": [
+                            "0", 
+                            "0", 
+                            "0"
+                          ], 
+                          "showDetail": null
+                        }
+                      ], 
+                      "rewardList": [
+                        {
+                          "rewardName": "国六区域展车补贴", 
+                          "months": [
+                            [
+                              {
+                                "rewardTypeName": "奖励大类", 
+                                "rewardSubTypeName": "奖励小类", 
+                                "rewardName": "奖励名称", 
+                                "rewardCycle": "考核周期", 
+                                "months": [
+                                  "202001", 
+                                  "202002", 
+                                  "202003"
+                                ]
+                              }, 
+                              {
+                                "rewardTypeName": "其他奖励", 
+                                "rewardSubTypeName": "其他奖励", 
+                                "rewardName": "国六区域展车补贴", 
+                                "rewardCycle": "月度", 
+                                "months": [
+                                  "1,000", 
+                                  "1,000", 
+                                  "1,000"
+                                ]
+                              }
+                            ], 
+                            [
+                              {
+                                "rewardTypeName": "奖励大类", 
+                                "rewardSubTypeName": "奖励小类", 
+                                "rewardName": "奖励名称", 
+                                "rewardCycle": "考核周期", 
+                                "months": [
+                                  "202001", 
+                                  "202002", 
+                                  "202003"
+                                ]
+                              }, 
+                              {
+                                "rewardTypeName": "其他奖励", 
+                                "rewardSubTypeName": "其他奖励", 
+                                "rewardName": "国六区域展车补贴", 
+                                "rewardCycle": "月度", 
+                                "months": [
+                                  "1,000", 
+                                  "1,000", 
+                                  "1,000"
+                                ]
+                              }
+                            ], 
+                            [
+                              {
+                                "rewardTypeName": "奖励大类", 
+                                "rewardSubTypeName": "奖励小类", 
+                                "rewardName": "奖励名称", 
+                                "rewardCycle": "考核周期", 
+                                "months": [
+                                  "202001", 
+                                  "202002", 
+                                  "202003"
+                                ]
+                              }, 
+                              {
+                                "rewardTypeName": "其他奖励", 
+                                "rewardSubTypeName": "其他奖励", 
+                                "rewardName": "国六区域展车补贴", 
+                                "rewardCycle": "月度", 
+                                "months": [
+                                  "1,000", 
+                                  "1,000", 
+                                  "1,000"
+                                ]
+                              }
+                            ]
+                          ], 
+                          "showDetail": "详细"
+                        }
+                      ]
+                    }
+                  ]
+                }, 
+                {
+                  "rewardTypeName": "提车奖励", 
+                  "subClassListTotal": [
+                    {
+                      "rewardSubTypeName": "提车奖励", 
+                      "rewardSubTypeId": null, 
+                      "rewardListTotal": null, 
+                      "rewardList": [
+                        {
+                          "rewardName": "提车奖励", 
+                          "months": [
+                            "0", 
+                            "0", 
+                            "0"
+                          ], 
+                          "showDetail": null
+                        }
+                      ]
+                    }
+                  ], 
+                  "subClassList": [
+                    {
+                      "rewardSubTypeName": "财务金融支援", 
+                      "rewardSubTypeId": "3", 
+                      "rewardListTotal": [
+                        {
+                          "rewardName": "财务金融支援", 
+                          "months": [
+                            "0", 
+                            "0", 
+                            "0"
+                          ], 
+                          "showDetail": null
+                        }
+                      ], 
+                      "rewardList": [
+                        {
+                          "rewardName": "提车贴息政策", 
+                          "months": [
+                            [
+                              {
+                                "rewardTypeName": "奖励大类", 
+                                "rewardSubTypeName": "奖励小类", 
+                                "rewardName": "奖励名称", 
+                                "rewardCycle": "考核周期", 
+                                "months": [
+                                  "202001", 
+                                  "202002", 
+                                  "202003"
+                                ]
+                              }, 
+                              {
+                                "rewardTypeName": "提车奖励", 
+                                "rewardSubTypeName": "财务金融支援", 
+                                "rewardName": "提车贴息政策", 
+                                "rewardCycle": "月度", 
+                                "months": [
+                                  "", 
+                                  "45", 
+                                  "45"
+                                ]
+                              }
+                            ], 
+                            [
+                              {
+                                "rewardTypeName": "奖励大类", 
+                                "rewardSubTypeName": "奖励小类", 
+                                "rewardName": "奖励名称", 
+                                "rewardCycle": "考核周期", 
+                                "months": [
+                                  "202001", 
+                                  "202002", 
+                                  "202003"
+                                ]
+                              }, 
+                              {
+                                "rewardTypeName": "提车奖励", 
+                                "rewardSubTypeName": "财务金融支援", 
+                                "rewardName": "提车贴息政策", 
+                                "rewardCycle": "月度", 
+                                "months": [
+                                  "", 
+                                  "45", 
+                                  "45"
+                                ]
+                              }
+                            ], 
+                            [
+                              {
+                                "rewardTypeName": "奖励大类", 
+                                "rewardSubTypeName": "奖励小类", 
+                                "rewardName": "奖励名称", 
+                                "rewardCycle": "考核周期", 
+                                "months": [
+                                  "202001", 
+                                  "202002", 
+                                  "202003"
+                                ]
+                              }, 
+                              {
+                                "rewardTypeName": "提车奖励", 
+                                "rewardSubTypeName": "财务金融支援", 
+                                "rewardName": "提车贴息政策", 
+                                "rewardCycle": "月度", 
+                                "months": [
+                                  "", 
+                                  "45", 
+                                  "45"
+                                ]
+                              }
+                            ]
+                          ], 
+                          "showDetail": "详细"
+                        }
+                      ]
+                    }
+                  ]
+                }, 
+                {
+                  "rewardTypeName": "飞度两厢月度小计（只包含月度激励）", 
+                  "total": true, 
+                  "subClassList": [
+                    {
+                      "rewardSubTypeName": "", 
+                      "rewardList": [
+                        {
+                          "rewardName": "", 
+                          "months": [
+                            "0", 
+                            "0", 
+                            "0"
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ], 
+          "itemNum": 9, 
+          "import": false
+        }, 
+        {
+          "manfBrand": null, 
+          "subModel": "i3 EV", 
+          "msrp": "30.58~45.58万", 
+          "logoUrl": "http://www.waysdata.com/images/cms_picture/car_picture/宝马/宝马/i3/553_i3 EV/宝马_宝马_553_i3 EV_i3_白底_20181025_055525.jpg", 
+          "cycleList": [
+            {
+              "cycleName": "年度", 
+              "typeList": [
+                {
+                  "rewardTypeName": "固定折扣", 
+                  "subClassListTotal": [
+                    {
+                      "rewardSubTypeName": "固定折扣", 
+                      "rewardSubTypeId": null, 
+                      "rewardListTotal": null, 
+                      "rewardList": [
+                        {
+                          "rewardName": "固定折扣", 
+                          "months": [
+                            "27,184", 
+                            "27,184", 
+                            "27,184"
+                          ], 
+                          "showDetail": null
+                        }
+                      ]
+                    }
+                  ], 
+                  "subClassList": [
+                    {
+                      "rewardSubTypeName": "固定折扣", 
+                      "rewardSubTypeId": "24", 
+                      "rewardListTotal": [
+                        {
+                          "rewardName": "固定折扣", 
+                          "months": [
+                            "27,184", 
+                            "27,184", 
+                            "27,184"
+                          ], 
+                          "showDetail": null
+                        }
+                      ], 
+                      "rewardList": [
+                        {
+                          "rewardName": "销售毛利", 
+                          "months": [
+                            "27,184", 
+                            "27,184", 
+                            "27,184"
+                          ], 
+                          "showDetail": null
+                        }
+                      ]
+                    }
+                  ]
+                }, 
+                {
+                  "rewardTypeName": "销售奖励", 
+                  "subClassListTotal": [
+                    {
+                      "rewardSubTypeName": "销售奖励", 
+                      "rewardSubTypeId": null, 
+                      "rewardListTotal": null, 
+                      "rewardList": [
+                        {
+                          "rewardName": "销售奖励", 
+                          "months": [
+                            "6,796", 
+                            "6,796", 
+                            "6,796"
+                          ], 
+                          "showDetail": null
+                        }
+                      ]
+                    }
+                  ], 
+                  "subClassList": [
+                    {
+                      "rewardSubTypeName": "提车达成奖励", 
+                      "rewardSubTypeId": "44", 
+                      "rewardListTotal": [
+                        {
+                          "rewardName": "提车达成奖励", 
+                          "months": [
+                            "1,699", 
+                            "1,699", 
+                            "1,699"
+                          ], 
+                          "showDetail": null
+                        }
+                      ], 
+                      "rewardList": [
+                        {
+                          "rewardName": "年度批售数量奖金", 
+                          "months": [
+                            "1,699", 
+                            "1,699", 
+                            "1,699"
+                          ], 
+                          "showDetail": null
+                        }
+                      ]
+                    }, 
+                    {
+                      "rewardSubTypeName": "零售达成奖励", 
+                      "rewardSubTypeId": "28", 
+                      "rewardListTotal": [
+                        {
+                          "rewardName": "零售达成奖励", 
+                          "months": [
+                            "5,097", 
+                            "5,097", 
+                            "5,097"
+                          ], 
+                          "showDetail": null
+                        }
+                      ], 
+                      "rewardList": [
+                        {
+                          "rewardName": "季度零售数量奖金", 
+                          "months": [
+                            "5,097", 
+                            "5,097", 
+                            "5,097"
+                          ], 
+                          "showDetail": null
+                        }
+                      ]
+                    }
+                  ]
+                }, 
+                {
+                  "rewardTypeName": "管理奖励", 
+                  "subClassListTotal": [
+                    {
+                      "rewardSubTypeName": "管理奖励", 
+                      "rewardSubTypeId": null, 
+                      "rewardListTotal": null, 
+                      "rewardList": [
+                        {
+                          "rewardName": "管理奖励", 
+                          "months": [
+                            "3,399", 
+                            "3,399", 
+                            "3,399"
+                          ], 
+                          "showDetail": null
+                        }
+                      ]
+                    }
+                  ], 
+                  "subClassList": [
+                    {
+                      "rewardSubTypeName": "销售管理奖励", 
+                      "rewardSubTypeId": "30", 
+                      "rewardListTotal": [
+                        {
+                          "rewardName": "销售管理奖励", 
+                          "months": [
+                            "1,019", 
+                            "1,019", 
+                            "1,019"
+                          ], 
+                          "showDetail": null
+                        }
+                      ], 
+                      "rewardList": [
+                        {
+                          "rewardName": "零售标准", 
+                          "months": [
+                            "1,019", 
+                            "1,019", 
+                            "1,019"
+                          ], 
+                          "showDetail": null
+                        }
+                      ]
+                    }, 
+                    {
+                      "rewardSubTypeName": "服务管理奖励", 
+                      "rewardSubTypeId": "31", 
+                      "rewardListTotal": [
+                        {
+                          "rewardName": "服务管理奖励", 
+                          "months": [
+                            "680", 
+                            "680", 
+                            "680"
+                          ], 
+                          "showDetail": null
+                        }
+                      ], 
+                      "rewardList": [
+                        {
+                          "rewardName": "售后流程质量", 
+                          "months": [
+                            "680", 
+                            "680", 
+                            "680"
+                          ], 
+                          "showDetail": null
+                        }
+                      ]
+                    }, 
+                    {
+                      "rewardSubTypeName": "综合管理奖励", 
+                      "rewardSubTypeId": "32", 
+                      "rewardListTotal": [
+                        {
+                          "rewardName": "综合管理奖励", 
+                          "months": [
+                            "1,700", 
+                            "1,700", 
+                            "1,700"
+                          ], 
+                          "showDetail": null
+                        }
+                      ], 
+                      "rewardList": [
+                        {
+                          "rewardName": "人员资质", 
+                          "months": [
+                            "680", 
+                            "680", 
+                            "680"
+                          ], 
+                          "showDetail": null
+                        }, 
+                        {
+                          "rewardName": "财务数据管理", 
+                          "months": [
+                            "340", 
+                            "340", 
+                            "340"
+                          ], 
+                          "showDetail": null
+                        }, 
+                        {
+                          "rewardName": "CRM数据质量", 
+                          "months": [
+                            "680", 
+                            "680", 
+                            "680"
+                          ], 
+                          "showDetail": null
+                        }
+                      ]
+                    }
+                  ]
+                }, 
+                {
+                  "rewardTypeName": "满意度奖励", 
+                  "subClassListTotal": [
+                    {
+                      "rewardSubTypeName": "满意度奖励", 
+                      "rewardSubTypeId": null, 
+                      "rewardListTotal": null, 
+                      "rewardList": [
+                        {
+                          "rewardName": "满意度奖励", 
+                          "months": [
+                            "1,699", 
+                            "1,699", 
+                            "1,699"
+                          ], 
+                          "showDetail": null
+                        }
+                      ]
+                    }
+                  ], 
+                  "subClassList": [
+                    {
+                      "rewardSubTypeName": "销售满意度奖励", 
+                      "rewardSubTypeId": "33", 
+                      "rewardListTotal": [
+                        {
+                          "rewardName": "销售满意度奖励", 
+                          "months": [
+                            "1,189", 
+                            "1,189", 
+                            "1,189"
+                          ], 
+                          "showDetail": null
+                        }
+                      ], 
+                      "rewardList": [
+                        {
+                          "rewardName": "销售忠诚之悦", 
+                          "months": [
+                            "1,189", 
+                            "1,189", 
+                            "1,189"
+                          ], 
+                          "showDetail": null
+                        }
+                      ]
+                    }, 
+                    {
+                      "rewardSubTypeName": "服务满意度奖励", 
+                      "rewardSubTypeId": "34", 
+                      "rewardListTotal": [
+                        {
+                          "rewardName": "服务满意度奖励", 
+                          "months": [
+                            "510", 
+                            "510", 
+                            "510"
+                          ], 
+                          "showDetail": null
+                        }
+                      ], 
+                      "rewardList": [
+                        {
+                          "rewardName": "售后忠诚之悦", 
+                          "months": [
+                            "510", 
+                            "510", 
+                            "510"
+                          ], 
+                          "showDetail": null
+                        }
+                      ]
+                    }
+                  ]
+                }, 
+                {
+                  "rewardTypeName": "i3 EV年度小计（只包含固定折扣和考核奖励）", 
+                  "total": true, 
+                  "subClassList": [
+                    {
+                      "rewardSubTypeName": "", 
+                      "rewardList": [
+                        {
+                          "rewardName": "", 
+                          "months": [
+                            "39,078", 
+                            "39,078", 
+                            "39,078"
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }, 
+            {
+              "cycleName": "月度", 
+              "typeList": [
+                {
+                  "rewardTypeName": "零售奖励", 
+                  "subClassListTotal": [
+                    {
+                      "rewardSubTypeName": "零售奖励", 
+                      "rewardSubTypeId": null, 
+                      "rewardListTotal": null, 
+                      "rewardList": [
+                        {
+                          "rewardName": "零售奖励", 
+                          "months": [
+                            "72,356", 
+                            "72,356", 
+                            "72,356"
+                          ], 
+                          "showDetail": null
+                        }
+                      ]
+                    }
+                  ], 
+                  "subClassList": [
+                    {
+                      "rewardSubTypeName": "零售奖励", 
+                      "rewardSubTypeId": "6", 
+                      "rewardListTotal": [
+                        {
+                          "rewardName": "零售奖励", 
+                          "months": [
+                            "55,366", 
+                            "55,366", 
+                            "55,366"
+                          ], 
+                          "showDetail": null
+                        }
+                      ], 
+                      "rewardList": [
+                        {
+                          "rewardName": "上牌折让", 
+                          "months": [
+                            "23,786", 
+                            "23,786", 
+                            "23,786"
+                          ], 
+                          "showDetail": null
+                        }, 
+                        {
+                          "rewardName": "零售支持", 
+                          "months": [
+                            "22,087", 
+                            "22,087", 
+                            "22,087"
+                          ], 
+                          "showDetail": null
+                        }, 
+                        {
+                          "rewardName": "远程服务车载终端折让", 
+                          "months": [
+                            "4,105", 
+                            "4,105", 
+                            "4,105"
+                          ], 
+                          "showDetail": null
+                        }, 
+                        {
+                          "rewardName": "销售订单排名折让", 
+                          "months": [
+                            "5,388", 
+                            "5,388", 
+                            "5,388"
+                          ], 
+                          "showDetail": null
+                        }
+                      ]
+                    }, 
+                    {
+                      "rewardSubTypeName": "目标达成奖励", 
+                      "rewardSubTypeId": "7", 
+                      "rewardListTotal": [
+                        {
+                          "rewardName": "目标达成奖励", 
+                          "months": [
+                            "16,990", 
+                            "16,990", 
+                            "16,990"
+                          ], 
+                          "showDetail": null
+                        }
+                      ], 
+                      "rewardList": [
+                        {
+                          "rewardName": "目标达成奖励", 
+                          "months": [
+                            "16,990", 
+                            "16,990", 
+                            "16,990"
+                          ], 
+                          "showDetail": null
+                        }
+                      ]
+                    }
+                  ]
+                }, 
+                {
+                  "rewardTypeName": "特殊客户群奖励", 
+                  "subClassListTotal": [
+                    {
+                      "rewardSubTypeName": "特殊客户群奖励", 
+                      "rewardSubTypeId": null, 
+                      "rewardListTotal": null, 
+                      "rewardList": [
+                        {
+                          "rewardName": "特殊客户群奖励", 
+                          "months": [
+                            "0", 
+                            "0", 
+                            "0"
+                          ], 
+                          "showDetail": null
+                        }
+                      ]
+                    }
+                  ], 
+                  "subClassList": [
+                    {
+                      "rewardSubTypeName": "置换支援", 
+                      "rewardSubTypeId": "17", 
+                      "rewardListTotal": [
+                        {
+                          "rewardName": "置换支援", 
+                          "months": [
+                            "0", 
+                            "0", 
+                            "0"
+                          ], 
+                          "showDetail": null
+                        }
+                      ], 
+                      "rewardList": [
+                        {
+                          "rewardName": "置换补贴", 
+                          "months": [
+                            [
+                              {
+                                "rewardTypeName": "奖励大类", 
+                                "rewardSubTypeName": "奖励小类", 
+                                "rewardName": "奖励名称", 
+                                "rewardCycle": "考核周期", 
+                                "months": [
+                                  "202001", 
+                                  "202002", 
+                                  "202003"
+                                ]
+                              }, 
+                              {
+                                "rewardTypeName": "特殊客户群奖励", 
+                                "rewardSubTypeName": "置换支援", 
+                                "rewardName": "置换补贴", 
+                                "rewardCycle": "月度", 
+                                "months": [
+                                  "", 
+                                  "", 
+                                  "6,000"
+                                ]
+                              }
+                            ], 
+                            [
+                              {
+                                "rewardTypeName": "奖励大类", 
+                                "rewardSubTypeName": "奖励小类", 
+                                "rewardName": "奖励名称", 
+                                "rewardCycle": "考核周期", 
+                                "months": [
+                                  "202001", 
+                                  "202002", 
+                                  "202003"
+                                ]
+                              }, 
+                              {
+                                "rewardTypeName": "特殊客户群奖励", 
+                                "rewardSubTypeName": "置换支援", 
+                                "rewardName": "置换补贴", 
+                                "rewardCycle": "月度", 
+                                "months": [
+                                  "", 
+                                  "", 
+                                  "6,000"
+                                ]
+                              }
+                            ], 
+                            [
+                              {
+                                "rewardTypeName": "奖励大类", 
+                                "rewardSubTypeName": "奖励小类", 
+                                "rewardName": "奖励名称", 
+                                "rewardCycle": "考核周期", 
+                                "months": [
+                                  "202001", 
+                                  "202002", 
+                                  "202003"
+                                ]
+                              }, 
+                              {
+                                "rewardTypeName": "特殊客户群奖励", 
+                                "rewardSubTypeName": "置换支援", 
+                                "rewardName": "置换补贴", 
+                                "rewardCycle": "月度", 
+                                "months": [
+                                  "", 
+                                  "", 
+                                  "6,000"
+                                ]
+                              }
+                            ]
+                          ], 
+                          "showDetail": "详细"
+                        }, 
+                        {
+                          "rewardName": "额外礼遇", 
+                          "months": [
+                            [
+                              {
+                                "rewardTypeName": "奖励大类", 
+                                "rewardSubTypeName": "奖励小类", 
+                                "rewardName": "奖励名称", 
+                                "rewardCycle": "考核周期", 
+                                "months": [
+                                  "202001", 
+                                  "202002", 
+                                  "202003"
+                                ]
+                              }, 
+                              {
+                                "rewardTypeName": "特殊客户群奖励", 
+                                "rewardSubTypeName": "置换支援", 
+                                "rewardName": "额外礼遇", 
+                                "rewardCycle": "月度", 
+                                "months": [
+                                  "4,000", 
+                                  "4,000", 
+                                  "4,000"
+                                ]
+                              }
+                            ], 
+                            [
+                              {
+                                "rewardTypeName": "奖励大类", 
+                                "rewardSubTypeName": "奖励小类", 
+                                "rewardName": "奖励名称", 
+                                "rewardCycle": "考核周期", 
+                                "months": [
+                                  "202001", 
+                                  "202002", 
+                                  "202003"
+                                ]
+                              }, 
+                              {
+                                "rewardTypeName": "特殊客户群奖励", 
+                                "rewardSubTypeName": "置换支援", 
+                                "rewardName": "额外礼遇", 
+                                "rewardCycle": "月度", 
+                                "months": [
+                                  "4,000", 
+                                  "4,000", 
+                                  "4,000"
+                                ]
+                              }
+                            ], 
+                            [
+                              {
+                                "rewardTypeName": "奖励大类", 
+                                "rewardSubTypeName": "奖励小类", 
+                                "rewardName": "奖励名称", 
+                                "rewardCycle": "考核周期", 
+                                "months": [
+                                  "202001", 
+                                  "202002", 
+                                  "202003"
+                                ]
+                              }, 
+                              {
+                                "rewardTypeName": "特殊客户群奖励", 
+                                "rewardSubTypeName": "置换支援", 
+                                "rewardName": "额外礼遇", 
+                                "rewardCycle": "月度", 
+                                "months": [
+                                  "4,000", 
+                                  "4,000", 
+                                  "4,000"
+                                ]
+                              }
+                            ]
+                          ], 
+                          "showDetail": "详细"
+                        }
+                      ]
+                    }, 
+                    {
+                      "rewardSubTypeName": "保有客户支援", 
+                      "rewardSubTypeId": "18", 
+                      "rewardListTotal": [
+                        {
+                          "rewardName": "保有客户支援", 
+                          "months": [
+                            "0", 
+                            "0", 
+                            "0"
+                          ], 
+                          "showDetail": null
+                        }
+                      ], 
+                      "rewardList": [
+                        {
+                          "rewardName": "销售折让", 
+                          "months": [
+                            [
+                              {
+                                "rewardTypeName": "奖励大类", 
+                                "rewardSubTypeName": "奖励小类", 
+                                "rewardName": "奖励名称", 
+                                "rewardCycle": "考核周期", 
+                                "months": [
+                                  "202001", 
+                                  "202002", 
+                                  "202003"
+                                ]
+                              }, 
+                              {
+                                "rewardTypeName": "特殊客户群奖励", 
+                                "rewardSubTypeName": "保有客户支援", 
+                                "rewardName": "销售折让", 
+                                "rewardCycle": "月度", 
+                                "months": [
+                                  "8,000", 
+                                  "8,000", 
+                                  "8,000"
+                                ]
+                              }
+                            ], 
+                            [
+                              {
+                                "rewardTypeName": "奖励大类", 
+                                "rewardSubTypeName": "奖励小类", 
+                                "rewardName": "奖励名称", 
+                                "rewardCycle": "考核周期", 
+                                "months": [
+                                  "202001", 
+                                  "202002", 
+                                  "202003"
+                                ]
+                              }, 
+                              {
+                                "rewardTypeName": "特殊客户群奖励", 
+                                "rewardSubTypeName": "保有客户支援", 
+                                "rewardName": "销售折让", 
+                                "rewardCycle": "月度", 
+                                "months": [
+                                  "8,000", 
+                                  "8,000", 
+                                  "8,000"
+                                ]
+                              }
+                            ], 
+                            [
+                              {
+                                "rewardTypeName": "奖励大类", 
+                                "rewardSubTypeName": "奖励小类", 
+                                "rewardName": "奖励名称", 
+                                "rewardCycle": "考核周期", 
+                                "months": [
+                                  "202001", 
+                                  "202002", 
+                                  "202003"
+                                ]
+                              }, 
+                              {
+                                "rewardTypeName": "特殊客户群奖励", 
+                                "rewardSubTypeName": "保有客户支援", 
+                                "rewardName": "销售折让", 
+                                "rewardCycle": "月度", 
+                                "months": [
+                                  "8,000", 
+                                  "8,000", 
+                                  "8,000"
+                                ]
+                              }
+                            ]
+                          ], 
+                          "showDetail": "详细"
+                        }
+                      ]
+                    }
+                  ]
+                }, 
+                {
+                  "rewardTypeName": "提车奖励", 
+                  "subClassListTotal": [
+                    {
+                      "rewardSubTypeName": "提车奖励", 
+                      "rewardSubTypeId": null, 
+                      "rewardListTotal": null, 
+                      "rewardList": [
+                        {
+                          "rewardName": "提车奖励", 
+                          "months": [
+                            "0", 
+                            "0", 
+                            "0"
+                          ], 
+                          "showDetail": null
+                        }
+                      ]
+                    }
+                  ], 
+                  "subClassList": [
+                    {
+                      "rewardSubTypeName": "财务金融支援", 
+                      "rewardSubTypeId": "3", 
+                      "rewardListTotal": [
+                        {
+                          "rewardName": "财务金融支援", 
+                          "months": [
+                            "0", 
+                            "0", 
+                            "0"
+                          ], 
+                          "showDetail": null
+                        }
+                      ], 
+                      "rewardList": [
+                        {
+                          "rewardName": "财务支持政策", 
+                          "months": [
+                            [
+                              {
+                                "rewardTypeName": "奖励大类", 
+                                "rewardSubTypeName": "奖励小类", 
+                                "rewardName": "奖励名称", 
+                                "rewardCycle": "考核周期", 
+                                "months": [
+                                  "202001", 
+                                  "202002", 
+                                  "202003"
+                                ]
+                              }, 
+                              {
+                                "rewardTypeName": "提车奖励", 
+                                "rewardSubTypeName": "财务金融支援", 
+                                "rewardName": "财务支持政策", 
+                                "rewardCycle": "月度", 
+                                "months": [
+                                  "", 
+                                  "75", 
+                                  "75"
+                                ]
+                              }
+                            ], 
+                            [
+                              {
+                                "rewardTypeName": "奖励大类", 
+                                "rewardSubTypeName": "奖励小类", 
+                                "rewardName": "奖励名称", 
+                                "rewardCycle": "考核周期", 
+                                "months": [
+                                  "202001", 
+                                  "202002", 
+                                  "202003"
+                                ]
+                              }, 
+                              {
+                                "rewardTypeName": "提车奖励", 
+                                "rewardSubTypeName": "财务金融支援", 
+                                "rewardName": "财务支持政策", 
+                                "rewardCycle": "月度", 
+                                "months": [
+                                  "", 
+                                  "75", 
+                                  "75"
+                                ]
+                              }
+                            ], 
+                            [
+                              {
+                                "rewardTypeName": "奖励大类", 
+                                "rewardSubTypeName": "奖励小类", 
+                                "rewardName": "奖励名称", 
+                                "rewardCycle": "考核周期", 
+                                "months": [
+                                  "202001", 
+                                  "202002", 
+                                  "202003"
+                                ]
+                              }, 
+                              {
+                                "rewardTypeName": "提车奖励", 
+                                "rewardSubTypeName": "财务金融支援", 
+                                "rewardName": "财务支持政策", 
+                                "rewardCycle": "月度", 
+                                "months": [
+                                  "", 
+                                  "75", 
+                                  "75"
+                                ]
+                              }
+                            ]
+                          ], 
+                          "showDetail": "详细"
+                        }
+                      ]
+                    }
+                  ]
+                }, 
+                {
+                  "rewardTypeName": "专项促销", 
+                  "subClassListTotal": [
+                    {
+                      "rewardSubTypeName": "专项促销", 
+                      "rewardSubTypeId": null, 
+                      "rewardListTotal": null, 
+                      "rewardList": [
+                        {
+                          "rewardName": "专项促销", 
+                          "months": [
+                            "0", 
+                            "0", 
+                            "5,000"
+                          ], 
+                          "showDetail": null
+                        }
+                      ]
+                    }
+                  ], 
+                  "subClassList": [
+                    {
+                      "rewardSubTypeName": "保养赠送支援", 
+                      "rewardSubTypeId": "13", 
+                      "rewardListTotal": [
+                        {
+                          "rewardName": "保养赠送支援", 
+                          "months": [
+                            "0", 
+                            "0", 
+                            "5,000"
+                          ], 
+                          "showDetail": null
+                        }
+                      ], 
+                      "rewardList": [
+                        {
+                          "rewardName": "售后折让礼遇", 
+                          "months": [
+                            "", 
+                            "", 
+                            "5,000"
+                          ], 
+                          "showDetail": null
+                        }
+                      ]
+                    }
+                  ]
+                }, 
+                {
+                  "rewardTypeName": "i3 EV月度小计（只包含月度激励）", 
+                  "total": true, 
+                  "subClassList": [
+                    {
+                      "rewardSubTypeName": "", 
+                      "rewardList": [
+                        {
+                          "rewardName": "", 
+                          "months": [
+                            "72,356", 
+                            "72,356", 
+                            "77,356"
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ], 
+          "itemNum": 14, 
+          "import": true
+        }, 
+        {
+          "manfBrand": null, 
+          "subModel": "POLO", 
+          "msrp": "7.59~15.89万", 
+          "logoUrl": "http://www.waysdata.com/images/cms_picture/car_picture/上汽大众/大众/POLO/266_POLO/上汽大众_大众_266_POLO_POLO_白底_20191115_035919.jpg", 
+          "cycleList": [
+            {
+              "cycleName": "年度", 
+              "typeList": [
+                {
+                  "rewardTypeName": "固定折扣", 
+                  "subClassListTotal": [
+                    {
+                      "rewardSubTypeName": "固定折扣", 
+                      "rewardSubTypeId": null, 
+                      "rewardListTotal": null, 
+                      "rewardList": [
+                        {
+                          "rewardName": "固定折扣", 
+                          "months": [
+                            "4,497", 
+                            "4,497", 
+                            "4,497"
+                          ], 
+                          "showDetail": null
+                        }
+                      ]
+                    }
+                  ], 
+                  "subClassList": [
+                    {
+                      "rewardSubTypeName": "固定折扣", 
+                      "rewardSubTypeId": "24", 
+                      "rewardListTotal": [
+                        {
+                          "rewardName": "固定折扣", 
+                          "months": [
+                            "4,497", 
+                            "4,497", 
+                            "4,497"
+                          ], 
+                          "showDetail": null
+                        }
+                      ], 
+                      "rewardList": [
+                        {
+                          "rewardName": "固定折扣", 
+                          "months": [
+                            "4,497", 
+                            "4,497", 
+                            "4,497"
+                          ], 
+                          "showDetail": null
+                        }
+                      ]
+                    }
+                  ]
+                }, 
+                {
+                  "rewardTypeName": "评比奖励", 
+                  "subClassListTotal": [
+                    {
+                      "rewardSubTypeName": "评比奖励", 
+                      "rewardSubTypeId": null, 
+                      "rewardListTotal": null, 
+                      "rewardList": [
+                        {
+                          "rewardName": "评比奖励", 
+                          "months": [
+                            "183", 
+                            "183", 
+                            "183"
+                          ], 
+                          "showDetail": null
+                        }
+                      ]
+                    }
+                  ], 
+                  "subClassList": [
+                    {
+                      "rewardSubTypeName": "综合评比奖励", 
+                      "rewardSubTypeId": "27", 
+                      "rewardListTotal": [
+                        {
+                          "rewardName": "综合评比奖励", 
+                          "months": [
+                            "183", 
+                            "183", 
+                            "183"
+                          ], 
+                          "showDetail": null
+                        }
+                      ], 
+                      "rewardList": [
+                        {
+                          "rewardName": "经销商星级评定及年度选优", 
+                          "months": [
+                            "183", 
+                            "183", 
+                            "183"
+                          ], 
+                          "showDetail": null
+                        }
+                      ]
+                    }
+                  ]
+                }, 
+                {
+                  "rewardTypeName": "销售奖励", 
+                  "subClassListTotal": [
+                    {
+                      "rewardSubTypeName": "销售奖励", 
+                      "rewardSubTypeId": null, 
+                      "rewardListTotal": null, 
+                      "rewardList": [
+                        {
+                          "rewardName": "销售奖励", 
+                          "months": [
+                            "2,023", 
+                            "2,023", 
+                            "2,023"
+                          ], 
+                          "showDetail": null
+                        }
+                      ]
+                    }
+                  ], 
+                  "subClassList": [
+                    {
+                      "rewardSubTypeName": "零售达成奖励", 
+                      "rewardSubTypeId": "28", 
+                      "rewardListTotal": [
+                        {
+                          "rewardName": "零售达成奖励", 
+                          "months": [
+                            "2,023", 
+                            "2,023", 
+                            "2,023"
+                          ], 
+                          "showDetail": null
+                        }
+                      ], 
+                      "rewardList": [
+                        {
+                          "rewardName": "销售达成奖励", 
+                          "months": [
+                            "1,349", 
+                            "1,349", 
+                            "1,349"
+                          ], 
+                          "showDetail": null
+                        }, 
+                        {
+                          "rewardName": "本地销售支持奖励", 
+                          "months": [
+                            "674", 
+                            "674", 
+                            "674"
+                          ], 
+                          "showDetail": null
+                        }
+                      ]
+                    }
+                  ]
+                }, 
+                {
+                  "rewardTypeName": "满意度奖励", 
+                  "subClassListTotal": [
+                    {
+                      "rewardSubTypeName": "满意度奖励", 
+                      "rewardSubTypeId": null, 
+                      "rewardListTotal": null, 
+                      "rewardList": [
+                        {
+                          "rewardName": "满意度奖励", 
+                          "months": [
+                            "450", 
+                            "450", 
+                            "450"
+                          ], 
+                          "showDetail": null
+                        }
+                      ]
+                    }
+                  ], 
+                  "subClassList": [
+                    {
+                      "rewardSubTypeName": "销售满意度奖励", 
+                      "rewardSubTypeId": "33", 
+                      "rewardListTotal": [
+                        {
+                          "rewardName": "销售满意度奖励", 
+                          "months": [
+                            "225", 
+                            "225", 
+                            "225"
+                          ], 
+                          "showDetail": null
+                        }
+                      ], 
+                      "rewardList": [
+                        {
+                          "rewardName": "销售综合满意度奖励", 
+                          "months": [
+                            "225", 
+                            "225", 
+                            "225"
+                          ], 
+                          "showDetail": null
+                        }
+                      ]
+                    }, 
+                    {
+                      "rewardSubTypeName": "服务满意度奖励", 
+                      "rewardSubTypeId": "34", 
+                      "rewardListTotal": [
+                        {
+                          "rewardName": "服务满意度奖励", 
+                          "months": [
+                            "225", 
+                            "225", 
+                            "225"
+                          ], 
+                          "showDetail": null
+                        }
+                      ], 
+                      "rewardList": [
+                        {
+                          "rewardName": "售后忠诚度奖励", 
+                          "months": [
+                            "225", 
+                            "225", 
+                            "225"
+                          ], 
+                          "showDetail": null
+                        }
+                      ]
+                    }
+                  ]
+                }, 
+                {
+                  "rewardTypeName": "市场支援", 
+                  "subClassListTotal": [
+                    {
+                      "rewardSubTypeName": "市场支援", 
+                      "rewardSubTypeId": null, 
+                      "rewardListTotal": null, 
+                      "rewardList": [
+                        {
+                          "rewardName": "市场支援", 
+                          "months": [
+                            "0", 
+                            "0", 
+                            "0"
+                          ], 
+                          "showDetail": null
+                        }
+                      ]
+                    }
+                  ], 
+                  "subClassList": [
+                    {
+                      "rewardSubTypeName": "市场支援", 
+                      "rewardSubTypeId": "36", 
+                      "rewardListTotal": [
+                        {
+                          "rewardName": "市场支援", 
+                          "months": [
+                            "0", 
+                            "0", 
+                            "0"
+                          ], 
+                          "showDetail": null
+                        }
+                      ], 
+                      "rewardList": [
+                        {
+                          "rewardName": "市场推广奖励", 
+                          "months": [
+                            [
+                              {
+                                "rewardTypeName": "奖励大类", 
+                                "rewardSubTypeName": "奖励小类", 
+                                "rewardName": "奖励名称", 
+                                "rewardCycle": "考核周期", 
+                                "months": [
+                                  "202001", 
+                                  "202002", 
+                                  "202003"
+                                ]
+                              }, 
+                              {
+                                "rewardTypeName": "市场支援", 
+                                "rewardSubTypeName": "市场支援", 
+                                "rewardName": "市场推广奖励", 
+                                "rewardCycle": "年度", 
+                                "months": [
+                                  "480", 
+                                  "480", 
+                                  "480"
+                                ]
+                              }
+                            ], 
+                            [
+                              {
+                                "rewardTypeName": "奖励大类", 
+                                "rewardSubTypeName": "奖励小类", 
+                                "rewardName": "奖励名称", 
+                                "rewardCycle": "考核周期", 
+                                "months": [
+                                  "202001", 
+                                  "202002", 
+                                  "202003"
+                                ]
+                              }, 
+                              {
+                                "rewardTypeName": "市场支援", 
+                                "rewardSubTypeName": "市场支援", 
+                                "rewardName": "市场推广奖励", 
+                                "rewardCycle": "年度", 
+                                "months": [
+                                  "480", 
+                                  "480", 
+                                  "480"
+                                ]
+                              }
+                            ], 
+                            [
+                              {
+                                "rewardTypeName": "奖励大类", 
+                                "rewardSubTypeName": "奖励小类", 
+                                "rewardName": "奖励名称", 
+                                "rewardCycle": "考核周期", 
+                                "months": [
+                                  "202001", 
+                                  "202002", 
+                                  "202003"
+                                ]
+                              }, 
+                              {
+                                "rewardTypeName": "市场支援", 
+                                "rewardSubTypeName": "市场支援", 
+                                "rewardName": "市场推广奖励", 
+                                "rewardCycle": "年度", 
+                                "months": [
+                                  "480", 
+                                  "480", 
+                                  "480"
+                                ]
+                              }
+                            ]
+                          ], 
+                          "showDetail": "详细"
+                        }
+                      ]
+                    }
+                  ]
+                }, 
+                {
+                  "rewardTypeName": "其他", 
+                  "subClassListTotal": [
+                    {
+                      "rewardSubTypeName": "其他", 
+                      "rewardSubTypeId": null, 
+                      "rewardListTotal": null, 
+                      "rewardList": [
+                        {
+                          "rewardName": "其他", 
+                          "months": [
+                            "0", 
+                            "0", 
+                            "0"
+                          ], 
+                          "showDetail": null
+                        }
+                      ]
+                    }
+                  ], 
+                  "subClassList": [
+                    {
+                      "rewardSubTypeName": "试乘试驾车支援", 
+                      "rewardSubTypeId": "41", 
+                      "rewardListTotal": [
+                        {
+                          "rewardName": "试乘试驾车支援", 
+                          "months": [
+                            "0", 
+                            "0", 
+                            "0"
+                          ], 
+                          "showDetail": null
+                        }
+                      ], 
+                      "rewardList": [
+                        {
+                          "rewardName": "季度固定支持", 
+                          "months": [
+                            [
+                              {
+                                "rewardTypeName": "奖励大类", 
+                                "rewardSubTypeName": "奖励小类", 
+                                "rewardName": "奖励名称", 
+                                "rewardCycle": "考核周期", 
+                                "months": [
+                                  "202001", 
+                                  "202002", 
+                                  "202003"
+                                ]
+                              }, 
+                              {
+                                "rewardTypeName": "其他", 
+                                "rewardSubTypeName": "试乘试驾车支援", 
+                                "rewardName": "季度固定支持", 
+                                "rewardCycle": "年度", 
+                                "months": [
+                                  "4,246-5,266", 
+                                  "4,246-5,266", 
+                                  "4,246-5,266"
+                                ]
+                              }
+                            ], 
+                            [
+                              {
+                                "rewardTypeName": "奖励大类", 
+                                "rewardSubTypeName": "奖励小类", 
+                                "rewardName": "奖励名称", 
+                                "rewardCycle": "考核周期", 
+                                "months": [
+                                  "202001", 
+                                  "202002", 
+                                  "202003"
+                                ]
+                              }, 
+                              {
+                                "rewardTypeName": "其他", 
+                                "rewardSubTypeName": "试乘试驾车支援", 
+                                "rewardName": "季度固定支持", 
+                                "rewardCycle": "年度", 
+                                "months": [
+                                  "4,246-5,266", 
+                                  "4,246-5,266", 
+                                  "4,246-5,266"
+                                ]
+                              }
+                            ], 
+                            [
+                              {
+                                "rewardTypeName": "奖励大类", 
+                                "rewardSubTypeName": "奖励小类", 
+                                "rewardName": "奖励名称", 
+                                "rewardCycle": "考核周期", 
+                                "months": [
+                                  "202001", 
+                                  "202002", 
+                                  "202003"
+                                ]
+                              }, 
+                              {
+                                "rewardTypeName": "其他", 
+                                "rewardSubTypeName": "试乘试驾车支援", 
+                                "rewardName": "季度固定支持", 
+                                "rewardCycle": "年度", 
+                                "months": [
+                                  "4,246-5,266", 
+                                  "4,246-5,266", 
+                                  "4,246-5,266"
+                                ]
+                              }
+                            ]
+                          ], 
+                          "showDetail": "详细"
+                        }, 
+                        {
+                          "rewardName": "季度绩效支持", 
+                          "months": [
+                            [
+                              {
+                                "rewardTypeName": "奖励大类", 
+                                "rewardSubTypeName": "奖励小类", 
+                                "rewardName": "奖励名称", 
+                                "rewardCycle": "考核周期", 
+                                "months": [
+                                  "202001", 
+                                  "202002", 
+                                  "202003"
+                                ]
+                              }, 
+                              {
+                                "rewardTypeName": "其他", 
+                                "rewardSubTypeName": "试乘试驾车支援", 
+                                "rewardName": "季度绩效支持", 
+                                "rewardCycle": "年度", 
+                                "months": [
+                                  "1,998-2,478", 
+                                  "1,998-2,478", 
+                                  "1,998-2,478"
+                                ]
+                              }
+                            ], 
+                            [
+                              {
+                                "rewardTypeName": "奖励大类", 
+                                "rewardSubTypeName": "奖励小类", 
+                                "rewardName": "奖励名称", 
+                                "rewardCycle": "考核周期", 
+                                "months": [
+                                  "202001", 
+                                  "202002", 
+                                  "202003"
+                                ]
+                              }, 
+                              {
+                                "rewardTypeName": "其他", 
+                                "rewardSubTypeName": "试乘试驾车支援", 
+                                "rewardName": "季度绩效支持", 
+                                "rewardCycle": "年度", 
+                                "months": [
+                                  "1,998-2,478", 
+                                  "1,998-2,478", 
+                                  "1,998-2,478"
+                                ]
+                              }
+                            ], 
+                            [
+                              {
+                                "rewardTypeName": "奖励大类", 
+                                "rewardSubTypeName": "奖励小类", 
+                                "rewardName": "奖励名称", 
+                                "rewardCycle": "考核周期", 
+                                "months": [
+                                  "202001", 
+                                  "202002", 
+                                  "202003"
+                                ]
+                              }, 
+                              {
+                                "rewardTypeName": "其他", 
+                                "rewardSubTypeName": "试乘试驾车支援", 
+                                "rewardName": "季度绩效支持", 
+                                "rewardCycle": "年度", 
+                                "months": [
+                                  "1,998-2,478", 
+                                  "1,998-2,478", 
+                                  "1,998-2,478"
+                                ]
+                              }
+                            ]
+                          ], 
+                          "showDetail": "详细"
+                        }
+                      ]
+                    }
+                  ]
+                }, 
+                {
+                  "rewardTypeName": "POLO年度小计（只包含固定折扣和考核奖励）", 
+                  "total": true, 
+                  "subClassList": [
+                    {
+                      "rewardSubTypeName": "", 
+                      "rewardList": [
+                        {
+                          "rewardName": "", 
+                          "months": [
+                            "7,153", 
+                            "7,153", 
+                            "7,153"
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }, 
+            {
+              "cycleName": "月度", 
+              "typeList": [
+                {
+                  "rewardTypeName": "专项促销", 
+                  "subClassListTotal": [
+                    {
+                      "rewardSubTypeName": "专项促销", 
+                      "rewardSubTypeId": null, 
+                      "rewardListTotal": null, 
+                      "rewardList": [
+                        {
+                          "rewardName": "专项促销", 
+                          "months": [
+                            "2,020", 
+                            "2,020", 
+                            "0"
+                          ], 
+                          "showDetail": null
+                        }
+                      ]
+                    }
+                  ], 
+                  "subClassList": [
+                    {
+                      "rewardSubTypeName": "交车礼品支援", 
+                      "rewardSubTypeId": "12", 
+                      "rewardListTotal": [
+                        {
+                          "rewardName": "交车礼品支援", 
+                          "months": [
+                            "2,020", 
+                            "2,020", 
+                            "0"
+                          ], 
+                          "showDetail": null
+                        }
+                      ], 
+                      "rewardList": [
+                        {
+                          "rewardName": "消费积分", 
+                          "months": [
+                            "2,020", 
+                            "2,020", 
+                            ""
+                          ], 
+                          "showDetail": null
+                        }
+                      ]
+                    }
+                  ]
+                }, 
+                {
+                  "rewardTypeName": "竞赛类奖励", 
+                  "subClassListTotal": [
+                    {
+                      "rewardSubTypeName": "竞赛类奖励", 
+                      "rewardSubTypeId": null, 
+                      "rewardListTotal": null, 
+                      "rewardList": [
+                        {
+                          "rewardName": "竞赛类奖励", 
+                          "months": [
+                            "1,500", 
+                            "1,500", 
+                            "1,500"
+                          ], 
+                          "showDetail": null
+                        }
+                      ]
+                    }
+                  ], 
+                  "subClassList": [
+                    {
+                      "rewardSubTypeName": "销售竞赛奖励", 
+                      "rewardSubTypeId": "14", 
+                      "rewardListTotal": [
+                        {
+                          "rewardName": "销售竞赛奖励", 
+                          "months": [
+                            "1,500", 
+                            "1,500", 
+                            "1,500"
+                          ], 
+                          "showDetail": null
+                        }
+                      ], 
+                      "rewardList": [
+                        {
+                          "rewardName": "全车系销售竞赛", 
+                          "months": [
+                            "1,500", 
+                            "1,500", 
+                            "1,500"
+                          ], 
+                          "showDetail": null
+                        }
+                      ]
+                    }
+                  ]
+                }, 
+                {
+                  "rewardTypeName": "特殊客户群奖励", 
+                  "subClassListTotal": [
+                    {
+                      "rewardSubTypeName": "特殊客户群奖励", 
+                      "rewardSubTypeId": null, 
+                      "rewardListTotal": null, 
+                      "rewardList": [
+                        {
+                          "rewardName": "特殊客户群奖励", 
+                          "months": [
+                            "0", 
+                            "0", 
+                            "0"
+                          ], 
+                          "showDetail": null
+                        }
+                      ]
+                    }
+                  ], 
+                  "subClassList": [
+                    {
+                      "rewardSubTypeName": "保有客户支援", 
+                      "rewardSubTypeId": "18", 
+                      "rewardListTotal": [
+                        {
+                          "rewardName": "保有客户支援", 
+                          "months": [
+                            "0", 
+                            "0", 
+                            "0"
+                          ], 
+                          "showDetail": null
+                        }
+                      ], 
+                      "rewardList": [
+                        {
+                          "rewardName": "俱乐部推荐购车政策", 
+                          "months": [
+                            [
+                              {
+                                "rewardTypeName": "奖励大类", 
+                                "rewardSubTypeName": "奖励小类", 
+                                "rewardName": "奖励名称", 
+                                "rewardCycle": "考核周期", 
+                                "months": [
+                                  "202001", 
+                                  "202002", 
+                                  "202003"
+                                ]
+                              }, 
+                              {
+                                "rewardTypeName": "特殊客户群奖励", 
+                                "rewardSubTypeName": "保有客户支援", 
+                                "rewardName": "俱乐部推荐购车政策", 
+                                "rewardCycle": "月度", 
+                                "months": [
+                                  "300", 
+                                  "300", 
+                                  "300"
+                                ]
+                              }
+                            ], 
+                            [
+                              {
+                                "rewardTypeName": "奖励大类", 
+                                "rewardSubTypeName": "奖励小类", 
+                                "rewardName": "奖励名称", 
+                                "rewardCycle": "考核周期", 
+                                "months": [
+                                  "202001", 
+                                  "202002", 
+                                  "202003"
+                                ]
+                              }, 
+                              {
+                                "rewardTypeName": "特殊客户群奖励", 
+                                "rewardSubTypeName": "保有客户支援", 
+                                "rewardName": "俱乐部推荐购车政策", 
+                                "rewardCycle": "月度", 
+                                "months": [
+                                  "300", 
+                                  "300", 
+                                  "300"
+                                ]
+                              }
+                            ], 
+                            [
+                              {
+                                "rewardTypeName": "奖励大类", 
+                                "rewardSubTypeName": "奖励小类", 
+                                "rewardName": "奖励名称", 
+                                "rewardCycle": "考核周期", 
+                                "months": [
+                                  "202001", 
+                                  "202002", 
+                                  "202003"
+                                ]
+                              }, 
+                              {
+                                "rewardTypeName": "特殊客户群奖励", 
+                                "rewardSubTypeName": "保有客户支援", 
+                                "rewardName": "俱乐部推荐购车政策", 
+                                "rewardCycle": "月度", 
+                                "months": [
+                                  "300", 
+                                  "300", 
+                                  "300"
+                                ]
+                              }
+                            ]
+                          ], 
+                          "showDetail": "详细"
+                        }, 
+                        {
+                          "rewardName": "再购电子券", 
+                          "months": [
+                            [
+                              {
+                                "rewardTypeName": "奖励大类", 
+                                "rewardSubTypeName": "奖励小类", 
+                                "rewardName": "奖励名称", 
+                                "rewardCycle": "考核周期", 
+                                "months": [
+                                  "202001", 
+                                  "202002", 
+                                  "202003"
+                                ]
+                              }, 
+                              {
+                                "rewardTypeName": "特殊客户群奖励", 
+                                "rewardSubTypeName": "保有客户支援", 
+                                "rewardName": "再购电子券", 
+                                "rewardCycle": "月度", 
+                                "months": [
+                                  "2,020", 
+                                  "2,020", 
+                                  "2,000"
+                                ]
+                              }
+                            ], 
+                            [
+                              {
+                                "rewardTypeName": "奖励大类", 
+                                "rewardSubTypeName": "奖励小类", 
+                                "rewardName": "奖励名称", 
+                                "rewardCycle": "考核周期", 
+                                "months": [
+                                  "202001", 
+                                  "202002", 
+                                  "202003"
+                                ]
+                              }, 
+                              {
+                                "rewardTypeName": "特殊客户群奖励", 
+                                "rewardSubTypeName": "保有客户支援", 
+                                "rewardName": "再购电子券", 
+                                "rewardCycle": "月度", 
+                                "months": [
+                                  "2,020", 
+                                  "2,020", 
+                                  "2,000"
+                                ]
+                              }
+                            ], 
+                            [
+                              {
+                                "rewardTypeName": "奖励大类", 
+                                "rewardSubTypeName": "奖励小类", 
+                                "rewardName": "奖励名称", 
+                                "rewardCycle": "考核周期", 
+                                "months": [
+                                  "202001", 
+                                  "202002", 
+                                  "202003"
+                                ]
+                              }, 
+                              {
+                                "rewardTypeName": "特殊客户群奖励", 
+                                "rewardSubTypeName": "保有客户支援", 
+                                "rewardName": "再购电子券", 
+                                "rewardCycle": "月度", 
+                                "months": [
+                                  "2,020", 
+                                  "2,020", 
+                                  "2,000"
+                                ]
+                              }
+                            ]
+                          ], 
+                          "showDetail": "详细"
+                        }
+                      ]
+                    }
+                  ]
+                }, 
+                {
+                  "rewardTypeName": "提车奖励", 
+                  "subClassListTotal": [
+                    {
+                      "rewardSubTypeName": "提车奖励", 
+                      "rewardSubTypeId": null, 
+                      "rewardListTotal": null, 
+                      "rewardList": [
+                        {
+                          "rewardName": "提车奖励", 
+                          "months": [
+                            "0", 
+                            "0", 
+                            "0"
+                          ], 
+                          "showDetail": null
+                        }
+                      ]
+                    }
+                  ], 
+                  "subClassList": [
+                    {
+                      "rewardSubTypeName": "财务金融支援", 
+                      "rewardSubTypeId": "3", 
+                      "rewardListTotal": [
+                        {
+                          "rewardName": "财务金融支援", 
+                          "months": [
+                            "0", 
+                            "0", 
+                            "0"
+                          ], 
+                          "showDetail": null
+                        }
+                      ], 
+                      "rewardList": [
+                        {
+                          "rewardName": "免息支持", 
+                          "months": [
+                            [
+                              {
+                                "rewardTypeName": "奖励大类", 
+                                "rewardSubTypeName": "奖励小类", 
+                                "rewardName": "奖励名称", 
+                                "rewardCycle": "考核周期", 
+                                "months": [
+                                  "202001", 
+                                  "202002", 
+                                  "202003"
+                                ]
+                              }, 
+                              {
+                                "rewardTypeName": "提车奖励", 
+                                "rewardSubTypeName": "财务金融支援", 
+                                "rewardName": "免息支持", 
+                                "rewardCycle": "月度", 
+                                "months": [
+                                  "", 
+                                  "30", 
+                                  ""
+                                ]
+                              }
+                            ], 
+                            [
+                              {
+                                "rewardTypeName": "奖励大类", 
+                                "rewardSubTypeName": "奖励小类", 
+                                "rewardName": "奖励名称", 
+                                "rewardCycle": "考核周期", 
+                                "months": [
+                                  "202001", 
+                                  "202002", 
+                                  "202003"
+                                ]
+                              }, 
+                              {
+                                "rewardTypeName": "提车奖励", 
+                                "rewardSubTypeName": "财务金融支援", 
+                                "rewardName": "免息支持", 
+                                "rewardCycle": "月度", 
+                                "months": [
+                                  "", 
+                                  "30", 
+                                  ""
+                                ]
+                              }
+                            ], 
+                            [
+                              {
+                                "rewardTypeName": "奖励大类", 
+                                "rewardSubTypeName": "奖励小类", 
+                                "rewardName": "奖励名称", 
+                                "rewardCycle": "考核周期", 
+                                "months": [
+                                  "202001", 
+                                  "202002", 
+                                  "202003"
+                                ]
+                              }, 
+                              {
+                                "rewardTypeName": "提车奖励", 
+                                "rewardSubTypeName": "财务金融支援", 
+                                "rewardName": "免息支持", 
+                                "rewardCycle": "月度", 
+                                "months": [
+                                  "", 
+                                  "30", 
+                                  ""
+                                ]
+                              }
+                            ]
+                          ], 
+                          "showDetail": "详细"
+                        }
+                      ]
+                    }
+                  ]
+                }, 
+                {
+                  "rewardTypeName": "零售奖励", 
+                  "subClassListTotal": [
+                    {
+                      "rewardSubTypeName": "零售奖励", 
+                      "rewardSubTypeId": null, 
+                      "rewardListTotal": null, 
+                      "rewardList": [
+                        {
+                          "rewardName": "零售奖励", 
+                          "months": [
+                            "0", 
+                            "800", 
+                            "800"
+                          ], 
+                          "showDetail": null
+                        }
+                      ]
+                    }
+                  ], 
+                  "subClassList": [
+                    {
+                      "rewardSubTypeName": "目标达成奖励", 
+                      "rewardSubTypeId": "7", 
+                      "rewardListTotal": [
+                        {
+                          "rewardName": "目标达成奖励", 
+                          "months": [
+                            "0", 
+                            "800", 
+                            "800"
+                          ], 
+                          "showDetail": null
+                        }
+                      ], 
+                      "rewardList": [
+                        {
+                          "rewardName": "市占率提升奖", 
+                          "months": [
+                            "", 
+                            "800", 
+                            "800"
+                          ], 
+                          "showDetail": null
+                        }
+                      ]
+                    }
+                  ]
+                }, 
+                {
+                  "rewardTypeName": "其他奖励", 
+                  "subClassListTotal": [
+                    {
+                      "rewardSubTypeName": "其他奖励", 
+                      "rewardSubTypeId": null, 
+                      "rewardListTotal": null, 
+                      "rewardList": [
+                        {
+                          "rewardName": "其他奖励", 
+                          "months": [
+                            "0", 
+                            "0", 
+                            "0"
+                          ], 
+                          "showDetail": null
+                        }
+                      ]
+                    }
+                  ], 
+                  "subClassList": [
+                    {
+                      "rewardSubTypeName": "电商奖励", 
+                      "rewardSubTypeId": "22", 
+                      "rewardListTotal": [
+                        {
+                          "rewardName": "电商奖励", 
+                          "months": [
+                            "0", 
+                            "0", 
+                            "0"
+                          ], 
+                          "showDetail": null
+                        }
+                      ], 
+                      "rewardList": [
+                        {
+                          "rewardName": "电商", 
+                          "months": [
+                            [
+                              {
+                                "rewardTypeName": "奖励大类", 
+                                "rewardSubTypeName": "奖励小类", 
+                                "rewardName": "奖励名称", 
+                                "rewardCycle": "考核周期", 
+                                "months": [
+                                  "202001", 
+                                  "202002", 
+                                  "202003"
+                                ]
+                              }, 
+                              {
+                                "rewardTypeName": "其他奖励", 
+                                "rewardSubTypeName": "电商奖励", 
+                                "rewardName": "电商", 
+                                "rewardCycle": "月度", 
+                                "months": [
+                                  "", 
+                                  "300-1,000", 
+                                  "300-1,000"
+                                ]
+                              }
+                            ], 
+                            [
+                              {
+                                "rewardTypeName": "奖励大类", 
+                                "rewardSubTypeName": "奖励小类", 
+                                "rewardName": "奖励名称", 
+                                "rewardCycle": "考核周期", 
+                                "months": [
+                                  "202001", 
+                                  "202002", 
+                                  "202003"
+                                ]
+                              }, 
+                              {
+                                "rewardTypeName": "其他奖励", 
+                                "rewardSubTypeName": "电商奖励", 
+                                "rewardName": "电商", 
+                                "rewardCycle": "月度", 
+                                "months": [
+                                  "", 
+                                  "300-1,000", 
+                                  "300-1,000"
+                                ]
+                              }
+                            ], 
+                            [
+                              {
+                                "rewardTypeName": "奖励大类", 
+                                "rewardSubTypeName": "奖励小类", 
+                                "rewardName": "奖励名称", 
+                                "rewardCycle": "考核周期", 
+                                "months": [
+                                  "202001", 
+                                  "202002", 
+                                  "202003"
+                                ]
+                              }, 
+                              {
+                                "rewardTypeName": "其他奖励", 
+                                "rewardSubTypeName": "电商奖励", 
+                                "rewardName": "电商", 
+                                "rewardCycle": "月度", 
+                                "months": [
+                                  "", 
+                                  "300-1,000", 
+                                  "300-1,000"
+                                ]
+                              }
+                            ]
+                          ], 
+                          "showDetail": "详细"
+                        }
+                      ]
+                    }
+                  ]
+                }, 
+                {
+                  "rewardTypeName": "POLO月度小计（只包含月度激励）", 
+                  "total": true, 
+                  "subClassList": [
+                    {
+                      "rewardSubTypeName": "", 
+                      "rewardList": [
+                        {
+                          "rewardName": "", 
+                          "months": [
+                            "3,520", 
+                            "4,320", 
+                            "2,300"
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ], 
+          "itemNum": 13, 
+          "import": false
+        }
+      ]
+    }
+  ]
+}
