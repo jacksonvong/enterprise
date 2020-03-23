@@ -1,15 +1,25 @@
 <template>
   <div class="reward-category-detail">
     <div>
-      <table>
+      <table class="reward-table-header reward-table">
         <tbody>
           <tr>
-            <th>{{ data.model }}</th>
-            <th>{{ data.cycle }}</th>
-            <th>{{ data.rewardType }}</th>
-            <th>{{ data.rewardSubType }}</th>
-            <th>{{ data.rewardName }}</th>
-            <th v-for="(name, index) in data.months" :key="index">
+            <th :style="tdModelWidth" class="min-width-model">
+              {{ rewardDetailList.model }}
+            </th>
+            <th :style="fileTypeWidth" class="min-width-file-type">
+              {{ rewardDetailList.cycle }}
+            </th>
+            <th :style="{ width: (rewardCategoryWidth.width ? parseInt(rewardCategoryWidth.width) + gap : 0) + 'px' }" class="min-width-name">
+              {{ rewardDetailList.rewardType }}
+            </th>
+            <th :style="{ width: (rewardSubClassWidth.width ? parseInt(rewardSubClassWidth.width) + gap : 0) + 'px' }" class="min-width-name">
+              {{ rewardDetailList.rewardSubType }}
+            </th>
+            <th :style="{ width: (rewardNameWidth.width ? parseInt(rewardNameWidth.width) + gap : 0) + 'px' }" class="min-width-name">
+              {{ rewardDetailList.rewardName }}
+            </th>
+            <th v-for="(name, index) in rewardDetailList.months" :key="index" :style="firstPolicyWidth">
               {{ name }}
             </th>
           </tr>
@@ -17,10 +27,10 @@
       </table>
     </div>
     <div class="scroll">
-      <table v-for="(subModel, index) in data.subModelList" :key="index">
+      <table v-for="(subModel, subModelIndex) in rewardDetailList.subModelList" :key="subModelIndex" class="reward-table">
         <tbody>
-          <tr>
-            <td id="tdModel" :style="tdModelWidth" :colspan="subModel.cycleList.length">
+          <tr class="model-tr">
+            <td id="tdModel" :style="tdModelWidth" :rowspan="subModel.cycleList.length+1" class="border-right border-bottom min-width-model">
               <div>
                 <img class="image" :src="subModel.logoUrl">
                 <div class="model">
@@ -33,6 +43,14 @@
               </div>
             </td>
           </tr>
+          <tr v-for="(fileType, fileTypeIndex) in subModel.cycleList" :key="fileTypeIndex">
+            <td id="fileType" :style="fileTypeWidth" class="border-right border-bottom min-width-file-type">
+              {{ fileType.cycleName }}
+            </td>
+            <td class="border-none">
+              <IwRewardCategory :data="fileType.typeList" :styles="{rewardCategoryWidth, rewardSubClassWidth, rewardNameWidth, firstPolicyWidth, lastTdHeight: subModel.lastTdHeight}" />
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -41,9 +59,13 @@
 
 <script>
 import $ from 'jquery'
+import IwRewardCategory from './reward-category'
 export default {
   // 奖励项分类明细
   name: 'IwRewardCategoryDetail',
+  components: {
+    IwRewardCategory
+  },
   props: {
     data: {
       type: Object,
@@ -55,32 +77,122 @@ export default {
   },
   data() {
     return {
-      tdModelWidth: {}
+      rewardDetailList: this.data,
+      fileTypeWidth: {},
+      tdModelWidth: {},
+      rewardCategoryWidth: {},
+      rewardSubClassWidth: {},
+      rewardNameWidth: {},
+      firstPolicyWidth: {},
+      gap: 1
     }
   },
-  created() {
-    console.log('data', this.data)
+  watch: {
+    data: {
+      handler() {
+        this.rewardDetailList = { ...this.data }
+        this.init()
+        setTimeout(() => {
+          this.listenResize()
+        }, 100)
+      },
+      deep: true
+    }
   },
   mounted() {
-    this.listenResize()
+    $(window).on('resize', this.listenResize)
+    this.init()
+    this.listenResize(false, false)
   },
-  updated() {
-    this.listenResize()
+  destroyed() {
+    $(window).off('resize', this.listenResize)
   },
   methods: {
-    listenResize() {
+    init() {
+      if (this.rewardDetailList && this.rewardDetailList.subModelList) {
+        this.rewardDetailList = {
+          ...this.rewardDetailList,
+          subModelList: this.rewardDetailList.subModelList.map(item => ({
+            ...item,
+            lastTdHeight: this.getLastTdHeight(item, this.tdModelHeight)
+          }))
+        }
+      }
+    },
+    listenResize(arg, noRezize) {
+      if (!noRezize) {
+        setTimeout(() => {
+          setTimeout(() => {
+          }, 50)
+        }, 50)
+      }
       this.tdModelWidth = { width: $('#tdModel').outerWidth(true) + 'px' }
-      console.log('#tdModel', this.tdModelWidth)
+      this.fileTypeWidth = { width: $('#fileType').outerWidth(true) + 'px' }
+      this.rewardCategoryWidth = { width: $('#rewardCategory').outerWidth(true) + 'px' }
+      this.rewardSubClassWidth = { width: $('#rewardSubClass').outerWidth(true) + 'px' }
+      this.rewardNameWidth = { width: $('#rewardName').outerWidth(true) + 'px' }
+      this.firstPolicyWidth = { width: $('#firstPolicy').outerWidth(true) + 'px' }
+    },
+    getLastTdHeight(item, tdModelHeight) {
+      let lastTdHeight = tdModelHeight / (item.itemNum + item.cycleList.length)
+      if (lastTdHeight > 90) {
+        lastTdHeight = 90
+      }
+      const defaultHeight = 40
+      return (item.itemNum < 3 ? lastTdHeight : defaultHeight) + 'px'
     }
   }
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 .reward-category-detail {
+  .reward-table-header {
+    border-top: 1px solid #eee;
+  }
+  .reward-table {
+    border-left: 1px solid #eee;
+    border-right: 1px solid #eee;
+    .min-width-model {
+      width: 200px;
+      min-width: 160px;
+    }
+    .min-width-file-type {
+      width: 70px;
+      min-width: 70px;
+    }
+    .min-width-name {
+      width: 100px;
+      min-width: 90px;
+    }
+    .min-width-value {
+      width: 100px;
+      min-width: 90px;
+    }
+  }
+  tr {
+    text-align: center;
+    td {
+      font-size: 12px;
+      text-overflow: ellipsis;
+    }
+  }
+  th {
+    border-right: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    background: #FAFAFA;
+    color: #848997;
+    font-size: 12px;
+    font-weight: normal;
+    height: 40px;
+  }
   .image {
     width: 60%;
     max-width: 120px;
+  }
+  .model-tr {
+    position: relative;
+    height: 0;
   }
 }
 </style>

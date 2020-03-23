@@ -924,7 +924,7 @@ export default {
     bottom: 0;
     left: 20px;
     z-index: 990;
-    height: 54px;
+    height: 74px;
     background: #fff;
   }
   .banner-filter {
