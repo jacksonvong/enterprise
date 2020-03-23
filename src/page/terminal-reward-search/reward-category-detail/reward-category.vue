@@ -7,9 +7,9 @@
           ...styles.rewardCategoryWidth,
           ...createStyle(rewardCategory)
         }"
-        class="border-right border-bottom min-width-name">
+        class="border-right border-bottom min-width-name td-reward-category">
         <template v-if="rewardCategory.total">
-          <div class="total-div">
+          <div class="total-div" :style="styles.totalWidth">
             {{ rewardCategory.rewardTypeName }}
           </div>
         </template>
@@ -61,6 +61,9 @@ export default {
 
 <style lang="less" scoped>
 .reward-categroy-table {
+  .td-reward-category {
+    position: relative;
+  }
   .total-div {
     position: absolute;
     transform: translateY(-50%);

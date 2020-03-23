@@ -1,7 +1,7 @@
 <template>
   <div style="">
     <transition name="slide-to-left">
-      <div v-if="collapsed" class="leftmenu-box">
+      <div v-if="!collapsed" class="leftmenu-box">
         <iw-scrollbar :wrap-style="'height: ' + height +'px;'">
           <a-menu
             :default-selected-keys="[]"
@@ -21,8 +21,8 @@
         </iw-scrollbar>
       </div>
     </transition>
-    <div :style="{left: collapsed? '200px' : '0'}" class="pack" @click="handleMenu">
-      <a-icon v-if="collapsed" type="left" />
+    <div :style="{left: !collapsed? '200px' : '0'}" class="pack" @click="handleMenu">
+      <a-icon v-if="!collapsed" type="left" />
       <a-icon v-else type="right" />
     </div>
   </div>
@@ -81,7 +81,7 @@ export default {
   },
   data() {
     return {
-      collapsed: true,
+      collapsed: !this.$store.getters.sidebar.opened,
       openKeys: [],
       menuList: [],
       scrollOptions: {
@@ -124,6 +124,7 @@ export default {
   methods: {
     handleMenu() {
       this.collapsed = !this.collapsed
+      this.$store.dispatch('toggleSideBar')
       this.$emit('controlParentPanel', this.collapsed)
     }
   }

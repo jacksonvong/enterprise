@@ -36,7 +36,7 @@ export default {
   },
   data() {
     return {
-      statusClass: 'leftmenu-expand',
+      statusClass: this.$store.getters.sidebar.opened ? 'leftmenu-expand' : '',
       funcId: this.$route.query.funcId || '',
       product: {},
       LeftMenu: false,
@@ -56,6 +56,7 @@ export default {
     }
   },
   mounted() {
+    console.log('this.$store.getters.sidebar.opened', this.$store.getters.sidebar.opened)
     if (this.isItsOwn) {
       this.HeaderMenu = 'HeaderMenu'
       this.LeftMenu = 'LeftMenu'
@@ -77,11 +78,9 @@ export default {
       // 注册LeftMenu
       if (['/information', '/change_password', '/feedback_results', '/frame', '/404'].includes(to.path)) {
         this.leftMenu = false
-        this.statusClass = ''
         if (to.query.product) { // 嵌入智库模块
           const key = modulePath(to)
           this.leftMenu = 'LeftMenu'
-          this.statusClass = 'leftmenu-expand'
           this.product = this.$store.getters.addRouters[key]
         } else {
           const key = modulePath(to).replace('&isIways=true', '')
@@ -110,7 +109,7 @@ export default {
       })
     },
     controlPanel(status) {
-      this.statusClass = status ? 'leftmenu-expand' : ''
+      this.statusClass = !status ? 'leftmenu-expand' : ''
     },
     handleRouteChange(to, from) {
       document.body.scrollTop = 0

@@ -27,32 +27,34 @@
       </table>
     </div>
     <div class="scroll">
-      <table v-for="(subModel, subModelIndex) in rewardDetailList.subModelList" :key="subModelIndex" class="reward-table">
-        <tbody>
-          <tr class="model-tr">
-            <td id="tdModel" :style="tdModelWidth" :rowspan="subModel.cycleList.length+1" class="border-right border-bottom min-width-model">
-              <div>
-                <img class="image" :src="subModel.logoUrl">
-                <div class="model">
-                  {{ subModel.subModel }}
+      <iw-scrollbar id="tableListRef" :wrap-style="'height:'+(maxHeight+16)+'px;'">
+        <table v-for="(subModel, subModelIndex) in rewardDetailList.subModelList" :key="subModelIndex" class="reward-table">
+          <tbody>
+            <tr class="model-tr">
+              <td id="tdModel" :style="tdModelWidth" :rowspan="subModel.cycleList.length+1" class="border-right border-bottom min-width-model">
+                <div>
+                  <img class="image" :src="subModel.logoUrl">
+                  <div class="model">
+                    {{ subModel.subModel }}
+                  </div>
+                  <div class="tag">
+                    {{ 'MSRP' }}
+                  </div>
+                  <div>{{ subModel.msrp }}</div>
                 </div>
-                <div class="tag">
-                  {{ 'MSRP' }}
-                </div>
-                <div>{{ subModel.msrp }}</div>
-              </div>
-            </td>
-          </tr>
-          <tr v-for="(fileType, fileTypeIndex) in subModel.cycleList" :key="fileTypeIndex">
-            <td id="fileType" :style="fileTypeWidth" class="border-right border-bottom min-width-file-type">
-              {{ fileType.cycleName }}
-            </td>
-            <td class="border-none">
-              <IwRewardCategory :data="fileType.typeList" :styles="{rewardCategoryWidth, rewardSubClassWidth, rewardNameWidth, firstPolicyWidth, lastTdHeight: subModel.lastTdHeight}" />
-            </td>
-          </tr>
-        </tbody>
-      </table>
+              </td>
+            </tr>
+            <tr v-for="(fileType, fileTypeIndex) in subModel.cycleList" :key="fileTypeIndex">
+              <td id="fileType" :style="fileTypeWidth" class="border-right border-bottom min-width-file-type">
+                {{ fileType.cycleName }}
+              </td>
+              <td class="border-none">
+                <IwRewardCategory :data="fileType.typeList" :styles="{rewardCategoryWidth, rewardSubClassWidth, rewardNameWidth, firstPolicyWidth, totalWidth, lastTdHeight: subModel.lastTdHeight}" />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </iw-scrollbar>
     </div>
   </div>
 </template>
@@ -81,34 +83,51 @@ export default {
       fileTypeWidth: {},
       tdModelWidth: {},
       rewardCategoryWidth: {},
+      categoryWidth: 0,
       rewardSubClassWidth: {},
+      subClassWidth: 0,
       rewardNameWidth: {},
+      nameWidth: 0,
       firstPolicyWidth: {},
-      gap: 1
+      gap: 1,
+      totalWidth: {},
+      maxHeight: 200
+    }
+  },
+  computed: {
+    sidebar() {
+      return this.$store.state.app.sidebar.opened
     }
   },
   watch: {
     data: {
       handler() {
         this.rewardDetailList = { ...this.data }
-        this.init()
         setTimeout(() => {
           this.listenResize()
+          this.init()
         }, 100)
       },
       deep: true
+    },
+    sidebar(newVal, oldVal) {
+      this.listenResize()
     }
   },
   mounted() {
     $(window).on('resize', this.listenResize)
-    this.init()
     this.listenResize(false, false)
+    this.init()
   },
   destroyed() {
     $(window).off('resize', this.listenResize)
   },
   methods: {
     init() {
+      const totalWidth = {
+        width: this.categoryWidth + this.subClassWidth + this.nameWidth + 'px'
+      }
+      this.totalWidth = totalWidth
       if (this.rewardDetailList && this.rewardDetailList.subModelList) {
         this.rewardDetailList = {
           ...this.rewardDetailList,
@@ -128,10 +147,15 @@ export default {
       }
       this.tdModelWidth = { width: $('#tdModel').outerWidth(true) + 'px' }
       this.fileTypeWidth = { width: $('#fileType').outerWidth(true) + 'px' }
-      this.rewardCategoryWidth = { width: $('#rewardCategory').outerWidth(true) + 'px' }
-      this.rewardSubClassWidth = { width: $('#rewardSubClass').outerWidth(true) + 'px' }
-      this.rewardNameWidth = { width: $('#rewardName').outerWidth(true) + 'px' }
+      this.categoryWidth = $('#rewardCategory').outerWidth(true)
+      this.subClassWidth = $('#rewardSubClass').outerWidth(true)
+      this.nameWidth = $('#rewardName').outerWidth(true)
+      this.rewardCategoryWidth = { width: this.categoryWidth + 'px' }
+      this.rewardSubClassWidth = { width: this.subClassWidth + 'px' }
+      this.rewardNameWidth = { width: this.nameWidth + 'px' }
       this.firstPolicyWidth = { width: $('#firstPolicy').outerWidth(true) + 'px' }
+
+      this.maxHeight = window.innerHeight - $('#tableListRef').offset().top - 40
     },
     getLastTdHeight(item, tdModelHeight) {
       let lastTdHeight = tdModelHeight / (item.itemNum + item.cycleList.length)

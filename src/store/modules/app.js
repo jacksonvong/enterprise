@@ -16,7 +16,7 @@ const app = {
     activeMarketId: null,
     moduleName: Cookies.get('moduleName') || '',
     sidebar: {
-      opened: Cookies.get('sidebarStatus') ? !!+Cookies.get('sidebarStatus') : true,
+      opened: Cookies.get('sidebarStatus') !== undefined ? !!+Cookies.get('sidebarStatus') : true,
       withoutAnimation: false
     },
     device: 'desktop',

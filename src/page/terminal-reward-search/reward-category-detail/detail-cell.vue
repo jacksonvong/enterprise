@@ -1,24 +1,32 @@
 <template>
-  <iw-popover placement="bottom-end" show-arrow popper-class="iw-popover-detail-table" :body-style="{padding: '10px'}" :width="null">
-    <div slot="reference" class="show-detail">
-      详细
-    </div>
-    <div class="iw-detail-table-container">
-      <table class="iw-detail-table">
-        <tbody>
-          <tr v-for="(reward, index) in data" :key="index">
-            <td>{{ reward.rewardTypeName }}</td>
-            <td>{{ reward.rewardSubTypeName }}</td>
-            <td>{{ reward.rewardName }}</td>
-            <td>{{ reward.rewardCycle }}</td>
-            <td v-for="(month, monthIndex) in reward.months" :key="monthIndex">
-              {{ month }}
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </iw-popover>
+  <div class="iw-popover-container">
+    <iw-popover
+      :append-to-body="false"
+      :body-style="{padding: '10px'}"
+      placement="bottom-end"
+      width="700px"
+      show-arrow
+      popper-class="iw-popover-detail-table">
+      <div slot="reference" class="show-detail">
+        详细
+      </div>
+      <div class="iw-detail-table-container">
+        <table class="iw-detail-table">
+          <tbody>
+            <tr v-for="(reward, index) in data" :key="index">
+              <td>{{ reward.rewardTypeName }}</td>
+              <td>{{ reward.rewardSubTypeName }}</td>
+              <td>{{ reward.rewardName }}</td>
+              <td>{{ reward.rewardCycle }}</td>
+              <td v-for="(month, monthIndex) in reward.months" :key="monthIndex">
+                {{ month }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </iw-popover>
+  </div>
 </template>
 
 <script>
@@ -35,7 +43,12 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
+.iw-popover-container {
+  position: relative;
+  .iw-popover-detail-table {
+    width: 700px;
+  }
   .show-detail {
     color: #2E5AA6;
     padding: 4px 8px;
@@ -51,4 +64,5 @@ export default {
       padding: 6px 8px;
     }
   }
+}
 </style>
