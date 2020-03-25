@@ -20,6 +20,7 @@ const proxy = {
   'POST /api/net-big-data/manfbrand-analysis/get-comp-circle': fromJSONFile('manfbrand-analysis/get-comp-circle'),
   // 整体市场分析
   'POST /api/net-big-data/terminal-reward-search/getTimeInfo': fromJSONFile('terminal-reward-search/getTimeInfo'),
-  'POST /api/net-big-data/terminal-reward-search/getTypeInfo': fromJSONFile('terminal-reward-search/getTypeInfo')
+  'POST /api/net-big-data/terminal-reward-search/getTypeInfo': fromJSONFile('terminal-reward-search/getTypeInfo'),
+  'POST /api/net-big-data/terminal-excition-search/getMoney': fromJSONFile('terminal-excition-search/getMoney')
 }
 module.exports = proxy

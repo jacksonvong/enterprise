@@ -994,11 +994,14 @@ export default {
             height: 42px;
             line-height: 42px;
           }
+          .iw-range-separator {
+            line-height: 42px;
+          }
           .iw-text-bold {
             input {
               color: #333;
               font-weight: bold;
-              font-size: 13px;
+              font-size: 14px;
             }
           }
           .ant-radio-group {
@@ -1006,7 +1009,6 @@ export default {
           }
           .ant-radio-button-wrapper {
             border: 0;
-            font-weight: bold;
           }
         }
       }

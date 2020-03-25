@@ -24,7 +24,7 @@
         </tr>
       </tbody>
     </table>
-    <iw-scrollbar id="tableListRef" :wrap-style="'height:'+(maxHeight+16)+'px;'">
+    <iw-scrollbar id="tableListRef" :wrap-style="'height:'+(maxHeight+16)+'px;'" keep-show>
       <table v-for="(subModel, subModelIndex) in rewardDetailList.subModelList" :key="subModelIndex" class="reward-table">
         <tbody>
           <tr class="model-tr">
@@ -214,12 +214,12 @@ export default {
         }
       }
     }
-  }
-  tr {
-    text-align: center;
-    td {
-      font-size: 12px;
-      text-overflow: ellipsis;
+    tr {
+      text-align: center;
+      td {
+        font-size: 12px;
+        text-overflow: ellipsis;
+      }
     }
   }
   th {

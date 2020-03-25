@@ -2,7 +2,7 @@
   <div class="reward-comparision">
     <div class="mask-header-container">
       <div ref="tableHeaderRef" class="table-header">
-        <table class="reward-table">
+        <table class="reward-table border-top">
           <tbody>
             <tr>
               <th class="width-1" :style="tdModelWidth">
@@ -16,7 +16,7 @@
         </table>
       </div>
       <div v-if="rewardComparisonList.titles&&rewardComparisonList.titles.length > 3" class="mask-header">
-        <table class="reward-table" :style="{width: tableWidth}">
+        <table class="reward-table border-top" :style="{width: tableWidth}">
           <tbody>
             <tr>
               <th class="width-1" :style="tdModelWidth">
@@ -54,7 +54,7 @@
                 </div>
               </td>
             </tr>
-            <tr v-for="(incentive, incentiveIndex) in subModel.policyContent" :key="incentiveIndex">
+            <tr v-for="(incentive, incentiveIndex) in subModel.policyContent" :key="incentiveIndex" class="">
               <td
                 v-for="(item, index) in incentive.item"
                 :key="index"
@@ -176,7 +176,7 @@ export default {
   },
   methods: {
     init() {
-      this.maskListBottom = 17 + 'px'
+      this.maskListBottom = 15 + 'px'
       this.width3Style = {}
       if (this.rewardComparisonList.titles && this.rewardComparisonList.titles.length < 3) {
         this.width3Style = { width: 'auto' }
@@ -203,21 +203,12 @@ export default {
       this.maxHeight = window.innerHeight - $('#tableListRef').offset().top - 14 + 'px'
     },
     handleScroll(event) {
-      console.log(event.target.scrollLeft, event.target.scrollTop)
       if (this.$refs.tableHeaderRef) {
         this.$refs.tableHeaderRef.scrollLeft = event.target.scrollLeft
       }
       if (this.$refs.tableMaskListRef) {
         this.$refs.tableMaskListRef.scrollTop = event.target.scrollTop
       }
-    },
-    getLastTdHeight(item, tdModelHeight) {
-      let lastTdHeight = tdModelHeight / (item.itemNum + item.cycleList.length)
-      if (lastTdHeight > 90) {
-        lastTdHeight = 90
-      }
-      const defaultHeight = 40
-      return (item.itemNum < 3 ? lastTdHeight : defaultHeight) + 'px'
     }
   }
 }
@@ -286,6 +277,9 @@ export default {
       height: 40px;
       font-size: 14px;
       text-align: left;
+      &:hover {
+        background: #fef9f3;
+      }
       th {
         height: 40px;
         border-right: 1px solid #eee;

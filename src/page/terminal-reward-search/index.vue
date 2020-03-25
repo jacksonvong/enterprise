@@ -10,15 +10,15 @@
         @change="changeDataForm"
       />
       <a-card
-        :tab-list="tabListNoTitle"
-        :active-tab-key="noTitleKey"
+        :tab-list="tabListTitle"
+        :active-tab-key="titleKey"
         class="ant-card-shortline"
         :head-style="{padding: 0}"
         :body-style="{padding: 0}"
-        @tabChange="key => onTabChange(key, 'noTitleKey')"
+        @tabChange="key => onTabChange(key)"
       >
-        <IwRewardComparision v-if="noTitleKey=='1'" :data="rewardComparision.data" />
-        <IwRewardCategoryDetail v-if="noTitleKey=='2'" :data="rewardCategoryDetail.data" />
+        <IwRewardComparision v-if="titleKey=='1'" :data="rewardComparision.data" />
+        <IwRewardCategoryDetail v-if="titleKey=='2'" :data="rewardCategoryDetail.data" />
       </a-card>
     </div>
   </div>
@@ -41,8 +41,8 @@ export default {
   },
   data() {
     return {
-      noTitleKey: '1',
-      tabListNoTitle: [
+      titleKey: '1',
+      tabListTitle: [
         {
           key: '1',
           tab: this.$t('奖励项对比')
@@ -67,7 +67,7 @@ export default {
   },
   methods: {
     onTabChange(value) {
-      this.noTitleKey = value
+      this.titleKey = value
     },
     changeDataForm(form) {
       console.log(form)
