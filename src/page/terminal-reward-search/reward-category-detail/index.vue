@@ -1,38 +1,36 @@
 <template>
   <div class="reward-category-detail">
-    <div>
-      <table class="reward-table-header reward-table">
+    <table class="reward-table-header reward-table">
+      <tbody>
+        <tr>
+          <th :style="tdModelWidth" class="min-width-model">
+            {{ rewardDetailList.model }}
+          </th>
+          <th :style="fileTypeWidth" class="min-width-file-type">
+            {{ rewardDetailList.cycle }}
+          </th>
+          <th :style="{ width: (rewardCategoryWidth.width ? parseInt(rewardCategoryWidth.width) + gap : 0) + 'px' }" class="min-width-name">
+            {{ rewardDetailList.rewardType }}
+          </th>
+          <th :style="{ width: (rewardSubClassWidth.width ? parseInt(rewardSubClassWidth.width) + gap : 0) + 'px' }" class="min-width-name">
+            {{ rewardDetailList.rewardSubType }}
+          </th>
+          <th :style="{ width: (rewardNameWidth.width ? parseInt(rewardNameWidth.width) + gap : 0) + 'px' }" class="min-width-name">
+            {{ rewardDetailList.rewardName }}
+          </th>
+          <th v-for="(name, index) in rewardDetailList.months" :key="index" :style="firstPolicyWidth">
+            {{ name }}
+          </th>
+        </tr>
+      </tbody>
+    </table>
+    <iw-scrollbar id="tableListRef" :wrap-style="'height:'+(maxHeight+16)+'px;'">
+      <table v-for="(subModel, subModelIndex) in rewardDetailList.subModelList" :key="subModelIndex" class="reward-table">
         <tbody>
-          <tr>
-            <th :style="tdModelWidth" class="min-width-model">
-              {{ rewardDetailList.model }}
-            </th>
-            <th :style="fileTypeWidth" class="min-width-file-type">
-              {{ rewardDetailList.cycle }}
-            </th>
-            <th :style="{ width: (rewardCategoryWidth.width ? parseInt(rewardCategoryWidth.width) + gap : 0) + 'px' }" class="min-width-name">
-              {{ rewardDetailList.rewardType }}
-            </th>
-            <th :style="{ width: (rewardSubClassWidth.width ? parseInt(rewardSubClassWidth.width) + gap : 0) + 'px' }" class="min-width-name">
-              {{ rewardDetailList.rewardSubType }}
-            </th>
-            <th :style="{ width: (rewardNameWidth.width ? parseInt(rewardNameWidth.width) + gap : 0) + 'px' }" class="min-width-name">
-              {{ rewardDetailList.rewardName }}
-            </th>
-            <th v-for="(name, index) in rewardDetailList.months" :key="index" :style="firstPolicyWidth">
-              {{ name }}
-            </th>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="scroll">
-      <iw-scrollbar id="tableListRef" :wrap-style="'height:'+(maxHeight+16)+'px;'">
-        <table v-for="(subModel, subModelIndex) in rewardDetailList.subModelList" :key="subModelIndex" class="reward-table">
-          <tbody>
-            <tr class="model-tr">
-              <td id="tdModel" :style="tdModelWidth" :rowspan="subModel.cycleList.length+1" class="border-right border-bottom min-width-model">
-                <div>
+          <tr class="model-tr">
+            <td id="tdModel" :style="tdModelWidth" :rowspan="subModel.cycleList.length+1" class="td-model border-right border-bottom min-width-model">
+              <div class="model-container">
+                <div class="content">
                   <img class="image" :src="subModel.logoUrl">
                   <div class="model">
                     {{ subModel.subModel }}
@@ -40,22 +38,24 @@
                   <div class="tag">
                     {{ 'MSRP' }}
                   </div>
-                  <div>{{ subModel.msrp }}</div>
+                  <div class="price">
+                    {{ subModel.msrp }}
+                  </div>
                 </div>
-              </td>
-            </tr>
-            <tr v-for="(fileType, fileTypeIndex) in subModel.cycleList" :key="fileTypeIndex">
-              <td id="fileType" :style="fileTypeWidth" class="border-right border-bottom min-width-file-type">
-                {{ fileType.cycleName }}
-              </td>
-              <td class="border-none">
-                <IwRewardCategory :data="fileType.typeList" :styles="{rewardCategoryWidth, rewardSubClassWidth, rewardNameWidth, firstPolicyWidth, totalWidth, lastTdHeight: subModel.lastTdHeight}" />
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </iw-scrollbar>
-    </div>
+              </div>
+            </td>
+          </tr>
+          <tr v-for="(fileType, fileTypeIndex) in subModel.cycleList" :key="fileTypeIndex">
+            <td id="fileType" :style="fileTypeWidth" class="border-right border-bottom min-width-file-type">
+              {{ fileType.cycleName }}
+            </td>
+            <td class="border-none">
+              <IwRewardCategory :data="fileType.typeList" :styles="{rewardCategoryWidth, rewardSubClassWidth, rewardNameWidth, firstPolicyWidth, totalWidth, lastTdHeight: subModel.lastTdHeight}" />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </iw-scrollbar>
   </div>
 </template>
 
@@ -155,7 +155,7 @@ export default {
       this.rewardNameWidth = { width: this.nameWidth + 'px' }
       this.firstPolicyWidth = { width: $('#firstPolicy').outerWidth(true) + 'px' }
 
-      this.maxHeight = window.innerHeight - $('#tableListRef').offset().top - 40
+      this.maxHeight = window.innerHeight - $('#tableListRef').offset().top - 14
     },
     getLastTdHeight(item, tdModelHeight) {
       let lastTdHeight = tdModelHeight / (item.itemNum + item.cycleList.length)
@@ -175,8 +175,6 @@ export default {
     border-top: 1px solid #eee;
   }
   .reward-table {
-    border-left: 1px solid #eee;
-    border-right: 1px solid #eee;
     .min-width-model {
       width: 200px;
       min-width: 160px;
@@ -192,6 +190,29 @@ export default {
     .min-width-value {
       width: 100px;
       min-width: 90px;
+    }
+    .td-model {
+      .model-container {
+        .content {
+          text-align: center;
+          font-size: 16px;
+          .image {
+            max-width: 120px;
+          }
+          .model {
+            font-size: 12px;
+            line-height: 20px;
+          }
+          .tag {
+            font-size: 14px;
+            line-height: 20px;
+            color: #888;
+          }
+          .price {
+            line-height: 24px;
+          }
+        }
+      }
     }
   }
   tr {
@@ -209,6 +230,9 @@ export default {
     font-size: 12px;
     font-weight: normal;
     height: 40px;
+    &:last-child {
+      border-right-color: #FAFAFA;
+    }
   }
   .image {
     width: 60%;
