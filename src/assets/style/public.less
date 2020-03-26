@@ -104,7 +104,24 @@ body {
 
 /* UI框架样式重写 */
 body {
-  .iw-data-source-desc {
+  .iw-popover__wrap {
+    .question-circle {
+      background: #9494AD;
+      padding: 0 2px;
+      border-radius: 50%;
+      cursor: pointer;
+      margin: 0 6px;
+      line-height: 16px;
+      top: 10px;
+      display: inline-block;
+      i {
+        font-size: 10px;
+        color: #fff;
+        font-weight: bold;
+      }
+    }
+  }
+  .iw-popover-desc {
     font-size: 12px;
     color: #9494AD;
   }
@@ -116,6 +133,9 @@ body {
     .box-shadow(0px, 2px, 8px, rgba(0, 0, 0, 0.06));
     margin-bottom: 10px;
     border-radius: 4px;
+    .ant-card-head {
+      padding: 0 0 0 20px;
+    }
     &.nopadding .ant-card-body { padding: 0; }
   }
   .ant-pagination {
@@ -132,7 +152,6 @@ body {
       &.ant-pagination-item:focus a, &.ant-pagination-item:hover a { color: #fff}
     }
   }
-  .ant-card-extra { padding: 10px 0; }
   .ant-card-head-title {
     // position: relative;
     color: @text-color;
@@ -156,14 +175,13 @@ body {
       font-weight: normal;
     }
   }
-  .ant-card-extra {
-    padding: 10px 0;
-  }
   // 设置card头部下载按钮位置
-  .extra-header-download {
-    padding: 16px 0 16px 16px;
-    margin-left:16px;
-    border-left: 1px solid #e8e8e8;
+  .ant-card-extra {
+    padding: 12px 0;
+    .extra-header-download {
+      padding: 16px;
+      border-left: 1px solid #e8e8e8;
+    }
   }
   .ant-card.ant-card-shortline {
     position: relative;

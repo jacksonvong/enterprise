@@ -36,7 +36,7 @@
               :clearable="false"
               :editable="false"
               :type="dataTimeRange?'monthrange':'month'"
-              :style="{width: (dataTimeRange?'160px':'100px')}"
+              :style="{width: (dataTimeRange?'150px':'100px'), padding: '0 8px'}"
               format="yyyy/MM"
               value-format="yyyyMM"
               align="right"
@@ -51,7 +51,7 @@
               :clearable="false"
               :editable="false"
               :type="dataTimeRange?'quarterrange':'quarter'"
-              :style="{width: (dataTimeRange?'160px':'100px')}"
+              :style="{width: (dataTimeRange?'150px':'100px'), padding: '0 8px'}"
               format="yyyy/QQ"
               value-format="yyyyQ"
               align="right"
@@ -72,7 +72,7 @@
                 :offset="{top: -10}"
                 :show-arrow="true"
                 :width="null"
-                popper-class="iw-data-source-desc"
+                popper-class="iw-popover-desc"
               >
                 <div slot="reference">
                   <div class="question-circle">
@@ -965,18 +965,6 @@ export default {
             color: #2E5AA6;
             border: 1px solid #2E5AA6;
             border-radius: 2px;
-          }
-          .question-circle {
-            background: #9494AD;
-            padding: 0 4px;
-            border-radius: 50%;
-            cursor: pointer;
-            margin: 0 4px;
-            top: 10px;
-            .question {
-              color: #fff;
-              font-weight: bold;
-            }
           }
         }
         &.filter-item_text {

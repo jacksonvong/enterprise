@@ -3,36 +3,54 @@
     <iw-banner :title="$t('modelOverview.banner.title')" />
     <div :style="{'padding-top': $store.state.app.filter!=='fixed' ? '10px' : '76px'}" class="main-content">
       <iw-filter
-        :id="$store.state.app.filter!=='fixed'?'overview-analyse':''"
+        :key="$store.state.app.filter!=='fixed'?'overview-analyse':''"
         :show="{market: true, dataTimeType: true, dimensionType: true, subModel: true, dataType: true}"
         :multiple="{segment: true, manfBrand: true, subModel: true}"
         :data-time-range="true"
         @change="changeDataForm"
       />
-      <a-card :title="$t('终端激励')">
+      <a-card
+        :title="$t('终端激励')"
+        :body-style="{padding: 0}">
+        <span slot="extra" class="extra-header-download">
+          <iw-download
+            type="simple"
+            download-api="/market-overview-export/manf-rank"
+            :download-params="{
+            }"
+          />
+        </span>
         <iw-table
           :data="tableData"
-          style="width: 100%;margin-bottom: 20px;"
-          row-key="id"
-          border
-          default-expand-all
-          :tree-props="{children: 'children', hasChildren: 'hasChildren'}">
+          style="width: 100%;margin-bottom: 20px;border-top: 1px solid #eee;"
+          row-key="key"
+          header-cell-class-name="iw-table-header"
+          cell-class-name="iw-table-cell"
+          :tree-props="{children: 'children'}">
           <iw-table-column
-            prop="date"
-            label="日期"
-            sortable
-            width="180">
-          </iw-table-column>
+            prop="time"
+            label="时间"
+            width="120" />
           <iw-table-column
-            prop="name"
-            label="姓名"
-            sortable
-            width="180">
-          </iw-table-column>
+            prop="type"
+            is-expand
+            label="细分市场" />
           <iw-table-column
-            prop="address"
-            label="地址">
-          </iw-table-column>
+            prop="totalIncentive"
+            label="总激励" />
+          <iw-table-column
+            prop="discount"
+            label="年度固定折扣" />
+          <iw-table-column
+            prop="kpi"
+            label="年度考核奖励" />
+          <iw-table-column
+            prop="monthKpi"
+            label="月度奖励" />
+          <iw-table-column
+            :render-header="renderHeader"
+            prop="msrp"
+            label="指导价" />
         </iw-table>
       </a-card>
     </div>
@@ -40,15 +58,19 @@
 </template>
 
 <script>
-import { Card } from 'ant-design-vue'
+import { Card, Icon } from 'ant-design-vue'
 import IwBanner from '@/components/banner/index'
 import IwFilter from '@/components/filter/index'
+import IwDownload from '@/components/download/index'
 import { getMoney } from '@/api/terminal-excition-search'
+const Vue = require('vue')
+Vue.component('a-icon', Icon)
 export default {
   components: {
     ACard: Card,
     IwBanner,
-    IwFilter
+    IwFilter,
+    IwDownload
   },
   data() {
     return {
@@ -56,60 +78,8 @@ export default {
       rewardExcition: {
         data: {}
       },
-      tableData: [{
-        id: 1,
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        id: 2,
-        date: '2016-05-04',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1517 弄'
-      }, {
-        id: 3,
-        date: '2016-05-01',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1519 弄',
-        children: [{
-            id: 31,
-            date: '2016-05-01',
-            name: '王小虎',
-            address: '上海市普陀区金沙江路 1519 弄'
-          }, {
-            id: 32,
-            date: '2016-05-01',
-            name: '王小虎',
-            address: '上海市普陀区金沙江路 1519 弄'
-        }]
-      }, {
-        id: 4,
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1516 弄'
-      }],
-      tableData1: [{
-        id: 1,
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        id: 2,
-        date: '2016-05-04',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1517 弄'
-      }, {
-        id: 3,
-        date: '2016-05-01',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1519 弄',
-        hasChildren: true
-      }, {
-        id: 4,
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1516 弄'
-      }]
+      columns: [],
+      tableData: []
     }
   },
   created() {
@@ -117,16 +87,39 @@ export default {
   },
   methods: {
     changeDataForm(form) {
-      console.log(form)
       this.filterForm = { ...this.filterForm, ...form }
+    },
+    renderHeader(h, { column, $index }) {
+      return (
+        <div>
+          <span>{ column.label }</span>
+          <iw-popover
+            trigger='hover'
+            placement='right-end'
+            body-style={{ padding: '8px' }}
+            show-arrow={true}
+            width='null'
+            popper-class='iw-popover-desc'
+          >
+            <div slot='reference'>
+              <span class='question-circle'>
+                <a-icon type='question' />
+              </span>
+            </div>
+            <div>新能源车采用官方补贴后售价</div>
+            <div>汽油车采用官方指导价</div>
+          </iw-popover>
+        </div>
+      )
     },
     getMoney() {
       return new Promise((resolve, reject) => {
         getMoney({
         }).then(res => {
-          console.log(res)
           const data = res.data || []
           this.rewardExcition.data = data[0] || {}
+          this.columns = this.rewardExcition.data.columns
+          this.tableData = this.rewardExcition.data.dataSource
           resolve(res)
         })
       })
@@ -134,3 +127,24 @@ export default {
   }
 }
 </script>
+
+<style lang="less">
+.terminal-excition-search {
+  .iw-table {
+    .iw-table-header {
+      color: #848997;
+      font-weight: normal;
+      background: #FAFAFA;
+      border-right: 1px solid #eee;
+      text-align: center;
+      &:nth-last-child(2) {
+        border-right: 0;
+      }
+    }
+    .iw-table-cell {
+      color: #181c28;
+      text-align: center;
+    }
+  }
+}
+</style>

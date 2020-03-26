@@ -56,7 +56,6 @@ export default {
     }
   },
   mounted() {
-    console.log('this.$store.getters.sidebar.opened', this.$store.getters.sidebar.opened)
     if (this.isItsOwn) {
       this.HeaderMenu = 'HeaderMenu'
       this.LeftMenu = 'LeftMenu'
