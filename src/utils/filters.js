@@ -32,9 +32,10 @@ export function toThousand(num, decimal = 0, preffix = '') {
   return preffix + Number(+num || 0).toFixed(decimal).replace(/^-?\d+/g, m => m.replace(/(?=(?!\b)(\d{3})+$)/g, ','))
 }
 
-export function toPercent(num, decimal = 0, preffix = false, suffix = '%') {
+export function toPercent(num, decimal = 0, preffix = false, suffix = '%', multiple = 100) {
   if (num === undefined || num === null || num === 'null' || num === '-' || num === '') return '-'
-  var str = Number(num * 100).toFixed(decimal)
+  if (typeof num === 'string' && num.indexOf('%') > -1) num = num.replace('%', '')
+  var str = Number(num * multiple).toFixed(decimal)
   if (preffix) {
     const preffixChar = Number(str) === 0 ? '' : (Number(str) >= 0 ? '+' : '-')
     str = preffixChar + str.replace(preffixChar, '')

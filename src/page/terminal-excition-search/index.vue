@@ -1,6 +1,6 @@
 <template>
   <div class="terminal-excition-search">
-    <iw-banner :title="$t('modelOverview.banner.title')" />
+    <iw-banner :title="$t('terminalExcitionSearch.banner.title')" />
     <div :style="{'padding-top': $store.state.app.filter!=='fixed' ? '10px' : '76px'}" class="main-content">
       <iw-filter
         :key="$store.state.app.filter!=='fixed'?'overview-analyse':''"
@@ -10,7 +10,7 @@
         @change="changeDataForm"
       />
       <a-card
-        :title="$t('终端激励')"
+        :title="$t('terminalExcitionSearch.table.title')"
         :body-style="{padding: 0}">
         <span slot="extra" class="extra-header-download">
           <iw-download
@@ -28,29 +28,13 @@
           cell-class-name="iw-table-cell"
           :tree-props="{children: 'children'}">
           <iw-table-column
-            prop="time"
-            label="时间"
-            width="120" />
-          <iw-table-column
-            prop="type"
-            is-expand
-            label="细分市场" />
-          <iw-table-column
-            prop="totalIncentive"
-            label="总激励" />
-          <iw-table-column
-            prop="discount"
-            label="年度固定折扣" />
-          <iw-table-column
-            prop="kpi"
-            label="年度考核奖励" />
-          <iw-table-column
-            prop="monthKpi"
-            label="月度奖励" />
-          <iw-table-column
+            v-for="(item, key) in columns"
+            :key="key"
+            :prop="item.key"
+            :label="item.title"
+            :width="item.width"
             :render-header="renderHeader"
-            prop="msrp"
-            label="指导价" />
+            :is-expand="item.expandable" />
         </iw-table>
       </a-card>
     </div>
@@ -90,12 +74,13 @@ export default {
       this.filterForm = { ...this.filterForm, ...form }
     },
     renderHeader(h, { column, $index }) {
+      if (column.property !== 'msrp') return column.label
       return (
         <div>
           <span>{ column.label }</span>
           <iw-popover
             trigger='hover'
-            placement='right-end'
+            placement='bottom-end'
             body-style={{ padding: '8px' }}
             show-arrow={true}
             width='null'
@@ -118,7 +103,16 @@ export default {
         }).then(res => {
           const data = res.data || []
           this.rewardExcition.data = data[0] || {}
-          this.columns = this.rewardExcition.data.columns
+          this.columns = this.rewardExcition.data.columns.map(item => {
+            let width = ''
+            if (item.key === 'time') {
+              width = 120
+            }
+            return {
+              ...item,
+              width: width
+            }
+          })
           this.tableData = this.rewardExcition.data.dataSource
           resolve(res)
         })
@@ -127,24 +121,3 @@ export default {
   }
 }
 </script>
-
-<style lang="less">
-.terminal-excition-search {
-  .iw-table {
-    .iw-table-header {
-      color: #848997;
-      font-weight: normal;
-      background: #FAFAFA;
-      border-right: 1px solid #eee;
-      text-align: center;
-      &:nth-last-child(2) {
-        border-right: 0;
-      }
-    }
-    .iw-table-cell {
-      color: #181c28;
-      text-align: center;
-    }
-  }
-}
-</style>

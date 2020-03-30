@@ -1,4 +1,6 @@
 import manfbrandOverview from './manfbrand-overview/zh'
+import modelOverview from './model-overview/zh'
+import terminalExcitionSearch from './terminal-excition-search/zh'
 
 export default {
   login: {
@@ -42,5 +44,7 @@ export default {
     failureContent: '下载失败，请联系客服人员说明情况，给您带来不便，抱歉！',
     noAuthContent: '您没有下载该数据的权限，请联系客服人员开通此功能，谢谢！'
   },
-  manfbrandOverview
+  manfbrandOverview,
+  modelOverview,
+  terminalExcitionSearch
 }

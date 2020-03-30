@@ -18,7 +18,17 @@ const proxy = {
   'POST /api/net-big-data/common/get-submodel': fromJSONFile('common/get-submodel'),
   'POST /api/net-big-data/submodel-analysis/get-comp-circle': fromJSONFile('submodel-analysis/get-comp-circle'),
   'POST /api/net-big-data/manfbrand-analysis/get-comp-circle': fromJSONFile('manfbrand-analysis/get-comp-circle'),
-  // 整体市场分析
+  // 厂商品牌
+  'POST /api/net-big-data/manfbrand-overview/getManfBrandData': fromJSONFile('manfbrand-overview/getManfBrandData'),
+  'POST /api/net-big-data/manfbrand-overview/getTerminalAnalyzeTableData': fromJSONFile('manfbrand-overview/getTerminalAnalyzeTableData'),
+  'POST /api/net-big-data/manfbrand-overview/getTerminalAnalyzeData': fromJSONFile('manfbrand-overview/getTerminalAnalyzeData'),
+  'POST /api/net-big-data/manfbrand-overview/saveOrder': fromJSONFile('manfbrand-overview/saveOrder'),
+  // 车型
+  'POST /api/net-big-data/model-overview/getSegmentData': fromJSONFile('model-overview/getSegmentData'),
+  'POST /api/net-big-data/model-overview/getSubModelData': fromJSONFile('model-overview/getSubModelData'),
+  'POST /api/net-big-data/model-overview/getTerminalAnalyzeData': fromJSONFile('model-overview/getTerminalAnalyzeData'),
+  'POST /api/net-big-data/model-overview/getTerminalAnalyzeTableData': fromJSONFile('model-overview/getTerminalAnalyzeTableData'),
+
   'POST /api/net-big-data/terminal-reward-search/getTimeInfo': fromJSONFile('terminal-reward-search/getTimeInfo'),
   'POST /api/net-big-data/terminal-reward-search/getTypeInfo': fromJSONFile('terminal-reward-search/getTypeInfo'),
   'POST /api/net-big-data/terminal-excition-search/getMoney': fromJSONFile('terminal-excition-search/getMoney')

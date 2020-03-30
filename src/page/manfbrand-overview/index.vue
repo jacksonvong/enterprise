@@ -1,113 +1,89 @@
 <template>
   <div class="manfbrand-overview">
     <iw-banner :title="$t('manfbrandOverview.banner.title')" />
-    <div :style="{'padding-top': $store.state.app.filter!=='fixed' ? '10px' : '76px'}" class="main-content">
+    <div :style="{'padding-top': $store.state.app.filter!=='fixed' ? '10px' : '94px'}" class="main-content">
       <iw-filter
         :id="$store.state.app.filter!=='fixed'?'overview-analyse':''"
         :show="{ dataTimeType: true, dataSource: true, dataType: true }"
         :multiple="{ manfBrand: true }"
         @change="handleFilterChange"
       />
-      <iw-filter-radio @change="handleFilterRadioChange" />
-
-      <a-card :title="`${$t('manfbrandOverview.overview.title')}`">
+      <iw-filter-radio v-if="false" @change="handleFilterRadioChange" />
+      <a-card>
+        <div slot="title">
+          <span>{{ $t('manfbrandOverview.overview.title') }}</span>
+          <span style="position:absolute; top: 9px;">
+            <iw-popover
+              trigger="hover"
+              placement="right-start"
+              :body-style="{padding: '10px'}"
+              :offset="{top: -17}"
+              :show-arrow="true"
+              :width="null"
+              popper-class="iw-popover-desc"
+            >
+              <div slot="reference">
+                <div class="question-circle">
+                  <a-icon class="question" type="question" />
+                </div>
+              </div>
+              <div class="description">
+                <div class="title">全局说明</div>
+                <p>① 关于MSRP: 新能源车采用官方补贴后售价; 汽油车采用官方指导价;</p>
+                <p>② 关于利润:<br>
+                  新能源车利润 = TP - (官方补贴后售价 - (固定折扣 + 考核奖励 + 月度激励))<br>
+                  汽油车利润 = TP - (官方指导价 - (固定折扣 + 考核奖励 + 月度激励))</p>
+                <p>③ 整体市场/细分市场激励定期在每月18号及最后一天更新（2次）,每月17号<br>
+                  之前显示为空或“-”;当月利润更新在每月的最后一天</p>
+                <p>④ “*”指当年年度激励暂无，延续历史年度激励</p>
+              </div>
+            </iw-popover>
+          </span>
+        </div>
         <div slot="extra">
-          <iw-manfbrand
-            v-if="false"
+          <iw-submodel
             v-model="manfbrand"
-            :data="manfbrandData"
+            :data="manfbrandOptions"
             :default-value="defaultManfbrand"
-            :show-search="true"
-            :show-selected="true"
-            :show-letter="showLetter"
-            :filters="[{key: 1, value: $t('manfbrandOverview.overview.filter1name')}, {key: 2, value: $t('manfbrandOverview.overview.filter2name')}]"
-            :selected-filter="selectedFilter"
-            :show-check-all="true"
-            :leafs-per-column="6"
-            :is-modal="true"
-            :loading="manfbrandOptionsLoading"
+            :loading="manfBrandOptionsLoading"
             :title="$t('manfbrandOverview.overview.addManfbrandTitle')"
             :min="1"
+            show-search
+            show-selected
+            show-check-all
+            is-modal
+            multiple
             size="mini"
             placement="bottomLeft"
-            style="width: 120px; float: right;"
-            @filterChange="handleFilterChange"
+            style="width: 120px; float: right; padding-right: 20px;"
             @change="handleManfbrandChange"
           >
             <iw-button slot="reference" type="primary" size="mini" style="float: right;">
               {{ $t('manfbrandOverview.overview.addManfbrand') }}
             </iw-button>
-          </iw-manfbrand>
+          </iw-submodel>
         </div>
         <a-spin :spinning="listLoading">
-          <ul v-if="pageListData.length" class="overview-list clearfix">
-            <li
-              v-for="(item, index) in pageListData"
-              :key="`${item.subModel.id}+${index}`"
-              :class="{en: language === 'en'}"
-              class="overview-list-item"
-              @click="handleGotoAnalyse(item.subModel)"
-            >
-              <img class="close-icon" @click.stop="handleRemoveManfbrand(item.subModel.id)">
-              <div><img :src="item.subModel.picPath" :alt="item.subModel.name" class="logo"></div>
-              <div :title="item.subModel.name" class="title">
-                <span>
-                  {{ item.subModel.name }}
-
-                </span>
-              </div>
-              <div class="sub-title">
-                {{ item.lifeCircleDesc && $t('manfbrandOverview.overview.card.subTitle', { type: item.lifeCircleDesc.name, months: item.lifeCircleDesc.id }) }}
-              </div>
-              <div
-                :title="getRowContent('row1title', item.maxNegative ? item.maxNegative : '-')"
-                class="content-row"
-              >
-                <a-icon class="row-icon" type="heart" />
-                <label v-if="dateType === 1">{{ $t('manfbrandOverview.overview.card.row1title', { month }) }}</label>
-                <label v-if="dateType === 2">{{ $t('manfbrandOverview.overview.card.row1title2', { quarter }) }}</label>
-                {{ item.maxNegative ? item.maxNegative : '-' }}
-              </div>
-              <div
-                :title="getRowContent('row2title', item.maxCompSubModel ? item.maxCompSubModel.name : '-')"
-                class="content-row"
-              >
-                <a-icon class="row-icon" type="heart" />
-                <label v-if="dateType === 1">{{ $t('manfbrandOverview.overview.card.row2title', { month }) }}</label>
-                <label v-if="dateType === 2">{{ $t('manfbrandOverview.overview.card.row2title2', { quarter }) }}</label>
-                {{ item.maxCompSubModel ? item.maxCompSubModel.name : '-' }}
-              </div>
-              <div
-                :title="getRowContent('row3title', `${toThousand(item.volumeIndex, 2)} / ${item.volumeMom > 0 ? '+' : ''}${toPercent(item.volumeMom)}`)"
-                class="content-row"
-              >
-                <a-icon class="row-icon" type="heart" />
-                <label v-if="dateType === 1">{{ $t('manfbrandOverview.overview.card.row3title', { month }) }}</label>
-                <label v-if="dateType === 2">{{ $t('manfbrandOverview.overview.card.row3title2', { quarter }) }}</label>
-                <span v-html="formatNumber(item.volumeIndex, 2)" /> / <span v-html="formatPercent(item.volumeMom)" />
-              </div>
-              <div
-                :title="getRowContent('row4title', `${toThousand(item.satisfied, 2)} / ${item.satisfiedMom > 0 ? '+' : ''}${toPercent(item.satisfiedMom)}`)"
-                class="content-row"
-              >
-                <a-icon class="row-icon" type="heart" />
-                <label v-if="dateType === 1">{{ $t('manfbrandOverview.overview.card.row4title', { month }) }}</label>
-                <label v-if="dateType === 2">{{ $t('manfbrandOverview.overview.card.row4title2', { quarter }) }}</label>
-                <span v-html="formatNumber(item.satisfied, 2)" /> / <span v-html="formatPercent(item.satisfiedMom)" />
-              </div>
-              <div
-                :title="getRowContent('row5title', `${toThousand(item.sales)} / ${item.salesYoy > 0 ? '+' : ''}${toPercent(item.salesYoy)}`)"
-                class="content-row"
-              >
-                <a-icon class="row-icon" type="heart" />
-                <label v-if="dateType === 1">{{ $t('manfbrandOverview.overview.card.row5title', { month }) }}</label>
-                <label v-if="dateType === 2">{{ $t('manfbrandOverview.overview.card.row5title2', { quarter }) }}</label>
-                <span v-html="formatNumber(item.sales)" /> / <span v-html="formatPercent(item.salesYoy)" />
-              </div>
-            </li>
-          </ul>
+          <draggable
+            v-if="overviewData.length"
+            v-model="overviewData"
+            filter=".add-brand-item"
+            element="ul"
+            style="width: 100%"
+            class="overview-list clearfix"
+            @end="handleDragEnd">
+            <template v-for="(item, key) in overviewData">
+              <iw-brand-item
+                v-if="overviewPageIds.includes(item.id)"
+                :key="key"
+                :item="item"
+                class="overview-list-item"
+                @toTop="handleToTopItem"
+                @remove="handleRemoveBrandItem" />
+            </template>
+          </draggable>
           <iw-empty v-else :status="listStatus" style="height: 260px;" />
-          <div v-if="listData.length > pageSize" style="text-align: center;">
+          <div v-if="overviewData.length > pageSize" style="text-align: center;">
             <a-pagination
               :current="currentPage"
               :total="totalPageSize"
@@ -117,8 +93,100 @@
               :page-size-options="['10', '20', '30', '40', '50']"
               :default-current="1"
               :show-total="(total, range) => ``"
-              size="small"
               @change="handlePageChage"
+            />
+          </div>
+        </a-spin>
+      </a-card>
+      <a-card :title="$t('manfbrandOverview.table.title')" :body-style="{padding: '0 0 20px 0'}">
+        <span slot="extra" class="extra-header-download">
+          <iw-download
+            type="simple"
+            download-api="/market-overview-export/manf-rank"
+            :download-params="{
+            }"
+          />
+        </span>
+        <a-spin :spinning="tableData.loading">
+          <iw-table
+            v-if="tableData.data.length>0"
+            :data="tableData.data"
+            style="width: 100%;margin-bottom: 20px;border-top: 1px solid #eee;"
+            row-key="key"
+            header-cell-class-name="iw-table-header"
+            cell-class-name="iw-table-cell">
+            <iw-table-column
+              label="添加关注">
+              <template slot-scope="scope">
+                <a-icon
+                  :two-tone-color="manfBrandIds.includes(scope.row.id)?'#eb2f96':''"
+                  theme="twoTone"
+                  type="star"
+                  class="attension-star"
+                  @click="handleStarChange(scope.row.id)" />
+              </template>
+            </iw-table-column>
+            <iw-table-column
+              prop="name"
+              label="生产商品牌"
+              :render-header="renderHeader" />
+            <iw-table-column
+              prop="totalExcitationValue"
+              label="总激励/环比">
+              <template slot-scope="scope">
+                {{ scope.row.totalExcitationValue + '%' }}/<span :class="getClass(scope.row.totalMoMValue)">{{ scope.row.totalMoMValue | toPercent(1, true, '%', 1) }}</span>
+              </template>
+            </iw-table-column>
+            <iw-table-column
+              prop="yearDiscount"
+              label="年度固定折扣">
+              <template slot-scope="scope">
+                {{ scope.row.yearDiscount + '%' }}
+              </template>
+            </iw-table-column>
+            <iw-table-column
+              prop="yearKPI"
+              label="年度考核奖励">
+              <template slot-scope="scope">
+                {{ scope.row.yearDiscount + '%' }}
+              </template>
+            </iw-table-column>
+            <iw-table-column
+              prop="monthExcitation"
+              label="月度激励/环比">
+              <template slot-scope="scope">
+                {{ scope.row.monthExcitation + '%' }}/<span :class="getClass(scope.row.monthMoMValue)">{{ scope.row.monthMoMValue | toPercent(1, true, '%', 1) }}</span>
+              </template>
+            </iw-table-column>
+            <iw-table-column
+              prop="profit"
+              label="利润/环比">
+              <template slot-scope="scope">
+                {{ scope.row.profit }}/<span :class="getClass(scope.row.profitMoMValue)">{{ scope.row.profitMoMValue | toPercent(1, true, '%', 1) }}</span>
+              </template>
+            </iw-table-column>
+            <iw-table-column
+              prop="sales"
+              label="销量/同比"
+              :render-header="renderHeader">
+              <template slot-scope="scope">
+                {{ scope.row.sales }}/<span :class="getClass(scope.row.salesYoYValue)">{{ scope.row.salesYoYValue }}</span>
+              </template>
+            </iw-table-column>
+          </iw-table>
+          <iw-empty v-else :status="tableData.status" style="height: 260px;" />
+          <div v-if="tableData.data.length > pageSize" style="text-align: center;">
+            <a-pagination
+              :current="tableData.page"
+              :total="tableData.total"
+              :show-quick-jumper="true"
+              :show-size-changer="true"
+              :page-size="tableData.pageSize"
+              :page-size-options="['10', '20', '30', '40', '50']"
+              :default-current="1"
+              :show-total="(total, range) => ``"
+              @showSizeChange="handleTablePageSizeChage"
+              @change="handleTablePageChage"
             />
           </div>
         </a-spin>
@@ -128,250 +196,242 @@
 </template>
 
 <script>
-import { Card, Spin } from 'ant-design-vue'
+import { Card, Spin, Icon, Pagination } from 'ant-design-vue'
 import IwBanner from '@/components/banner/index'
 import IwFilter from '@/components/filter/index'
 import IwFilterRadio from '@/components/filter/radio'
+import IwBrandItem from './brand-item.vue'
+import IwDownload from '@/components/download/index'
+import draggable from 'vuedraggable'
+import _ from 'lodash'
+import moment from 'moment'
+import { getManfBrandData, getTerminalAnalyzeData, getTerminalAnalyzeTableData, saveOrder } from '@/api/manfbrand-overview'
 export default {
   components: {
     ACard: Card,
     ASpin: Spin,
+    AIcon: Icon,
+    APagination: Pagination,
     IwBanner,
     IwFilter,
-    IwFilterRadio
+    IwFilterRadio,
+    IwBrandItem,
+    IwDownload,
+    draggable
   },
   data() {
     return {
       dataForm: {
       },
-      //
-      platform: '',
-      dataSource: '',
-      manfbrand: '',
-      //
+      overviewData: [],
+      manfbrand: [], // 如: 8格式
+      manfBrandIds: [], // 如: 7-7格式
+      // 卡片
       currentPage: 1,
       totalPageSize: 0,
       pageSize: document.body.clientWidth > 1499 ? 12 : 8,
       listLoading: false,
       listStatus: 200,
-      listData: [],
-      submodelOptionsLoading: false,
-      submodel: [],
-      defaultSubmodel: [],
-      submodelData: [],
-      segmentSubModel: [],
-      brandSubModel: [],
-      selectedFilter: 1,
-      showLetter: false
+      manfBrandOptionsLoading: false,
+      defaultManfbrand: [],
+      manfbrandOptions: [],
+      // 表格
+      tableData: {
+        data: [],
+        page: 1,
+        pageSize: 10,
+        total: 0,
+        status: 0,
+        loading: false
+      }
     }
   },
-  computed: {
-    pageListData() {
-      const startIndex = (this.currentPage - 1) * this.pageSize
-      const endIndex = startIndex + this.pageSize > this.listData.length ? this.listData.length : startIndex + this.pageSize
-      return this.listData.slice(startIndex, endIndex)
-    }
+  created() {
+    window.addEventListener('resize', _.debounce(() => {
+      if (document.body.clientWidth > 1499) {
+        this.currentPage = 1
+        this.pageSize = 12
+      } else {
+        this.currentPage = 1
+        this.pageSize = 8
+      }
+    }, 100))
+    this.getData()
   },
   methods: {
     handleFilterChange(form) {
-      console.log(form)
       this.dataForm = { ...this.dataForm, ...form }
       console.log(this.dataForm)
     },
     handleFilterRadioChange(form) {
-      console.log(form)
       this.dataForm = { ...this.dataForm, ...form }
       console.log(this.dataForm)
     },
-    // init: _.debounce(
-    //   function() {
-    //     this.reset()
-    //     this.getDefaultFollow().then(() => { this.getListData() })
-    //     this.getSubmodelOptions()
-    //   },
-    //   100
-    // ),
-    getBulbText(type) {
-      switch (type) {
-        case 1:
-          return this.$t(`manfbrandOverview.overview.card.redBulbText`)
-        case 2:
-          return this.$t(`manfbrandOverview.overview.card.greenBulbText`)
-        case 3:
-          return this.$t(`manfbrandOverview.overview.card.yellowBulbText`)
-        default:
-          return ''
+
+    // 卡片
+    handleDragEnd() {
+      const hasChange = this.overviewData.find((item, key) => {
+        return item.id !== this.manfbrand[key]
+      })
+      if (hasChange) {
+        this.manfbrand = this.overviewData.map(item => item.id)
+        this.saveOrder()
       }
     },
-    toThousand(value, fixed = 0) {
-      // return toThousand(value, fixed)
-    },
-    toPercent(value, fixed = 1) {
-      // return toPercent(value, fixed)
-    },
-    getRowContent(label, joinStr) {
-      let content = ''
-      if (this.dateType === 1) {
-        content += this.$t(`manfbrandOverview.overview.card.${label}`, { month: this.month })
+    handleToTopItem(item) {
+      const index = _.indexOf(this.manfbrand, item.id)
+      const top = this.manfbrand.splice(index, 1)
+      this.manfbrand = [
+        ...top,
+        ...this.manfbrand
+      ]
+      const callback = () => {
+        const topItem = this.overviewData.splice(index, 1)
+        this.overviewData = [
+          ...topItem,
+          ...this.overviewData
+        ]
+        this.getOverviewPageIds()
       }
-      if (this.dateType === 2) {
-        content += this.$t(`manfbrandOverview.overview.card.${label}2`, { quarter: this.quarter })
-      }
-      return `${content}：${joinStr}`
+      this.saveOrder().then(callback)
+      this.currentPage = 1
     },
-    handlePageChage(page) { // 分页器当前页变化处理
+    handleRemoveBrandItem(item) {
+      const index = this.manfbrand.findIndex(id => id === item.id)
+      this.manfbrand.splice(index, 1)
+      const callback = () => {
+        this.overviewData.splice(index, 1)
+        this.getOverviewPageIds()
+      }
+      this.saveOrder.then(callback)
+    },
+    getData() {
+      this.getManfBrand()
+      this.getCardData()
+      this.getTableData()
+    },
+    handlePageChage(page) {
       this.currentPage = page
+      this.getOverviewPageIds()
     },
-    reset() {
-      // this.currentPage = 1
-      // this.selectedFilter = 1
-      // this.showLetter = false
-      // this.submodel = []
+    getCardData() {
+      getTerminalAnalyzeData({
+      }).then(res => {
+        this.overviewData = res.data || []
+        this.manfbrand = [this.overviewData.map(item => Number(item.id))]
+        this.totalPageSize = this.overviewData.length
+        this.manfbrand = this.overviewData.map(item => item.id)
+        this.manfBrandIds = this.overviewData.map(item => item.manfBrandId)
+        this.getOverviewPageIds()
+      }).catch(res => {
+      })
     },
-    getDefaultFollow() { // 获取默认关注列表
-      // return new Promise((resolve, reject) => {
-      //   if (!isEmpty(this.manfbrand.key) && !isEmpty(this.dataSource) && !isEmpty(this.dateType) && !isEmpty(this.ym) && !isEmpty(this.platform)) {
-      //     this.listLoading = true
-      //     getAttentionList({
-      //       'dataSource': this.dataSource,
-      //       'manfBrandId': this.manfbrand.key,
-      //       'mqFlag': this.dateType,
-      //       'mqId': this.ym,
-      //       'platformEnum': this.platform,
-      //       'typeId': 1
-      //     })
-      //       .then(res => {
-      //         const data = res.data
-      //         this.submodel = data
-      //         this.defaultSubmodel = _.cloneDeep(data)
-      //         this.listLoading = false
-      //         resolve()
-      //       })
-      //       .catch(err => {
-      //         this.listLoading = false
-      //         reject(err)
-      //       })
-      //   } else {
-      //     resolve()
-      //   }
-      // })
+    getOverviewPageIds() {
+      const startIndex = (this.currentPage - 1) * this.pageSize
+      const endIndex = startIndex + this.pageSize > this.overviewData.length ? this.overviewData.length : startIndex + this.pageSize
+      const overviewPageData = this.overviewData.slice(startIndex, endIndex)
+      this.overviewPageIds = overviewPageData.map(item => item.id)
+      console.log(this.overviewPageIds)
     },
-    saveFollow() { // 保存关注列表
-      // return saveAttention({
-      //   'manfBrandId': this.manfbrand.key,
-      //   'subModelIds': this.submodel,
-      //   'typeId': 1
-      // })
-      //   .then(() => {
-      //     this.defaultSubmodel = _.cloneDeep(this.submodel)
-      //   })
+    getManfBrand() {
+      getManfBrandData({
+      })
+        .then(res => {
+          const data = res.data
+          this.manfbrandOptions = data
+          this.manfBrandOptionsLoading = false
+        })
+        .catch(err => {
+          this.manfBrandOptionsLoading = false
+          throw err
+        })
     },
-    getListData() { // 获取列表数据
-      // if (!isEmpty(this.dateType) && !isEmpty(this.dataSource) && !isEmpty(this.ym) && !isEmpty(this.platform) && !isEmpty(this.submodel)) {
-      //   this.listLoading = true
-      //   getSubmanfbrandOverview({
-      //     'dataSource': this.dataSource,
-      //     'mqFlag': this.dateType,
-      //     'mqId': this.ym,
-      //     'platform': this.platform,
-      //     'subModelId': this.submodel
-      //   })
-      //     .then(res => {
-      //       this.listData = res.data
-      //       this.totalPageSize = this.listData.length
-      //       this.listLoading = false
-      //     })
-      //     .catch(err => {
-      //       this.currentPage = 1
-      //       this.totalPageSize = 0
-      //       this.listLoading = false
-      //       throw err
-      //     })
-      // } else {
-      //   if (isEmpty(this.submodel)) {
-      //     this.listData = []
-      //     this.currentPage = 1
-      //     this.totalPageSize = 0
-      //   }
-      // }
+    handleManfbrandChange(value, texts) {
+      this.manfbrand = value
+      this.currentPage = 1
+      this.saveOrder().then(res => {
+        this.getCardData()
+      })
     },
-    getSubmodelOptions() { // 只可选择本品厂商品牌的车型，多选项
-      // if (!isEmpty(this.dateType) && !isEmpty(this.manfbrand.key) && !isEmpty(this.ym) && !isEmpty(this.platform)) {
-      //   this.submodelOptionsLoading = true
-      //   getSubmodel({
-      //     'flag': true,
-      //     'manfBrandId': this.manfbrand.key,
-      //     'mqFlag': this.dateType,
-      //     'mqId': this.ym,
-      //     'platformEnum': this.platform
-      //   })
-      //     .then(res => {
-      //       const data = res.data
-      //       this.segmentSubModel = data[0]
-      //       this.brandSubModel = data[1]
-      //       this.submodelData = this.segmentSubModel
-      //       this.submodelOptionsLoading = false
-      //     })
-      //     .catch(err => {
-      //       this.submodelOptionsLoading = false
-      //       throw err
-      //     })
-      // }
+    saveOrder() {
+      this.listLoading = true
+      return new Promise((resolve, reject) => {
+        saveOrder({
+          ids: this.manfbrand.join(',')
+        })
+          .then(res => {
+            this.listLoading = false
+            resolve(res)
+          })
+          .catch(res => {
+            this.listLoading = false
+            reject(res)
+          })
+      })
     },
-    // handleFilterChange(value, key) {
-    //   this.selectedFilter = value
-    //   if (value === 1) {
-    //     this.showLetter = false
-    //     this.submodelData = this.segmentSubModel
-    //   } else {
-    //     this.showLetter = true
-    //     this.submodelData = this.brandSubModel
-    //   }
-    // },
-    handleSubmodelChange(value, texts) {
-      // this.submodel = value
-      // this.currentPage = 1
-      // this.getListData()
-      // this.saveFollow()
+
+    // 表格
+    renderHeader(h, { column, _self }) {
+      if (column.property === 'name') {
+        return moment(this.dataForm.ym, 'YYYYMM').format('YYYY年MM月')
+      }
+      if (column.property === 'sales') {
+        return (_self.tableData && _self.tableData[0] ? _self.tableData[0].salesMonth : '') + '销量/同比'
+      }
     },
-    handleSetTop(id) {
-      // const index = _.indexOf(this.submodel, id)
-      // const top = this.submodel.splice(index, 1)
-      // this.submodel = [
-      //   ...top,
-      //   ...this.submodel
-      // ]
-      // this.saveFollow()
-      // this.currentPage = 1
-      // this.getListData()
+    handleStarChange(value) {
+      this.saveOrder().then(res => {
+        this.getCardData()
+      })
     },
-    handleRemoveSubmodel(id) {
-      // if (this.submodel.length === 1) {
-      //   message.error(this.$t('manfbrandOverview.overview.card.removeErr'))
-      //   return
-      // }
-      // const index = _.indexOf(this.submodel, id)
-      // this.submodel.splice(index, 1)
-      // this.saveFollow().then(() => { message.success(this.$t('manfbrandOverview.overview.card.removeSuccess')) })
-      // if (this.currentPage > 1 && this.currentPage > Math.ceil(this.submodel.length / this.pageSize)) {
-      //   this.currentPage = 1
-      // }
-      // this.getListData()
+    getClass(item) {
+      if (item === '' || item === '-' || item === '0' || item === '0.0%') return 'font-black'
+      return item.indexOf('-') === 0 ? 'font-red' : 'font-green'
     },
-    handleGotoAnalyse(submodel) {
-      // saveBrowsingHistory({
-      //   'recordType': 1,
-      //   'refferId': submodel.id
-      // })
-      //   .then(response => {
-      //     this.$router.push({
-      //       name: 'modelAnalysis',
-      //       params: {
-      //         submodel
-      //       }
-      //     })
-      //   })
+    handleTablePageChage(page) {
+      this.tableData.page = page
+      this.getTableData()
+    },
+    handleTablePageSizeChage(current, pageSize) {
+      this.tableData.pageSize = pageSize
+      this.tableData.page = 1
+      this.getTableData()
+    },
+    getTableData() {
+      this.tableData.loading = true
+      getTerminalAnalyzeTableData({
+        page: this.tableData.page,
+        rows: this.tableData.pageSize
+      })
+        .then(res => {
+          const data = res.data[0] || {}
+          this.tableData.data = data.list || []
+          this.tableData.total = data.total || []
+          this.tableData.loading = false
+          this.tableData.status = 200
+        })
+        .catch(err => {
+          this.tableData.loading = false
+          this.tableData.status = 500
+          throw err
+        })
     }
   }
 }
 </script>
+
+<style lang="less" scoped>
+.manfbrand-overview {
+  .overview-list {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  .attension-star {
+    cursor: pointer;
+    font-size: 18px;
+  }
+}
+</style>

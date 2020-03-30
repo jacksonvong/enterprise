@@ -1,3 +1,7 @@
+import manfbrandOverview from './manfbrand-overview/en'
+import modelOverview from './model-overview/en'
+import terminalExcitionSearch from './terminal-excition-search/en'
+
 export default {
   login: {
     title: 'Login Form',
@@ -39,5 +43,8 @@ export default {
     failureTitle: 'Failed.',
     failureContent: 'Download failed. Please contact our staff for further information. Sorry for the inconvenience.',
     noAuthContent: 'Limited access to download. Please contact our staff to gain access. Thank you.'
-  }
+  },
+  manfbrandOverview,
+  modelOverview,
+  terminalExcitionSearch
 }
