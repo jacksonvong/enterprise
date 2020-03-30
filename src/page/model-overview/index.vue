@@ -6,7 +6,7 @@
         :id="$store.state.app.filter!=='fixed'?'overview-analyse':''"
         :show="{ dataTimeType: true, dataSource: true, manfBrand: true, dataType: true }"
         :multiple="{ manfBrand: true }"
-        @change="changeDataForm"
+        @change="handleFilterChange"
       /><a-card>
         <div slot="title">
           <span>{{ $t('modelOverview.overview.title') }}</span>
@@ -66,15 +66,11 @@
           </iw-submodel>
         </div>
         <a-spin :spinning="card.loading">
-          <draggable
-            v-if="overviewData.length"
-            v-model="overviewData"
-            filter=".add-brand-item"
-            element="ul"
+          <ul
+            v-if="card.data&&card.data.length"
             style="width: 100%"
-            class="overview-list clearfix"
-            @end="handleDragEnd">
-            <template v-for="(item, key) in overviewData">
+            class="overview-list clearfix">
+            <template v-for="(item, key) in card.data">
               <IwModelItem
                 v-if="overviewPageIds.includes(item.id)"
                 :key="key"
@@ -83,7 +79,7 @@
                 @toTop="handleToTopItem"
                 @remove="handleRemoveBrandItem" />
             </template>
-          </draggable>
+          </ul>
           <iw-empty v-else :status="card.status" style="height: 260px;" />
           <div v-if="card.data.length > card.pageSize" style="text-align: center;">
             <a-pagination
@@ -121,7 +117,7 @@
               label="添加关注">
               <template slot-scope="scope">
                 <a-icon
-                  :two-tone-color="subModelIds.includes(scope.row.id)?'#eb2f96':''"
+                  :two-tone-color="subModelValue.includes(scope.row.id)?'#eb2f96':''"
                   theme="twoTone"
                   type="star"
                   class="attension-star"
@@ -203,9 +199,8 @@ import IwBanner from '@/components/banner/index'
 import IwFilter from '@/components/filter/index'
 import IwModelItem from './model-item.vue'
 import IwDownload from '@/components/download/index'
-import draggable from 'vuedraggable'
 import _ from 'lodash'
-// import moment from 'moment'
+import moment from 'moment'
 import { getSegmentData, getSubModelData, getTerminalAnalyzeData, getTerminalAnalyzeTableData, saveOrder } from '@/api/model-overview'
 export default {
   components: {
@@ -216,25 +211,22 @@ export default {
     IwBanner,
     IwFilter,
     IwModelItem,
-    IwDownload,
-    draggable
+    IwDownload
   },
   data() {
     return {
       dataForm: {
       },
-      overviewData: [],
       showLetter: false,
-      subModelValue: [], // 如: 8格式
-      subModelIds: [], // 如: 7-7格式
+      subModelValue: [],
       subModelOptionsLoading: false,
       defaultSubModelValue: [],
       subModelOptions: [],
       subModelFilter: [],
       selectedFilter: 0,
       subModelData: {},
-
       overviewPageIds: [],
+
       // 卡片
       card: {
         data: [],
@@ -268,9 +260,9 @@ export default {
     this.getData()
   },
   methods: {
-    changeDataForm(form) {
-      console.log(form)
-      this.filterForm = { ...this.filterForm, ...form }
+    handleFilterChange(form) {
+      this.dataForm = { ...this.dataForm, ...form }
+      console.log(this.dataForm)
     },
     handleFilterChnage(value) {
       if (value === 1) {
@@ -281,10 +273,54 @@ export default {
       this.selectedFilter = value
       this.subModelOptions = this.subModelData[value]
     },
+    handleToTopItem(item) {
+      const index = _.indexOf(this.subModelValue, item.id)
+      const top = this.subModelValue.splice(index, 1)
+      this.subModelValue = [
+        ...top,
+        ...this.subModelValue
+      ]
+      console.log(this.subModelValue)
+      const callback = () => {
+        const topItem = this.card.data.splice(index, 1)
+        this.card.data = [
+          ...topItem,
+          ...this.card.data
+        ]
+      }
+      this.saveOrder().then(callback)
+      this.currentPage = 1
+    },
+    handleRemoveBrandItem(item) {
+      const index = this.subModelValue.findIndex(id => id === item.id)
+      this.subModelValue.splice(index, 1)
+      const callback = () => {
+        this.card.data.splice(index, 1)
+      }
+      this.saveOrder().then(callback)
+    },
     handleSubModelChange() {},
     // API
     getData() {
       this.getSubModelData()
+      this.getCardData()
+      this.getTableData()
+    },
+    getCardData() {
+      getTerminalAnalyzeData({
+      }).then(res => {
+        this.card.data = res.data || []
+        this.subModelValue = this.card.data.map(item => item.id)
+        this.getOverviewPageIds()
+      }).catch(res => {
+      })
+    },
+    getOverviewPageIds() {
+      const startIndex = (this.card.page - 1) * this.card.pageSize
+      const endIndex = startIndex + this.pageSize > this.card.data.length ? this.card.data.length : startIndex + this.card.pageSize
+      const data = this.card.data.slice(startIndex, endIndex)
+      this.overviewPageIds = data.map(item => item.id)
+      console.log(this.overviewPageIds)
     },
     getSegmentData() {
       getSegmentData()
@@ -300,14 +336,67 @@ export default {
           console.log(this.subModelOptions)
         })
     },
-    getTerminalAnalyzeData() {
-      getTerminalAnalyzeData()
-    },
-    getTerminalAnalyzeTableData() {
-      getTerminalAnalyzeTableData()
-    },
     saveOrder() {
-      saveOrder()
+      this.card.loading = true
+      return new Promise((resolve, reject) => {
+        saveOrder({
+          ids: this.subModelValue.join(',')
+        })
+          .then(res => {
+            this.card.loading = false
+            resolve(res)
+          })
+          .catch(res => {
+            this.card.loading = false
+            reject(res)
+          })
+      })
+    },
+    // 表格
+    renderHeader(h, { column, _self }) {
+      if (column.property === 'name') {
+        return moment(this.dataForm.ym, 'YYYYMM').format('YYYY年MM月')
+      }
+      if (column.property === 'sales') {
+        return (_self.tableData && _self.tableData[0] ? _self.tableData[0].salesMonth : '') + '销量/同比'
+      }
+    },
+    handleStarChange(value) {
+      this.saveOrder().then(res => {
+        this.getCardData()
+      })
+    },
+    getClass(item) {
+      if (item === '' || item === '-' || item === '0' || item === '0.0%') return 'font-black'
+      return item.indexOf('-') === 0 ? 'font-red' : 'font-green'
+    },
+    handleTablePageChage(page) {
+      this.tableData.page = page
+      this.getTableData()
+    },
+    handleTablePageSizeChage(current, pageSize) {
+      this.tableData.pageSize = pageSize
+      this.tableData.page = 1
+      this.getTableData()
+    },
+    getTableData() {
+      this.tableData.loading = true
+      getTerminalAnalyzeTableData({
+        page: this.tableData.page,
+        rows: this.tableData.pageSize
+      })
+        .then(res => {
+          const data = res.data[0] || {}
+          this.tableData.data = data.models.list || []
+          this.tableData.total = this.tableData.data.total || []
+          this.tableData.loading = false
+          this.tableData.status = 200
+        })
+        .catch(err => {
+          this.tableData.loading = false
+          this.tableData.status = 500
+          throw err
+        })
     }
   }
 }

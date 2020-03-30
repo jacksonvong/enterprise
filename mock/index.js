@@ -28,6 +28,7 @@ const proxy = {
   'POST /api/net-big-data/model-overview/getSubModelData': fromJSONFile('model-overview/getSubModelData'),
   'POST /api/net-big-data/model-overview/getTerminalAnalyzeData': fromJSONFile('model-overview/getTerminalAnalyzeData'),
   'POST /api/net-big-data/model-overview/getTerminalAnalyzeTableData': fromJSONFile('model-overview/getTerminalAnalyzeTableData'),
+  'POST /api/net-big-data/model-overview/saveOrder': fromJSONFile('model-overview/saveOrder'),
 
   'POST /api/net-big-data/terminal-reward-search/getTimeInfo': fromJSONFile('terminal-reward-search/getTimeInfo'),
   'POST /api/net-big-data/terminal-reward-search/getTypeInfo': fromJSONFile('terminal-reward-search/getTypeInfo'),
