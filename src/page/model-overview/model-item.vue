@@ -1,11 +1,17 @@
 <template>
   <li class="model-item">
+    <div class="segment-name">
+      <iw-tag>{{ item.carModel }}</iw-tag>
+    </div>
     <div class="image">
       <img :src="item.image" :alt="item.name" class="logo">
     </div>
     <div class="title">
-      {{ item.name }}
+      <span>{{ item.name }}</span>
       <a-icon title="置顶" type="to-top" @click="JumpToTop(item)" />
+    </div>
+    <div class="tag">
+      <span>{{ item.tag }}</span>
     </div>
     <div class="content">
       <div class="content-item">
@@ -93,6 +99,10 @@ export default {
       }
     }
   }
+  .segment-name {
+    position: absolute;
+    color: #6398F4;
+  }
   .image {
     img {
       height: 70px;
@@ -104,17 +114,23 @@ export default {
     font-size: 18px;
     i {
       cursor: pointer;
+      color: #2e5aa6;
       &:hover {
         color: #2e5aa6;
       }
     }
   }
+  .tag {
+    font-size: 12px;
+    margin-top: 10px;
+    color: #4182F3;
+  }
   .content {
     text-align: left;
     color: #999;
-    margin-top: 10px;
+    margin-top: 6px;
     .content-item {
-      line-height: 28px;
+      line-height: 26px;
     }
     .value {
       color: #000;

@@ -77,7 +77,7 @@
                 :item="item"
                 class="overview-list-item"
                 @toTop="handleToTopItem"
-                @remove="handleRemoveBrandItem" />
+                @remove="handleRemoveModelItem" />
             </template>
           </ul>
           <iw-empty v-else :status="card.status" style="height: 260px;" />
@@ -116,44 +116,109 @@
             <iw-table-column
               label="添加关注">
               <template slot-scope="scope">
+                <iw-popover
+                  v-if="subModelValue.includes(scope.row.id)"
+                  v-model="visible"
+                  :offset="{left: -10}"
+                  :width="null"
+                  :body-style="{padding: '10px'}"
+                  popper-class="iw-popover-attension"
+                  placement="top"
+                  show-arrow>
+                  <a-icon
+                    v-if="scope.$index!==0"
+                    slot="reference"
+                    two-tone-color="#FBAD57"
+                    theme="twoTone"
+                    type="star"
+                    class="attension-star"
+                    style="width: 40px;" />
+                  <div>
+                    <div class="message">
+                      是否取消关注车型？
+                    </div>
+                    <div class="buttons">
+                      <iw-button size="mini" type="primary" @click="handleRemoveModelItem(scope.row)">
+                        确定
+                      </iw-button>
+                      <iw-button size="mini" @click="visible=false">
+                        取消
+                      </iw-button>
+                    </div>
+                  </div>
+                </iw-popover>
                 <a-icon
-                  :two-tone-color="subModelValue.includes(scope.row.id)?'#eb2f96':''"
+                  v-else-if="scope.$index!==0"
+                  two-tone-color="#7F8593"
                   theme="twoTone"
                   type="star"
                   class="attension-star"
-                  @click="handleStarChange(scope.row.id)" />
+                  @click="handleStarChange(scope.row, subModelValue.includes(scope.row.id))" />
               </template>
             </iw-table-column>
             <iw-table-column
               prop="name"
-              label="生产商品牌"
-              :render-header="renderHeader" />
+              width="120"
+              label="车型">
+              <template slot-scope="scope">
+                <div v-if="scope.$index===0">
+                  <iw-select
+                    v-model="segmentId"
+                    :data="segmentOptions"
+                    :option-props="{
+                      value: 'value',
+                      label:'text'
+                    }"
+                    size="mini"
+                    @change="handleSegmentChange" />
+                </div>
+                <div v-else>
+                  {{ scope.row.name }}
+                </div>
+              </template>
+            </iw-table-column>
             <iw-table-column
               prop="totalExcitationValue"
               label="总激励/环比">
               <template slot-scope="scope">
-                {{ scope.row.totalExcitationValue + '%' }}/<span :class="getClass(scope.row.totalMoMValue)">{{ scope.row.totalMoMValue | toPercent(1, true, '%', 1) }}</span>
+                {{ scope.row.totalExcitationValue | toPercent(1, false, '%', 1) }}/<span :class="getClass(scope.row.totalMoMValue)">{{ scope.row.totalMoMValue | toPercent(1, true, '%', 1) }}</span>
               </template>
             </iw-table-column>
             <iw-table-column
               prop="yearDiscount"
               label="年度固定折扣">
               <template slot-scope="scope">
-                {{ scope.row.yearDiscount + '%' }}
+                {{ scope.row.yearDiscount | toPercent(1, false, '%', 1) }}
               </template>
             </iw-table-column>
             <iw-table-column
               prop="yearKPI"
               label="年度考核奖励">
               <template slot-scope="scope">
-                {{ scope.row.yearDiscount + '%' }}
+                {{ scope.row.yearDiscount | toPercent(1, false, '%', 1) }}
               </template>
             </iw-table-column>
             <iw-table-column
               prop="monthExcitation"
               label="月度激励/环比">
               <template slot-scope="scope">
-                {{ scope.row.monthExcitation + '%' }}/<span :class="getClass(scope.row.monthMoMValue)">{{ scope.row.monthMoMValue | toPercent(1, true, '%', 1) }}</span>
+                {{ scope.row.monthExcitation | toPercent(1, false, '%', 1) }}/<span :class="getClass(scope.row.monthMoMValue)">{{ scope.row.monthMoMValue | toPercent(1, true, '%', 1) }}</span>
+              </template>
+            </iw-table-column>
+            <iw-table-column
+              prop="msrp"
+              label="加权MSRP"
+              :render-header="renderHeader">
+              <template slot-scope="scope">
+                {{ scope.row.msrp | toThousand }}
+              </template>
+            </iw-table-column>
+            <iw-table-column
+              prop="tp"
+              label="加权TP"
+              :render-header="renderHeader">
+              <template slot-scope="scope">
+                {{ scope.row.tp | toThousand }}
               </template>
             </iw-table-column>
             <iw-table-column
@@ -164,11 +229,18 @@
               </template>
             </iw-table-column>
             <iw-table-column
+              prop="discount"
+              label="折扣/环比">
+              <template slot-scope="scope">
+                {{ scope.row.discount | toPercent(1, false, '%', 1) }}/<span :class="getClass(scope.row.discountMoMValue)">{{ scope.row.discountMoMValue | toPercent(1, true, '%', 1) }}</span>
+              </template>
+            </iw-table-column>
+            <iw-table-column
               prop="sales"
               label="销量/同比"
               :render-header="renderHeader">
               <template slot-scope="scope">
-                {{ scope.row.sales }}/<span :class="getClass(scope.row.salesYoYValue)">{{ scope.row.salesYoYValue }}</span>
+                {{ scope.row.sales | toThousand }}/<span :class="getClass(scope.row.salesYoYValue)">{{ scope.row.salesYoYValue }}</span>
               </template>
             </iw-table-column>
           </iw-table>
@@ -227,6 +299,9 @@ export default {
       subModelData: {},
       overviewPageIds: [],
 
+      segmentId: '',
+      segmentOptions: [],
+
       // 卡片
       card: {
         data: [],
@@ -244,7 +319,18 @@ export default {
         total: 0,
         status: 0,
         loading: false
-      }
+      },
+      visible: false
+    }
+  },
+  watch: {
+    dataForm: {
+      handler() {
+        if (this.dataForm.ym) {
+          this.getData()
+        }
+      },
+      deep: true
     }
   },
   created() {
@@ -257,12 +343,14 @@ export default {
         this.pageSize = 8
       }
     }, 100))
-    this.getData()
+    if (this.dataForm.ym) {
+      this.getData()
+    }
   },
   methods: {
     handleFilterChange(form) {
+      console.log('form', form)
       this.dataForm = { ...this.dataForm, ...form }
-      console.log(this.dataForm)
     },
     handleFilterChnage(value) {
       if (value === 1) {
@@ -280,7 +368,6 @@ export default {
         ...top,
         ...this.subModelValue
       ]
-      console.log(this.subModelValue)
       const callback = () => {
         const topItem = this.card.data.splice(index, 1)
         this.card.data = [
@@ -291,7 +378,7 @@ export default {
       this.saveOrder().then(callback)
       this.currentPage = 1
     },
-    handleRemoveBrandItem(item) {
+    handleRemoveModelItem(item) {
       const index = this.subModelValue.findIndex(id => id === item.id)
       this.subModelValue.splice(index, 1)
       const callback = () => {
@@ -301,18 +388,30 @@ export default {
     },
     handleSubModelChange() {},
     // API
-    getData() {
+    async getData() {
       this.getSubModelData()
+      await this.getSegmentData()
       this.getCardData()
       this.getTableData()
     },
-    getCardData() {
-      getTerminalAnalyzeData({
-      }).then(res => {
-        this.card.data = res.data || []
-        this.subModelValue = this.card.data.map(item => item.id)
-        this.getOverviewPageIds()
-      }).catch(res => {
+    getCardData(params = {}) {
+      return new Promise((resolve, reject) => {
+        getTerminalAnalyzeData({
+          ym: this.dataForm.ym,
+          maxYm: this.dataForm.maxYm,
+          dataSource: this.dataForm.dataSource,
+          moneyOrRatio: this.dataForm.dataType,
+          isQuarter: this.dataForm.dataTimeType,
+          mySubOrMyAttention: 3,
+          ...params
+        }).then(res => {
+          this.card.data = res.data || []
+          this.subModelValue = this.card.data.map(item => item.id)
+          this.getOverviewPageIds()
+          resolve(res)
+        }).catch(res => {
+          reject(res)
+        })
       })
     },
     getOverviewPageIds() {
@@ -320,10 +419,22 @@ export default {
       const endIndex = startIndex + this.pageSize > this.card.data.length ? this.card.data.length : startIndex + this.card.pageSize
       const data = this.card.data.slice(startIndex, endIndex)
       this.overviewPageIds = data.map(item => item.id)
-      console.log(this.overviewPageIds)
     },
     getSegmentData() {
-      getSegmentData()
+      return new Promise((resolve, reject) => {
+        getSegmentData()
+          .then(res => {
+            const data = res.data || {}
+            this.segmentOptions = data || []
+            const segment = data[0] || {}
+            this.segmentId = segment.value
+            this.segmentName = segment.text
+            resolve(data)
+          })
+          .catch(res => {
+            reject(res)
+          })
+      })
     },
     getSubModelData() {
       getSubModelData()
@@ -333,7 +444,6 @@ export default {
           this.subModelFilter = data.title.map((item, key) => { return { key: key, value: item } })
           this.selectedFilter = 1
           this.subModelOptions = this.subModelData[this.selectedFilter] // 细分市场分组
-          console.log(this.subModelOptions)
         })
     },
     saveOrder() {
@@ -354,21 +464,36 @@ export default {
     },
     // 表格
     renderHeader(h, { column, _self }) {
-      if (column.property === 'name') {
-        return moment(this.dataForm.ym, 'YYYYMM').format('YYYY年MM月')
+      if (column.property === 'msrp') {
+        return column.label + '(' + moment(this.dataForm.ym, 'YYYYMM').format('M月') + ')'
+      }
+      if (column.property === 'tp') {
+        return column.label + '(' + moment(this.dataForm.ym, 'YYYYMM').format('M月') + ')'
       }
       if (column.property === 'sales') {
-        return (_self.tableData && _self.tableData[0] ? _self.tableData[0].salesMonth : '') + '销量/同比'
+        return column.label + '(' + (_self.tableData.data && _self.tableData.data[0] ? _self.tableData.data[0].salesMonth : '') + ')'
       }
     },
-    handleStarChange(value) {
-      this.saveOrder().then(res => {
-        this.getCardData()
-      })
+    handleStarChange(item, checked = false) {
+      if (checked) {
+        confirm('确定删除吗', () => {
+          this.handleRemoveModelItem(item)
+        })
+      } else {
+        this.getCardData({ ids: item.id }).then(res => {
+          console.log(this.card.data)
+          console.log(this.subModelValue)
+          this.saveOrder()
+        })
+      }
     },
     getClass(item) {
       if (item === '' || item === '-' || item === '0' || item === '0.0%') return 'font-black'
       return item.indexOf('-') === 0 ? 'font-red' : 'font-green'
+    },
+    handleSegmentChange(value, texts) {
+      this.segmentName = this.segmentOptions.find(item => item.value === value).text
+      this.getTableData()
     },
     handleTablePageChage(page) {
       this.tableData.page = page
@@ -382,13 +507,21 @@ export default {
     getTableData() {
       this.tableData.loading = true
       getTerminalAnalyzeTableData({
+        ym: this.dataForm.ym,
+        maxYm: this.dataForm.maxYm,
+        dataSource: this.dataForm.dataSource,
+        moneyOrRatio: this.dataForm.dataType,
+        isQuarter: this.dataForm.dataTimeType,
+        dataType: 'sub',
+        segSubIds: this.segmentId,
+        segName: this.segmentName,
         page: this.tableData.page,
         rows: this.tableData.pageSize
       })
         .then(res => {
           const data = res.data[0] || {}
-          this.tableData.data = data.models.list || []
-          this.tableData.total = this.tableData.data.total || []
+          this.tableData.data = [data.totalModel, ...data.models.list]
+          this.tableData.total = 100
           this.tableData.loading = false
           this.tableData.status = 200
         })
@@ -402,6 +535,21 @@ export default {
 }
 </script>
 
+<style lang="less">
+.iw-popover-attension {
+  font-size: 12px;
+  .message {
+    position: relative;
+    padding: 4px 0 12px;
+    color: rgba(0,0,0,.65);
+    font-size: 14px;
+  }
+  .buttons {
+    margin-bottom: 4px;
+    text-align: right;
+  }
+}
+</style>
 <style lang="less" scoped>
 .model-overview {
   .overview-list {
@@ -414,6 +562,9 @@ export default {
   .attension-star {
     cursor: pointer;
     font-size: 18px;
+  }
+  .iw-table {
+    font-size: 14px;
   }
 }
 </style>

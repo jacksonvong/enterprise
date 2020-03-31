@@ -1,7 +1,7 @@
 <template>
   <div style="">
     <transition name="slide-to-left">
-      <div v-if="!collapsed" class="leftmenu-box">
+      <div v-show="!collapsed" class="leftmenu-box">
         <iw-scrollbar :wrap-style="'height: ' + height +'px;'">
           <a-menu
             :default-selected-keys="[]"

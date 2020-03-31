@@ -34,7 +34,7 @@
             :label="item.title"
             :width="item.width"
             :render-header="renderHeader"
-            :is-expand="item.expandable" />
+            :expandable="item.expandable" />
         </iw-table>
       </a-card>
     </div>

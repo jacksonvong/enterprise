@@ -33,6 +33,9 @@ export default {
     dataType: '数据类型',
     money: '金额',
     ratio: '比例',
+    versionType: '型号类型',
+    allVersion: '全车系',
+    version: '型号',
     any: '不限'
   },
   download: {

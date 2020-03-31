@@ -91,15 +91,16 @@ export default {
       }
     },
     switchLanguage() {
-      // 重载内容
-      this.reload()
-      // 重新请求菜单
-      this.$store.dispatch('GetMenus').then(res => {
-        const menus = res.data
-        this.$store.dispatch('GenerateRoutes', { menus }).then(() => {
-          this.init(this.$route)
-        })
-      })
+      // // 重载内容
+      // this.reload()
+      // // 重新请求菜单
+      // this.$store.dispatch('GetMenus').then(res => {
+      //   const menus = res.data
+      //   this.$store.dispatch('GenerateRoutes', { menus }).then(() => {
+      //     this.init(this.$route)
+      //   })
+      // })
+      window.location.reload()
     },
     reload() {
       this.isPageAlive = false

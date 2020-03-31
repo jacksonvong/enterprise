@@ -15,6 +15,7 @@ const proxy = {
   'POST /api/net-big-data/common/get-manfbrand': fromJSONFile('common/get-manfbrand'),
   'POST /api/net-big-data/common/get-segment': fromJSONFile('common/get-segment'),
   'POST /api/net-big-data/common/get-reward': fromJSONFile('common/get-reward'),
+  'POST /api/net-big-data/common/get-version': fromJSONFile('common/get-version'),
   'POST /api/net-big-data/common/get-submodel': fromJSONFile('common/get-submodel'),
   'POST /api/net-big-data/submodel-analysis/get-comp-circle': fromJSONFile('submodel-analysis/get-comp-circle'),
   'POST /api/net-big-data/manfbrand-analysis/get-comp-circle': fromJSONFile('manfbrand-analysis/get-comp-circle'),

@@ -4,7 +4,7 @@
     <div :style="{'padding-top': $store.state.app.filter!=='fixed' ? '10px' : '76px'}" class="main-content">
       <iw-filter
         :id="$store.state.app.filter!=='fixed'?'overview-analyse':''"
-        :show="{dataSource: true, subModel: true}"
+        :show="{ dataTimeType: true, dataSource: true, subModel: true, dataType: true, versionType: true, version: true }"
         :multiple="{subModel: true}"
         @change="changeDataForm"
       />

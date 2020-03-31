@@ -64,14 +64,10 @@
           </iw-submodel>
         </div>
         <a-spin :spinning="listLoading">
-          <draggable
+          <ul
             v-if="overviewData.length"
-            v-model="overviewData"
-            filter=".add-brand-item"
-            element="ul"
             style="width: 100%"
-            class="overview-list clearfix"
-            @end="handleDragEnd">
+            class="overview-list clearfix">
             <template v-for="(item, key) in overviewData">
               <iw-brand-item
                 v-if="overviewPageIds.includes(item.id)"
@@ -81,7 +77,7 @@
                 @toTop="handleToTopItem"
                 @remove="handleRemoveBrandItem" />
             </template>
-          </draggable>
+          </ul>
           <iw-empty v-else :status="listStatus" style="height: 260px;" />
           <div v-if="overviewData.length > pageSize" style="text-align: center;">
             <a-pagination
@@ -202,7 +198,6 @@ import IwFilter from '@/components/filter/index'
 import IwFilterRadio from '@/components/filter/radio'
 import IwBrandItem from './brand-item.vue'
 import IwDownload from '@/components/download/index'
-import draggable from 'vuedraggable'
 import _ from 'lodash'
 import moment from 'moment'
 import { getManfBrandData, getTerminalAnalyzeData, getTerminalAnalyzeTableData, saveOrder } from '@/api/manfbrand-overview'
@@ -216,8 +211,7 @@ export default {
     IwFilter,
     IwFilterRadio,
     IwBrandItem,
-    IwDownload,
-    draggable
+    IwDownload
   },
   data() {
     return {
@@ -432,6 +426,9 @@ export default {
   .attension-star {
     cursor: pointer;
     font-size: 18px;
+  }
+  .iw-table {
+    font-size: 14px;
   }
 }
 </style>

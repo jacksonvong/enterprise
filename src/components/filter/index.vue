@@ -36,7 +36,7 @@
               :clearable="false"
               :editable="false"
               :type="dataTimeRange?'monthrange':'month'"
-              :style="{width: (dataTimeRange?'150px':'110px'), padding: '0 8px'}"
+              :style="{width: (dataTimeRange?'150px':'100px'), padding: '0 8px'}"
               format="yyyy/MM"
               value-format="yyyyMM"
               align="right"
@@ -51,7 +51,7 @@
               :clearable="false"
               :editable="false"
               :type="dataTimeRange?'quarterrange':'quarter'"
-              :style="{width: (dataTimeRange?'150px':'110px'), padding: '0 8px'}"
+              :style="{width: (dataTimeRange?'150px':'100px'), padding: '0 8px'}"
               format="yyyy/QQ"
               value-format="yyyyQ"
               align="right"
@@ -243,6 +243,42 @@
             </a-radio-group>
           </span>
         </li>
+        <li v-if="show.versionType" class="banner-filter-item">
+          <span class="filter-item_label">{{ $t('common.versionType') }}</span>
+          <span class="filter-item_text">
+            <a-radio-group
+              v-model="dataForm.versionType"
+              size="small"
+              @change="handleVersionTypeChange"
+            >
+              <a-radio-button :value="1">{{ $t('common.allVersion') }}</a-radio-button>
+              <a-radio-button :value="2">{{ $t('common.version') }}</a-radio-button>
+            </a-radio-group>
+          </span>
+        </li>
+        <li v-if="show.version&&dataForm.versionType===2" class="banner-filter-item">
+          <span class="filter-item_label">{{ $t('common.version') }}</span>
+          <span class="filter-item_text">
+            <iw-version
+              v-model="dataForm.version"
+              :data="searchFormData.version"
+              :show-search="true"
+              :title="$t('common.version')"
+              :option-props="{
+                value: 'value',
+                label: 'text',
+                children: 'children'
+              }"
+              :show-data-source="false"
+              multiple
+              show-check-all
+              size="mini"
+              placement="bottomLeft"
+              style="width: 180px;"
+              @change="handleVersionChange"
+            />
+          </span>
+        </li>
       </ul>
       <a-icon v-if="true" :class="'banner-pushpin--'+status" class="banner-pushpin" type="pushpin" @click="changeStatus()" />
     </a-spin>
@@ -260,6 +296,7 @@ import {
   getManfbrand,
   getSegment,
   getReward,
+  getVersion,
   getSubmodel,
   getCompCircles,
   saveCompCircle,
@@ -289,7 +326,9 @@ export default {
           manfBrand: false,
           subModel: false,
           competitor: false,
-          reward: false
+          reward: false,
+          versionType: false,
+          version: false
         }
       }
     },
@@ -318,7 +357,9 @@ export default {
         dimensionType: 2,
         segment: [],
         reward: [],
+        version: [],
         dataType: 1,
+        versionType: 1,
         manfBrand: [],
         manfBrandText: [],
         subModel: [],
@@ -336,6 +377,7 @@ export default {
         manfBrand: [],
         segment: [],
         reward: [],
+        version: [],
         subModel: [],
         competitiveCircle: []
       },
@@ -494,6 +536,13 @@ export default {
     async handleDataTypeChange() {
       this.$emit('change', this.dataFormFilter())
     },
+    handleVersionTypeChange() {
+      this.$emit('change', this.dataFormFilter())
+    },
+    handleVersionChange(value) {
+      this.dataForm.version = value
+      this.$emit('change', this.dataFormFilter())
+    },
     handleFilterChange(value) {
       this.loading = true
       this.selectedFilter = value
@@ -518,13 +567,17 @@ export default {
         dataSourceId: this.dataForm.dataSource, // 数据源Id,开票数:5,上险数:6
         dataTimeType: this.dataForm.dataTimeType,
         ym: this.dataForm.dataTimeType === 2 ? this.dataForm.dataTime2 : this.dataForm.dataTime, // 年月
+        maxYm: (this.searchFormData.dataSource.find(item => item.key === this.dataForm.dataSource) || {}).endYm,
         manfId: Array.isArray(this.dataForm.manfBrand) ? get(this.dataForm.manfBrand.slice(-1), '[0][0]', null) : null, // 厂商Id
         manfbrand: Array.isArray(this.dataForm.manfBrandText) ? get(this.dataForm.manfBrandText.slice(-1), '[0][0]', null) : null, // 厂商所有信息
         subModelId: Array.isArray(this.dataForm.subModel) ? get(this.dataForm.subModel.slice(-1), '[0]', null) : null, // 本品子车型Id
         submodel: Array.isArray(this.dataForm.subModelText) ? get(this.dataForm.subModelText.slice(-1), '[0]', null) : null, // 子车型所有信息
         jpId: this.dataForm.jpId,
         jp: this.dataForm.jp,
-        compCircleName: this.dataForm.compCircleName
+        compCircleName: this.dataForm.compCircleName,
+        dataType: this.dataForm.dataType,
+        versionType: this.dataForm.versionType,
+        version: this.dataForm.version
       }
       return dataForm
     },
@@ -550,6 +603,9 @@ export default {
       }
       if (this.show.reward) {
         this.getRewardOptions()
+      }
+      if (this.show.version) {
+        this.getVersionOptions()
       }
       this.$set(this.spinning, 'params', false)
       this.$emit('change', this.dataFormFilter())
@@ -730,6 +786,25 @@ export default {
           .then(res => {
             const data = res.data
             this.searchFormData.reward = data
+            resolve()
+          })
+          .catch(err => {
+            reject(err)
+          })
+      })
+    },
+
+    getVersionOptions() { // 获取奖励类型选项
+      return new Promise((resolve, reject) => {
+        const params = this.dataFormFilter()
+        getVersion({
+          'platformEnum': params.dimension,
+          'mqFlag': params.dataTimeType,
+          'mqId': params.ym
+        })
+          .then(res => {
+            const data = res.data
+            this.searchFormData.version = data
             resolve()
           })
           .catch(err => {
@@ -987,7 +1062,7 @@ export default {
           }
           .iw-text-bold {
             input {
-              color: #333;
+              color: #181C2B;
               font-weight: bold;
               font-size: 14px;
             }

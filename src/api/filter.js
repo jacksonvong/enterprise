@@ -62,6 +62,17 @@ export function getReward(data) {
   })
 }
 
+// 获取款型
+export function getVersion(data) {
+  return request({
+    url: '/net-big-data/common/get-version',
+    method: 'post',
+    data: {
+      data
+    }
+  })
+}
+
 // 获取车型列表
 export function getSubmodel(data) {
   return request({
