@@ -8,7 +8,6 @@
         :multiple="{ manfBrand: true }"
         @change="handleFilterChange"
       />
-      <iw-filter-radio v-if="false" @change="handleFilterRadioChange" />
       <a-card>
         <div slot="title">
           <span>{{ $t('manfbrandOverview.overview.title') }}</span>
@@ -41,13 +40,14 @@
           </span>
         </div>
         <div slot="extra">
-          <iw-submodel
-            v-model="manfbrand"
+          <iw-manfbrand
+            v-model="manfbrandValue"
             :data="manfbrandOptions"
             :default-value="defaultManfbrand"
             :loading="manfBrandOptionsLoading"
             :title="$t('manfbrandOverview.overview.addManfbrandTitle')"
             :min="1"
+            :option-props="{ value: 'value', label: 'text', children: 'children' }"
             show-search
             show-selected
             show-check-all
@@ -61,7 +61,7 @@
             <iw-button slot="reference" type="primary" size="mini" style="float: right;">
               {{ $t('manfbrandOverview.overview.addManfbrand') }}
             </iw-button>
-          </iw-submodel>
+          </iw-manfbrand>
         </div>
         <a-spin :spinning="listLoading">
           <ul
@@ -70,12 +70,12 @@
             class="overview-list clearfix">
             <template v-for="(item, key) in overviewData">
               <iw-brand-item
-                v-if="overviewPageIds.includes(item.id)"
+                v-if="overviewPageIds.includes(item.manfBrandId)"
                 :key="key"
                 :item="item"
                 class="overview-list-item"
                 @toTop="handleToTopItem"
-                @remove="handleRemoveBrandItem" />
+                @remove="handleRemoveItem" />
             </template>
           </ul>
           <iw-empty v-else :status="listStatus" style="height: 260px;" />
@@ -114,12 +114,44 @@
             <iw-table-column
               label="添加关注">
               <template slot-scope="scope">
+                <iw-popover
+                  v-if="manfbrandValue.includes(scope.row.id)"
+                  v-model="scope.row.visible"
+                  :offset="{left: -10}"
+                  :width="null"
+                  :body-style="{padding: '10px'}"
+                  popper-class="iw-popover-attension"
+                  placement="top"
+                  show-arrow>
+                  <a-icon
+                    v-if="scope.$index!==0"
+                    slot="reference"
+                    two-tone-color="#FBAD57"
+                    theme="twoTone"
+                    type="star"
+                    class="attension-star"
+                    style="width: 40px;" />
+                  <div>
+                    <div class="message">
+                      是否取消关注生产商品牌？
+                    </div>
+                    <div class="buttons">
+                      <iw-button size="mini" type="primary" @click="handleRemoveItem(scope.row, scope.row.id)">
+                        确定
+                      </iw-button>
+                      <iw-button size="mini" @click="scope.row.visible=false">
+                        取消
+                      </iw-button>
+                    </div>
+                  </div>
+                </iw-popover>
                 <a-icon
-                  :two-tone-color="manfBrandIds.includes(scope.row.id)?'#eb2f96':''"
+                  v-else-if="scope.$index!==0"
+                  two-tone-color="#bebebe"
                   theme="twoTone"
                   type="star"
                   class="attension-star"
-                  @click="handleStarChange(scope.row.id)" />
+                  @click="handleStarChange(scope.row, manfbrandValue.includes(scope.row.id))" />
               </template>
             </iw-table-column>
             <iw-table-column
@@ -192,10 +224,9 @@
 </template>
 
 <script>
-import { Card, Spin, Icon, Pagination } from 'ant-design-vue'
+import { Card, Spin, Icon, Pagination, message } from 'ant-design-vue'
 import IwBanner from '@/components/banner/index'
 import IwFilter from '@/components/filter/index'
-import IwFilterRadio from '@/components/filter/radio'
 import IwBrandItem from './brand-item.vue'
 import IwDownload from '@/components/download/index'
 import _ from 'lodash'
@@ -209,7 +240,6 @@ export default {
     APagination: Pagination,
     IwBanner,
     IwFilter,
-    IwFilterRadio,
     IwBrandItem,
     IwDownload
   },
@@ -218,8 +248,7 @@ export default {
       dataForm: {
       },
       overviewData: [],
-      manfbrand: [], // 如: 8格式
-      manfBrandIds: [], // 如: 7-7格式
+      manfbrandValue: [], // 如: 7-7格式
       // 卡片
       currentPage: 1,
       totalPageSize: 0,
@@ -237,6 +266,16 @@ export default {
         total: 0,
         status: 0,
         loading: false
+      },
+      visible: false
+    }
+  },
+  watch: {
+    dataForm: {
+      handler() {
+        if (this.dataForm.ym) {
+          this.getData()
+        }
       }
     }
   },
@@ -250,7 +289,9 @@ export default {
         this.pageSize = 8
       }
     }, 100))
-    this.getData()
+    if (this.dataForm.ym) {
+      this.getData()
+    }
   },
   methods: {
     handleFilterChange(form) {
@@ -263,21 +304,12 @@ export default {
     },
 
     // 卡片
-    handleDragEnd() {
-      const hasChange = this.overviewData.find((item, key) => {
-        return item.id !== this.manfbrand[key]
-      })
-      if (hasChange) {
-        this.manfbrand = this.overviewData.map(item => item.id)
-        this.saveOrder()
-      }
-    },
     handleToTopItem(item) {
-      const index = _.indexOf(this.manfbrand, item.id)
-      const top = this.manfbrand.splice(index, 1)
-      this.manfbrand = [
+      const index = _.indexOf(this.manfbrandValue, item.id)
+      const top = this.manfbrandValue.splice(index, 1)
+      this.manfbrandValue = [
         ...top,
-        ...this.manfbrand
+        ...this.manfbrandValue
       ]
       const callback = () => {
         const topItem = this.overviewData.splice(index, 1)
@@ -290,14 +322,16 @@ export default {
       this.saveOrder().then(callback)
       this.currentPage = 1
     },
-    handleRemoveBrandItem(item) {
-      const index = this.manfbrand.findIndex(id => id === item.id)
-      this.manfbrand.splice(index, 1)
+    handleRemoveItem(item, key = item.manfBrandId) {
+      const index = this.manfbrandValue.findIndex(id => id === key)
+      this.manfbrandValue.splice(index, 1)
+      item.visible = false
+      console.log(index, this.manfbrandValue)
       const callback = () => {
         this.overviewData.splice(index, 1)
-        this.getOverviewPageIds()
+        message.info('取消关注成功')
       }
-      this.saveOrder.then(callback)
+      this.saveOrder().then(callback)
     },
     getData() {
       this.getManfBrand()
@@ -308,27 +342,38 @@ export default {
       this.currentPage = page
       this.getOverviewPageIds()
     },
-    getCardData() {
-      getTerminalAnalyzeData({
-      }).then(res => {
-        this.overviewData = res.data || []
-        this.manfbrand = [this.overviewData.map(item => Number(item.id))]
-        this.totalPageSize = this.overviewData.length
-        this.manfbrand = this.overviewData.map(item => item.id)
-        this.manfBrandIds = this.overviewData.map(item => item.manfBrandId)
-        this.getOverviewPageIds()
-      }).catch(res => {
+    getCardData(params) {
+      return new Promise((resolve, reject) => {
+        getTerminalAnalyzeData({
+          ym: this.dataForm.ym,
+          maxYm: this.dataForm.maxYm,
+          dataSource: this.dataForm.dataSource,
+          moneyOrRatio: this.dataForm.dataType,
+          isQuarter: this.dataForm.dataTimeType,
+          mySubOrMyAttention: 1,
+          ...params
+        }).then(res => {
+          this.overviewData = res.data || []
+          this.manfbrandValue = this.overviewData.map(item => item.manfBrandId)
+          this.totalPageSize = this.overviewData.length
+          this.getOverviewPageIds()
+          resolve(res)
+        }).catch(res => {
+          reject(res)
+        })
       })
     },
     getOverviewPageIds() {
       const startIndex = (this.currentPage - 1) * this.pageSize
       const endIndex = startIndex + this.pageSize > this.overviewData.length ? this.overviewData.length : startIndex + this.pageSize
       const overviewPageData = this.overviewData.slice(startIndex, endIndex)
-      this.overviewPageIds = overviewPageData.map(item => item.id)
+      this.overviewPageIds = overviewPageData.map(item => item.manfBrandId)
       console.log(this.overviewPageIds)
     },
     getManfBrand() {
       getManfBrandData({
+        loadType: 'attentionBrand',
+        endYmId: this.dataForm.ym
       })
         .then(res => {
           const data = res.data
@@ -341,7 +386,7 @@ export default {
         })
     },
     handleManfbrandChange(value, texts) {
-      this.manfbrand = value
+      this.manfbrandValue = value
       this.currentPage = 1
       this.saveOrder().then(res => {
         this.getCardData()
@@ -351,7 +396,7 @@ export default {
       this.listLoading = true
       return new Promise((resolve, reject) => {
         saveOrder({
-          ids: this.manfbrand.join(',')
+          ids: this.manfbrandValue.join(',')
         })
           .then(res => {
             this.listLoading = false
@@ -373,9 +418,15 @@ export default {
         return (_self.tableData && _self.tableData[0] ? _self.tableData[0].salesMonth : '') + '销量/同比'
       }
     },
-    handleStarChange(value) {
-      this.saveOrder().then(res => {
-        this.getCardData()
+    handleStarChange(item, checked = false) {
+      this.getCardData({ ids: item.id }).then(res => {
+        message.info('添加关注成功')
+        // testing...
+        this.overviewData = [res.data[0], ...this.overviewData]
+        console.log(this.overviewData)
+        this.manfbrandValue = [item.id, ...this.manfbrandValue]
+        console.log(this.manfbrandValue)
+        this.saveOrder()
       })
     },
     getClass(item) {
@@ -399,7 +450,10 @@ export default {
       })
         .then(res => {
           const data = res.data[0] || {}
-          this.tableData.data = data.list || []
+          this.tableData.data = data.list.map(item => {
+            item.visible = false
+            return item
+          }) || []
           this.tableData.total = data.total || []
           this.tableData.loading = false
           this.tableData.status = 200
@@ -414,6 +468,21 @@ export default {
 }
 </script>
 
+<style lang="less">
+.iw-popover-attension {
+  font-size: 12px;
+  .message {
+    position: relative;
+    padding: 4px 0 12px;
+    color: rgba(0,0,0,.65);
+    font-size: 14px;
+  }
+  .buttons {
+    margin-bottom: 4px;
+    text-align: right;
+  }
+}
+</style>
 <style lang="less" scoped>
 .manfbrand-overview {
   .overview-list {

@@ -1,0 +1,88 @@
+{
+  "result_code": "200", 
+  "result_msg": "执行成功", 
+  "data": [
+    {
+      "id": "8318", 
+      "name": "A级AMG", 
+      "manfBrandName": "北京奔驰-奔驰", 
+      "image": "http://www.waysdata.com/images/cms_picture/car_picture/北京奔驰/奔驰/A级AMG/8318_A级AMG/北京奔驰_奔驰_8318_A级AMG_A级AMG_白底_20191123_042104.jpg", 
+      "data": {
+        "columns": [
+          {
+            "title": "车型"
+          }, 
+          {
+            "title": "(1-2月)销量/同比"
+          }, 
+          {
+            "title": "(2月)销量/同比"
+          }, 
+          {
+            "title": "(4月)年度固定折扣/环比"
+          }, 
+          {
+            "title": "(4月)年度考核奖励/环比"
+          }, 
+          {
+            "title": "(4月)月度激励/环比"
+          }, 
+          {
+            "title": "(3月)TP"
+          }, 
+          {
+            "title": "(4月)利润/环比"
+          }
+        ], 
+        "dataSource": [
+          {
+            "carModel": "A级细分市场", 
+            "id": " ", 
+            "profit": "-", 
+            "profitMoMValue": "-", 
+            "sales": "61,184", 
+            "salesYoYValue": "-80.6%", 
+            "salesAcc": "590,783", 
+            "salesAccYoYValue": "-48.7%", 
+            "tp": "128,783", 
+            "discount": "-", 
+            "discountMoMValue": "-", 
+            "yearDiscount": "-", 
+            "curryearFlag": "", 
+            "curryearFlagKpi": "", 
+            "yearMomDiscount": "-", 
+            "yearKPI": "-", 
+            "yearMomKPI": "-", 
+            "monthExcitation": "-", 
+            "monthMoMValue": "-", 
+            "myAttention": false, 
+            "import": false
+          }, 
+          {
+            "carModel": "A级AMG", 
+            "id": "8318", 
+            "image": "/cms_picture/car_picture/北京奔驰/奔驰/A级AMG/8318_A级AMG/北京奔驰_奔驰_8318_A级AMG_A级AMG_白底_20191123_042104.jpg", 
+            "manfBrandName": "北京奔驰-奔驰", 
+            "profit": "-", 
+            "profitMoMValue": "-", 
+            "sales": "20", 
+            "salesYoYValue": "-", 
+            "salesAcc": "212", 
+            "salesAccYoYValue": "-", 
+            "tp": "-", 
+            "yearDiscount": "-", 
+            "curryearFlag": "", 
+            "curryearFlagKpi": "", 
+            "yearMomDiscount": "-", 
+            "yearKPI": "-", 
+            "yearMomKPI": "-", 
+            "monthExcitation": "-", 
+            "monthMoMValue": "-", 
+            "myAttention": false, 
+            "import": false
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -49,7 +49,7 @@ export default {
   methods: {
     handleRemoveItem(item) {
       console.log(item)
-      this.$emit('remove', item)
+      this.$emit('remove', item, item.manfBrandId)
     },
     JumpToTop(item) {
       this.$emit('toTop', item)
@@ -97,6 +97,7 @@ export default {
     img {
       height: 70px;
       width: auto;
+      max-width: 220px;
     }
   }
   .title {

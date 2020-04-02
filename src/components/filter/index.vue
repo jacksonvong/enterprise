@@ -81,7 +81,7 @@
                 </div>
                 <div v-if="searchFormData.dataSource.length">
                   <div v-for="(item, key) in searchFormData.dataSource" :key="key">
-                    {{ item.value }}: {{ item.endYm }}
+                    {{ item.text }}: {{ item.maxYm }}
                   </div>
                 </div>
               </iw-popover>
@@ -91,6 +91,7 @@
             <iw-select
               v-model="dataForm.dataSource"
               :data="searchFormData.dataSource"
+              :option-props="{ value:'value', label:'text' }"
               align="left"
               size="mini"
               style="width: 150px;"
@@ -122,6 +123,7 @@
               :title="$t('common.segment')"
               :placeholder="$t('common.any')"
               :multiple="multiple.segment"
+              :option-props="{ value: 'value', label: 'text', children: 'children' }"
               exclusion
               show-selected
               placement="bottomLeft"
@@ -145,6 +147,7 @@
               :title="$t('common.manfBrand')"
               :placeholder="$t('common.any')"
               :multiple="multiple.manfBrand"
+              :option-props="{ value: 'value', label: 'text', children: 'children' }"
               placement="bottomLeft"
               size="mini"
               style="width: 150px;"
@@ -163,11 +166,12 @@
               :multiple="multiple.subModel"
               :show-search="true"
               :show-letter="showLetter"
-              :filters="[{key: 1, value: $t('common.segment')}, {key: 2, value: $t('common.manfBrand')}, {key: 3, value: $t('common.subModelAndCompetitor')}]"
+              :filters="[{value: 0, text: $t('common.segment')}, {value: 1, text: $t('common.manfBrand')}]"
               :selected-filter="selectedFilter"
               :height="260"
               :leafs-per-column="5"
               :title="$t('common.subModel')"
+              :option-props="{ value: 'value', label: 'text', children: 'children' }"
               show-check-all
               placement="bottomLeft"
               size="mini"
@@ -219,6 +223,7 @@
               :leafs-per-column="3"
               :title="$t('common.reward')"
               :placeholder="$t('common.any')"
+              :option-props="{ value: 'value', label: 'text', children: 'children' }"
               multiple
               exclusion
               show-selected
@@ -264,11 +269,7 @@
               :data="searchFormData.version"
               :show-search="true"
               :title="$t('common.version')"
-              :option-props="{
-                value: 'value',
-                label: 'text',
-                children: 'children'
-              }"
+              :option-props="{ value: 'value', label: 'text', children: 'children' }"
               :show-data-source="false"
               multiple
               show-check-all
@@ -290,7 +291,6 @@ import { Card, Icon, Radio, Spin } from 'ant-design-vue'
 import moment from 'moment'
 import { get } from 'lodash'
 import {
-  getPlatformList,
   getDatasource,
   getTimeRange,
   getManfbrand,
@@ -301,7 +301,8 @@ import {
   getCompCircles,
   saveCompCircle,
   saveBrowsingHistory,
-  getDefaultRecord
+  getDefaultManfbrand,
+  getDefaultSubmodel
 } from '@/api/filter'
 
 export default {
@@ -384,9 +385,6 @@ export default {
       loading: false,
       showLetter: false,
       selectedFilter: 1,
-      segmentSubModel: [],
-      brandSubModel: [],
-      competitorSubModel: [],
       // 竞争圈
       showModal: false,
       spinning: {
@@ -546,28 +544,18 @@ export default {
     handleFilterChange(value) {
       this.loading = true
       this.selectedFilter = value
-      if (value === 1) {
-        this.searchFormData.subModel = this.segmentSubModel
-        this.showLetter = false
-      }
-      if (value === 2) {
-        this.searchFormData.subModel = this.brandSubModel
-        this.showLetter = true
-      }
-      if (value === 3) {
-        this.searchFormData.subModel = this.competitorSubModel
-        this.showLetter = true
-      }
+      this.searchFormData.subModel = this.typeData[value]
+      this.showLetter = value === 1
       this.loading = false
     },
     dataFormFilter() { // 格式化filter返出数据
       const dataForm = {
         market: this.dataForm.market,
         dimension: this.dataForm.dimension,
-        dataSourceId: this.dataForm.dataSource, // 数据源Id,开票数:5,上险数:6
+        dataSource: this.dataForm.dataSource, // 数据源Id,开票数:5,上险数:6
         dataTimeType: this.dataForm.dataTimeType,
         ym: this.dataForm.dataTimeType === 2 ? this.dataForm.dataTime2 : this.dataForm.dataTime, // 年月
-        maxYm: (this.searchFormData.dataSource.find(item => item.key === this.dataForm.dataSource) || {}).endYm,
+        maxYm: (this.searchFormData.dataSource.find(item => item.value === this.dataForm.dataSource) || {}).maxYm,
         manfId: Array.isArray(this.dataForm.manfBrand) ? get(this.dataForm.manfBrand.slice(-1), '[0][0]', null) : null, // 厂商Id
         manfbrand: Array.isArray(this.dataForm.manfBrandText) ? get(this.dataForm.manfBrandText.slice(-1), '[0][0]', null) : null, // 厂商所有信息
         subModelId: Array.isArray(this.dataForm.subModel) ? get(this.dataForm.subModel.slice(-1), '[0]', null) : null, // 本品子车型Id
@@ -583,18 +571,15 @@ export default {
     },
     async getData() {
       this.spinning.params = true
-      const dimension = this.getDimensionOptions()
       this.getDatasourceOptions()
-      await dimension
       const dataTime = this.getTimeRange()
       await dataTime
       if (this.show.dimensionType || this.show.manfBrand) {
         this.getManfbrandOptions()
-        await this.getDefaultManfbrand()
+        // await this.getDefaultManfbrand()
       }
       if (this.show.dimensionType || this.show.segment) {
         this.getSegmentOptions()
-        await this.getDefaultManfbrand()
       }
       if (this.show.subModel) {
         this.getSubmodelOptions()
@@ -610,31 +595,13 @@ export default {
       this.$set(this.spinning, 'params', false)
       this.$emit('change', this.dataFormFilter())
     },
-    getDimensionOptions() { // 获取维度选项
-      return new Promise((resolve, reject) => {
-        getPlatformList()
-          .then(res => {
-            const data = res.data
-            this.searchFormData.dimension = data
-            this.dataForm.dimension = this.searchFormData.dimension[0].key
-            const storeDimension = this.$store.state.app.dimension
-            if (storeDimension) {
-              this.dataForm.dimension = storeDimension
-            }
-            resolve()
-          })
-          .catch(res => {
-            reject()
-          })
-      })
-    },
     getDatasourceOptions() { // 获取数据源选项
       return new Promise((resolve, reject) => {
         getDatasource()
           .then(res => {
             const data = res.data
             this.searchFormData.dataSource = data
-            this.dataForm.dataSource = data[0].key
+            this.dataForm.dataSource = data[0].value
             const storeDatasource = this.$store.state.app.dataSource
             if (storeDatasource) {
               this.dataForm.dataSource = storeDatasource
@@ -654,7 +621,6 @@ export default {
 
       return new Promise((resolve, reject) => {
         getTimeRange({
-          platformEnum: this.dataForm.dimension,
           mqFlag: this.dataForm.dataTimeType
         })
           .then(res => {
@@ -707,8 +673,7 @@ export default {
     },
     getDefaultManfbrand() { // 获取默认选择的厂商品牌
       return new Promise((resolve, reject) => {
-        getDefaultRecord({
-          platformEnum: this.dataForm.dimension,
+        getDefaultManfbrand({
           recordType: 3
         })
           .then(res => {
@@ -726,9 +691,8 @@ export default {
       return new Promise((resolve, reject) => {
         const params = this.dataFormFilter()
         getManfbrand({
-          'platformEnum': params.dimension,
-          'mqFlag': params.dataTimeType,
-          'mqId': params.ym
+          'loadType': 'headerBrand',
+          'endYmId': params.ym
         })
           .then(res => {
             const data = res.data
@@ -760,7 +724,6 @@ export default {
       return new Promise((resolve, reject) => {
         const params = this.dataFormFilter()
         getSegment({
-          'platformEnum': params.dimension,
           'mqFlag': params.dataTimeType,
           'mqId': params.ym
         })
@@ -779,7 +742,6 @@ export default {
       return new Promise((resolve, reject) => {
         const params = this.dataFormFilter()
         getReward({
-          'platformEnum': params.dimension,
           'mqFlag': params.dataTimeType,
           'mqId': params.ym
         })
@@ -798,7 +760,6 @@ export default {
       return new Promise((resolve, reject) => {
         const params = this.dataFormFilter()
         getVersion({
-          'platformEnum': params.dimension,
           'mqFlag': params.dataTimeType,
           'mqId': params.ym
         })
@@ -815,19 +776,18 @@ export default {
 
     getDefaultSubmodel() { // 获取默认选择的车型
       return new Promise((resolve, reject) => {
-        getDefaultRecord({
-          platformEnum: this.dataForm.dimension,
+        getDefaultSubmodel({
           recordType: 1
         })
           .then(res => {
             const submodel = res.data
-            this.dataForm.subModel = [submodel.key]
+            this.dataForm.subModel = [submodel.value]
             this.dataForm.subModelText = [submodel]
             const paramsSubmodel = this.$route.params.submodel
             if (paramsSubmodel) {
-              paramsSubmodel.key = paramsSubmodel.id
-              paramsSubmodel.value = paramsSubmodel.name
-              this.dataForm.subModel = [paramsSubmodel.key]
+              paramsSubmodel.value = paramsSubmodel.id
+              paramsSubmodel.text = paramsSubmodel.name
+              this.dataForm.subModel = [paramsSubmodel.value]
               this.dataForm.subModelText = [paramsSubmodel]
             }
             resolve()
@@ -842,19 +802,15 @@ export default {
       return new Promise((resolve, reject) => {
         const params = this.dataFormFilter()
         getSubmodel({
-          'platformEnum': params.dimension,
           'mqFlag': params.dataTimeType,
           'mqId': params.ym
         })
           .then(res => {
             const data = res.data
             this.typeData = data // 竞品圈中的车型选择
-            this.segmentSubModel = data[0]
-            this.brandSubModel = data[1]
-            this.competitorSubModel = data[2]
-            this.searchFormData.subModel = this.segmentSubModel
+            this.selectedFilter = 0
             this.showLetter = false
-            this.selectedFilter = 1
+            this.searchFormData.subModel = data[this.selectedFilter]
             resolve()
           })
           .catch(err => {
@@ -883,8 +839,7 @@ export default {
       return new Promise((resolve, reject) => {
         const params = this.dataFormFilter()
         getCompCircles({
-          'dataSource': params.dataSourceId,
-          'platformEnum': params.dimension,
+          'dataSource': params.dataSource,
           'subModelId': params.subModelId,
           'mqFlag': params.dataTimeType,
           'mqId': params.ym

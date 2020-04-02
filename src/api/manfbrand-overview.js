@@ -3,7 +3,7 @@ import request from '@/utils/request'
 //
 export function getManfBrandData(data) {
   return request({
-    url: '/net-big-data/manfbrand-overview/getManfBrandData',
+    url: 'enterprise/common/get-manfbrand',
     method: 'post',
     data: {
       data
@@ -12,7 +12,7 @@ export function getManfBrandData(data) {
 }
 export function getTerminalAnalyzeData(data) {
   return request({
-    url: '/net-big-data/manfbrand-overview/getTerminalAnalyzeData',
+    url: '/enterprise/manfbrand-overview/getTerminalAnalyzeData',
     method: 'post',
     data: {
       data
@@ -21,7 +21,7 @@ export function getTerminalAnalyzeData(data) {
 }
 export function getTerminalAnalyzeTableData(data) {
   return request({
-    url: '/net-big-data/manfbrand-overview/getTerminalAnalyzeTableData',
+    url: '/enterprise/manfbrand-overview/getTerminalAnalyzeTableData',
     method: 'post',
     data: {
       data
@@ -30,7 +30,7 @@ export function getTerminalAnalyzeTableData(data) {
 }
 export function saveOrder(data) {
   return request({
-    url: '/net-big-data/manfbrand-overview/saveOrder',
+    url: '/enterprise/manfbrand-overview/saveOrder',
     method: 'post',
     data: {
       data

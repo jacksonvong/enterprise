@@ -25,6 +25,7 @@
       </a-radio-button>
     </a-radio-group>
     <a-radio-group
+      v-if="false"
       v-model="dataForm.monthOrQuarter"
       class="iw-filter-radio-item"
       size="small"

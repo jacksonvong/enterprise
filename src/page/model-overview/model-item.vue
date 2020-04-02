@@ -107,6 +107,7 @@ export default {
     img {
       height: 70px;
       width: auto;
+      max-width: 220px;
     }
   }
   .title {

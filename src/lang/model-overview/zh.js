@@ -3,6 +3,9 @@ export default {
   banner: {
     title: '车型概况'
   },
+  overview_2: {
+    title: '厂商品牌车型'
+  },
   overview: {
     title: '关注的车型',
     addManfbrand: '添加关注车型',

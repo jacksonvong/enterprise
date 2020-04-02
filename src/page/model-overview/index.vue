@@ -7,9 +7,10 @@
         :show="{ dataTimeType: true, dataSource: true, manfBrand: true, dataType: true }"
         :multiple="{ manfBrand: true }"
         @change="handleFilterChange"
-      /><a-card>
+      />
+      <a-card ref="cardContainer" :body-style="{padding: '15px 20px'}">
         <div slot="title">
-          <span>{{ $t('modelOverview.overview.title') }}</span>
+          <span>{{ $t('modelOverview.overview_2.title') }}</span>
           <span style="position:absolute; top: 9px;">
             <iw-popover
               trigger="hover"
@@ -38,15 +39,51 @@
             </iw-popover>
           </span>
         </div>
+        <a-spin :spinning="card_2.loading">
+          <ul
+            v-if="card_2.data&&card_2.data.length"
+            style="width: 100%"
+            class="overview-list clearfix">
+            <template v-for="(item, key) in card_2.data">
+              <IwModelItem
+                v-if="card_2.currentPageIds.includes(item.id)"
+                :key="key"
+                :item="item"
+                class="overview-list-item"
+                @toTop="value => handleToTopItem(value, __mySubOrMyAttention_2)"
+                @remove="value => handleRemoveItem(value, __mySubOrMyAttention_2)" />
+            </template>
+          </ul>
+          <iw-empty v-else :status="card_2.status" style="height: 260px;" />
+          <div v-if="card_2.data.length > card_2.pageSize" style="text-align: center;">
+            <a-pagination
+              :current="card_2.page"
+              :total="card_2.total"
+              :show-quick-jumper="false"
+              :show-size-changer="false"
+              :page-size="card_2.pageSize"
+              :page-size-options="['10', '20', '30', '40', '50']"
+              :default-current="1"
+              :show-total="(total, range) => ``"
+              @change="page => handlePageChage(page, '2')"
+            />
+          </div>
+        </a-spin>
+      </a-card>
+      <a-card :body-style="{padding: '15px 20px'}">
+        <div slot="title">
+          <span>{{ $t('modelOverview.overview.title') }}</span>
+        </div>
         <div slot="extra">
           <iw-submodel
-            v-model="subModelValue"
+            v-model="subModelValue_3"
             :data="subModelOptions"
             :default-value="defaultSubModelValue"
             :loading="subModelOptionsLoading"
             :title="$t('modelOverview.overview.addManfbrandTitle')"
             :filters="subModelFilter"
             :selected-filter="selectedFilter"
+            :option-props="{ value: 'value', label: 'text', children: 'children' }"
             :show-letter="showLetter"
             :min="1"
             show-search
@@ -57,7 +94,7 @@
             size="mini"
             placement="bottomLeft"
             style="width: 120px; float: right; padding-right: 20px;"
-            @filterChange="handleFilterChnage"
+            @filterChange="handleSubModelFilterChange"
             @change="handleSubModelChange"
           >
             <iw-button slot="reference" type="primary" size="mini" style="float: right;">
@@ -65,33 +102,33 @@
             </iw-button>
           </iw-submodel>
         </div>
-        <a-spin :spinning="card.loading">
+        <a-spin :spinning="card_3.loading">
           <ul
-            v-if="card.data&&card.data.length"
+            v-if="card_3.data&&card_3.data.length"
             style="width: 100%"
             class="overview-list clearfix">
-            <template v-for="(item, key) in card.data">
+            <template v-for="(item, key) in card_3.data">
               <IwModelItem
-                v-if="overviewPageIds.includes(item.id)"
+                v-if="card_3.currentPageIds.includes(item.id)"
                 :key="key"
                 :item="item"
                 class="overview-list-item"
                 @toTop="handleToTopItem"
-                @remove="handleRemoveModelItem" />
+                @remove="handleRemoveItem" />
             </template>
           </ul>
-          <iw-empty v-else :status="card.status" style="height: 260px;" />
-          <div v-if="card.data.length > card.pageSize" style="text-align: center;">
+          <iw-empty v-else :status="card_3.status" style="height: 260px;" />
+          <div v-if="card_3.data.length > card_3.pageSize" style="text-align: center;">
             <a-pagination
-              :current="card.page"
-              :total="card.total"
+              :current="card_3.page"
+              :total="card_3.total"
               :show-quick-jumper="false"
               :show-size-changer="false"
-              :page-size="card.pageSize"
+              :page-size="card_3.pageSize"
               :page-size-options="['10', '20', '30', '40', '50']"
               :default-current="1"
               :show-total="(total, range) => ``"
-              @change="handlePageChage"
+              @change="page => handlePageChage(page, '3')"
             />
           </div>
         </a-spin>
@@ -117,8 +154,8 @@
               label="添加关注">
               <template slot-scope="scope">
                 <iw-popover
-                  v-if="subModelValue.includes(scope.row.id)"
-                  v-model="visible"
+                  v-if="subModelValue_3.includes(scope.row.id)"
+                  v-model="scope.row.visible"
                   :offset="{left: -10}"
                   :width="null"
                   :body-style="{padding: '10px'}"
@@ -138,10 +175,10 @@
                       是否取消关注车型？
                     </div>
                     <div class="buttons">
-                      <iw-button size="mini" type="primary" @click="handleRemoveModelItem(scope.row)">
+                      <iw-button size="mini" type="primary" @click="handleRemoveItem(scope.row, '3')">
                         确定
                       </iw-button>
-                      <iw-button size="mini" @click="visible=false">
+                      <iw-button size="mini" @click="scope.row.visible=false">
                         取消
                       </iw-button>
                     </div>
@@ -149,11 +186,11 @@
                 </iw-popover>
                 <a-icon
                   v-else-if="scope.$index!==0"
-                  two-tone-color="#7F8593"
+                  two-tone-color="#bebebe"
                   theme="twoTone"
                   type="star"
                   class="attension-star"
-                  @click="handleStarChange(scope.row, subModelValue.includes(scope.row.id))" />
+                  @click="handleStarChange(scope.row, subModelValue_3.includes(scope.row.id))" />
               </template>
             </iw-table-column>
             <iw-table-column
@@ -266,7 +303,7 @@
 </template>
 
 <script>
-import { Card, Spin, Icon, Pagination } from 'ant-design-vue'
+import { Card, Spin, Icon, Pagination, message } from 'ant-design-vue'
 import IwBanner from '@/components/banner/index'
 import IwFilter from '@/components/filter/index'
 import IwModelItem from './model-item.vue'
@@ -274,6 +311,9 @@ import IwDownload from '@/components/download/index'
 import _ from 'lodash'
 import moment from 'moment'
 import { getSegmentData, getSubModelData, getTerminalAnalyzeData, getTerminalAnalyzeTableData, saveOrder } from '@/api/model-overview'
+const __mySubOrMyAttention_2 = '2'
+const __mySubOrMyAttention_3 = '3'
+
 export default {
   components: {
     ACard: Card,
@@ -290,24 +330,36 @@ export default {
       dataForm: {
       },
       showLetter: false,
-      subModelValue: [],
+      subModelValue_3: [],
       subModelOptionsLoading: false,
       defaultSubModelValue: [],
       subModelOptions: [],
-      subModelFilter: [],
+      subModelFilter: [
+        { value: '0', text: '细分市场' },
+        { value: '1', text: '厂商品牌' }
+      ],
       selectedFilter: 0,
       subModelData: {},
-      overviewPageIds: [],
 
       segmentId: '',
       segmentOptions: [],
 
       // 卡片
-      card: {
+      card_2: {
         data: [],
         page: 1,
         total: 0,
-        pageSize: document.body.clientWidth > 1499 ? 12 : 8,
+        pageSize: 10,
+        currentPageIds: [],
+        loading: false,
+        status: 0
+      },
+      card_3: {
+        data: [],
+        page: 1,
+        total: 0,
+        pageSize: document.body.clientWidth >= 1563 ? 12 : (document.body.clientWidth >= 1302 ? 10 : 8),
+        currentPageIds: [],
         loading: false,
         status: 0
       },
@@ -315,15 +367,22 @@ export default {
       tableData: {
         data: [],
         page: 1,
-        pageSize: 10,
+        pageSize: document.body.clientWidth >= 1563 ? 12 : (document.body.clientWidth >= 1302 ? 10 : 8),
         total: 0,
         status: 0,
         loading: false
-      },
-      visible: false
+      }
+    }
+  },
+  computed: {
+    sidebar() {
+      return this.$store.getters.sidebar.opened
     }
   },
   watch: {
+    sidebar() {
+      this.init()
+    },
     dataForm: {
       handler() {
         if (this.dataForm.ym) {
@@ -333,56 +392,67 @@ export default {
       deep: true
     }
   },
-  created() {
+  mounted() {
     window.addEventListener('resize', _.debounce(() => {
-      if (document.body.clientWidth > 1499) {
-        this.currentPage = 1
-        this.pageSize = 12
-      } else {
-        this.currentPage = 1
-        this.pageSize = 8
-      }
+      this.init()
     }, 100))
     if (this.dataForm.ym) {
       this.getData()
     }
   },
   methods: {
+    init() {
+      const width = this.$refs['cardContainer'] && this.$refs['cardContainer'].$el
+        ? this.$refs['cardContainer'].$el.offsetWidth
+        : document.body.clientWidth
+      console.log('width', width)
+      if (width >= 1542) {
+        this['card_2'].page = this['card_3'].page = 1
+        this['card_2'].pageSize = this['card_3'].pageSize = 12
+      } else if (width >= 1302) {
+        this['card_2'].page = this['card_3'].page = 1
+        this['card_2'].pageSize = this['card_3'].pageSize = 10
+      } else {
+        this['card_2'].page = this['card_3'].page = 1
+        this['card_2'].pageSize = this['card_3'].pageSize = 8
+      }
+      if (this.dataForm.ym) {
+        this.getOverviewPageIds(__mySubOrMyAttention_2)
+        this.getOverviewPageIds(__mySubOrMyAttention_3)
+      }
+    },
     handleFilterChange(form) {
       console.log('form', form)
       this.dataForm = { ...this.dataForm, ...form }
     },
-    handleFilterChnage(value) {
-      if (value === 1) {
-        this.showLetter = false
-      } else {
-        this.showLetter = true
-      }
+    handleSubModelFilterChange(value) {
+      this.showLetter = value === '1'
       this.selectedFilter = value
       this.subModelOptions = this.subModelData[value]
     },
-    handleToTopItem(item) {
-      const index = _.indexOf(this.subModelValue, item.id)
-      const top = this.subModelValue.splice(index, 1)
-      this.subModelValue = [
+    handleToTopItem(item, type = __mySubOrMyAttention_3) {
+      const index = _.indexOf(this['subModelValue_' + type], item.id)
+      const top = this['subModelValue_' + type].splice(index, 1)
+      this['subModelValue_' + type] = [
         ...top,
-        ...this.subModelValue
+        ...this['subModelValue_' + type]
       ]
       const callback = () => {
-        const topItem = this.card.data.splice(index, 1)
-        this.card.data = [
+        const topItem = this['card_' + type].data.splice(index, 1)
+        this['card_' + type].data = [
           ...topItem,
-          ...this.card.data
+          ...this['card_' + type].data
         ]
       }
       this.saveOrder().then(callback)
-      this.currentPage = 1
+      this['card_' + type].page = 1
     },
-    handleRemoveModelItem(item) {
-      const index = this.subModelValue.findIndex(id => id === item.id)
-      this.subModelValue.splice(index, 1)
+    handleRemoveItem(item, type = __mySubOrMyAttention_3) {
+      const index = this['subModelValue_' + type].findIndex(id => id === item.id)
+      this['subModelValue_' + type].splice(index, 1)
       const callback = () => {
-        this.card.data.splice(index, 1)
+        this['card_' + type].data.splice(index, 1)
+        message.info('取消关注成功')
       }
       this.saveOrder().then(callback)
     },
@@ -391,10 +461,19 @@ export default {
     async getData() {
       this.getSubModelData()
       await this.getSegmentData()
-      this.getCardData()
+      this.getCardData({ mySubOrMyAttention: '2' })
+      this.getCardData({ mySubOrMyAttention: '3' })
       this.getTableData()
     },
+    handlePageChage(page, type = __mySubOrMyAttention_3) {
+      this['card_' + type].page = page
+      this.getOverviewPageIds(type)
+    },
     getCardData(params = {}) {
+      if (![__mySubOrMyAttention_2, __mySubOrMyAttention_3].includes(params.mySubOrMyAttention)) {
+        message.error('params error')
+        return
+      }
       return new Promise((resolve, reject) => {
         getTerminalAnalyzeData({
           ym: this.dataForm.ym,
@@ -405,20 +484,21 @@ export default {
           mySubOrMyAttention: 3,
           ...params
         }).then(res => {
-          this.card.data = res.data || []
-          this.subModelValue = this.card.data.map(item => item.id)
-          this.getOverviewPageIds()
+          this['card_' + params.mySubOrMyAttention].data = res.data || []
+          this['card_' + params.mySubOrMyAttention].total = (res.data || []).length
+          this['subModelValue_' + params.mySubOrMyAttention] = this['card_' + params.mySubOrMyAttention].data.map(item => item.id)
+          this.getOverviewPageIds(params.mySubOrMyAttention)
           resolve(res)
         }).catch(res => {
           reject(res)
         })
       })
     },
-    getOverviewPageIds() {
-      const startIndex = (this.card.page - 1) * this.card.pageSize
-      const endIndex = startIndex + this.pageSize > this.card.data.length ? this.card.data.length : startIndex + this.card.pageSize
-      const data = this.card.data.slice(startIndex, endIndex)
-      this.overviewPageIds = data.map(item => item.id)
+    getOverviewPageIds(type = __mySubOrMyAttention_3) {
+      const startIndex = (this['card_' + type].page - 1) * this['card_' + type].pageSize
+      const endIndex = startIndex + this['card_' + type].pageSize > this['card_' + type].data.length ? this['card_' + type].data.length : startIndex + this['card_' + type].pageSize
+      const data = this['card_' + type].data.slice(startIndex, endIndex)
+      this['card_' + type].currentPageIds = data.map(item => item.id)
     },
     getSegmentData() {
       return new Promise((resolve, reject) => {
@@ -437,27 +517,28 @@ export default {
       })
     },
     getSubModelData() {
+      this.subModelOptionsLoading = true
       getSubModelData()
         .then(res => {
           const data = res.data || {}
-          this.subModelData = data.data || []
-          this.subModelFilter = data.title.map((item, key) => { return { key: key, value: item } })
-          this.selectedFilter = 1
+          this.subModelData = data || []
+          this.selectedFilter = 0
           this.subModelOptions = this.subModelData[this.selectedFilter] // 细分市场分组
+          this.subModelOptionsLoading = false
         })
     },
-    saveOrder() {
-      this.card.loading = true
+    saveOrder(type = __mySubOrMyAttention_3) {
+      this['card_' + type].loading = true
       return new Promise((resolve, reject) => {
         saveOrder({
-          ids: this.subModelValue.join(',')
+          ids: this['subModelValue_' + type].join(',')
         })
           .then(res => {
-            this.card.loading = false
+            this['card_' + type].loading = false
             resolve(res)
           })
           .catch(res => {
-            this.card.loading = false
+            this['card_' + type].loading = false
             reject(res)
           })
       })
@@ -474,18 +555,14 @@ export default {
         return column.label + '(' + (_self.tableData.data && _self.tableData.data[0] ? _self.tableData.data[0].salesMonth : '') + ')'
       }
     },
-    handleStarChange(item, checked = false) {
-      if (checked) {
-        confirm('确定删除吗', () => {
-          this.handleRemoveModelItem(item)
-        })
-      } else {
-        this.getCardData({ ids: item.id }).then(res => {
-          console.log(this.card.data)
-          console.log(this.subModelValue)
-          this.saveOrder()
-        })
-      }
+    handleStarChange(item, checked = false, type = __mySubOrMyAttention_3) {
+      this.getCardData({ ids: item.id, mySubOrMyAttention: '3' }).then(res => {
+        message.info('添加关注成功')
+        // testing...
+        this['card_' + type].data = [res.data[0], ...this['card_' + type].data]
+        this['subModelValue_' + type] = [item.id, ...this['subModelValue_' + type]]
+        this.saveOrder()
+      })
     },
     getClass(item) {
       if (item === '' || item === '-' || item === '0' || item === '0.0%') return 'font-black'
@@ -520,7 +597,10 @@ export default {
       })
         .then(res => {
           const data = res.data[0] || {}
-          this.tableData.data = [data.totalModel, ...data.models.list]
+          this.tableData.data = [data.totalModel, ...data.models.list.map(item => {
+            item.visible = false
+            return item
+          })]
           this.tableData.total = 100
           this.tableData.loading = false
           this.tableData.status = 200

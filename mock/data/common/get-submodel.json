@@ -3,16 +3,16 @@
   "data": [
     [
       {
-        "key": "7694", 
-        "value": "A00", 
+        "value": "7694", 
+        "text": "A00", 
         "children": [
           {
-            "key": "7694", 
-            "value": "A00", 
+            "value": "7694", 
+            "text": "A00", 
             "children": [
               {
-                "key": "7694", 
-                "value": "e1", 
+                "value": "7694", 
+                "text": "e1", 
                 "remark": "国产"
               }
             ]
@@ -20,27 +20,27 @@
         ]
       }, 
       {
-        "key": "553,4548", 
-        "value": "A0", 
+        "value": "553,4548", 
+        "text": "A0", 
         "children": [
           {
-            "key": "4548", 
-            "value": "A0-L", 
+            "value": "4548", 
+            "text": "A0-L", 
             "children": [
               {
-                "key": "4548", 
-                "value": "全新瑞纳", 
+                "value": "4548", 
+                "text": "全新瑞纳", 
                 "remark": "国产"
               }
             ]
           }, 
           {
-            "key": "553", 
-            "value": "A0-H", 
+            "value": "553", 
+            "text": "A0-H", 
             "children": [
               {
-                "key": "553", 
-                "value": "i3 EV", 
+                "value": "553", 
+                "text": "i3 EV", 
                 "remark": "进口"
               }
             ]
@@ -48,204 +48,204 @@
         ]
       }, 
       {
-        "key": "3,8576,8318,8157,8153,8135,7254,7134,7133,7116,6873,6493,6313,6295,4547,4525,3014,2643,2099,2019,1728,996,925,826,793,744,627,307,159,111,93,84,83,63,11", 
-        "value": "A", 
+        "value": "3,8576,8318,8157,8153,8135,7254,7134,7133,7116,6873,6493,6313,6295,4547,4525,3014,2643,2099,2019,1728,996,925,826,793,744,627,307,159,111,93,84,83,63,11", 
+        "text": "A", 
         "children": [
           {
-            "key": "6873,7116,111,307,84,8318,2019,4525,83,63,11,93,3", 
-            "value": "A-S", 
+            "value": "6873,7116,111,307,84,8318,2019,4525,83,63,11,93,3", 
+            "text": "A-S", 
             "children": [
               {
-                "key": "6873", 
-                "value": "A级", 
+                "value": "6873", 
+                "text": "A级", 
                 "remark": "国产"
               }, 
               {
-                "key": "8318", 
-                "value": "A级AMG", 
+                "value": "8318", 
+                "text": "A级AMG", 
                 "remark": "国产"
               }, 
               {
-                "key": "7116", 
-                "value": "微蓝", 
+                "value": "7116", 
+                "text": "微蓝", 
                 "remark": "国产"
               }, 
               {
-                "key": "3", 
-                "value": "1系两厢", 
+                "value": "3", 
+                "text": "1系两厢", 
                 "remark": "进口"
               }, 
               {
-                "key": "11", 
-                "value": "2系", 
+                "value": "11", 
+                "text": "2系", 
                 "remark": "进口"
               }, 
               {
-                "key": "63", 
-                "value": "A3", 
+                "value": "63", 
+                "text": "A3", 
                 "remark": "进口"
               }, 
               {
-                "key": "83", 
-                "value": "A级", 
+                "value": "83", 
+                "text": "A级", 
                 "remark": "进口"
               }, 
               {
-                "key": "84", 
-                "value": "A级AMG", 
+                "value": "84", 
+                "text": "A级AMG", 
                 "remark": "进口"
               }, 
               {
-                "key": "93", 
-                "value": "B级", 
+                "value": "93", 
+                "text": "B级", 
                 "remark": "进口"
               }, 
               {
-                "key": "111", 
-                "value": "CLA级AMG", 
+                "value": "111", 
+                "text": "CLA级AMG", 
                 "remark": "进口"
               }, 
               {
-                "key": "2019", 
-                "value": "M2", 
+                "value": "2019", 
+                "text": "M2", 
                 "remark": "进口"
               }, 
               {
-                "key": "4525", 
-                "value": "RS3", 
+                "value": "4525", 
+                "text": "RS3", 
                 "remark": "进口"
               }, 
               {
-                "key": "307", 
-                "value": "S3", 
+                "value": "307", 
+                "text": "S3", 
                 "remark": "进口"
               }
             ]
           }, 
           {
-            "key": "996,6295,1728,6493,8576,744,4547,925", 
-            "value": "A-H", 
+            "value": "996,6295,1728,6493,8576,744,4547,925", 
+            "text": "A-H", 
             "children": [
               {
-                "key": "6493", 
-                "value": "菲斯塔", 
+                "value": "6493", 
+                "text": "菲斯塔", 
                 "remark": "国产"
               }, 
               {
-                "key": "8576", 
-                "value": "菲斯塔 EV", 
+                "value": "8576", 
+                "text": "菲斯塔 EV", 
                 "remark": "国产"
               }, 
               {
-                "key": "996", 
-                "value": "威朗", 
+                "value": "996", 
+                "text": "威朗", 
                 "remark": "国产"
               }, 
               {
-                "key": "1728", 
-                "value": "威朗GS", 
+                "value": "1728", 
+                "text": "威朗GS", 
                 "remark": "国产"
               }, 
               {
-                "key": "925", 
-                "value": "英朗", 
+                "value": "925", 
+                "text": "英朗", 
                 "remark": "国产"
               }, 
               {
-                "key": "4547", 
-                "value": "阅朗", 
+                "value": "4547", 
+                "text": "阅朗", 
                 "remark": "国产"
               }, 
               {
-                "key": "744", 
-                "value": "秦 EV", 
+                "value": "744", 
+                "text": "秦 EV", 
                 "remark": "国产"
               }, 
               {
-                "key": "6295", 
-                "value": "秦 PHEV", 
+                "value": "6295", 
+                "text": "秦 PHEV", 
                 "remark": "国产"
               }
             ]
           }, 
           {
-            "key": "627,8135,2099,6313,3014,793,8153,7134,7133,2643", 
-            "value": "A-M", 
+            "value": "627,8135,2099,6313,3014,793,8153,7134,7133,2643", 
+            "text": "A-M", 
             "children": [
               {
-                "key": "627", 
-                "value": "凯越三厢", 
+                "value": "627", 
+                "text": "凯越三厢", 
                 "remark": "国产"
               }, 
               {
-                "key": "2099", 
-                "value": "领动", 
+                "value": "2099", 
+                "text": "领动", 
                 "remark": "国产"
               }, 
               {
-                "key": "8135", 
-                "value": "领动 PHEV", 
+                "value": "8135", 
+                "text": "领动 PHEV", 
                 "remark": "国产"
               }, 
               {
-                "key": "3014", 
-                "value": "全新悦动", 
+                "value": "3014", 
+                "text": "全新悦动", 
                 "remark": "国产"
               }, 
               {
-                "key": "2643", 
-                "value": "悦纳", 
+                "value": "2643", 
+                "text": "悦纳", 
                 "remark": "国产"
               }, 
               {
-                "key": "8153", 
-                "value": "秦", 
+                "value": "8153", 
+                "text": "秦", 
                 "remark": "国产"
               }, 
               {
-                "key": "6313", 
-                "value": "秦Pro", 
+                "value": "6313", 
+                "text": "秦Pro", 
                 "remark": "国产"
               }, 
               {
-                "key": "7133", 
-                "value": "秦Pro EV", 
+                "value": "7133", 
+                "text": "秦Pro EV", 
                 "remark": "国产"
               }, 
               {
-                "key": "7134", 
-                "value": "秦Pro PHEV", 
+                "value": "7134", 
+                "text": "秦Pro PHEV", 
                 "remark": "国产"
               }, 
               {
-                "key": "793", 
-                "value": "绅宝D50", 
+                "value": "793", 
+                "text": "绅宝D50", 
                 "remark": "国产"
               }
             ]
           }, 
           {
-            "key": "826,8157,159,7254", 
-            "value": "A-L", 
+            "value": "826,8157,159,7254", 
+            "text": "A-L", 
             "children": [
               {
-                "key": "8157", 
-                "value": "e2", 
+                "value": "8157", 
+                "text": "e2", 
                 "remark": "国产"
               }, 
               {
-                "key": "7254", 
-                "value": "e3", 
+                "value": "7254", 
+                "text": "e3", 
                 "remark": "国产"
               }, 
               {
-                "key": "159", 
-                "value": "F3", 
+                "value": "159", 
+                "text": "F3", 
                 "remark": "国产"
               }, 
               {
-                "key": "826", 
-                "value": "速锐", 
+                "value": "826", 
+                "text": "速锐", 
                 "remark": "国产"
               }
             ]
@@ -253,123 +253,123 @@
         ]
       }, 
       {
-        "key": "30,7673,6933,5992,5571,4620,1837,700,583,316,301,231,228,132,131,130,129,73,71,34", 
-        "value": "B", 
+        "value": "30,7673,6933,5992,5571,4620,1837,700,583,316,301,231,228,132,131,130,129,73,71,34", 
+        "text": "B", 
         "children": [
           {
-            "key": "73,4620,132,131,34,30,316,228,1837,7673,5571,71,301,231,130,129", 
-            "value": "B-H", 
+            "value": "73,4620,132,131,34,30,316,228,1837,7673,5571,71,301,231,130,129", 
+            "text": "B-H", 
             "children": [
               {
-                "key": "130", 
-                "value": "C级", 
+                "value": "130", 
+                "text": "C级", 
                 "remark": "国产"
               }, 
               {
-                "key": "316", 
-                "value": "S60", 
+                "value": "316", 
+                "text": "S60", 
                 "remark": "国产"
               }, 
               {
-                "key": "1837", 
-                "value": "S60 E驱混动", 
+                "value": "1837", 
+                "text": "S60 E驱混动", 
                 "remark": "国产"
               }, 
               {
-                "key": "4620", 
-                "value": "TLX-L", 
+                "value": "4620", 
+                "text": "TLX-L", 
                 "remark": "国产"
               }, 
               {
-                "key": "30", 
-                "value": "3系GT", 
+                "value": "30", 
+                "text": "3系GT", 
                 "remark": "进口"
               }, 
               {
-                "key": "34", 
-                "value": "4系", 
+                "value": "34", 
+                "text": "4系", 
                 "remark": "进口"
               }, 
               {
-                "key": "71", 
-                "value": "A4 Allroad", 
+                "value": "71", 
+                "text": "A4 Allroad", 
                 "remark": "进口"
               }, 
               {
-                "key": "73", 
-                "value": "A5", 
+                "value": "73", 
+                "text": "A5", 
                 "remark": "进口"
               }, 
               {
-                "key": "129", 
-                "value": "C级", 
+                "value": "129", 
+                "text": "C级", 
                 "remark": "进口"
               }, 
               {
-                "key": "131", 
-                "value": "C级AMG", 
+                "value": "131", 
+                "text": "C级AMG", 
                 "remark": "进口"
               }, 
               {
-                "key": "132", 
-                "value": "C级旅行车", 
+                "value": "132", 
+                "text": "C级旅行车", 
                 "remark": "进口"
               }, 
               {
-                "key": "228", 
-                "value": "M3", 
+                "value": "228", 
+                "text": "M3", 
                 "remark": "进口"
               }, 
               {
-                "key": "231", 
-                "value": "M4", 
+                "value": "231", 
+                "text": "M4", 
                 "remark": "进口"
               }, 
               {
-                "key": "7673", 
-                "value": "RS4", 
+                "value": "7673", 
+                "text": "RS4", 
                 "remark": "进口"
               }, 
               {
-                "key": "301", 
-                "value": "RS5", 
+                "value": "301", 
+                "text": "RS5", 
                 "remark": "进口"
               }, 
               {
-                "key": "5571", 
-                "value": "S4", 
+                "value": "5571", 
+                "text": "S4", 
                 "remark": "进口"
               }
             ]
           }, 
           {
-            "key": "583,5992", 
-            "value": "B-M", 
+            "value": "583,5992", 
+            "text": "B-M", 
             "children": [
               {
-                "key": "583", 
-                "value": "君威", 
+                "value": "583", 
+                "text": "君威", 
                 "remark": "国产"
               }, 
               {
-                "key": "5992", 
-                "value": "索纳塔 PHEV", 
+                "value": "5992", 
+                "text": "索纳塔 PHEV", 
                 "remark": "国产"
               }
             ]
           }, 
           {
-            "key": "700,6933", 
-            "value": "B-L", 
+            "value": "700,6933", 
+            "text": "B-L", 
             "children": [
               {
-                "key": "700", 
-                "value": "名图", 
+                "value": "700", 
+                "text": "名图", 
                 "remark": "国产"
               }, 
               {
-                "key": "6933", 
-                "value": "智道U7", 
+                "value": "6933", 
+                "text": "智道U7", 
                 "remark": "国产"
               }
             ]
@@ -377,87 +377,87 @@
         ]
       }, 
       {
-        "key": "42,5612,4670,2729,2363,1145,587,314,310,232,152,151,112,77", 
-        "value": "C", 
+        "value": "42,5612,4670,2729,2363,1145,587,314,310,232,152,151,112,77", 
+        "text": "C", 
         "children": [
           {
-            "key": "2363,4670,310,5612,314,232,112,2729,152,42,77,1145,151", 
-            "value": "C-H", 
+            "value": "2363,4670,310,5612,314,232,112,2729,152,42,77,1145,151", 
+            "text": "C-H", 
             "children": [
               {
-                "key": "151", 
-                "value": "E级", 
+                "value": "151", 
+                "text": "E级", 
                 "remark": "国产"
               }, 
               {
-                "key": "2729", 
-                "value": "S90", 
+                "value": "2729", 
+                "text": "S90", 
                 "remark": "国产"
               }, 
               {
-                "key": "5612", 
-                "value": "S90 E驱混动", 
+                "value": "5612", 
+                "text": "S90 E驱混动", 
                 "remark": "国产"
               }, 
               {
-                "key": "42", 
-                "value": "5系", 
+                "value": "42", 
+                "text": "5系", 
                 "remark": "进口"
               }, 
               {
-                "key": "4670", 
-                "value": "6系GT", 
+                "value": "4670", 
+                "text": "6系GT", 
                 "remark": "进口"
               }, 
               {
-                "key": "77", 
-                "value": "A7", 
+                "value": "77", 
+                "text": "A7", 
                 "remark": "进口"
               }, 
               {
-                "key": "112", 
-                "value": "CLS级", 
+                "value": "112", 
+                "text": "CLS级", 
                 "remark": "进口"
               }, 
               {
-                "key": "152", 
-                "value": "E级", 
+                "value": "152", 
+                "text": "E级", 
                 "remark": "进口"
               }, 
               {
-                "key": "1145", 
-                "value": "E级AMG", 
+                "value": "1145", 
+                "text": "E级AMG", 
                 "remark": "进口"
               }, 
               {
-                "key": "232", 
-                "value": "M5", 
+                "value": "232", 
+                "text": "M5", 
                 "remark": "进口"
               }, 
               {
-                "key": "2363", 
-                "value": "RS6", 
+                "value": "2363", 
+                "text": "RS6", 
                 "remark": "进口"
               }, 
               {
-                "key": "310", 
-                "value": "S5", 
+                "value": "310", 
+                "text": "S5", 
                 "remark": "进口"
               }, 
               {
-                "key": "314", 
-                "value": "S6", 
+                "value": "314", 
+                "text": "S6", 
                 "remark": "进口"
               }
             ]
           }, 
           {
-            "key": "587", 
-            "value": "C-L", 
+            "value": "587", 
+            "text": "C-L", 
             "children": [
               {
-                "key": "587", 
-                "value": "君越", 
+                "value": "587", 
+                "text": "君越", 
                 "remark": "国产"
               }
             ]
@@ -465,46 +465,46 @@
         ]
       }, 
       {
-        "key": "55,8393,1856,339,338,337,78", 
-        "value": "D", 
+        "value": "55,8393,1856,339,338,337,78", 
+        "text": "D", 
         "children": [
           {
-            "key": "55,339,1856,337,78,338,8393", 
-            "value": "D", 
+            "value": "55,339,1856,337,78,338,8393", 
+            "text": "D", 
             "children": [
               {
-                "key": "55", 
-                "value": "7系", 
+                "value": "55", 
+                "text": "7系", 
                 "remark": "进口"
               }, 
               {
-                "key": "1856", 
-                "value": "7系 PHEV", 
+                "value": "1856", 
+                "text": "7系 PHEV", 
                 "remark": "进口"
               }, 
               {
-                "key": "8393", 
-                "value": "8系", 
+                "value": "8393", 
+                "text": "8系", 
                 "remark": "进口"
               }, 
               {
-                "key": "78", 
-                "value": "A8L", 
+                "value": "78", 
+                "text": "A8L", 
                 "remark": "进口"
               }, 
               {
-                "key": "337", 
-                "value": "S级", 
+                "value": "337", 
+                "text": "S级", 
                 "remark": "进口"
               }, 
               {
-                "key": "338", 
-                "value": "S级", 
+                "value": "338", 
+                "text": "S级", 
                 "remark": "进口"
               }, 
               {
-                "key": "339", 
-                "value": "S级AMG", 
+                "value": "339", 
+                "text": "S级AMG", 
                 "remark": "进口"
               }
             ]
@@ -512,72 +512,72 @@
         ]
       }, 
       {
-        "key": "407,8594,8319,7893,5511,5246,2245,2119,1714,556,543", 
-        "value": "A0-SUV", 
+        "value": "407,8594,8319,7893,5511,5246,2245,2119,1714,556,543", 
+        "text": "A0-SUV", 
         "children": [
           {
-            "key": "556,8319,5246,407,7893", 
-            "value": "A0-SUV-H", 
+            "value": "556,8319,5246,407,7893", 
+            "text": "A0-SUV-H", 
             "children": [
               {
-                "key": "407", 
-                "value": "昂科拉", 
+                "value": "407", 
+                "text": "昂科拉", 
                 "remark": "国产"
               }, 
               {
-                "key": "5246", 
-                "value": "昂希诺", 
+                "value": "5246", 
+                "text": "昂希诺", 
                 "remark": "国产"
               }, 
               {
-                "key": "8319", 
-                "value": "昂希诺 EV", 
+                "value": "8319", 
+                "text": "昂希诺 EV", 
                 "remark": "国产"
               }, 
               {
-                "key": "556", 
-                "value": "ix 25", 
+                "value": "556", 
+                "text": "ix 25", 
                 "remark": "国产"
               }, 
               {
-                "key": "7893", 
-                "value": "S2", 
+                "value": "7893", 
+                "text": "S2", 
                 "remark": "国产"
               }
             ]
           }, 
           {
-            "key": "543,8594,2245,1714,2119,5511", 
-            "value": "A0-SUV-L", 
+            "value": "543,8594,2245,1714,2119,5511", 
+            "text": "A0-SUV-L", 
             "children": [
               {
-                "key": "543", 
-                "value": "幻速S2", 
+                "value": "543", 
+                "text": "幻速S2", 
                 "remark": "国产"
               }, 
               {
-                "key": "1714", 
-                "value": "绅宝X25", 
+                "value": "1714", 
+                "text": "绅宝X25", 
                 "remark": "国产"
               }, 
               {
-                "key": "2245", 
-                "value": "绅宝X35", 
+                "value": "2245", 
+                "text": "绅宝X35", 
                 "remark": "国产"
               }, 
               {
-                "key": "2119", 
-                "value": "元", 
+                "value": "2119", 
+                "text": "元", 
                 "remark": "国产"
               }, 
               {
-                "key": "5511", 
-                "value": "元 EV", 
+                "value": "5511", 
+                "text": "元 EV", 
                 "remark": "国产"
               }, 
               {
-                "key": "8594", 
-                "value": "智达X3", 
+                "value": "8594", 
+                "text": "智达X3", 
                 "remark": "国产"
               }
             ]
@@ -585,133 +585,133 @@
         ]
       }, 
       {
-        "key": "90,8539,8538,8353,8186,8184,6333,5512,5308,5130,2887,2566,2505,2384,1725,900,850,797,557,544,179,177", 
-        "value": "A-SUV", 
+        "value": "90,8539,8538,8353,8186,8184,6333,5512,5308,5130,2887,2566,2505,2384,1725,900,850,797,557,544,179,177", 
+        "text": "A-SUV", 
         "children": [
           {
-            "key": "179,5308,5130,177,8353,8184,2384", 
-            "value": "A-SUV-H", 
+            "value": "179,5308,5130,177,8353,8184,2384", 
+            "text": "A-SUV-H", 
             "children": [
               {
-                "key": "8184", 
-                "value": "昂科拉GX", 
+                "value": "8184", 
+                "text": "昂科拉GX", 
                 "remark": "国产"
               }, 
               {
-                "key": "2384", 
-                "value": "CDX", 
+                "value": "2384", 
+                "text": "CDX", 
                 "remark": "国产"
               }, 
               {
-                "key": "5308", 
-                "value": "CDX HEV", 
+                "value": "5308", 
+                "text": "CDX HEV", 
                 "remark": "国产"
               }, 
               {
-                "key": "177", 
-                "value": "GLA级", 
+                "value": "177", 
+                "text": "GLA级", 
                 "remark": "国产"
               }, 
               {
-                "key": "8353", 
-                "value": "GLB级", 
+                "value": "8353", 
+                "text": "GLB级", 
                 "remark": "国产"
               }, 
               {
-                "key": "5130", 
-                "value": "XC40", 
+                "value": "5130", 
+                "text": "XC40", 
                 "remark": "国产"
               }, 
               {
-                "key": "179", 
-                "value": "GLA级 AMG", 
+                "value": "179", 
+                "text": "GLA级 AMG", 
                 "remark": "进口"
               }
             ]
           }, 
           {
-            "key": "850,900,5512,557", 
-            "value": "A-SUV-M", 
+            "value": "850,900,5512,557", 
+            "text": "A-SUV-M", 
             "children": [
               {
-                "key": "557", 
-                "value": "ix 35", 
+                "value": "557", 
+                "text": "ix 35", 
                 "remark": "国产"
               }, 
               {
-                "key": "850", 
-                "value": "途胜", 
+                "value": "850", 
+                "text": "途胜", 
                 "remark": "国产"
               }, 
               {
-                "key": "900", 
-                "value": "新胜达", 
+                "value": "900", 
+                "text": "新胜达", 
                 "remark": "国产"
               }, 
               {
-                "key": "5512", 
-                "value": "BJ40 PLUS", 
+                "value": "5512", 
+                "text": "BJ40 PLUS", 
                 "remark": "国产"
               }
             ]
           }, 
           {
-            "key": "8186,797,544,2887,2566,2505,90,1725,8538,6333,8539", 
-            "value": "A-SUV-L", 
+            "value": "8186,797,544,2887,2566,2505,90,1725,8538,6333,8539", 
+            "text": "A-SUV-L", 
             "children": [
               {
-                "key": "2505", 
-                "value": "BJ20", 
+                "value": "2505", 
+                "text": "BJ20", 
                 "remark": "国产"
               }, 
               {
-                "key": "90", 
-                "value": "BJ40", 
+                "value": "90", 
+                "text": "BJ40", 
                 "remark": "国产"
               }, 
               {
-                "key": "544", 
-                "value": "幻速S3", 
+                "value": "544", 
+                "text": "幻速S3", 
                 "remark": "国产"
               }, 
               {
-                "key": "2566", 
-                "value": "幻速S3L", 
+                "value": "2566", 
+                "text": "幻速S3L", 
                 "remark": "国产"
               }, 
               {
-                "key": "2887", 
-                "value": "幻速S5", 
+                "value": "2887", 
+                "text": "幻速S5", 
                 "remark": "国产"
               }, 
               {
-                "key": "1725", 
-                "value": "幻速S6", 
+                "value": "1725", 
+                "text": "幻速S6", 
                 "remark": "国产"
               }, 
               {
-                "key": "797", 
-                "value": "绅宝X65", 
+                "value": "797", 
+                "text": "绅宝X65", 
                 "remark": "国产"
               }, 
               {
-                "key": "6333", 
-                "value": "绅宝智行", 
+                "value": "6333", 
+                "text": "绅宝智行", 
                 "remark": "国产"
               }, 
               {
-                "key": "8186", 
-                "value": "宋Pro", 
+                "value": "8186", 
+                "text": "宋Pro", 
                 "remark": "国产"
               }, 
               {
-                "key": "8538", 
-                "value": "宋Pro DM", 
+                "value": "8538", 
+                "text": "宋Pro DM", 
                 "remark": "国产"
               }, 
               {
-                "key": "8539", 
-                "value": "宋Pro EV", 
+                "value": "8539", 
+                "text": "宋Pro EV", 
                 "remark": "国产"
               }
             ]
@@ -719,108 +719,108 @@
         ]
       }, 
       {
-        "key": "367,8638,8637,8136,7553,6633,5712,4805,4611,4509,4508,2205,1726,1723,968,408,381", 
-        "value": "B-SUV", 
+        "value": "367,8638,8637,8136,7553,6633,5712,4805,4611,4509,4508,2205,1726,1723,968,408,381", 
+        "text": "B-SUV", 
         "children": [
           {
-            "key": "6633,2205,408", 
-            "value": "B-SUV-M", 
+            "value": "6633,2205,408", 
+            "text": "B-SUV-M", 
             "children": [
               {
-                "key": "408", 
-                "value": "昂科威", 
+                "value": "408", 
+                "text": "昂科威", 
                 "remark": "国产"
               }, 
               {
-                "key": "6633", 
-                "value": "RDX", 
+                "value": "6633", 
+                "text": "RDX", 
                 "remark": "国产"
               }, 
               {
-                "key": "2205", 
-                "value": "BJ80", 
+                "value": "2205", 
+                "text": "BJ80", 
                 "remark": "国产"
               }
             ]
           }, 
           {
-            "key": "367,4509,8637,1723,381,8136,4508,1726,4805,8638", 
-            "value": "B-SUV-H", 
+            "value": "367,4509,8637,1723,381,8136,4508,1726,4805,8638", 
+            "text": "B-SUV-H", 
             "children": [
               {
-                "key": "8136", 
-                "value": "EQC", 
+                "value": "8136", 
+                "text": "EQC", 
                 "remark": "国产"
               }, 
               {
-                "key": "1726", 
-                "value": "GLC级", 
+                "value": "1726", 
+                "text": "GLC级", 
                 "remark": "国产"
               }, 
               {
-                "key": "381", 
-                "value": "XC60", 
+                "value": "381", 
+                "text": "XC60", 
                 "remark": "国产"
               }, 
               {
-                "key": "4805", 
-                "value": "XC60 E驱混动", 
+                "value": "4805", 
+                "text": "XC60 E驱混动", 
                 "remark": "国产"
               }, 
               {
-                "key": "4508", 
-                "value": "AMG GLC", 
+                "value": "4508", 
+                "text": "AMG GLC", 
                 "remark": "进口"
               }, 
               {
-                "key": "4509", 
-                "value": "AMG GLC级轿跑SUV", 
+                "value": "4509", 
+                "text": "AMG GLC级轿跑SUV", 
                 "remark": "进口"
               }, 
               {
-                "key": "1723", 
-                "value": "GLC级轿跑SUV", 
+                "value": "1723", 
+                "text": "GLC级轿跑SUV", 
                 "remark": "进口"
               }, 
               {
-                "key": "8637", 
-                "value": "X3M", 
+                "value": "8637", 
+                "text": "X3M", 
                 "remark": "进口"
               }, 
               {
-                "key": "367", 
-                "value": "X4", 
+                "value": "367", 
+                "text": "X4", 
                 "remark": "进口"
               }, 
               {
-                "key": "8638", 
-                "value": "X4M", 
+                "value": "8638", 
+                "text": "X4M", 
                 "remark": "进口"
               }
             ]
           }, 
           {
-            "key": "5712,4611,7553,968", 
-            "value": "B-SUV-L", 
+            "value": "5712,4611,7553,968", 
+            "text": "B-SUV-L", 
             "children": [
               {
-                "key": "4611", 
-                "value": "幻速S7", 
+                "value": "4611", 
+                "text": "幻速S7", 
                 "remark": "国产"
               }, 
               {
-                "key": "5712", 
-                "value": "唐", 
+                "value": "5712", 
+                "text": "唐", 
                 "remark": "国产"
               }, 
               {
-                "key": "7553", 
-                "value": "唐 EV", 
+                "value": "7553", 
+                "text": "唐 EV", 
                 "remark": "国产"
               }, 
               {
-                "key": "968", 
-                "value": "唐 PHEV", 
+                "value": "968", 
+                "text": "唐 PHEV", 
                 "remark": "国产"
               }
             ]
@@ -828,86 +828,86 @@
         ]
       }, 
       {
-        "key": "192,8333,3106,3073,1840,1635,1634,1517,1516,375,372,371,369,275,193", 
-        "value": "C-SUV", 
+        "value": "192,8333,3106,3073,1840,1635,1634,1517,1516,375,372,371,369,275,193", 
+        "text": "C-SUV", 
         "children": [
           {
-            "key": "1635,1840,1517,369,3073,275,1516,372,8333,193,1634,3106,375,371,192", 
-            "value": "C-SUV-H", 
+            "value": "1635,1840,1517,369,3073,275,1516,372,8333,193,1634,3106,375,371,192", 
+            "text": "C-SUV-H", 
             "children": [
               {
-                "key": "1517", 
-                "value": "AMG GLE", 
+                "value": "1517", 
+                "text": "AMG GLE", 
                 "remark": "进口"
               }, 
               {
-                "key": "1635", 
-                "value": "AMG GLE轿跑SUV", 
+                "value": "1635", 
+                "text": "AMG GLE轿跑SUV", 
                 "remark": "进口"
               }, 
               {
-                "key": "192", 
-                "value": "G级", 
+                "value": "192", 
+                "text": "G级", 
                 "remark": "进口"
               }, 
               {
-                "key": "193", 
-                "value": "G级AMG", 
+                "value": "193", 
+                "text": "G级AMG", 
                 "remark": "进口"
               }, 
               {
-                "key": "1516", 
-                "value": "GLE级", 
+                "value": "1516", 
+                "text": "GLE级", 
                 "remark": "进口"
               }, 
               {
-                "key": "1634", 
-                "value": "GLE轿跑SUV", 
+                "value": "1634", 
+                "text": "GLE轿跑SUV", 
                 "remark": "进口"
               }, 
               {
-                "key": "3073", 
-                "value": "MDX HEV", 
+                "value": "3073", 
+                "text": "MDX HEV", 
                 "remark": "进口"
               }, 
               {
-                "key": "275", 
-                "value": "Q7", 
+                "value": "275", 
+                "text": "Q7", 
                 "remark": "进口"
               }, 
               {
-                "key": "3106", 
-                "value": "Q7 E-Tron", 
+                "value": "3106", 
+                "text": "Q7 E-Tron", 
                 "remark": "进口"
               }, 
               {
-                "key": "8333", 
-                "value": "Q8", 
+                "value": "8333", 
+                "text": "Q8", 
                 "remark": "进口"
               }, 
               {
-                "key": "369", 
-                "value": "X5", 
+                "value": "369", 
+                "text": "X5", 
                 "remark": "进口"
               }, 
               {
-                "key": "1840", 
-                "value": "X5 e", 
+                "value": "1840", 
+                "text": "X5 e", 
                 "remark": "进口"
               }, 
               {
-                "key": "371", 
-                "value": "X5M", 
+                "value": "371", 
+                "text": "X5M", 
                 "remark": "进口"
               }, 
               {
-                "key": "372", 
-                "value": "X6", 
+                "value": "372", 
+                "text": "X6", 
                 "remark": "进口"
               }, 
               {
-                "key": "375", 
-                "value": "X6M", 
+                "value": "375", 
+                "text": "X6M", 
                 "remark": "进口"
               }
             ]
@@ -915,26 +915,26 @@
         ]
       }, 
       {
-        "key": "2023,6854,2024", 
-        "value": "D-SUV", 
+        "value": "2023,6854,2024", 
+        "text": "D-SUV", 
         "children": [
           {
-            "key": "2023,6854,2024", 
-            "value": "D-SUV", 
+            "value": "2023,6854,2024", 
+            "text": "D-SUV", 
             "children": [
               {
-                "key": "2024", 
-                "value": "AMG GLS", 
+                "value": "2024", 
+                "text": "AMG GLS", 
                 "remark": "进口"
               }, 
               {
-                "key": "2023", 
-                "value": "GLS级", 
+                "value": "2023", 
+                "text": "GLS级", 
                 "remark": "进口"
               }, 
               {
-                "key": "6854", 
-                "value": "X7", 
+                "value": "6854", 
+                "text": "X7", 
                 "remark": "进口"
               }
             ]
@@ -942,82 +942,82 @@
         ]
       }, 
       {
-        "key": "542,8156,7440,4565,4546,4545,4376,2703,2320,1555,1518,988,869", 
-        "value": "A-MPV", 
+        "value": "542,8156,7440,4565,4546,4545,4376,2703,2320,1555,1518,988,869", 
+        "text": "A-MPV", 
         "children": [
           {
-            "key": "4546,988", 
-            "value": "A-MPV-H", 
+            "value": "4546,988", 
+            "text": "A-MPV-H", 
             "children": [
               {
-                "key": "4546", 
-                "value": "GL6", 
+                "value": "4546", 
+                "text": "GL6", 
                 "remark": "国产"
               }, 
               {
-                "key": "988", 
-                "value": "2系多功能旅行车", 
+                "value": "988", 
+                "text": "2系多功能旅行车", 
                 "remark": "进口"
               }
             ]
           }, 
           {
-            "key": "1555,1518,869,8156,4565,4545,2703,2320,542,4376,7440", 
-            "value": "A-MPV-L", 
+            "value": "1555,1518,869,8156,4565,4545,2703,2320,542,4376,7440", 
+            "text": "A-MPV-L", 
             "children": [
               {
-                "key": "542", 
-                "value": "幻速H2", 
+                "value": "542", 
+                "text": "幻速H2", 
                 "remark": "国产"
               }, 
               {
-                "key": "2320", 
-                "value": "幻速H2V", 
+                "value": "2320", 
+                "text": "幻速H2V", 
                 "remark": "国产"
               }, 
               {
-                "key": "1518", 
-                "value": "幻速H3", 
+                "value": "1518", 
+                "text": "幻速H3", 
                 "remark": "国产"
               }, 
               {
-                "key": "4376", 
-                "value": "幻速H5", 
+                "value": "4376", 
+                "text": "幻速H5", 
                 "remark": "国产"
               }, 
               {
-                "key": "4565", 
-                "value": "宋MAX", 
+                "value": "4565", 
+                "text": "宋MAX", 
                 "remark": "国产"
               }, 
               {
-                "key": "7440", 
-                "value": "宋MAX DM", 
+                "value": "7440", 
+                "text": "宋MAX DM", 
                 "remark": "国产"
               }, 
               {
-                "key": "8156", 
-                "value": "宋MAX EV", 
+                "value": "8156", 
+                "text": "宋MAX EV", 
                 "remark": "国产"
               }, 
               {
-                "key": "869", 
-                "value": "威旺M20", 
+                "value": "869", 
+                "text": "威旺M20", 
                 "remark": "国产"
               }, 
               {
-                "key": "1555", 
-                "value": "威旺M30", 
+                "value": "1555", 
+                "text": "威旺M30", 
                 "remark": "国产"
               }, 
               {
-                "key": "2703", 
-                "value": "威旺M50F", 
+                "value": "2703", 
+                "text": "威旺M50F", 
                 "remark": "国产"
               }, 
               {
-                "key": "4545", 
-                "value": "威旺M60", 
+                "value": "4545", 
+                "text": "威旺M60", 
                 "remark": "国产"
               }
             ]
@@ -1025,16 +1025,16 @@
         ]
       }, 
       {
-        "key": "176", 
-        "value": "B-MPV", 
+        "value": "176", 
+        "text": "B-MPV", 
         "children": [
           {
-            "key": "176", 
-            "value": "B-MPV-M", 
+            "value": "176", 
+            "text": "B-MPV-M", 
             "children": [
               {
-                "key": "176", 
-                "value": "GL8", 
+                "value": "176", 
+                "text": "GL8", 
                 "remark": "国产"
               }
             ]
@@ -1042,46 +1042,46 @@
         ]
       }, 
       {
-        "key": "79,7655,2845,2483,555,397,330", 
-        "value": "跑车", 
+        "value": "79,7655,2845,2483,555,397,330", 
+        "text": "跑车", 
         "children": [
           {
-            "key": "7655,555,2845,330,79,2483,397", 
-            "value": "跑车", 
+            "value": "7655,555,2845,330,79,2483,397", 
+            "text": "跑车", 
             "children": [
               {
-                "key": "79", 
-                "value": "AMG GT", 
+                "value": "79", 
+                "text": "AMG GT", 
                 "remark": "进口"
               }, 
               {
-                "key": "555", 
-                "value": "i8 Coupe", 
+                "value": "555", 
+                "text": "i8 Coupe", 
                 "remark": "进口"
               }, 
               {
-                "key": "7655", 
-                "value": "i8 敞篷", 
+                "value": "7655", 
+                "text": "i8 敞篷", 
                 "remark": "进口"
               }, 
               {
-                "key": "2845", 
-                "value": "NSX", 
+                "value": "2845", 
+                "text": "NSX", 
                 "remark": "进口"
               }, 
               {
-                "key": "2483", 
-                "value": "SLC级", 
+                "value": "2483", 
+                "text": "SLC级", 
                 "remark": "进口"
               }, 
               {
-                "key": "330", 
-                "value": "SL级", 
+                "value": "330", 
+                "text": "SL级", 
                 "remark": "进口"
               }, 
               {
-                "key": "397", 
-                "value": "Z4", 
+                "value": "397", 
+                "text": "Z4", 
                 "remark": "进口"
               }
             ]
@@ -1091,91 +1091,91 @@
     ], 
     [
       {
-        "key": "275,8333,7673,5571,4525,3106,2363,78,77,73,71,63,314,310,307,301", 
-        "value": "A", 
+        "value": "275,8333,7673,5571,4525,3106,2363,78,77,73,71,63,314,310,307,301", 
+        "text": "A", 
         "children": [
           {
-            "key": "275,8333,7673,5571,4525,3106,2363,78,77,73,71,63,314,310,307,301", 
-            "value": "奥迪", 
+            "value": "275,8333,7673,5571,4525,3106,2363,78,77,73,71,63,314,310,307,301", 
+            "text": "奥迪", 
             "children": [
               {
-                "key": "63", 
-                "value": "A3", 
+                "value": "63", 
+                "text": "A3", 
                 "remark": "进口"
               }, 
               {
-                "key": "71", 
-                "value": "A4 Allroad", 
+                "value": "71", 
+                "text": "A4 Allroad", 
                 "remark": "进口"
               }, 
               {
-                "key": "73", 
-                "value": "A5", 
+                "value": "73", 
+                "text": "A5", 
                 "remark": "进口"
               }, 
               {
-                "key": "77", 
-                "value": "A7", 
+                "value": "77", 
+                "text": "A7", 
                 "remark": "进口"
               }, 
               {
-                "key": "78", 
-                "value": "A8L", 
+                "value": "78", 
+                "text": "A8L", 
                 "remark": "进口"
               }, 
               {
-                "key": "275", 
-                "value": "Q7", 
+                "value": "275", 
+                "text": "Q7", 
                 "remark": "进口"
               }, 
               {
-                "key": "3106", 
-                "value": "Q7 E-Tron", 
+                "value": "3106", 
+                "text": "Q7 E-Tron", 
                 "remark": "进口"
               }, 
               {
-                "key": "8333", 
-                "value": "Q8", 
+                "value": "8333", 
+                "text": "Q8", 
                 "remark": "进口"
               }, 
               {
-                "key": "4525", 
-                "value": "RS3", 
+                "value": "4525", 
+                "text": "RS3", 
                 "remark": "进口"
               }, 
               {
-                "key": "7673", 
-                "value": "RS4", 
+                "value": "7673", 
+                "text": "RS4", 
                 "remark": "进口"
               }, 
               {
-                "key": "301", 
-                "value": "RS5", 
+                "value": "301", 
+                "text": "RS5", 
                 "remark": "进口"
               }, 
               {
-                "key": "2363", 
-                "value": "RS6", 
+                "value": "2363", 
+                "text": "RS6", 
                 "remark": "进口"
               }, 
               {
-                "key": "307", 
-                "value": "S3", 
+                "value": "307", 
+                "text": "S3", 
                 "remark": "进口"
               }, 
               {
-                "key": "5571", 
-                "value": "S4", 
+                "value": "5571", 
+                "text": "S4", 
                 "remark": "进口"
               }, 
               {
-                "key": "310", 
-                "value": "S5", 
+                "value": "310", 
+                "text": "S5", 
                 "remark": "进口"
               }, 
               {
-                "key": "314", 
-                "value": "S6", 
+                "value": "314", 
+                "text": "S6", 
                 "remark": "进口"
               }
             ]
@@ -1183,656 +1183,656 @@
         ]
       }, 
       {
-        "key": "330,7655,7694,8594,8157,8156,8186,8353,7893,8638,8637,8153,7553,8136,8539,8538,8318,8184,8393,7134,7133,7116,6933,6873,6854,6333,6313,6295,5712,5512,5511,4670,4611,4565,4547,4546,4545,4509,4508,4376,2887,2703,2566,2505,2483,2320,2245,2205,2119,2024,2023,2019,1856,1840,1728,1726,1725,1723,1714,1635,1634,1555,1518,1517,1516,7440,7254,232,231,228,193,192,179,177,176,159,152,151,132,131,130,129,112,111,93,90,84,83,79,55,42,34,30,11,3,968,925,869,826,797,793,744,1145,996,988,627,587,583,555,553,544,543,542,408,407,397,375,372,371,369,367,339,337", 
-        "value": "B", 
+        "value": "330,7655,7694,8594,8157,8156,8186,8353,7893,8638,8637,8153,7553,8136,8539,8538,8318,8184,8393,7134,7133,7116,6933,6873,6854,6333,6313,6295,5712,5512,5511,4670,4611,4565,4547,4546,4545,4509,4508,4376,2887,2703,2566,2505,2483,2320,2245,2205,2119,2024,2023,2019,1856,1840,1728,1726,1725,1723,1714,1635,1634,1555,1518,1517,1516,7440,7254,232,231,228,193,192,179,177,176,159,152,151,132,131,130,129,112,111,93,90,84,83,79,55,42,34,30,11,3,968,925,869,826,797,793,744,1145,996,988,627,587,583,555,553,544,543,542,408,407,397,375,372,371,369,367,339,337", 
+        "text": "B", 
         "children": [
           {
-            "key": "407,8184,7116,4547,4546,1728,176,925,996,627,587,583,408", 
-            "value": "别克", 
+            "value": "407,8184,7116,4547,4546,1728,176,925,996,627,587,583,408", 
+            "text": "别克", 
             "children": [
               {
-                "key": "407", 
-                "value": "昂科拉", 
+                "value": "407", 
+                "text": "昂科拉", 
                 "remark": "国产"
               }, 
               {
-                "key": "8184", 
-                "value": "昂科拉GX", 
+                "value": "8184", 
+                "text": "昂科拉GX", 
                 "remark": "国产"
               }, 
               {
-                "key": "408", 
-                "value": "昂科威", 
+                "value": "408", 
+                "text": "昂科威", 
                 "remark": "国产"
               }, 
               {
-                "key": "4546", 
-                "value": "GL6", 
+                "value": "4546", 
+                "text": "GL6", 
                 "remark": "国产"
               }, 
               {
-                "key": "176", 
-                "value": "GL8", 
+                "value": "176", 
+                "text": "GL8", 
                 "remark": "国产"
               }, 
               {
-                "key": "583", 
-                "value": "君威", 
+                "value": "583", 
+                "text": "君威", 
                 "remark": "国产"
               }, 
               {
-                "key": "587", 
-                "value": "君越", 
+                "value": "587", 
+                "text": "君越", 
                 "remark": "国产"
               }, 
               {
-                "key": "627", 
-                "value": "凯越三厢", 
+                "value": "627", 
+                "text": "凯越三厢", 
                 "remark": "国产"
               }, 
               {
-                "key": "996", 
-                "value": "威朗", 
+                "value": "996", 
+                "text": "威朗", 
                 "remark": "国产"
               }, 
               {
-                "key": "1728", 
-                "value": "威朗GS", 
+                "value": "1728", 
+                "text": "威朗GS", 
                 "remark": "国产"
               }, 
               {
-                "key": "7116", 
-                "value": "微蓝", 
+                "value": "7116", 
+                "text": "微蓝", 
                 "remark": "国产"
               }, 
               {
-                "key": "925", 
-                "value": "英朗", 
+                "value": "925", 
+                "text": "英朗", 
                 "remark": "国产"
               }, 
               {
-                "key": "4547", 
-                "value": "阅朗", 
+                "value": "4547", 
+                "text": "阅朗", 
                 "remark": "国产"
               }
             ]
           }, 
           {
-            "key": "793,8594,6933,6333,5512,4545,2703,2505,2245,2205,1714,1555,90,869,797", 
-            "value": "北京汽车", 
+            "value": "793,8594,6933,6333,5512,4545,2703,2505,2245,2205,1714,1555,90,869,797", 
+            "text": "北京汽车", 
             "children": [
               {
-                "key": "2505", 
-                "value": "BJ20", 
+                "value": "2505", 
+                "text": "BJ20", 
                 "remark": "国产"
               }, 
               {
-                "key": "90", 
-                "value": "BJ40", 
+                "value": "90", 
+                "text": "BJ40", 
                 "remark": "国产"
               }, 
               {
-                "key": "5512", 
-                "value": "BJ40 PLUS", 
+                "value": "5512", 
+                "text": "BJ40 PLUS", 
                 "remark": "国产"
               }, 
               {
-                "key": "2205", 
-                "value": "BJ80", 
+                "value": "2205", 
+                "text": "BJ80", 
                 "remark": "国产"
               }, 
               {
-                "key": "793", 
-                "value": "绅宝D50", 
+                "value": "793", 
+                "text": "绅宝D50", 
                 "remark": "国产"
               }, 
               {
-                "key": "1714", 
-                "value": "绅宝X25", 
+                "value": "1714", 
+                "text": "绅宝X25", 
                 "remark": "国产"
               }, 
               {
-                "key": "2245", 
-                "value": "绅宝X35", 
+                "value": "2245", 
+                "text": "绅宝X35", 
                 "remark": "国产"
               }, 
               {
-                "key": "797", 
-                "value": "绅宝X65", 
+                "value": "797", 
+                "text": "绅宝X65", 
                 "remark": "国产"
               }, 
               {
-                "key": "6333", 
-                "value": "绅宝智行", 
+                "value": "6333", 
+                "text": "绅宝智行", 
                 "remark": "国产"
               }, 
               {
-                "key": "869", 
-                "value": "威旺M20", 
+                "value": "869", 
+                "text": "威旺M20", 
                 "remark": "国产"
               }, 
               {
-                "key": "1555", 
-                "value": "威旺M30", 
+                "value": "1555", 
+                "text": "威旺M30", 
                 "remark": "国产"
               }, 
               {
-                "key": "2703", 
-                "value": "威旺M50F", 
+                "value": "2703", 
+                "text": "威旺M50F", 
                 "remark": "国产"
               }, 
               {
-                "key": "4545", 
-                "value": "威旺M60", 
+                "value": "4545", 
+                "text": "威旺M60", 
                 "remark": "国产"
               }, 
               {
-                "key": "8594", 
-                "value": "智达X3", 
+                "value": "8594", 
+                "text": "智达X3", 
                 "remark": "国产"
               }, 
               {
-                "key": "6933", 
-                "value": "智道U7", 
+                "value": "6933", 
+                "text": "智道U7", 
                 "remark": "国产"
               }
             ]
           }, 
           {
-            "key": "542,4611,4376,2887,2566,2320,1725,1518,544,543", 
-            "value": "北汽幻速", 
+            "value": "542,4611,4376,2887,2566,2320,1725,1518,544,543", 
+            "text": "北汽幻速", 
             "children": [
               {
-                "key": "542", 
-                "value": "幻速H2", 
+                "value": "542", 
+                "text": "幻速H2", 
                 "remark": "国产"
               }, 
               {
-                "key": "2320", 
-                "value": "幻速H2V", 
+                "value": "2320", 
+                "text": "幻速H2V", 
                 "remark": "国产"
               }, 
               {
-                "key": "1518", 
-                "value": "幻速H3", 
+                "value": "1518", 
+                "text": "幻速H3", 
                 "remark": "国产"
               }, 
               {
-                "key": "4376", 
-                "value": "幻速H5", 
+                "value": "4376", 
+                "text": "幻速H5", 
                 "remark": "国产"
               }, 
               {
-                "key": "543", 
-                "value": "幻速S2", 
+                "value": "543", 
+                "text": "幻速S2", 
                 "remark": "国产"
               }, 
               {
-                "key": "544", 
-                "value": "幻速S3", 
+                "value": "544", 
+                "text": "幻速S3", 
                 "remark": "国产"
               }, 
               {
-                "key": "2566", 
-                "value": "幻速S3L", 
+                "value": "2566", 
+                "text": "幻速S3L", 
                 "remark": "国产"
               }, 
               {
-                "key": "2887", 
-                "value": "幻速S5", 
+                "value": "2887", 
+                "text": "幻速S5", 
                 "remark": "国产"
               }, 
               {
-                "key": "1725", 
-                "value": "幻速S6", 
+                "value": "1725", 
+                "text": "幻速S6", 
                 "remark": "国产"
               }, 
               {
-                "key": "4611", 
-                "value": "幻速S7", 
+                "value": "4611", 
+                "text": "幻速S7", 
                 "remark": "国产"
               }
             ]
           }, 
           {
-            "key": "330,8353,8136,8318,6873,4509,4508,2483,2024,2023,1726,1723,1635,1634,1517,1516,193,192,179,177,152,151,132,131,130,129,112,111,93,84,83,79,1145,339,337", 
-            "value": "奔驰", 
+            "value": "330,8353,8136,8318,6873,4509,4508,2483,2024,2023,1726,1723,1635,1634,1517,1516,193,192,179,177,152,151,132,131,130,129,112,111,93,84,83,79,1145,339,337", 
+            "text": "奔驰", 
             "children": [
               {
-                "key": "6873", 
-                "value": "A级", 
+                "value": "6873", 
+                "text": "A级", 
                 "remark": "国产"
               }, 
               {
-                "key": "8318", 
-                "value": "A级AMG", 
+                "value": "8318", 
+                "text": "A级AMG", 
                 "remark": "国产"
               }, 
               {
-                "key": "130", 
-                "value": "C级", 
+                "value": "130", 
+                "text": "C级", 
                 "remark": "国产"
               }, 
               {
-                "key": "151", 
-                "value": "E级", 
+                "value": "151", 
+                "text": "E级", 
                 "remark": "国产"
               }, 
               {
-                "key": "8136", 
-                "value": "EQC", 
+                "value": "8136", 
+                "text": "EQC", 
                 "remark": "国产"
               }, 
               {
-                "key": "177", 
-                "value": "GLA级", 
+                "value": "177", 
+                "text": "GLA级", 
                 "remark": "国产"
               }, 
               {
-                "key": "8353", 
-                "value": "GLB级", 
+                "value": "8353", 
+                "text": "GLB级", 
                 "remark": "国产"
               }, 
               {
-                "key": "1726", 
-                "value": "GLC级", 
+                "value": "1726", 
+                "text": "GLC级", 
                 "remark": "国产"
               }, 
               {
-                "key": "83", 
-                "value": "A级", 
+                "value": "83", 
+                "text": "A级", 
                 "remark": "进口"
               }, 
               {
-                "key": "84", 
-                "value": "A级AMG", 
+                "value": "84", 
+                "text": "A级AMG", 
                 "remark": "进口"
               }, 
               {
-                "key": "4508", 
-                "value": "AMG GLC", 
+                "value": "4508", 
+                "text": "AMG GLC", 
                 "remark": "进口"
               }, 
               {
-                "key": "4509", 
-                "value": "AMG GLC级轿跑SUV", 
+                "value": "4509", 
+                "text": "AMG GLC级轿跑SUV", 
                 "remark": "进口"
               }, 
               {
-                "key": "1517", 
-                "value": "AMG GLE", 
+                "value": "1517", 
+                "text": "AMG GLE", 
                 "remark": "进口"
               }, 
               {
-                "key": "1635", 
-                "value": "AMG GLE轿跑SUV", 
+                "value": "1635", 
+                "text": "AMG GLE轿跑SUV", 
                 "remark": "进口"
               }, 
               {
-                "key": "2024", 
-                "value": "AMG GLS", 
+                "value": "2024", 
+                "text": "AMG GLS", 
                 "remark": "进口"
               }, 
               {
-                "key": "79", 
-                "value": "AMG GT", 
+                "value": "79", 
+                "text": "AMG GT", 
                 "remark": "进口"
               }, 
               {
-                "key": "93", 
-                "value": "B级", 
+                "value": "93", 
+                "text": "B级", 
                 "remark": "进口"
               }, 
               {
-                "key": "129", 
-                "value": "C级", 
+                "value": "129", 
+                "text": "C级", 
                 "remark": "进口"
               }, 
               {
-                "key": "131", 
-                "value": "C级AMG", 
+                "value": "131", 
+                "text": "C级AMG", 
                 "remark": "进口"
               }, 
               {
-                "key": "132", 
-                "value": "C级旅行车", 
+                "value": "132", 
+                "text": "C级旅行车", 
                 "remark": "进口"
               }, 
               {
-                "key": "111", 
-                "value": "CLA级AMG", 
+                "value": "111", 
+                "text": "CLA级AMG", 
                 "remark": "进口"
               }, 
               {
-                "key": "112", 
-                "value": "CLS级", 
+                "value": "112", 
+                "text": "CLS级", 
                 "remark": "进口"
               }, 
               {
-                "key": "152", 
-                "value": "E级", 
+                "value": "152", 
+                "text": "E级", 
                 "remark": "进口"
               }, 
               {
-                "key": "1145", 
-                "value": "E级AMG", 
+                "value": "1145", 
+                "text": "E级AMG", 
                 "remark": "进口"
               }, 
               {
-                "key": "192", 
-                "value": "G级", 
+                "value": "192", 
+                "text": "G级", 
                 "remark": "进口"
               }, 
               {
-                "key": "193", 
-                "value": "G级AMG", 
+                "value": "193", 
+                "text": "G级AMG", 
                 "remark": "进口"
               }, 
               {
-                "key": "179", 
-                "value": "GLA级 AMG", 
+                "value": "179", 
+                "text": "GLA级 AMG", 
                 "remark": "进口"
               }, 
               {
-                "key": "1723", 
-                "value": "GLC级轿跑SUV", 
+                "value": "1723", 
+                "text": "GLC级轿跑SUV", 
                 "remark": "进口"
               }, 
               {
-                "key": "1516", 
-                "value": "GLE级", 
+                "value": "1516", 
+                "text": "GLE级", 
                 "remark": "进口"
               }, 
               {
-                "key": "1634", 
-                "value": "GLE轿跑SUV", 
+                "value": "1634", 
+                "text": "GLE轿跑SUV", 
                 "remark": "进口"
               }, 
               {
-                "key": "2023", 
-                "value": "GLS级", 
+                "value": "2023", 
+                "text": "GLS级", 
                 "remark": "进口"
               }, 
               {
-                "key": "337", 
-                "value": "S级", 
+                "value": "337", 
+                "text": "S级", 
                 "remark": "进口"
               }, 
               {
-                "key": "339", 
-                "value": "S级AMG", 
+                "value": "339", 
+                "text": "S级AMG", 
                 "remark": "进口"
               }, 
               {
-                "key": "2483", 
-                "value": "SLC级", 
+                "value": "2483", 
+                "text": "SLC级", 
                 "remark": "进口"
               }, 
               {
-                "key": "330", 
-                "value": "SL级", 
+                "value": "330", 
+                "text": "SL级", 
                 "remark": "进口"
               }
             ]
           }, 
           {
-            "key": "367,7655,8638,8637,8393,6854,4670,2019,1856,1840,232,231,228,55,42,34,30,11,3,988,555,553,397,375,372,371,369", 
-            "value": "宝马", 
+            "value": "367,7655,8638,8637,8393,6854,4670,2019,1856,1840,232,231,228,55,42,34,30,11,3,988,555,553,397,375,372,371,369", 
+            "text": "宝马", 
             "children": [
               {
-                "key": "3", 
-                "value": "1系两厢", 
+                "value": "3", 
+                "text": "1系两厢", 
                 "remark": "进口"
               }, 
               {
-                "key": "11", 
-                "value": "2系", 
+                "value": "11", 
+                "text": "2系", 
                 "remark": "进口"
               }, 
               {
-                "key": "988", 
-                "value": "2系多功能旅行车", 
+                "value": "988", 
+                "text": "2系多功能旅行车", 
                 "remark": "进口"
               }, 
               {
-                "key": "30", 
-                "value": "3系GT", 
+                "value": "30", 
+                "text": "3系GT", 
                 "remark": "进口"
               }, 
               {
-                "key": "34", 
-                "value": "4系", 
+                "value": "34", 
+                "text": "4系", 
                 "remark": "进口"
               }, 
               {
-                "key": "42", 
-                "value": "5系", 
+                "value": "42", 
+                "text": "5系", 
                 "remark": "进口"
               }, 
               {
-                "key": "4670", 
-                "value": "6系GT", 
+                "value": "4670", 
+                "text": "6系GT", 
                 "remark": "进口"
               }, 
               {
-                "key": "55", 
-                "value": "7系", 
+                "value": "55", 
+                "text": "7系", 
                 "remark": "进口"
               }, 
               {
-                "key": "1856", 
-                "value": "7系 PHEV", 
+                "value": "1856", 
+                "text": "7系 PHEV", 
                 "remark": "进口"
               }, 
               {
-                "key": "8393", 
-                "value": "8系", 
+                "value": "8393", 
+                "text": "8系", 
                 "remark": "进口"
               }, 
               {
-                "key": "553", 
-                "value": "i3 EV", 
+                "value": "553", 
+                "text": "i3 EV", 
                 "remark": "进口"
               }, 
               {
-                "key": "555", 
-                "value": "i8 Coupe", 
+                "value": "555", 
+                "text": "i8 Coupe", 
                 "remark": "进口"
               }, 
               {
-                "key": "7655", 
-                "value": "i8 敞篷", 
+                "value": "7655", 
+                "text": "i8 敞篷", 
                 "remark": "进口"
               }, 
               {
-                "key": "2019", 
-                "value": "M2", 
+                "value": "2019", 
+                "text": "M2", 
                 "remark": "进口"
               }, 
               {
-                "key": "228", 
-                "value": "M3", 
+                "value": "228", 
+                "text": "M3", 
                 "remark": "进口"
               }, 
               {
-                "key": "231", 
-                "value": "M4", 
+                "value": "231", 
+                "text": "M4", 
                 "remark": "进口"
               }, 
               {
-                "key": "232", 
-                "value": "M5", 
+                "value": "232", 
+                "text": "M5", 
                 "remark": "进口"
               }, 
               {
-                "key": "8637", 
-                "value": "X3M", 
+                "value": "8637", 
+                "text": "X3M", 
                 "remark": "进口"
               }, 
               {
-                "key": "367", 
-                "value": "X4", 
+                "value": "367", 
+                "text": "X4", 
                 "remark": "进口"
               }, 
               {
-                "key": "8638", 
-                "value": "X4M", 
+                "value": "8638", 
+                "text": "X4M", 
                 "remark": "进口"
               }, 
               {
-                "key": "369", 
-                "value": "X5", 
+                "value": "369", 
+                "text": "X5", 
                 "remark": "进口"
               }, 
               {
-                "key": "1840", 
-                "value": "X5 e", 
+                "value": "1840", 
+                "text": "X5 e", 
                 "remark": "进口"
               }, 
               {
-                "key": "371", 
-                "value": "X5M", 
+                "value": "371", 
+                "text": "X5M", 
                 "remark": "进口"
               }, 
               {
-                "key": "372", 
-                "value": "X6", 
+                "value": "372", 
+                "text": "X6", 
                 "remark": "进口"
               }, 
               {
-                "key": "375", 
-                "value": "X6M", 
+                "value": "375", 
+                "text": "X6M", 
                 "remark": "进口"
               }, 
               {
-                "key": "6854", 
-                "value": "X7", 
+                "value": "6854", 
+                "text": "X7", 
                 "remark": "进口"
               }, 
               {
-                "key": "397", 
-                "value": "Z4", 
+                "value": "397", 
+                "text": "Z4", 
                 "remark": "进口"
               }
             ]
           }, 
           {
-            "key": "744,7694,8157,8156,8186,7893,8153,7553,8539,8538,7134,7133,6313,6295,5712,5511,4565,2119,7440,7254,159,968,826", 
-            "value": "比亚迪", 
+            "value": "744,7694,8157,8156,8186,7893,8153,7553,8539,8538,7134,7133,6313,6295,5712,5511,4565,2119,7440,7254,159,968,826", 
+            "text": "比亚迪", 
             "children": [
               {
-                "key": "7694", 
-                "value": "e1", 
+                "value": "7694", 
+                "text": "e1", 
                 "remark": "国产"
               }, 
               {
-                "key": "8157", 
-                "value": "e2", 
+                "value": "8157", 
+                "text": "e2", 
                 "remark": "国产"
               }, 
               {
-                "key": "7254", 
-                "value": "e3", 
+                "value": "7254", 
+                "text": "e3", 
                 "remark": "国产"
               }, 
               {
-                "key": "159", 
-                "value": "F3", 
+                "value": "159", 
+                "text": "F3", 
                 "remark": "国产"
               }, 
               {
-                "key": "8153", 
-                "value": "秦", 
+                "value": "8153", 
+                "text": "秦", 
                 "remark": "国产"
               }, 
               {
-                "key": "744", 
-                "value": "秦 EV", 
+                "value": "744", 
+                "text": "秦 EV", 
                 "remark": "国产"
               }, 
               {
-                "key": "6295", 
-                "value": "秦 PHEV", 
+                "value": "6295", 
+                "text": "秦 PHEV", 
                 "remark": "国产"
               }, 
               {
-                "key": "6313", 
-                "value": "秦Pro", 
+                "value": "6313", 
+                "text": "秦Pro", 
                 "remark": "国产"
               }, 
               {
-                "key": "7133", 
-                "value": "秦Pro EV", 
+                "value": "7133", 
+                "text": "秦Pro EV", 
                 "remark": "国产"
               }, 
               {
-                "key": "7134", 
-                "value": "秦Pro PHEV", 
+                "value": "7134", 
+                "text": "秦Pro PHEV", 
                 "remark": "国产"
               }, 
               {
-                "key": "7893", 
-                "value": "S2", 
+                "value": "7893", 
+                "text": "S2", 
                 "remark": "国产"
               }, 
               {
-                "key": "4565", 
-                "value": "宋MAX", 
+                "value": "4565", 
+                "text": "宋MAX", 
                 "remark": "国产"
               }, 
               {
-                "key": "7440", 
-                "value": "宋MAX DM", 
+                "value": "7440", 
+                "text": "宋MAX DM", 
                 "remark": "国产"
               }, 
               {
-                "key": "8156", 
-                "value": "宋MAX EV", 
+                "value": "8156", 
+                "text": "宋MAX EV", 
                 "remark": "国产"
               }, 
               {
-                "key": "8186", 
-                "value": "宋Pro", 
+                "value": "8186", 
+                "text": "宋Pro", 
                 "remark": "国产"
               }, 
               {
-                "key": "8538", 
-                "value": "宋Pro DM", 
+                "value": "8538", 
+                "text": "宋Pro DM", 
                 "remark": "国产"
               }, 
               {
-                "key": "8539", 
-                "value": "宋Pro EV", 
+                "value": "8539", 
+                "text": "宋Pro EV", 
                 "remark": "国产"
               }, 
               {
-                "key": "826", 
-                "value": "速锐", 
+                "value": "826", 
+                "text": "速锐", 
                 "remark": "国产"
               }, 
               {
-                "key": "5712", 
-                "value": "唐", 
+                "value": "5712", 
+                "text": "唐", 
                 "remark": "国产"
               }, 
               {
-                "key": "7553", 
-                "value": "唐 EV", 
+                "value": "7553", 
+                "text": "唐 EV", 
                 "remark": "国产"
               }, 
               {
-                "key": "968", 
-                "value": "唐 PHEV", 
+                "value": "968", 
+                "text": "唐 PHEV", 
                 "remark": "国产"
               }, 
               {
-                "key": "2119", 
-                "value": "元", 
+                "value": "2119", 
+                "text": "元", 
                 "remark": "国产"
               }, 
               {
-                "key": "5511", 
-                "value": "元 EV", 
+                "value": "5511", 
+                "text": "元 EV", 
                 "remark": "国产"
               }
             ]
@@ -1840,16 +1840,16 @@
         ]
       }, 
       {
-        "key": "338", 
-        "value": "M", 
+        "value": "338", 
+        "text": "M", 
         "children": [
           {
-            "key": "338", 
-            "value": "梅赛德斯-迈巴赫", 
+            "value": "338", 
+            "text": "梅赛德斯-迈巴赫", 
             "children": [
               {
-                "key": "338", 
-                "value": "S级", 
+                "value": "338", 
+                "text": "S级", 
                 "remark": "进口"
               }
             ]
@@ -1857,41 +1857,41 @@
         ]
       }, 
       {
-        "key": "2384,6633,5308,4620,3073,2845", 
-        "value": "O", 
+        "value": "2384,6633,5308,4620,3073,2845", 
+        "text": "O", 
         "children": [
           {
-            "key": "2384,6633,5308,4620,3073,2845", 
-            "value": "讴歌", 
+            "value": "2384,6633,5308,4620,3073,2845", 
+            "text": "讴歌", 
             "children": [
               {
-                "key": "2384", 
-                "value": "CDX", 
+                "value": "2384", 
+                "text": "CDX", 
                 "remark": "国产"
               }, 
               {
-                "key": "5308", 
-                "value": "CDX HEV", 
+                "value": "5308", 
+                "text": "CDX HEV", 
                 "remark": "国产"
               }, 
               {
-                "key": "6633", 
-                "value": "RDX", 
+                "value": "6633", 
+                "text": "RDX", 
                 "remark": "国产"
               }, 
               {
-                "key": "4620", 
-                "value": "TLX-L", 
+                "value": "4620", 
+                "text": "TLX-L", 
                 "remark": "国产"
               }, 
               {
-                "key": "3073", 
-                "value": "MDX HEV", 
+                "value": "3073", 
+                "text": "MDX HEV", 
                 "remark": "进口"
               }, 
               {
-                "key": "2845", 
-                "value": "NSX", 
+                "value": "2845", 
+                "text": "NSX", 
                 "remark": "进口"
               }
             ]
@@ -1899,46 +1899,46 @@
         ]
       }, 
       {
-        "key": "316,5612,5130,4805,2729,1837,381", 
-        "value": "W", 
+        "value": "316,5612,5130,4805,2729,1837,381", 
+        "text": "W", 
         "children": [
           {
-            "key": "316,5612,5130,4805,2729,1837,381", 
-            "value": "沃尔沃", 
+            "value": "316,5612,5130,4805,2729,1837,381", 
+            "text": "沃尔沃", 
             "children": [
               {
-                "key": "316", 
-                "value": "S60", 
+                "value": "316", 
+                "text": "S60", 
                 "remark": "国产"
               }, 
               {
-                "key": "1837", 
-                "value": "S60 E驱混动", 
+                "value": "1837", 
+                "text": "S60 E驱混动", 
                 "remark": "国产"
               }, 
               {
-                "key": "2729", 
-                "value": "S90", 
+                "value": "2729", 
+                "text": "S90", 
                 "remark": "国产"
               }, 
               {
-                "key": "5612", 
-                "value": "S90 E驱混动", 
+                "value": "5612", 
+                "text": "S90 E驱混动", 
                 "remark": "国产"
               }, 
               {
-                "key": "5130", 
-                "value": "XC40", 
+                "value": "5130", 
+                "text": "XC40", 
                 "remark": "国产"
               }, 
               {
-                "key": "381", 
-                "value": "XC60", 
+                "value": "381", 
+                "text": "XC60", 
                 "remark": "国产"
               }, 
               {
-                "key": "4805", 
-                "value": "XC60 E驱混动", 
+                "value": "4805", 
+                "text": "XC60 E驱混动", 
                 "remark": "国产"
               }
             ]
@@ -1946,86 +1946,86 @@
         ]
       }, 
       {
-        "key": "556,8576,8135,8319,6493,5992,5246,4548,3014,2643,2099,900,850,700,557", 
-        "value": "X", 
+        "value": "556,8576,8135,8319,6493,5992,5246,4548,3014,2643,2099,900,850,700,557", 
+        "text": "X", 
         "children": [
           {
-            "key": "556,8576,8135,8319,6493,5992,5246,4548,3014,2643,2099,900,850,700,557", 
-            "value": "现代", 
+            "value": "556,8576,8135,8319,6493,5992,5246,4548,3014,2643,2099,900,850,700,557", 
+            "text": "现代", 
             "children": [
               {
-                "key": "556", 
-                "value": "ix 25", 
+                "value": "556", 
+                "text": "ix 25", 
                 "remark": "国产"
               }, 
               {
-                "key": "557", 
-                "value": "ix 35", 
+                "value": "557", 
+                "text": "ix 35", 
                 "remark": "国产"
               }, 
               {
-                "key": "5246", 
-                "value": "昂希诺", 
+                "value": "5246", 
+                "text": "昂希诺", 
                 "remark": "国产"
               }, 
               {
-                "key": "8319", 
-                "value": "昂希诺 EV", 
+                "value": "8319", 
+                "text": "昂希诺 EV", 
                 "remark": "国产"
               }, 
               {
-                "key": "6493", 
-                "value": "菲斯塔", 
+                "value": "6493", 
+                "text": "菲斯塔", 
                 "remark": "国产"
               }, 
               {
-                "key": "8576", 
-                "value": "菲斯塔 EV", 
+                "value": "8576", 
+                "text": "菲斯塔 EV", 
                 "remark": "国产"
               }, 
               {
-                "key": "2099", 
-                "value": "领动", 
+                "value": "2099", 
+                "text": "领动", 
                 "remark": "国产"
               }, 
               {
-                "key": "8135", 
-                "value": "领动 PHEV", 
+                "value": "8135", 
+                "text": "领动 PHEV", 
                 "remark": "国产"
               }, 
               {
-                "key": "700", 
-                "value": "名图", 
+                "value": "700", 
+                "text": "名图", 
                 "remark": "国产"
               }, 
               {
-                "key": "4548", 
-                "value": "全新瑞纳", 
+                "value": "4548", 
+                "text": "全新瑞纳", 
                 "remark": "国产"
               }, 
               {
-                "key": "3014", 
-                "value": "全新悦动", 
+                "value": "3014", 
+                "text": "全新悦动", 
                 "remark": "国产"
               }, 
               {
-                "key": "5992", 
-                "value": "索纳塔 PHEV", 
+                "value": "5992", 
+                "text": "索纳塔 PHEV", 
                 "remark": "国产"
               }, 
               {
-                "key": "850", 
-                "value": "途胜", 
+                "value": "850", 
+                "text": "途胜", 
                 "remark": "国产"
               }, 
               {
-                "key": "900", 
-                "value": "新胜达", 
+                "value": "900", 
+                "text": "新胜达", 
                 "remark": "国产"
               }, 
               {
-                "key": "2643", 
-                "value": "悦纳", 
+                "value": "2643", 
+                "text": "悦纳", 
                 "remark": "国产"
               }
             ]
@@ -2035,212 +2035,212 @@
     ],
     [
       {
-        "key": "61,64,65,70,74,4514,5145,8014,269,271,5792,63,66,1818,71,73,75,1534,77,78,268,270,275,292,293,301,2363,302,307,310,314,318,320,333,346,348,349,350", 
-        "value": "分组1", 
+        "value": "61,64,65,70,74,4514,5145,8014,269,271,5792,63,66,1818,71,73,75,1534,77,78,268,270,275,292,293,301,2363,302,307,310,314,318,320,333,346,348,349,350", 
+        "text": "分组1", 
         "children": [
           {
-            "key": "61,64,65,70,74,4514,5145,8014,269,271,5792,63,66,1818,71,73,75,1534,77,78,268,270,275,292,293,301,2363,302,307,310,314,318,320,333,346,348,349,350", 
-            "value": "A1", 
+            "value": "61,64,65,70,74,4514,5145,8014,269,271,5792,63,66,1818,71,73,75,1534,77,78,268,270,275,292,293,301,2363,302,307,310,314,318,320,333,346,348,349,350", 
+            "text": "A1", 
             "children": [
               {
-                "key": "64", 
-                "value": "A3", 
+                "value": "64", 
+                "text": "A3", 
                 "remark": "国产"
               }, 
               {
-                "key": "65", 
-                "value": "A3 Sportback", 
+                "value": "65", 
+                "text": "A3 Sportback", 
                 "remark": "国产"
               }, 
               {
-                "key": "70", 
-                "value": "A4L", 
+                "value": "70", 
+                "text": "A4L", 
                 "remark": "国产"
               }, 
               {
-                "key": "74", 
-                "value": "A6L", 
+                "value": "74", 
+                "text": "A6L", 
                 "remark": "国产"
               }, 
               {
-                "key": "4514", 
-                "value": "A6L TFSI e", 
+                "value": "4514", 
+                "text": "A6L TFSI e", 
                 "remark": "国产"
               }, 
               {
-                "key": "5145", 
-                "value": "Q2L", 
+                "value": "5145", 
+                "text": "Q2L", 
                 "remark": "国产"
               }, 
               {
-                "key": "8014", 
-                "value": "Q2L E-Tron", 
+                "value": "8014", 
+                "text": "Q2L E-Tron", 
                 "remark": "国产"
               }, 
               {
-                "key": "269", 
-                "value": "Q3", 
+                "value": "269", 
+                "text": "Q3", 
                 "remark": "国产"
               }, 
               {
-                "key": "271", 
-                "value": "Q5", 
+                "value": "271", 
+                "text": "Q5", 
                 "remark": "国产"
               }, 
               {
-                "key": "5792", 
-                "value": "Q5L", 
+                "value": "5792", 
+                "text": "Q5L", 
                 "remark": "国产"
               }, 
               {
-                "key": "63", 
-                "value": "A3", 
+                "value": "63", 
+                "text": "A3", 
                 "remark": "进口"
               }, 
               {
-                "key": "66", 
-                "value": "A3 Sportback", 
+                "value": "66", 
+                "text": "A3 Sportback", 
                 "remark": "进口"
               }, 
               {
-                "key": "1818", 
-                "value": "A3 Sportback E-tron", 
+                "value": "1818", 
+                "text": "A3 Sportback E-tron", 
                 "remark": "进口"
               }, 
               {
-                "key": "71", 
-                "value": "A4 Allroad", 
+                "value": "71", 
+                "text": "A4 Allroad", 
                 "remark": "进口"
               }, 
               {
-                "key": "73", 
-                "value": "A5", 
+                "value": "73", 
+                "text": "A5", 
                 "remark": "进口"
               }, 
               {
-                "key": "75", 
-                "value": "A6", 
+                "value": "75", 
+                "text": "A6", 
                 "remark": "进口"
               }, 
               {
-                "key": "1534", 
-                "value": "A6 Allroad", 
+                "value": "1534", 
+                "text": "A6 Allroad", 
                 "remark": "进口"
               }, 
               {
-                "key": "77", 
-                "value": "A7", 
+                "value": "77", 
+                "text": "A7", 
                 "remark": "进口"
               }, 
               {
-                "key": "78", 
-                "value": "A8L", 
+                "value": "78", 
+                "text": "A8L", 
                 "remark": "进口"
               }, 
               {
-                "key": "268", 
-                "value": "Q3", 
+                "value": "268", 
+                "text": "Q3", 
                 "remark": "进口"
               }, 
               {
-                "key": "270", 
-                "value": "Q5", 
+                "value": "270", 
+                "text": "Q5", 
                 "remark": "进口"
               }, 
               {
-                "key": "275", 
-                "value": "Q7", 
+                "value": "275", 
+                "text": "Q7", 
                 "remark": "进口"
               }, 
               {
-                "key": "292", 
-                "value": "R8", 
+                "value": "292", 
+                "text": "R8", 
                 "remark": "进口"
               }, 
               {
-                "key": "293", 
-                "value": "R8敞篷车", 
+                "value": "293", 
+                "text": "R8敞篷车", 
                 "remark": "进口"
               }, 
               {
-                "key": "301", 
-                "value": "RS5", 
+                "value": "301", 
+                "text": "RS5", 
                 "remark": "进口"
               }, 
               {
-                "key": "2363", 
-                "value": "RS6", 
+                "value": "2363", 
+                "text": "RS6", 
                 "remark": "进口"
               }, 
               {
-                "key": "302", 
-                "value": "RS7", 
+                "value": "302", 
+                "text": "RS7", 
                 "remark": "进口"
               }, 
               {
-                "key": "307", 
-                "value": "S3", 
+                "value": "307", 
+                "text": "S3", 
                 "remark": "进口"
               }, 
               {
-                "key": "310", 
-                "value": "S5", 
+                "value": "310", 
+                "text": "S5", 
                 "remark": "进口"
               }, 
               {
-                "key": "314", 
-                "value": "S6", 
+                "value": "314", 
+                "text": "S6", 
                 "remark": "进口"
               }, 
               {
-                "key": "318", 
-                "value": "S7", 
+                "value": "318", 
+                "text": "S7", 
                 "remark": "进口"
               }, 
               {
-                "key": "320", 
-                "value": "S8", 
+                "value": "320", 
+                "text": "S8", 
                 "remark": "进口"
               }, 
               {
-                "key": "333", 
-                "value": "SQ5", 
+                "value": "333", 
+                "text": "SQ5", 
                 "remark": "进口"
               }, 
               {
-                "key": "346", 
-                "value": "TT", 
+                "value": "346", 
+                "text": "TT", 
                 "remark": "进口"
               }, 
               {
-                "key": "348", 
-                "value": "TT ROADSTER", 
+                "value": "348", 
+                "text": "TT ROADSTER", 
                 "remark": "进口"
               }, 
               {
-                "key": "349", 
-                "value": "TTS", 
+                "value": "349", 
+                "text": "TTS", 
                 "remark": "进口"
               }, 
               {
-                "key": "350", 
-                "value": "TTS ROADSTER", 
+                "value": "350", 
+                "text": "TTS ROADSTER", 
                 "remark": "进口"
               }
             ]
           }, 
           {
-            "key": "109,61,145", 
-            "value": "CC", 
+            "value": "109,61,145", 
+            "text": "CC", 
             "children": [
               {
-                "key": "61", 
-                "value": "A1", 
+                "value": "61", 
+                "text": "A1", 
                 "remark": "进口"
               }, 
               {
-                "key": "145", 
-                "value": "EOS", 
+                "value": "145", 
+                "text": "EOS", 
                 "remark": "进口"
               }
             ]
