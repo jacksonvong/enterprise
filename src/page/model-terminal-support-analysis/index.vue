@@ -30,14 +30,14 @@
               :label="tableData.columns[1].title"
               width="180">
               <template slot-scope="scope">
-                <span>{{ scope.row.salesAcc }}</span>/<span :class="getClass(scope.row.salesAccYoYValue)">{{ scope.row.salesAccYoYValue | toPercent(1, true, '%', 1) }}</span>
+                <span>{{ scope.row.salesAcc }}</span>/<span :class="getClass(scope.row.salesAccYoYValue)">{{ scope.row.salesAccYoYValue }}</span>
               </template>
             </iw-table-column>
             <iw-table-column
               :label="tableData.columns[2].title"
               width="180">
               <template slot-scope="scope">
-                <span>{{ scope.row.sales }}</span>/<span :class="getClass(scope.row.salesYoYValue)">{{ scope.row.salesYoYValue | toPercent(1, true, '%', 1) }}</span>
+                <span>{{ scope.row.sales }}</span>/<span :class="getClass(scope.row.salesYoYValue)">{{ scope.row.salesYoYValue }}</span>
               </template>
             </iw-table-column>
             <iw-table-column

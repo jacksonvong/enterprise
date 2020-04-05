@@ -78,7 +78,7 @@ export function getSubmodel(data) {
 // 查询竞争圈列表
 export function getCompCircles(data) {
   return request({
-    url: '/enterprise/common/get-comp-circles',
+    url: '/enterprise/common/get-submodel-comp-circle',
     method: 'post',
     data: {
       data

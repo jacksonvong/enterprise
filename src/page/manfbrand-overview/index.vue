@@ -47,6 +47,7 @@
             :loading="manfBrandOptionsLoading"
             :title="$t('manfbrandOverview.overview.addManfbrandTitle')"
             :min="1"
+            :leafs-per-column="5"
             :option-props="{ value: 'value', label: 'text', children: 'children' }"
             show-search
             show-selected

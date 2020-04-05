@@ -198,8 +198,9 @@
               :show-folder="false"
               :show-selected="true"
               :title="$t('common.subModel')"
+              :option-props="{ value: 'value', label: 'text', children: 'children' }"
               placement="bottomLeft"
-              style="width: 420px;"
+              style="width: 360px;"
               class="iw-text-bold"
               size="mini"
               require
@@ -518,9 +519,10 @@ export default {
       this.$emit('change', this.dataFormFilter())
     },
     handleJpChange(value, text) {
+      console.log(value, text)
       this.dataForm.compCircle = value
-      this.dataForm.compCircleName = text.value
-      this.dataForm.jpId = text.children.map(item => item.key)
+      this.dataForm.compCircleName = text.text
+      this.dataForm.jpId = text.children.map(item => item.value)
       this.dataForm.jp = text.children
       this.setDefaultCompCircle() // 记录选中的竞争圈
       this.$emit('change', this.dataFormFilter())
@@ -584,7 +586,9 @@ export default {
       if (this.show.subModel) {
         this.getSubmodelOptions()
         await this.getDefaultSubmodel()
-        // await this.getCompCircles()
+      }
+      if (this.show.competitor) {
+        this.getCompCircles()
       }
       if (this.show.reward) {
         this.getRewardOptions()
@@ -849,9 +853,9 @@ export default {
             this.$set(this.searchFormData, 'competitiveCircle', data)
             const compCircle = data.find(item => item.selected) || data[0]
             if (compCircle) {
-              this.$set(this.dataForm, 'compCircle', compCircle.key)
-              this.$set(this.dataForm, 'compCircleName', compCircle.value)
-              this.$set(this.dataForm, 'jpId', compCircle.children.map(item => item.key))
+              this.$set(this.dataForm, 'compCircle', compCircle.value)
+              this.$set(this.dataForm, 'compCircleName', compCircle.text)
+              this.$set(this.dataForm, 'jpId', compCircle.children.map(item => item.value))
               this.$set(this.dataForm, 'jp', compCircle.children)
             } else {
               this.$set(this.dataForm, 'compCircle', null)
