@@ -1,7 +1,7 @@
 <template>
   <div class="model-terminal-support-analysis">
     <iw-banner :title="$t('modelOverview.banner.title')" />
-    <div :style="{'padding-top': $store.state.app.filter!=='fixed' ? '10px' : '76px'}" class="main-content">
+    <div :style="{'padding-top': $store.state.app.filter!=='fixed' ? '10px' : '94px'}" class="main-content">
       <iw-filter
         :id="$store.state.app.filter!=='fixed'?'overview-analyse':''"
         :show="{ dataTimeType: true, dataSource: true, subModel: true, competitor: true, versionType: true, version: true }"
@@ -9,7 +9,7 @@
         @change="handleFilterChange"
       />
       <iw-filter-radio @change="handleFilterRadioChange" />
-      <a-card :body-style="{padding: '15px 20px'}">
+      <a-card :body-style="{padding: '0'}">
         <a-spin :spinning="tableData.loading">
           <iw-table
             v-if="tableData.data.length>0"

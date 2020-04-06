@@ -1,9 +1,9 @@
 <template>
   <div class="terminal-excition-search">
     <iw-banner :title="$t('terminalExcitionSearch.banner.title')" />
-    <div :style="{'padding-top': $store.state.app.filter!=='fixed' ? '10px' : '76px'}" class="main-content">
+    <div :style="{'padding-top': $store.state.app.filter!=='fixed' ? '10px' : '94px'}" class="main-content">
       <iw-filter
-        :key="$store.state.app.filter!=='fixed'?'overview-analyse':''"
+        :id="$store.state.app.filter!=='fixed'?'overview-analyse':''"
         :show="{market: true, dataTimeType: true, dimensionType: true, subModel: true, dataType: true}"
         :multiple="{segment: true, manfBrand: true, subModel: true}"
         :data-time-range="true"
