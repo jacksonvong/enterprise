@@ -10,3 +10,12 @@ export function getSingleModelTerminalAnalyzeData(data) {
     }
   })
 }
+export function getAllExcitationAnalyze(data) {
+  return request({
+    url: '/enterprise/model-terminal-support-analysis/getAllExcitationAnalyze',
+    method: 'post',
+    data: {
+      data
+    }
+  })
+}

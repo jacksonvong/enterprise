@@ -1,9 +1,9 @@
 export const color = {
   line: [
-    '#5e8cda',
+    '#4182F3',
+    '#FF4D4F',
+    '#36C585',
     '#FFA940',
-    '#41D3F4',
-    '#FFD666',
     '#04CC72',
     '#B385EE'
   ],

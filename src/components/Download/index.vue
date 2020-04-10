@@ -33,7 +33,7 @@ import $ from 'jquery'
 import canvg from 'canvg'
 
 export default {
-  name: 'DownloadBtn',
+  name: 'IwDownload',
   components: {
     AIcon: Icon,
     APopover: Popover

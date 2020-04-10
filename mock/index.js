@@ -36,7 +36,8 @@ const proxy = {
   // 终端
   'POST /api/enterprise/terminal-excition-search/getMoney': fromJSONFile('terminal-excition-search/getMoney'),
   // 单车型
-  'POST /api/enterprise/model-terminal-support-analysis/getSingleModelTerminalAnalyzeData': fromJSONFile('model-terminal-support-analysis/getSingleModelTerminalAnalyzeData')
+  'POST /api/enterprise/model-terminal-support-analysis/getSingleModelTerminalAnalyzeData': fromJSONFile('model-terminal-support-analysis/getSingleModelTerminalAnalyzeData'),
+  'POST /api/enterprise/model-terminal-support-analysis/getAllExcitationAnalyze': fromJSONFile('model-terminal-support-analysis/getAllExcitationAnalyze')
 
 }
 module.exports = proxy

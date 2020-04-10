@@ -83,13 +83,12 @@
         :active-tab-key="titleKey"
         class="ant-card-shortline"
         :head-style="{padding: 0}"
-        :body-style="{padding: '15px 20px'}"
+        :body-style="{padding: '15px 0 0 0',background: '#f5f5f5'}"
         @tabChange="key => onTabChange(key)"
-      >
-        <template v-for="(item, key) in tabListTitle">
-          <component :is="item.component" v-if="titleKey===item.key" :key="key" />
-        </template>
-      </a-card>
+      />
+      <template v-for="(item, key) in tabListTitle">
+        <component :is="item.component" v-if="titleKey===item.key" :key="key" :data-form="dataForm" />
+      </template>
     </div>
   </div>
 </template>
@@ -101,6 +100,10 @@ import IwFilter from '@/components/filter/index'
 import IwFilterRadio from '@/components/filter/radio'
 import IwTotal from './components/total'
 import IwYear from './components/year'
+import IwMonth from './components/month'
+import IwProfit from './components/profit'
+import IwSituation from './components/situation'
+import IwModelPrice from './components/model-price'
 import _ from 'lodash'
 import { getSingleModelTerminalAnalyzeData } from '@/api/model-terminal-support-analysis'
 export default {
@@ -111,7 +114,11 @@ export default {
     IwFilter,
     IwFilterRadio,
     IwTotal,
-    IwYear
+    IwYear,
+    IwMonth,
+    IwProfit,
+    IwSituation,
+    IwModelPrice
   },
   data() {
     return {
@@ -134,6 +141,26 @@ export default {
           key: '2',
           tab: this.$t('年度激励分析'),
           component: 'IwYear'
+        },
+        {
+          key: '3',
+          tab: this.$t('月度激励分析'),
+          component: 'IwMonth'
+        },
+        {
+          key: '4',
+          tab: this.$t('利润分析'),
+          component: 'IwProfit'
+        },
+        {
+          key: '5',
+          tab: this.$t('格局分析'),
+          component: 'IwSituation'
+        },
+        {
+          key: '6',
+          tab: this.$t('单车价格策略分析'),
+          component: 'IwModelPrice'
         }
       ]
     }

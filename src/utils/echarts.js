@@ -2,7 +2,7 @@ import { color, fieldsMapper } from '@/utils/includes'
 import { copyObject } from '@/utils/helper'
 import { toThousand, toPercent } from '@/utils/filters'
 import _ from 'lodash'
-import map from '@/components/charts/json/china'
+// import map from '@/components/charts/json/china'
 const echarts = require('echarts')
 const params = {
   text: {},
@@ -20,7 +20,7 @@ const params = {
   tooltipZerofilter: false, // 过滤数值为0的系列
   tooltipSort: '1', // 1正序 ； -1倒叙
   defaultField: undefined,
-  numPerPage: 6,
+  numPerPage: 12,
   legend: {
     orient: 'vertical',
     top: 10,
@@ -54,9 +54,9 @@ const params = {
   rich: {},
   mapName: 'china',
   mapType: 1, // 1:国家,2:省份,3:城市
-  geoJson: map,
+  // geoJson: map,
   geoZoom: 1,
-  mapFeatures: map.features,
+  // mapFeatures: map.features,
   maxSymbolSize: 30, // 直径30px
   dataZoom: {
     show: true,
@@ -145,7 +145,7 @@ function labelFormatter(param, config) {
     case 'normal': val = toThousand(value); break
     case 'percent': val = toPercent(value, 1); break
     case 'decimal': val = Number(value).toFixed(1); break
-    default: val = toPercent(value, 1); break
+    default: val = toThousand(value); break
   }
   return val
 }
@@ -176,13 +176,15 @@ export class Chart {
     this.config.geoJson = geoJson
     // 排除异常
     let start = 0
+    if (this.option.xAxis) this.option.xAxis[0] = this.option.xAxis
     if (this.option.xAxis && this.option.xAxis[0].data) {
       const len = this.option.xAxis[0].data.length
-      start = len <= this.config.numPerPage ? 0 : parseInt(((len - this.config.numPerPage) / len) * 100)
+      start = len <= this.config.numPerPage ? 0 : parseInt(((len - this.config.numPerPage + 1) / len) * 100)
     }
+    if (this.option.yAxis) this.option.yAxis[0] = this.option.yAxis
     if (this.option.yAxis && this.option.yAxis[0].data && this.option.yAxis[0].type === 'category') {
       const len = this.option.yAxis[0].data.length
-      start = len <= this.config.numPerPage ? 0 : parseInt(((len - this.config.numPerPage) / len) * 100)
+      start = len <= this.config.numPerPage ? 0 : parseInt(((len - this.config.numPerPage + 1) / len) * 100)
     }
     start = Number(start)
     if (this.config.dataZoom.start !== undefined) {
@@ -478,12 +480,14 @@ export class Chart {
       },
       grid: {
         borderWidth: 0,
-        top: 30,
+        left: 80,
         right: 20,
-        bottom: 84
+        top: 60,
+        bottom: 80,
+        ...config.grid
       },
       legend: {
-        bottom: '10',
+        bottom: 10,
         type: 'scroll',
         textStyle: {
           color: '#5a5a5a'
@@ -580,6 +584,7 @@ export class Chart {
           markPoint: item.markPoint,
           yAxisIndex: item.yAxisIndex || 0,
           symbolSize: 10,
+          smooth: !!config.smooth,
           itemStyle: {
             normal: {
               color: config.customColor.length ? config.customColor[key] : color.line[key % 6],
@@ -631,8 +636,11 @@ export class Chart {
       },
       grid: {
         borderWidth: 0,
-        top: 40,
-        bottom: 105
+        left: 100,
+        right: 10,
+        top: 60,
+        bottom: 60,
+        ...config.grid
       },
       legend: {
         orient: 'horizontal',
@@ -1011,25 +1019,26 @@ export class Chart {
           }
         }
       },
-      color: config.customColor.length ? config.customColor : color.bar[Math.min(_this.option.legend.data.length, 13) - 1],
+      color: config.customColor.length ? config.customColor : color.bar[0],
       legend: {
         // ...config.legend,
         orient: 'vertical',
         left: 0,
         type: 'scroll',
-        data: _this.option.legend.data.map(item => {
+        data: _this.option.legend ? _this.option.legend.data.map(item => {
           return {
             name: item,
             icon: config.legendIcon.bar
           }
-        })
+        }) : []
       },
       grid: {
         borderWidth: 0,
         left: 100,
         right: 10,
-        top: config.grid ? config.grid.top : 10,
-        bottom: config.grid ? config.grid.bottom : 110
+        top: 60,
+        bottom: 60,
+        ...config.grid
       },
       // grid: {
       //   borderWidth: 0,
@@ -1088,17 +1097,17 @@ export class Chart {
             fontSize: 12,
             color: '#7f8593'
           },
-          max: config.yAxisMax,
-          show: _this.option.yAxis[0].show,
+          max: config.yAxisMax || null,
+          show: _this.option.yAxis[0].show !== false,
           type: _this.option.yAxis[0].type || config.yAxisType,
           inverse: config.yAxisInverse,
-          data: _this.option.yAxis[0] ? _this.option.yAxis[0].data : []
+          data: _this.option.yAxis[0] && _this.option.yAxis[0].data ? _this.option.yAxis[0].data : []
         } : { show: false }
       ],
       dataZoom: config.dataZoom.show ? [
         {
           ...config.dataZoom,
-          bottom: 60,
+          bottom: 20,
           showDetail: config.dataZoomShowDetail,
           showDataShadow: config.dataZoomShowDataShadow,
           handleIcon:

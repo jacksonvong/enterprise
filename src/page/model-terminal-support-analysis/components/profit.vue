@@ -1,7 +1,7 @@
 <template>
   <div>
     <a-card
-      :title="$t('及竞品年度激励对比',[])"
+      :title="$t('及竞品利润分析',[])"
       :body-style="{padding: '16px 24px'}">
       <span slot="extra" class="extra-header-download">
         <iw-download
@@ -12,7 +12,7 @@
         />
       </span>
       <div style="height: 400px">
-        <iw-chart :options="mainOpt"></iw-chart>
+        <iw-chart :options="optPrice" />
       </div>
     </a-card>
   </div>
@@ -34,14 +34,13 @@ export default {
   },
   data() {
     return {
-      // 单车型与竞品年度激励对比
-      mainOpt: {
-        color: ['#6398f5', '#80cbc4'],
+      optPrice: {
+        color: ['#6398f5', '#36c585', '#f9826f', '#ffaa42'],
         tooltip: {
           trigger: 'axis'
         },
         legend: {
-          data: ['年度固定折扣', '年度考核奖励'],
+          data: ['邮件营销', '联盟广告'],
           bottom: '-5px'
         },
         dataZoom: [
@@ -51,7 +50,9 @@ export default {
             bottom: '26px',
             handleIcon:
               'M10.7,11.9H9.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4h1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7v-1.2h6.6z M13.3,22H6.7v-1.2h6.6z M13.3,19.6H6.7v-1.2h6.6z',
-            handleSize: '50%'
+            handleSize: '50%',
+            start: 1,
+            end: 50
           }
         ],
         grid: {
@@ -63,11 +64,12 @@ export default {
         },
         xAxis: {
           type: 'category',
-          data: ['A7', '云100']
+          data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
         },
         yAxis: [
           {
             type: 'value',
+            name: '销量',
             nameLocation: 'end',
             splitLine: { // 网格线
               lineStyle: {
@@ -80,25 +82,28 @@ export default {
         series: [
           {
             smooth: true,
-            name: '年度固定折扣',
-            type: 'bar',
+            name: '邮件营销',
+            type: 'line',
             barMaxWidth: '38px',
-            data: [120, 56],
+            data: [120, 132, 101, 134, 90, 230, 210],
             yAxisIndex: 0,
-            stack: '1'
+            symbolSize: 6
           },
           {
             smooth: true,
-            name: '年度考核奖励',
-            type: 'bar',
-            barMaxWidth: '38px',
-            data: [34, 33],
+            name: '联盟广告',
+            type: 'line',
+            stack: '总量',
+            data: [220, 182, 191, 234, 290, 330, 310],
             yAxisIndex: 0,
-            stack: '1'
+            label: {
+              show: true
+            },
+            symbolSize: 6
           }
         ]
 
-      }
+      },
     }
   }
 }
