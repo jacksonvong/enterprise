@@ -19,3 +19,30 @@ export function getAllExcitationAnalyze(data) {
     }
   })
 }
+export function getYearExcitationAnalyze(data) {
+  return request({
+    url: '/enterprise/model-terminal-support-analysis/getYearExcitationAnalyze',
+    method: 'post',
+    data: {
+      data
+    }
+  })
+}
+export function getPattern(data) {
+  return request({
+    url: '/enterprise/model-terminal-support-analysis/getPattern',
+    method: 'post',
+    data: {
+      data
+    }
+  })
+}
+export function getPie(data) {
+  return request({
+    url: '/enterprise/model-terminal-support-analysis/getPie',
+    method: 'post',
+    data: {
+      data
+    }
+  })
+}

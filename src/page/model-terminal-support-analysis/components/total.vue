@@ -1,5 +1,10 @@
 <template>
   <div>
+    <a-card>
+      <div style="height: 300px">
+        <iw-chart :options="opt4" />
+      </div>
+    </a-card>
     <a-card
       :title="$t('总激励走势分析',[])"
       :body-style="{padding: '16px 24px'}">
@@ -42,7 +47,7 @@ import IwDownload from '@/components/download/index'
 import IwChart from '@/components/charts'
 import _ from 'lodash'
 import { Chart } from '@/utils/charts'
-import { getAllExcitationAnalyze } from '@/api/model-terminal-support-analysis'
+import { getAllExcitationAnalyze, getYearExcitationAnalyze, getPattern, getPie } from '@/api/model-terminal-support-analysis'
 
 export default {
   components: {
@@ -215,25 +220,7 @@ export default {
           trigger: 'axis'
         },
         legend: {
-          data: ['年度固定折扣', '年度考核奖励', '月度激励'],
-          bottom: '-5px'
-        },
-        dataZoom: [
-          {
-            type: 'slider',
-            show: true,
-            bottom: '26px',
-            handleIcon:
-              'M10.7,11.9H9.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4h1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7v-1.2h6.6z M13.3,22H6.7v-1.2h6.6z M13.3,19.6H6.7v-1.2h6.6z',
-            handleSize: '50%'
-          }
-        ],
-        grid: {
-          top: '30px',
-          left: '16px',
-          right: '16px',
-          bottom: '66px',
-          containLabel: true
+          data: ['年度固定折扣', '年度考核奖励', '月度激励']
         },
         xAxis: {
           type: 'category',
@@ -241,14 +228,7 @@ export default {
         },
         yAxis: [
           {
-            type: 'value',
-            nameLocation: 'end',
-            splitLine: { // 网格线
-              lineStyle: {
-                type: 'dashed' // 设置网格线类型 dotted：虚线   solid:实线
-              },
-              show: true // 隐藏或显示
-            }
+            type: 'value'
           }
         ],
         series: [
@@ -281,7 +261,8 @@ export default {
           }
         ]
 
-      }
+      },
+      opt4: {}
     }
   },
   watch: {
@@ -298,14 +279,17 @@ export default {
       this.init()
     }, 100))
     if (this.dataForm.ym) {
-      console.log(this.dataForm)
       this.getData()
+      this.opt3 = new Chart('bar', this.opt3).getChart()
     }
   },
   methods: {
     init() {},
     getData() {
       this.getChart()
+      this.getChart2()
+      this.getChart3()
+      this.getChart4()
     },
     getChart() {
       this.chartAllExcitation.loading = true
@@ -321,9 +305,102 @@ export default {
         .then(res => {
           const data = res.data[0] || {}
           this.opt1 = new Chart('line', data, {
-            smooth: true
+            yAxis: { name: '元' },
+            smooth: true,
+            itemStyle: {
+              normal: {
+                barBorderRadius: 2
+              }
+            }
           }).getChart()
-          console.log(this.opt1)
+          this.chartAllExcitation.loading = false
+          this.chartAllExcitation.status = 200
+        })
+        .catch(err => {
+          this.chartAllExcitation.loading = false
+          this.chartAllExcitation.status = 500
+          throw err
+        })
+    },
+    getChart2() {
+      this.chartAllExcitation.loading = true
+      getPattern({
+        subModelName: 'C级',
+        minYm: this.dataForm.ym[0],
+        maxYm: this.dataForm.ym[1],
+        moneyOrRatio: this.dataForm.dataType,
+        isQuarter: this.dataForm.dataTimeType,
+        subModelIdss: 130,
+        type: 1
+      })
+        .then(res => {
+          const data = res.data || {}
+          this.opt2 = new Chart('scatter', data, {
+            xAxis: { name: '利润' },
+            yAxis: { name: '同比' },
+            tooltipFields: [
+              { title: '车型', type: '', key: 4 },
+              { name: '利润', type: 'percent', key: 0, unit: '%' },
+              { name: '同比', type: 'percent', key: 1, unit: '%' },
+              { name: '销量', type: 'normal', key: 2, unit: '' }
+            ]
+          }).getChart()
+          this.chartAllExcitation.loading = false
+          this.chartAllExcitation.status = 200
+        })
+        .catch(err => {
+          this.chartAllExcitation.loading = false
+          this.chartAllExcitation.status = 500
+          throw err
+        })
+    },
+    getChart3() {
+      this.chartAllExcitation.loading = true
+      getYearExcitationAnalyze({
+        subModelName: 'C级',
+        minYm: this.dataForm.ym[0],
+        maxYm: this.dataForm.ym[1],
+        moneyOrRatio: this.dataForm.dataType,
+        isQuarter: this.dataForm.dataTimeType,
+        subModelIdss: 130,
+        type: 1
+      })
+        .then(res => {
+          const data = res.data[0] || {}
+          this.opt3 = new Chart('line', data, {
+            yAxis: { name: '元' },
+            color: ['#4182F3', '#36C585', '#FFA940']
+          }).getChart()
+          this.chartAllExcitation.loading = false
+          this.chartAllExcitation.status = 200
+        })
+        .catch(err => {
+          this.chartAllExcitation.loading = false
+          this.chartAllExcitation.status = 500
+          throw err
+        })
+    },
+    getChart4() {
+      this.chartAllExcitation.loading = true
+      getPie({
+        subModelName: 'C级',
+        minYm: this.dataForm.ym[0],
+        maxYm: this.dataForm.ym[1],
+        moneyOrRatio: this.dataForm.dataType,
+        isQuarter: this.dataForm.dataTimeType,
+        subModelIdss: 130,
+        type: 1
+      })
+        .then(res => {
+          const data = res.data || {}
+          this.opt4 = new Chart('pie', data, {
+            legend: {
+              top: 10
+            },
+            grid: {
+              top: 0
+            }
+          }).getChart()
           this.chartAllExcitation.loading = false
           this.chartAllExcitation.status = 200
         })

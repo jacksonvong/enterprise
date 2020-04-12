@@ -158,11 +158,28 @@ export function queryEncoded(params) {
  * @param {Object,Array} source 对象数组
  */
 export function copyObject(source) {
+  if (typeof source !== 'object') return source
   var sourceCopy = source instanceof Array ? [] : {}
   for (var item in source) {
     sourceCopy[item] = typeof source[item] === 'object' && source[item] !== null ? copyObject(source[item]) : source[item]
   }
   return sourceCopy
+}
+/**
+ * 深度合并对象数组
+ * @param {Object,Array} source 对象数组
+ */
+export function mergeObject(firstObj, secondObj) {
+  var sourceData = copyObject(firstObj)
+  if (typeof firstObj !== 'object' || typeof secondObj !== 'object') {
+    sourceData = copyObject(secondObj !== undefined ? secondObj : firstObj)
+  } else {
+    for (var key in secondObj) {
+      sourceData[key] = firstObj[key] && firstObj[key].toString() === '[object Object]'
+        ? mergeObject(firstObj[key], secondObj[key]) : secondObj[key]
+    }
+  }
+  return sourceData
 }
 /**
  * 路由最后添加子车型

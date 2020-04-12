@@ -62,16 +62,6 @@
             "4月"
           ]
       },
-      "dataZoom": {
-        "realtime": false, 
-        "handleColor": "rgb(187,194,197)", 
-        "show": true, 
-        "start": 76.48, 
-        "end": 100, 
-        "fillerColor": "rgb(187,194,197)", 
-        "height": "25", 
-        "zoomLock": true
-      },
       "series": [
         {
           "data": [
@@ -129,13 +119,12 @@
             "41297"
           ], 
           "name": "A7", 
-          "label": {
-            "normal": {
-              "show": true, 
-              "position": "inside"
-            }
-          }, 
-          "type": "bar"
+          "type": "line",
+          "markPoint": {
+            "data": [
+              {"name": "换代", "value": "NG", "xAxis": "8月", "yAxis": 39792}
+            ]
+          }
         },
         {
           "data": [
@@ -192,14 +181,8 @@
             "53995", 
             "51297"
           ], 
-          "name": "C级细分市场", 
-          "label": {
-            "normal": {
-              "show": true, 
-              "position": "inside"
-            }
-          }, 
-          "type": "bar"
+          "name": "C级细分市场",
+          "type": "line"
         },
         {
           "data": [
@@ -257,13 +240,7 @@
             "31297"
           ], 
           "name": "昌河北斗星", 
-          "label": {
-            "normal": {
-              "show": true, 
-              "position": "inside"
-            }
-          }, 
-          "type": "bar"
+          "type": "line"
         },
         {
           "data": [
@@ -321,13 +298,7 @@
             "21297"
           ], 
           "name": "E100", 
-          "label": {
-            "normal": {
-              "show": true, 
-              "position": "inside"
-            }
-          }, 
-          "type": "bar"
+          "type": "line"
         }
       ]
     }

@@ -4,7 +4,6 @@ export const color = {
     '#FF4D4F',
     '#36C585',
     '#FFA940',
-    '#04CC72',
     '#B385EE'
   ],
   pie: [
@@ -17,20 +16,6 @@ export const color = {
     '#B4D249',
     '#C5C8CE'
   ],
-  // bar: [
-  //   ['#4182F3'],
-  //   ['#4182F3', '#85AFF7'],
-  //   ['#4182F3', '#85AFF7', '#CADCFC'],
-  //   ['#4182F3', '#6398F5', '#85AFF7', '#A8C5FA'],
-  //   ['#4182F3', '#6398F5', '#85AFF7', '#A8C5FA', '#CADCFC'],
-  //   ['#4182F3', '#6398F5', '#85AFF7', '#A8C5FA', '#CADCFC', '#ECF2FE'],
-  //   ['#3972D6', '#4182F3', '#6398F5', '#85AFF7', '#A8C5FA', '#CADCFC', '#ECF2FE'],
-  //   ['#3163B9', '#3972D6', '#4182F3', '#6398F5', '#85AFF7', '#A8C5FA', '#CADCFC', '#ECF2FE'],
-  //   ['#2A539B', '#3163B9', '#3972D6', '#4182F3', '#6398F5', '#85AFF7', '#A8C5FA', '#CADCFC', '#ECF2FE'],
-  //   ['#22447E', '#2A539B', '#3163B9', '#3972D6', '#4182F3', '#6398F5', '#85AFF7', '#A8C5FA', '#CADCFC', '#ECF2FE'],
-  //   ['#1A3461', '#22447E', '#2A539B', '#3163B9', '#3972D6', '#4182F3', '#6398F5', '#85AFF7', '#A8C5FA', '#CADCFC', '#ECF2FE'],
-  //   ['#244a8c', '#29529a', '#3262b8', '#3a72d6', '#4081f2', '#528cf1', '#6398f5', '#85aff6', '#a8c6fb', '#cadcfb', '#cadcfc', '#ebf1fe', '#f7fafe']
-  // ]
   bar: [
     ['#FB8C00'],
     ['#FFB300', '#FB8C00'],
@@ -51,39 +36,8 @@ export const color = {
  * 字段映射表
  */
 export const fieldsMapper = [
-  // 价格分析
-  { name: '经销商成本', type: 'normal', unit: '元' },
-  { name: '月度激励', type: 'normal', unit: '元' },
-  { name: '年度激励', type: 'normal', unit: '元' },
-  { name: '厂商补贴', type: 'normal', unit: '元' },
-  { name: '地补', type: 'normal', unit: '元' },
-  { name: '国补', type: 'normal', unit: '元' },
-  { name: '经销商利润', type: 'normal', unit: '元' },
-  { name: '购车折扣', type: 'normal', unit: '元' },
-  { name: '补贴后售价', type: 'normal', unit: '元' },
-  { name: '成交价', type: 'normal', unit: '元' },
-
-  { name: '加权折扣', type: 'percent', unit: '%' },
-  { name: '加权补贴后售价', type: 'decimal', unit: '万' },
-  { name: '加权成交价', type: 'decimal', unit: '万' },
-
-  { name: '管理奖励', type: 'normal', unit: '元' },
-  { name: '评比奖励', type: 'normal', unit: '元' },
-  { name: '固定折扣', type: 'normal', unit: '元' },
-  { name: '满意度奖励', type: 'normal', unit: '元' },
-  { name: '销售奖励', type: 'normal', unit: '元' },
-  { name: '提车奖励', type: 'normal', unit: '元' },
-  { name: '零售奖励', type: 'normal', unit: '元' },
-  { name: '专项促销', type: 'normal', unit: '元' },
-  { name: '竞赛类奖励', type: 'normal', unit: '元' },
-  { name: '考核奖励', type: 'normal', unit: '元' },
-  { name: '总激励环比', type: 'percent', unit: '%' },
-
-  { name: '单车平均销量', type: 'normal', unit: '辆' },
   { name: '销量', type: 'normal', unit: '辆' },
-  { name: '销量排名', type: 'normal', unit: '' },
-  { name: '份额', type: 'percent', unit: '%' },
-  { name: '趋势', type: 'percent', unit: '%' }
+  { name: '份额', type: 'percent', unit: '%' }
 
 ]
 /**
