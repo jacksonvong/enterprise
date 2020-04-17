@@ -11,6 +11,13 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/enterprise/',
     proxyTable: {
+      '/api/enterprise': {
+        target: 'http://i.ways.cn/api/mis004-new',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api/enterprise': ''
+        }
+      },
       '/api': {
         target: 'https://i.way-s.cn',
         changeOrigin: true

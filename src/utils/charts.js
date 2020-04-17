@@ -1,4 +1,4 @@
-import { color } from '@/utils/includes'
+import { color as colorObj } from '@/utils/includes'
 import { copyObject, mergeObject } from '@/utils/helper'
 import { toThousand, toPercent } from '@/utils/filters'
 /**
@@ -7,7 +7,7 @@ import { toThousand, toPercent } from '@/utils/filters'
  */
 const defaultOptions = {
   backgroundColor: '#fff',
-  color: color.line,
+  color: [],
   tooltip: {
     trigger: 'axis',
     color: '#ADB0BA',
@@ -21,6 +21,7 @@ const defaultOptions = {
   legend: {
     orient: 'horizontal',
     bottom: 10,
+    itemHeight: 10,
     type: 'scroll',
     textStyle: {
       color: '#5a5a5a'
@@ -35,15 +36,18 @@ const defaultOptions = {
   xAxis: {
     name: '',
     nameTextStyle: {
-      color: '#7f8593'
+      color: '#7F8593'
     },
     axisLine: {
       lineStyle: {
-        color: '#dfdfdf'
+        color: '#D1D1D1'
       }
     },
     splitLine: {
-      show: false
+      lineStyle: {
+        color: '#B3B3CA',
+        type: 'dashed'
+      }
     },
     axisTick: {
       show: false
@@ -53,25 +57,25 @@ const defaultOptions = {
     },
     axisLabel: {
       fontSize: 12,
-      color: '#7f8593'
+      color: '#7F8593'
     }
   },
   yAxis: {
     name: '',
     nameTextStyle: {
-      color: '#7f8593'
+      color: '#7F8593'
     },
     splitLine: {
-      show: true,
+      show: false,
       lineStyle: {
-        color: '#ececec',
+        color: '#B3B3CA',
         type: 'dashed'
       }
     },
     axisLine: {
       show: false,
       lineStyle: {
-        color: '#dfdfdf'
+        color: '#D1D1D1'
       }
     },
     axisTick: {
@@ -82,7 +86,7 @@ const defaultOptions = {
     },
     axisLabel: {
       fontSize: 12,
-      color: '#7f8593'
+      color: '#7F8593'
     }
   },
   dataZoom: {
@@ -126,7 +130,6 @@ const defaultSeriesOptions = {
   },
   bar: {
     barMaxWidth: 40,
-    barMinHeight: 5,
     itemStyle: {
       normal: {
         barBorderRadius: 0
@@ -150,7 +153,7 @@ const defaultSeriesOptions = {
     emphasis: {
       label: {
         show: true,
-        fontSize: '30',
+        fontSize: '12',
         fontWeight: 'bold'
       }
     }
@@ -172,17 +175,18 @@ const defaultSeriesOptions = {
 }
 /**
  * 其他用于计算或展示的默认值
+ * fields: [
+      { name: '利润', type: 'percent' },
+      { name: '同比', type: 'percent' }
+    ]
+ * field: { type: 'percent' }
  */
 const defaultConfig = {
   numPerPage: 12,
-  tooltipSort: '1', // 1正序 ； -1倒叙
-  legendIcon: {
-    bar: 'path://M512 512m-204.8 0a204.8 204.8 0 1 0 409.6 0 204.8 204.8 0 1 0-409.6 0Z',
-    line: 'path://M16.5,4.2C16.1,1.8,14,0,11.6,0S7,1.8,6.7,4.2H3.2v2h3.5C7.3,8.4,9.2,10,11.6,10s4.3-1.6,4.8-3.8h3.8v-2H16.5z    M11.6,8c-1.7,0-3-1.3-3-3s1.3-3,3-3s3,1.3,3,3S13.2,8,11.6,8z'
-  },
-  tooltipFields: [
+  tooltipSort: '1', // 1正序 -1倒叙
+  fields: [
   ],
-  defaultField: undefined
+  field: {}
 }
 
 function titleUpperCase(str) {
@@ -195,6 +199,9 @@ function titleUpperCase(str) {
  * 特殊处理可在本类外重写该方法
  * @params Object 返回参数
  * @params config 自定义参数
+ * fields: [
+    { name: '', type: 'percent' }
+  ]
  */
 function tooltipFormatter(params, config, tooltip) {
   let html = ''
@@ -207,7 +214,7 @@ function tooltipFormatter(params, config, tooltip) {
     if (item.value === undefined || isNaN(item.value)) val = '-'
     else {
       // if (config.tooltipZerofilter && Number(item.value) === 0) return
-      const field = config.tooltipFields.find(ele => { return item.seriesName.indexOf(ele.name) > -1 }) || config.defaultField || {}
+      const field = config.fields.find(field => { return item.seriesName === field.name }) || config.field || {}
       val = `<em style="color:${tooltip.hightLightColor};">`
       switch (field.type) {
         case 'normal': val += toThousand(item.value) + `</em>` + field.unit; break
@@ -226,7 +233,7 @@ function tooltipFormatter(params, config, tooltip) {
  * 针对散点图，地图等单个系列
  * @params Object 返回参数
  * @params config 自定义参数
- * tooltipFields: [
+ * fields: [
       { title: '车型', type: '', key: 4 },
       { name: '利润', type: 'percent', key: 0 },
       { name: '同比', type: 'percent', key: 1 },
@@ -238,7 +245,7 @@ function tooltipFormatterItem(params, config, tooltip) {
   let title = ''
   var value = params.value
   if (params.seriesType === 'scatter') {
-    const fields = config.tooltipFields
+    const fields = config.fields
     fields.length && fields.forEach(item => {
       if (item.title && !title) title = `${params.marker}${value[item.key]}<br>`
       if (item.name) {
@@ -262,19 +269,31 @@ function tooltipFormatterItem(params, config, tooltip) {
   }
   return title + html
 }
+/**
+ * 提示信息格式化
+ * @params Object 返回参数
+ * @params config 自定义参数
+ * fields: [
+    { name: '', type: 'percent' }
+  ]
+ */
 function labelFormatter(param, config) {
   let val = param.value
   var value = param.value
-  const field = config.tooltipFields.find(field => { return param.seriesName.indexOf(field.name) > -1 }) || config.defaultField || {}
-  if (Object.keys(field).length) {
-    switch (field.type) {
-      case 'normal': val = toThousand(value); break
-      case 'percent': val = toPercent(value, 1); break
-      case 'decimal': val = Number(value).toFixed(1); break
-      default: val = toThousand(value); break
-    }
-  } else if (param.seriesType === 'pie') {
+  const field = config.fields.find(field => { return param.seriesName === field.name }) || config.field || {}
+  if (param.seriesType === 'pie') {
     val = `${param.name}${toThousand(param.value)} (${toPercent(param.percent, 1)})`
+  } else {
+    if (Object.keys(field).length) {
+      switch (field.type) {
+        case 'normal': val = toThousand(value); break
+        case 'percent': val = toPercent(value, 1); break
+        case 'decimal': val = Number(value).toFixed(1); break
+        default: val = toThousand(value); break
+      }
+    } else {
+      val = toThousand(value)
+    }
   }
   return val
 }
@@ -282,7 +301,7 @@ function iconFormatter(type, config) {
   let val = ''
   switch (type) {
     case 'pie':
-    case 'bar': val = config.legendIcon.bar; break
+    case 'bar': val = 'circle'; break
     default: val = ''; break
   }
   return val
@@ -290,9 +309,8 @@ function iconFormatter(type, config) {
 
 export class Chart {
   constructor(type, option, config = {}) {
-    this.type = type
     // config默认值
-    this.config = { ...defaultConfig }
+    this.config = { type: type, ...defaultConfig }
     // option初始值
     this.option = copyObject(option)
     // 合并参数config和option初始值
@@ -306,7 +324,7 @@ export class Chart {
     // 合并option默认值和初始值
     this.option = mergeObject(defaultOptions, this.option)
     // 特殊处理各种类型
-    const method = `set${titleUpperCase(this.type)}Option`
+    const method = `set${titleUpperCase(type)}Option`
     method in this && this[method](defaultOption => {
       const config = this.config
       this.option = mergeObject(this.option, defaultOption)
@@ -417,7 +435,12 @@ export class Chart {
     fn(defaultOptions)
   }
 
-  tooltip(tooltip = {}, config, type) {
+  color(color, config) {
+    const type = config.type
+    color = color.length ? color : colorObj[type] || colorObj.bar
+    return color
+  }
+  tooltip(tooltip = {}, config) {
     if (tooltip.trigger === 'item') {
       tooltip.formatter = params => tooltipFormatterItem(params, config, tooltip)
     } else {
@@ -442,9 +465,25 @@ export class Chart {
     })
   }
   xAxis(xAxis, config) {
+    if (xAxis.splitLine.show === undefined) {
+      xAxis.splitLine.show = this.option.xAxis && this.option.xAxis.type === 'value'
+    }
+    xAxis.axisLabel = mergeObject(xAxis.axisLabel, {
+      formatter: (val) => {
+        return xAxis.name.indexOf('%') > -1 ? toPercent(val, 1) : (typeof val === 'string' ? val : toThousand(val))
+      }
+    })
     return xAxis
   }
   yAxis(yAxis, config) {
+    if (yAxis.splitLine.show === undefined) {
+      yAxis.splitLine.show = this.option.yAxis && this.option.yAxis.type === 'value'
+    }
+    yAxis.axisLabel = mergeObject(yAxis.axisLabel, {
+      formatter: (val) => {
+        return yAxis.name.indexOf('%') > -1 ? toPercent(val, 1) : (typeof val === 'string' ? val : toThousand(val))
+      }
+    })
     return yAxis
   }
   dataZoom(dataZoom = {}, config) {
@@ -456,7 +495,7 @@ export class Chart {
       const len = option.xAxis[0].data.length
       start = len <= config.numPerPage ? 0 : parseInt(((len - config.numPerPage + 1) / len) * 100)
     }
-    if (option.yAxis[0].data && option.yAxis[0].type === 'category') {
+    if (option.yAxis[0].data && option.yAxis[0].type !== 'value') {
       const len = option.yAxis[0].data.length
       start = len <= config.numPerPage ? 0 : parseInt(((len - config.numPerPage + 1) / len) * 100)
     }
@@ -470,6 +509,7 @@ export class Chart {
     if (dataZoom.start === 0 && dataZoom.end === 100) {
       dataZoom.show = false
     }
+    dataZoom.orient = this.option.yAxis[0] && this.option.yAxis[0].type === 'category' ? 'vertical' : 'horizontal'
     return [dataZoom]
   }
   series(series = [], config) {
@@ -503,8 +543,9 @@ export class Chart {
   getChart() {
     this.option = {
       ...this.option,
+      color: this.color(this.option.color, this.config),
       legend: this.legend(this.option.legend, this.config),
-      tooltip: this.tooltip(this.option.tooltip, this.config, this.type),
+      tooltip: this.tooltip(this.option.tooltip, this.config),
       xAxis: this.xAxis(this.option.xAxis, this.config),
       yAxis: this.yAxis(this.option.yAxis, this.config),
       series: this.series(this.option.series, this.config),
@@ -514,16 +555,16 @@ export class Chart {
   }
   // 兼容旧版，不能删除
   getLineChart() {
-    return this.option
+    return this.getChart()
   }
   getBarChart() {
-    return this.option
+    return this.getChart()
   }
   getPieChart() {
-    return this.option
+    return this.getChart()
   }
   getScatterChart() {
-    return this.option
+    return this.getChart()
   }
 }
 

@@ -1,0 +1,45 @@
+{
+  "result_code": "200",
+  "result_msg": "执行成功",
+  "data": {
+    "legend": {
+      "data": [
+        "年度固定折扣",
+        "年度考核奖励"
+      ]
+    },
+    "xAxis": {
+      "type": "category",
+      "data": [
+        "A7",
+        "云100"
+      ]
+    },
+    "yAxis": [
+      {
+        "type": "value"
+      }
+    ],
+    "series": [
+      {
+        "name": "年度固定折扣",
+        "type": "bar",
+        "data": [
+          0.120,
+          0.56
+        ],
+        "stack": "0"
+      },
+      {
+        "name": "年度考核奖励",
+        "type": "bar",
+        "data": [
+          0.34,
+          0.33
+        ],
+        "stack": "0"
+      }
+    ]
+  }
+}
+

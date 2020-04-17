@@ -20,3 +20,13 @@ export function getTypeInfo(data) {
     }
   })
 }
+
+export function getTypeInfo2(data) {
+  return request({
+    url: '/enterprise/terminal-reward-search/reward-compare-list',
+    method: 'post',
+    data: {
+      data
+    }
+  })
+}

@@ -24,7 +24,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
   // these devServer options should be customized in /config/index.js
   devServer: {
     before(app) {
-      webpackMock(app, path.resolve(__dirname, '../mock/index.js'));
+      webpackMock(app, path.resolve(__dirname, '../src/api/mock/index.js'));
     },
     clientLogLevel: 'warning',
     historyApiFallback: {

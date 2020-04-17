@@ -5,7 +5,7 @@
     </div>
     <div class="title">
       {{ item.name }}
-      <a-icon title="置顶" type="to-top" @click="JumpToTop(item)" />
+      <svg-icon title="置顶" class-name="download" icon-class="to-top" @click="JumpToTop(item)" />
     </div>
     <div class="content">
       <div class="content-item">
@@ -103,8 +103,9 @@ export default {
   .title {
     font-weight: 700;
     font-size: 18px;
-    i {
+    svg {
       cursor: pointer;
+      font-size: 14px;
       &:hover {
         color: #2e5aa6;
       }

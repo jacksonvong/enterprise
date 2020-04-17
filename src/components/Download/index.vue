@@ -19,7 +19,8 @@
     </template>
 
     <template v-else>
-      <a-icon :class="{disabled: !dataAuth}" type="download" @click="checkAuth()" />
+      <a-icon v-if="false" :class="{disabled: !dataAuth}" type="download" @click="checkAuth()" />
+      <svg-icon class-name="download" icon-class="download" @click="checkAuth()" />
     </template>
   </span>
 </template>
@@ -307,6 +308,12 @@ export default {
 }
 .iw-download {
   .ant-popover-inner-content { padding: 0;}
+  cursor: pointer;
+  &:hover {
+    svg {
+      color: #2e5aa6;
+    }
+  }
   i.disabled {
     color: #ccc;
     cursor: not-allowed;

@@ -4,7 +4,7 @@
     <div :style="{'padding-top': $store.state.app.filter!=='fixed' ? '10px' : '94px'}" class="main-content">
       <iw-filter
         :id="$store.state.app.filter!=='fixed'?'overview-analyse':''"
-        :show="{market: true, dataTimeType: true, dimensionType: true, subModel: true, dataType: true}"
+        :show="{market: true, dataTimeType: true, dimension: true, subModel: true, dataType: true}"
         :multiple="{segment: true, manfBrand: true, subModel: true}"
         :data-time-range="true"
         @change="changeDataForm"
@@ -58,7 +58,7 @@ export default {
   },
   data() {
     return {
-      filterForm: {},
+      dataForm: {},
       rewardExcition: {
         data: {}
       },
@@ -66,12 +66,23 @@ export default {
       tableData: []
     }
   },
+  watch: {
+    dataForm: {
+      handler() {
+        if (this.dataForm.dataTime) {
+          this.getData()
+        }
+      }
+    }
+  },
   created() {
-    this.getMoney()
+    if (this.dataForm.dataTime) {
+      this.getData()
+    }
   },
   methods: {
     changeDataForm(form) {
-      this.filterForm = { ...this.filterForm, ...form }
+      this.dataForm = { ...this.dataForm, ...form }
     },
     renderHeader(h, { column, $index }) {
       if (column.property !== 'msrp') return column.label
@@ -97,9 +108,21 @@ export default {
         </div>
       )
     },
+    getData() {
+      this.getMoney()
+    },
     getMoney() {
       return new Promise((resolve, reject) => {
         getMoney({
+          amounRatioType: 1,
+          isQuarter: this.dataForm.dataTimeType,
+          isNewEnergy: 0,
+          isSegment: 0,
+          isBrand: 0,
+          isSubModel: 0,
+          start: this.dataForm.dataTime[0],
+          end: this.dataForm.dataTime[1],
+          subModelIds: ''
         }).then(res => {
           const data = res.data || []
           this.rewardExcition.data = data[0] || {}

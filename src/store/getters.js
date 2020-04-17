@@ -7,6 +7,7 @@ const getters = {
   addRouters: state => state.permission.addRouters,
   menus: state => state.permission.menus,
   priv: state => state.permission.priv,
-  errorLogs: state => state.errorLog.logs
+  errorLogs: state => state.errorLog.logs,
+  condition: state => state.common.condition
 }
 export default getters

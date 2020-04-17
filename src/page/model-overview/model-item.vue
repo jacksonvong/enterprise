@@ -8,7 +8,7 @@
     </div>
     <div class="title">
       <span>{{ item.name }}</span>
-      <a-icon title="置顶" type="to-top" @click="JumpToTop(item)" />
+      <svg-icon title="置顶" class-name="download" icon-class="to-top" @click="JumpToTop(item)" />
     </div>
     <div class="tag">
       <span>{{ item.tag }}</span>
@@ -113,9 +113,9 @@ export default {
   .title {
     font-weight: 700;
     font-size: 18px;
-    i {
+    svg {
       cursor: pointer;
-      color: #2e5aa6;
+      font-size: 14px;
       &:hover {
         color: #2e5aa6;
       }

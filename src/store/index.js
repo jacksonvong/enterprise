@@ -3,8 +3,8 @@ import Vuex from 'vuex'
 import errorLog from './modules/errorLog'
 import permission from './modules/permission'
 import app from './modules/app'
+import common from './modules/common'
 import user from './modules/user'
-import queryParams from './modules/queryParams'
 import getters from './getters'
 import createLogger from 'vuex/dist/logger'
 
@@ -15,8 +15,8 @@ const store = new Vuex.Store({
     errorLog,
     permission,
     app,
-    user,
-    queryParams
+    common,
+    user
   },
   getters,
   plugins: debug ? [createLogger()] : []

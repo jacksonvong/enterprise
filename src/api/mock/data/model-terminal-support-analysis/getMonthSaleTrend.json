@@ -1,0 +1,47 @@
+{
+  "result_code": "200",
+  "result_msg": "执行成功",
+  "data": {
+    "legend": {
+      "data": [
+        "A7",
+        "C级细分市场"
+      ]
+    },
+    "xAxis": {
+      "type": "category",
+      "data": [
+        "201810",
+        "201811",
+        "201812"
+      ]
+    },
+    "yAxis": [
+      {
+        "type": "value"
+      }
+    ],
+    "series": [
+      {
+        "name": "A7",
+        "type": "line",
+        "data": [
+          0.120,
+          0.132,
+          0.101
+        ],
+        "yAxisIndex": 0
+      },
+      {
+        "name": "C级细分市场",
+        "type": "line",
+        "data": [
+          0.220,
+          0.182,
+          0.191
+        ],
+        "yAxisIndex": 0
+      }
+    ]
+  }
+}

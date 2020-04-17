@@ -1,0 +1,53 @@
+{
+  "result_code": "200",
+  "result_msg": "执行成功",
+  "data": [
+    {
+      "data": [
+        {
+          "id": null,
+          "tId": null,
+          "name": "A级细分市场",
+          "isNotShowBar": false,
+          "discount": null,
+          "discountPercent": null,
+          "discountProgress": null,
+          "discountName": "折扣",
+          "saleProfit": null,
+          "saleProfitPercent": null,
+          "saleProfitProgress": null,
+          "saleProfitName": "销售利润",
+          "cost": null,
+          "costPercent": null,
+          "costProgress": null,
+          "costName": "成本",
+          "msrp": null,
+          "tip": "本月无利润数据，最新利润数据为2020年3月",
+          "import": false
+        },
+        {
+          "id": "159",
+          "tId": "159",
+          "name": "F3",
+          "isNotShowBar": false,
+          "discount": "5,805",
+          "discountPercent": "12.9%",
+          "discountProgress": "0.13",
+          "discountName": "折扣",
+          "saleProfit": "11,336",
+          "saleProfitPercent": "25.3%",
+          "saleProfitProgress": "0.25",
+          "saleProfitName": "销售利润",
+          "cost": "27,692",
+          "costPercent": "61.8%",
+          "costProgress": "0.62",
+          "costName": "成本",
+          "msrp": "44,833",
+          "tip": null,
+          "import": false
+        }
+      ],
+      "title": "2020年2月利润结构对比"
+    }
+  ]
+}

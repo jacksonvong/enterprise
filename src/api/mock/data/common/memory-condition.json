@@ -1,0 +1,16 @@
+{
+  "status": "200", 
+  "message": "测试数据", 
+  "data": {
+    "data": {
+      "dataSource": 3,
+      "isQuarter": 2,
+      "moneyOrRatio": 1,
+      "segmentType": "1",
+      "subModelId": "1",
+      "groupId": "1",
+      "getOrSave": "2",
+      "type": "1"
+    }
+  }
+}

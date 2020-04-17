@@ -1,5 +1,5 @@
 <template>
-  <a-card :class="'banner-card--'+status" :body-style="{padding: 0}" class="banner-card">
+  <a-card :class="'banner-card--'+fixed" :body-style="{padding: 0}" class="banner-card">
     <a-spin :spinning="spinning.params">
       <ul class="banner-filter">
         <li v-if="show.market" class="banner-filter-item">
@@ -26,11 +26,11 @@
               size="small"
               @change="handleDataTimeTypeChange"
             >
-              <a-radio-button :value="1">{{ $t('common.dateType1') }}</a-radio-button>
-              <a-radio-button :value="2">{{ $t('common.dateType2') }}</a-radio-button>
+              <a-radio-button :value="2">{{ $t('common.dateType1') }}</a-radio-button>
+              <a-radio-button :value="1">{{ $t('common.dateType2') }}</a-radio-button>
             </a-radio-group>
             <iw-date-picker
-              v-show="dataForm.dataTimeType===1"
+              v-show="dataForm.dataTimeType===2"
               v-model="dataForm.dataTime"
               :picker-options="pickerOptions"
               :clearable="false"
@@ -45,7 +45,7 @@
               @change="handleDateTimeChange"
             />
             <iw-date-picker
-              v-show="dataForm.dataTimeType===2"
+              v-show="dataForm.dataTimeType===1"
               v-model="dataForm.dataTime2"
               :picker-options="pickerOptions"
               :clearable="false"
@@ -100,19 +100,20 @@
             />
           </span>
         </li>
-        <li v-if="show.dimensionType" class="banner-filter-item" style="border-right: 0;">
+        <li v-if="show.dimension" class="banner-filter-item" style="border-right: 0;">
           <span class="filter-item_label">{{ $t('common.dimension') }}</span>
           <span class="filter-item_text">
             <a-radio-group
-              v-model="dataForm.dimensionType"
+              v-model="dataForm.dimension"
               size="small"
+              @change="handleDimensionTypeChange"
             >
               <a-radio-button :value="1">{{ $t('common.segment') }}</a-radio-button>
               <a-radio-button :value="2">{{ $t('common.manfBrand') }}</a-radio-button>
             </a-radio-group>
           </span>
         </li>
-        <li v-if="(show.dimensionType||show.segment)&&dataForm.dimensionType==1" class="banner-filter-item">
+        <li v-if="(show.dimension||show.segment)&&dataForm.dimension==1" class="banner-filter-item">
           <span class="filter-item_label">{{ $t('common.segment') }}</span>
           <span class="filter-item_text">
             <iw-cascader-table
@@ -124,7 +125,7 @@
               :placeholder="$t('common.any')"
               :multiple="multiple.segment"
               :option-props="{ value: 'value', label: 'text', children: 'children' }"
-              exclusion
+              select-on-leaf
               show-selected
               placement="bottomLeft"
               size="mini"
@@ -134,10 +135,11 @@
             />
           </span>
         </li>
-        <li v-if="(show.dimensionType||show.manfBrand)&&dataForm.dimensionType==2" class="banner-filter-item">
+        <li v-if="(show.dimension||show.manfBrand)&&dataForm.dimension==2" class="banner-filter-item">
           <span class="filter-item_label">{{ $t('common.manfBrand') }}</span>
           <span class="filter-item_text">
             <iw-manfbrand
+              ref="manfBrand"
               v-model="dataForm.manfBrand"
               :texts="dataForm.manfBrandText"
               :data="searchFormData.manfBrand"
@@ -148,6 +150,7 @@
               :placeholder="$t('common.any')"
               :multiple="multiple.manfBrand"
               :option-props="{ value: 'value', label: 'text', children: 'children' }"
+              :status="status.manfBrand"
               placement="bottomLeft"
               size="mini"
               style="width: 150px;"
@@ -166,12 +169,13 @@
               :multiple="multiple.subModel"
               :show-search="true"
               :show-letter="showLetter"
-              :filters="[{value: 0, text: $t('common.segment')}, {value: 1, text: $t('common.manfBrand')}]"
+              :filters="subModelFilterTitles"
               :selected-filter="selectedFilter"
               :height="260"
               :leafs-per-column="5"
               :title="$t('common.subModel')"
               :option-props="{ value: 'value', label: 'text', children: 'children' }"
+              show-selected
               show-check-all
               placement="bottomLeft"
               size="mini"
@@ -226,7 +230,7 @@
               :placeholder="$t('common.any')"
               :option-props="{ value: 'value', label: 'text', children: 'children' }"
               multiple
-              exclusion
+              select-on-leaf
               show-selected
               placement="bottomLeft"
               size="mini"
@@ -282,7 +286,7 @@
           </span>
         </li>
       </ul>
-      <a-icon v-if="true" :class="'banner-pushpin--'+status" class="banner-pushpin" type="pushpin" @click="changeStatus()" />
+      <a-icon v-if="true" :class="'banner-pushpin--'+fixed" class="banner-pushpin" type="pushpin" @click="changeStatus()" />
     </a-spin>
   </a-card>
 </template>
@@ -291,6 +295,7 @@
 import { Card, Icon, Radio, Spin } from 'ant-design-vue'
 import moment from 'moment'
 import { get } from 'lodash'
+import { copyObject } from '@/utils/helper'
 import {
   getDatasource,
   getTimeRange,
@@ -301,10 +306,11 @@ import {
   getSubmodel,
   getCompCircles,
   saveCompCircle,
-  saveBrowsingHistory,
-  getDefaultManfbrand,
+  memoryCondition,
   getDefaultSubmodel
 } from '@/api/filter'
+const _GET_ = 1
+const _SAVE_ = 2
 
 export default {
   name: 'BannerFilter',
@@ -323,7 +329,7 @@ export default {
           market: false,
           dataTimeType: false,
           dataSource: false,
-          dimensionType: false,
+          dimension: false,
           segment: false,
           manfBrand: false,
           subModel: false,
@@ -348,15 +354,14 @@ export default {
   },
   data() {
     return {
-      status: this.$store.state.app.filter, // false：默认，true：固定
+      fixed: this.$store.state.app.filter, // false：默认，true：固定
       dataForm: {
         market: 1,
-        dimension: null, // 维度
+        dimension: 2, // 细分市场，厂商品牌
         dataSource: null,
-        dataTimeType: 1,
+        dataTimeType: 2,
         dataTime: null,
         dataTime2: null,
-        dimensionType: 2,
         segment: [],
         reward: [],
         version: [],
@@ -386,11 +391,15 @@ export default {
       loading: false,
       showLetter: false,
       selectedFilter: 1,
+      subModelFilterTitles: [],
       // 竞争圈
       showModal: false,
       spinning: {
         params: false,
         save: false
+      },
+      status: {
+        manfBrand: 0
       },
       type: 'subModel', // 竞争圈是车型竞争圈，还是厂商竞争圈
       typeData: [] // 编辑状态下的[manfBrand, subModel]数据源
@@ -412,80 +421,86 @@ export default {
     },
     isSatisfactionPage() {
       return this.$route.path === '/enterprise/satisfaction-analyse'
-    },
-    dimensionText() {
-      const dimension = this.searchFormData.dimension.find(item => item.key === this.dataForm.dimension)
-      if (dimension) {
-        return dimension.value
-      }
-      return ''
-    }
-  },
-  watch: {
-    'spinning.params'(cur) {
-      this.$store.dispatch('changeCommonParamsLoading', cur || this.spinning.save)
-    },
-    'spinning.save'(cur) {
-      this.$store.dispatch('changeCommonParamsLoading', cur || this.spinning.params)
     }
   },
   created() {
     this.getData()
   },
+  mounted() {
+    let dataTime = this.dataForm.dataTime
+    let dataTime2 = this.dataForm.dataTime2
+    if (dataTime) {
+      if (this.dataTimeRange && typeof dataTime === 'string') {
+        const startDate = moment(dataTime, 'YYYYMM').subtract(2, 'months')
+        dataTime = dataTime instanceof Array ? dataTime : [moment(startDate).format('YYYYMM'), dataTime]
+        dataTime2 = dataTime2 instanceof Array ? dataTime2 : [moment(startDate).format('YYYYQ'), dataTime2]
+      } else if (!this.dataTimeRange && typeof dataTime === 'object') {
+        dataTime = dataTime[1]
+        dataTime2 = dataTime2[1]
+      }
+      this.dataForm.dataTime = dataTime
+      this.dataForm.dataTime2 = dataTime2
+    }
+  },
   methods: {
     changeStatus() {
-      this.status = this.status === 'fixed' ? 'default' : 'fixed'
-      this.$store.dispatch('toggleFilter', this.status)
+      this.fixed = this.fixed === 'fixed' ? 'default' : 'fixed'
+      this.$store.dispatch('toggleFilter', this.fixed)
     },
     handleNewEnergyChange(value) {
       this.dataForm.market = value
-      this.$emit('change', this.dataFormFilter())
-    },
-    async handleDimensionChange(value, text) {
-      this.dataForm.dimension = value
-      this.$store.dispatch('setDimension', value)
-      this.spinning.params = true
-      this.spinning.params = false
+      this.$store.dispatch('setCondition', { market: value })
+      this.saveCondition()
       this.$emit('change', this.dataFormFilter())
     },
     async handleDataSourceChange(value) {
       this.dataForm.dataSource = value
-      this.$store.dispatch('setDataSource', value)
+      this.$store.dispatch('setCondition', { dataSource: value })
       this.spinning.params = true
-      if (!this.isOverviewPage) {
-        // await this.getCompCircles()
+      this.saveCondition()
+      if (this.show.competitor) {
+        await this.getCompCircles()
       }
       this.spinning.params = false
       this.$emit('change', this.dataFormFilter())
     },
     async handleDataTimeTypeChange() {
       const dataTimeType = this.dataForm.dataTimeType
-      this.$store.dispatch('setDataTimeType', dataTimeType)
+      this.$store.dispatch('setCondition', { dataTimeType: dataTimeType })
       this.spinning.params = true
-      await this.getTimeRange()
-      if (!this.isOverviewPage) {
-        await this.getSubmodelOptions()
-        // await this.getCompCircles()
-      } else {
-        await this.getManfbrandOptions()
-      }
+      await this.saveCondition()
+      // await this.getTimeRange()
+      // if (!this.isOverviewPage) {
+      //   await this.getSubmodelOptions()
+      //   // await this.getCompCircles()
+      // } else {
+      //   await this.getManfbrandOptions()
+      // }
       this.spinning.params = false
       this.$emit('change', this.dataFormFilter())
     },
     async handleDateTimeChange(value) {
-      if (this.dataForm.dataTimeType === 1) {
-        this.dataForm.dataTime = value
-        this.$store.dispatch('setDataTime', value instanceof Array ? value[value.length - 1] : value)
+      if (this.dataTimeRange) { // 时间段
+        if (this.dataForm.dataTimeType === 1) { // YYYYQ
+          this.dataForm.dataTime = [moment(value[0], 'YYYYQ').format('YYYYMM'), moment(value[1], 'YYYYQ').format('YYYYMM')]
+        } else { // YYYYMM
+          this.dataForm.dataTime2 = [moment(value[0], 'YYYYMM').format('YYYYQ'), moment(value[1], 'YYYYMM').format('YYYYQ')]
+        }
+      } else { // 时间
+        if (this.dataForm.dataTimeType === 1) { // YYYYQ
+          this.dataForm.dataTime = moment(value, 'YYYYQ').format('YYYYMM')
+        } else { // YYYYMM
+          this.dataForm.dataTime2 = moment(value, 'YYYYMM').format('YYYYQ')
+        }
       }
-      if (this.dataForm.dataTimeType === 2) {
-        this.dataForm.dataTime2 = value
-        this.$store.dispatch('setDataTime2', value instanceof Array ? value[value.length - 1] : value)
-      }
+      this.$store.dispatch('setCondition', { dataTime: this.dataForm.dataTime, dataTime2: this.dataForm.dataTime2 })
       this.spinning.params = true
-      if (!this.isOverviewPage) {
+      this.saveCondition()
+      if (this.show.subModel) {
         await this.getSubmodelOptions()
         // await this.getCompCircles()
-      } else {
+      }
+      if (this.show.manfBrand) {
         await this.getManfbrandOptions()
       }
       this.spinning.params = false
@@ -493,61 +508,79 @@ export default {
     },
     async handleSegmentChange(value, text) {
       this.dataForm.segment = value
-      // this.$store.dispatch('setManfBrand', text)
+      this.$store.dispatch('setCondition', { segment: value })
       this.spinning.params = true
-      // this.setDefaultManfbrand() // 记录选中的厂商
+      await this.saveCondition()
       this.spinning.params = false
       this.$emit('change', this.dataFormFilter())
     },
     async handleManfChange(value, text) {
       this.dataForm.manfBrand = value
       this.dataForm.manfBrandText = text
-      this.$store.dispatch('setManfBrand', text)
+      this.$store.dispatch('setCondition', { manfBrand: value })
       this.spinning.params = true
-      this.setDefaultManfbrand() // 记录选中的厂商
+      await this.saveCondition() // 记录选中的厂商
       this.spinning.params = false
       this.$emit('change', this.dataFormFilter())
     },
     async handleSubModelChange(value, text) {
       this.dataForm.subModel = value
       this.dataForm.subModelText = text
-      this.$store.dispatch('setSubModel', text)
+      this.$store.dispatch('setCondition', { subModel: value })
       this.spinning.params = true
-      this.setDefaultSubModel() // 记录选中的车型
-      // await this.getCompCircles()
+      this.saveCondition() // 记录选中的车型
+      await this.getCompCircles()
       this.spinning.params = false
       this.$emit('change', this.dataFormFilter())
     },
-    handleJpChange(value, text) {
-      console.log(value, text)
+    async handleJpChange(value, text) {
       this.dataForm.compCircle = value
       this.dataForm.compCircleName = text.text
+      this.$store.dispatch('setCondition', { compCircle: value })
       this.dataForm.jpId = text.children.map(item => item.value)
       this.dataForm.jp = text.children
-      this.setDefaultCompCircle() // 记录选中的竞争圈
+      await this.saveCondition()
       this.$emit('change', this.dataFormFilter())
     },
     async handleRewardChange(value, text) {
       this.dataForm.reward = value
+      this.$store.dispatch('setCondition', { reward: value })
       this.spinning.params = true
+      await this.saveCondition()
       this.spinning.params = false
       this.$emit('change', this.dataFormFilter())
     },
-    async handleDataTypeChange() {
+    async handleDataTypeChange(value) {
+      this.$store.dispatch('setCondition', { dataType: this.dataForm.dataType })
+      this.spinning.params = true
+      await this.saveCondition()
+      this.spinning.params = false
       this.$emit('change', this.dataFormFilter())
     },
-    handleVersionTypeChange() {
+    async handleDimensionTypeChange(value) {
+      this.$store.dispatch('setCondition', { dimension: this.dataForm.dimension })
+      this.spinning.params = true
+      await this.saveCondition()
+      this.spinning.params = false
+      this.$emit('change', this.dataFormFilter())
+    },
+    async handleVersionTypeChange() {
+      this.$store.dispatch('setCondition', { versionType: this.dataForm.versionType })
+      this.spinning.params = true
+      await this.saveCondition()
+      this.spinning.params = false
       this.$emit('change', this.dataFormFilter())
     },
     handleVersionChange(value) {
       this.dataForm.version = value
+      this.$store.dispatch('setCondition', { version: value })
       this.$emit('change', this.dataFormFilter())
     },
     handleFilterChange(value) {
       this.loading = true
       this.selectedFilter = value
-      this.searchFormData.subModel = this.typeData[value]
-      this.showLetter = value === 1
+      this.searchFormData.subModel = this.typeData[value - 1]
+      this.showLetter = value !== 1
       this.loading = false
     },
     dataFormFilter() { // 格式化filter返出数据
@@ -556,14 +589,15 @@ export default {
         dimension: this.dataForm.dimension,
         dataSource: this.dataForm.dataSource, // 数据源Id,开票数:5,上险数:6
         dataTimeType: this.dataForm.dataTimeType,
-        ym: this.dataForm.dataTimeType === 2 ? this.dataForm.dataTime2 : this.dataForm.dataTime, // 年月
+        dataTime: this.dataForm.dataTimeType === 1 ? this.dataForm.dataTime2 : this.dataForm.dataTime, // 年月
         maxYm: (this.searchFormData.dataSource.find(item => item.value === this.dataForm.dataSource) || {}).maxYm,
-        manfId: Array.isArray(this.dataForm.manfBrand) ? get(this.dataForm.manfBrand.slice(-1), '[0][0]', null) : null, // 厂商Id
-        manfbrand: Array.isArray(this.dataForm.manfBrandText) ? get(this.dataForm.manfBrandText.slice(-1), '[0][0]', null) : null, // 厂商所有信息
-        subModelId: Array.isArray(this.dataForm.subModel) ? get(this.dataForm.subModel.slice(-1), '[0]', null) : null, // 本品子车型Id
-        submodel: Array.isArray(this.dataForm.subModelText) ? get(this.dataForm.subModelText.slice(-1), '[0]', null) : null, // 子车型所有信息
+        manfBrand: Array.isArray(this.dataForm.manfBrand) ? get(this.dataForm.manfBrand.slice(-1), '[0][0]', null) : null, // 厂商Id
+        manfBrandText: Array.isArray(this.dataForm.manfBrandText) ? get(this.dataForm.manfBrandText.slice(-1), '[0][0]', null) : null, // 厂商所有信息
+        subModel: Array.isArray(this.dataForm.subModel) ? get(this.dataForm.subModel.slice(-1), '[0]', null) : null, // 本品子车型Id
+        subModelText: Array.isArray(this.dataForm.subModelText) ? get(this.dataForm.subModelText.slice(-1), '[0]', null) : null, // 子车型所有信息
         jpId: this.dataForm.jpId,
         jp: this.dataForm.jp,
+        compCircle: this.dataForm.compCircle,
         compCircleName: this.dataForm.compCircleName,
         dataType: this.dataForm.dataType,
         versionType: this.dataForm.versionType,
@@ -571,24 +605,121 @@ export default {
       }
       return dataForm
     },
+    dataFormConvert(dataForm, condition, reverse = true) {
+      if (reverse) {
+        var {
+          dataSource,
+          compCircle,
+          dataTimeType,
+          dataType,
+          segmentType,
+          subModel,
+          manfBrand,
+          version
+        } = dataForm
+        const condition = {
+          dataSource,
+          groupId: compCircle,
+          isQuarter: dataTimeType,
+          moneyOrRatio: dataType,
+          modelDimension: segmentType,
+          subModelId: subModel[subModel.length - 1],
+          manfBrandId: manfBrand && manfBrand[0] && manfBrand[0][0],
+          versionId: version
+        }
+        return condition
+      } else {
+        const {
+          dataSource,
+          groupId: compCircle,
+          isQuarter: dataTimeType,
+          moneyOrRatio: dataType,
+          modelDimension: segmentType,
+          subModelId: subModel,
+          manfBrandId: manfBrand,
+          versionId: version
+        } = condition
+        dataForm = {
+          ...dataForm,
+          dataSource,
+          compCircle,
+          dataTimeType,
+          dataType,
+          segmentType,
+          subModel: [subModel + ''],
+          manfBrand: [[manfBrand + '']],
+          version
+        }
+        return dataForm
+      }
+    },
+    getCondition() { // 获取默认选择
+      return new Promise((resolve, reject) => {
+        const condition = this.$store.getters.condition
+        if (Object.keys(condition).length) {
+          this.dataForm = condition
+          // 从时间段切回时间格式出错修正
+          if (!this.dataTimeRange && typeof this.dataForm.dataTime === 'object' && this.dataForm.dataTime.length === 2) {
+            this.dataForm.dataTime = this.dataForm.dataTime[1]
+            this.dataForm.dataTime2 = this.dataForm.dataTime2[1]
+          }
+          resolve()
+          return
+        }
+        memoryCondition({
+          getOrSave: _GET_,
+          type: 1
+        })
+          .then(res => {
+            const data = res.data || {}
+            const condition = data.data || {}
+            for (const key in condition) {
+              const value = condition[key]
+              condition[key] = isNaN(value) ? value : Number(value)
+            }
+            const dataForm = this.dataFormConvert(this.dataForm, condition, false)
+            this.$store.dispatch('setCondition', dataForm)
+            this.dataForm = copyObject(dataForm)
+            resolve()
+          })
+          .catch(err => {
+            reject(err)
+          })
+      })
+    },
+    saveCondition() { // 记录选择
+      return new Promise((resolve, reject) => {
+        const condition = this.dataFormConvert(this.dataForm)
+        memoryCondition({
+          getOrSave: _SAVE_,
+          type: 1,
+          ...condition
+        })
+          .then(response => {
+            resolve(response)
+          })
+          .catch(err => {
+            reject(err)
+          })
+      })
+    },
     async getData() {
       this.spinning.params = true
-      this.getDatasourceOptions()
-      const dataTime = this.getTimeRange()
-      await dataTime
-      if (this.show.dimensionType || this.show.manfBrand) {
+      await this.getCondition()
+      await this.getDatasourceOptions()
+      await this.getTimeRange()
+      if (this.show.manfBrand) {
         this.getManfbrandOptions()
-        // await this.getDefaultManfbrand()
       }
-      if (this.show.dimensionType || this.show.segment) {
+      if (this.show.segment) {
         this.getSegmentOptions()
       }
       if (this.show.subModel) {
-        this.getSubmodelOptions()
+        await this.getSubmodelOptions()
         await this.getDefaultSubmodel()
-      }
-      if (this.show.competitor) {
-        this.getCompCircles()
+        if (this.show.competitor) {
+          this.getCompCircles()
+        }
       }
       if (this.show.reward) {
         this.getRewardOptions()
@@ -601,16 +732,21 @@ export default {
     },
     getDatasourceOptions() { // 获取数据源选项
       return new Promise((resolve, reject) => {
+        const storeDataSource = this.$store.state.common.dataSource
+        if (storeDataSource && storeDataSource.length) {
+          this.searchFormData.dataSource = storeDataSource
+          resolve()
+          return
+        }
         getDatasource()
           .then(res => {
             const data = res.data
             this.searchFormData.dataSource = data
-            this.dataForm.dataSource = data[0].value
-            const storeDatasource = this.$store.state.app.dataSource
-            if (storeDatasource) {
-              this.dataForm.dataSource = storeDatasource
+            if (!this.dataForm.dataSource) {
+              this.dataForm.dataSource = (data.find(item => item.selected) || data[0]).value
+              this.$store.dispatch('setDataSource', data)
             }
-            resolve()
+            resolve(res)
           })
           .catch(err => {
             reject(err)
@@ -618,107 +754,72 @@ export default {
       })
     },
     getTimeRange() { // 获取时间可选范围
-      // const storeDataTimeType = this.$store.state.app.dataTimeType
-      // if (storeDataTimeType) {
-      //   this.dataForm.dataTimeType = storeDataTimeType
-      // }
-
       return new Promise((resolve, reject) => {
+        const storeDataTime = this.$store.state.common.dataTime
+        const storeDataTime2 = this.$store.state.common.dataTime2
+        if (storeDataTime && storeDataTime.length) {
+          this.searchFormData.dataTime = storeDataTime
+          this.searchFormData.dataTime2 = storeDataTime2
+          resolve()
+          return
+        }
         getTimeRange({
-          mqFlag: this.dataForm.dataTimeType
+          salesType: this.dataForm.dataSource
         })
           .then(res => {
             const data = res.data
-            let format = ''
-            if (this.dataForm.dataTimeType === 1) {
-              format = 'YYYYMM'
-            }
-            if (this.dataForm.dataTimeType === 2) {
-              format = 'YYYYQ'
-            }
+            const format = 'YYYYMM'
+            const format2 = 'YYYYQ'
+            // 最大时间处理
+            const maxYm = (this.searchFormData.dataSource.find(item => item.value === this.dataForm.dataSource) || {}).maxYm || moment().format('YYYYMM')
+            data.endYm = Math.min(data.endYm, maxYm)
 
-            const momentStartDate = moment(data.startYm, 'YYYYMM')
-            const momentEndDate = moment(data.endYm, 'YYYYMM')
+            const momentStartDate = moment(data.startYm, format)
+            const momentEndDate = moment(data.endYm, format)
             this.searchFormData.dataTime = [momentStartDate, momentEndDate]
-
-            if (this.dataForm.dataTimeType === 1) {
-              this.dataForm.dataTime = momentEndDate.format(format)
-              const storeDataTime = this.$store.state.app.dataTime
-              if (storeDataTime) {
-                this.dataForm.dataTime = storeDataTime
-              }
-              // 兼容时间段的情况
+            this.$store.dispatch('setDataTime', this.searchFormData.dataTime)
+            this.dataForm.dataTime = moment(data.selected || data.endYm, 'YYYYMM').format(format)
+            this.dataForm.dataTime2 = moment(data.selected || data.endYm, 'YYYYMM').format(format2)
+            this.$store.dispatch('setCondition', { dataTime: this.dataForm.dataTime, dataTime2: this.dataForm.dataTime2 })
+            if (this.dataTimeRange) {
               const dataTime = this.dataForm.dataTime
-              if (this.dataTimeRange) {
-                const startDate = Math.max(moment(dataTime, format).subtract(2, 'months'), momentStartDate)
-                this.dataForm.dataTime = dataTime instanceof Array ? dataTime : [moment(startDate).format(format), dataTime]
+              const dataTime2 = this.dataForm.dataTime2
+              if (typeof dataTime === 'string') {
+                const startDate = moment(dataTime, 'YYYYMM').subtract(2, 'months')
+                this.dataForm.dataTime = dataTime instanceof Array ? dataTime : [moment(startDate).format('YYYYMM'), dataTime]
+                this.dataForm.dataTime2 = dataTime2 instanceof Array ? dataTime2 : [moment(startDate).format('YYYYQ'), dataTime2]
               }
             }
+            resolve()
+          })
+          .catch(err => {
+            reject(err)
+          })
+      })
+    },
 
-            if (this.dataForm.dataTimeType === 2) {
-              this.dataForm.dataTime2 = momentEndDate.format(format)
-              const storeDataTime2 = this.$store.state.app.dataTime2
-              if (storeDataTime2) {
-                this.dataForm.dataTime2 = storeDataTime2
-              }
-              // 兼容时间段的情况
-              const dataTime = this.dataForm.dataTime2
-              console.log(this.dataForm.dataTime2)
-              if (this.dataTimeRange) {
-                this.dataForm.dataTime2 = dataTime instanceof Array ? dataTime : [dataTime, dataTime]
-              }
-            }
-            resolve()
-          })
-          .catch(err => {
-            reject(err)
-          })
-      })
-    },
-    getDefaultManfbrand() { // 获取默认选择的厂商品牌
-      return new Promise((resolve, reject) => {
-        getDefaultManfbrand({
-          recordType: 3
-        })
-          .then(res => {
-            const data = res.data
-            this.dataForm.manfBrand = [[data.key]]
-            this.dataForm.manfBrandText = [[data]]
-            resolve()
-          })
-          .catch(err => {
-            reject(err)
-          })
-      })
-    },
     getManfbrandOptions() { // 获取厂商品牌选项
       return new Promise((resolve, reject) => {
+        const storeManfBrand = this.$store.state.common.manfBrand
+        if (storeManfBrand && storeManfBrand.length) {
+          this.searchFormData.manfBrand = storeManfBrand
+          resolve()
+          return
+        }
         const params = this.dataFormFilter()
         getManfbrand({
-          'loadType': 'headerBrand',
-          'endYmId': params.ym
+          selectedId: '',
+          ymId: Array.isArray(params.dataTime) ? params.dataTime[1] : params.dataTime
         })
           .then(res => {
             const data = res.data
             this.searchFormData.manfBrand = data
+            this.$store.dispatch('setManfBrand', this.searchFormData.manfBrand)
+            this.status.manfBrand = 200
             resolve()
           })
           .catch(err => {
-            reject(err)
-          })
-      })
-    },
-    setDefaultManfbrand() { // 记录选择的厂商
-      return new Promise((resolve, reject) => {
-        const params = this.dataFormFilter()
-        saveBrowsingHistory({
-          'recordType': 3,
-          'refferId': params.manfId
-        })
-          .then(response => {
-            resolve(response)
-          })
-          .catch(err => {
+            this.status.manfBrand = 500
             reject(err)
           })
       })
@@ -728,8 +829,8 @@ export default {
       return new Promise((resolve, reject) => {
         const params = this.dataFormFilter()
         getSegment({
-          'mqFlag': params.dataTimeType,
-          'mqId': params.ym
+          selectedId: '',
+          ymId: Array.isArray(params.dataTime) ? params.dataTime[1] : params.dataTime
         })
           .then(res => {
             const data = res.data
@@ -746,8 +847,8 @@ export default {
       return new Promise((resolve, reject) => {
         const params = this.dataFormFilter()
         getReward({
-          'mqFlag': params.dataTimeType,
-          'mqId': params.ym
+          selectedId: '',
+          ymId: Array.isArray(params.dataTime) ? params.dataTime[1] : params.dataTime
         })
           .then(res => {
             const data = res.data
@@ -762,14 +863,27 @@ export default {
 
     getVersionOptions() { // 获取奖励类型选项
       return new Promise((resolve, reject) => {
+        const storeVersion = this.$store.state.common.version
+        if (storeVersion && storeVersion.length) {
+          this.searchFormData.version = storeVersion
+          resolve()
+          return
+        }
         const params = this.dataFormFilter()
+        if (!params.subModel) {
+          resolve()
+          return
+        }
         getVersion({
-          'mqFlag': params.dataTimeType,
-          'mqId': params.ym
+          isQuarter: params.dataTimeType, // 月度季度标识:1季度; 2月度
+          selectedId: '',
+          subModelId: params.subModel,
+          ymId: Array.isArray(params.dataTime) ? params.dataTime[1] : params.dataTime
         })
           .then(res => {
             const data = res.data
             this.searchFormData.version = data
+            this.$store.dispatch('setVersion', data)
             resolve()
           })
           .catch(err => {
@@ -780,19 +894,25 @@ export default {
 
     getDefaultSubmodel() { // 获取默认选择的车型
       return new Promise((resolve, reject) => {
+        if (this.dataForm.subModel.length) {
+          resolve()
+          return
+        }
+        const params = this.dataFormFilter()
         getDefaultSubmodel({
-          recordType: 1
+          dataSource: params.dataSource,
+          ymId: Array.isArray(params.dataTime) ? params.dataTime[1] : params.dataTime
         })
           .then(res => {
             const submodel = res.data
-            this.dataForm.subModel = [submodel.value]
-            this.dataForm.subModelText = [submodel]
-            const paramsSubmodel = this.$route.params.submodel
-            if (paramsSubmodel) {
-              paramsSubmodel.value = paramsSubmodel.id
-              paramsSubmodel.text = paramsSubmodel.name
-              this.dataForm.subModel = [paramsSubmodel.value]
-              this.dataForm.subModelText = [paramsSubmodel]
+            if (submodel) {
+              this.dataForm.subModel = [submodel.value]
+              this.dataForm.subModelText = [submodel]
+              const paramsSubmodel = this.$route.params.submodel
+              if (paramsSubmodel) {
+                this.dataForm.subModel = [paramsSubmodel.id]
+                this.dataForm.subModelText = [{ value: paramsSubmodel.id, text: paramsSubmodel.name }]
+              }
             }
             resolve()
           })
@@ -804,53 +924,57 @@ export default {
 
     getSubmodelOptions() { // 获取子车型选项
       return new Promise((resolve, reject) => {
+        const storeSubModel = this.$store.state.common.subModel
+        if (storeSubModel && storeSubModel.data && storeSubModel.data.length) {
+          this.typeData = storeSubModel.data // 竞品圈中的车型选择
+          this.subModelFilterTitles = storeSubModel.title.map((title, index) => {
+            return { value: index + 1, text: title }
+          })
+          this.searchFormData.subModel = this.typeData[this.selectedFilter - 1]
+          resolve()
+          return
+        }
         const params = this.dataFormFilter()
         getSubmodel({
-          'mqFlag': params.dataTimeType,
-          'mqId': params.ym
+          selectedId: '',
+          ymId: Array.isArray(params.dataTime) ? params.dataTime[1] : params.dataTime
         })
           .then(res => {
             const data = res.data
-            this.typeData = data // 竞品圈中的车型选择
-            this.selectedFilter = 0
+            this.typeData = data.data // 竞品圈中的车型选择
+            this.subModelFilterTitles = data.title.map((title, index) => {
+              return { value: index + 1, text: title }
+            })
+            this.selectedFilter = 1
             this.showLetter = false
-            this.searchFormData.subModel = data[this.selectedFilter]
+            this.searchFormData.subModel = this.typeData[this.selectedFilter - 1]
+            this.$store.dispatch('setSubModel', data)
+            this.status.subModel = 200
             resolve()
           })
           .catch(err => {
-            reject(err)
-          })
-      })
-    },
-
-    setDefaultSubModel() {
-      return new Promise((resolve, reject) => {
-        const params = this.dataFormFilter()
-        saveBrowsingHistory({
-          'recordType': 1,
-          'refferId': params.subModelId
-        })
-          .then(response => {
-            resolve(response)
-          })
-          .catch(err => {
+            this.status.subModel = 500
             reject(err)
           })
       })
     },
 
     getCompCircles() { // 获取竞品圈列表
+      const params = this.dataFormFilter()
+      if (!params.subModel) return
       return new Promise((resolve, reject) => {
-        const params = this.dataFormFilter()
         getCompCircles({
-          'dataSource': params.dataSource,
-          'subModelId': params.subModelId,
-          'mqFlag': params.dataTimeType,
-          'mqId': params.ym
+          dataSource: params.dataSource,
+          subModelId: params.subModel,
+          groupId: params.compCircle,
+          ymId: Array.isArray(params.dataTime) ? params.dataTime[1] : params.dataTime
         })
           .then(res => {
-            const data = res.data
-            this.$set(this.searchFormData, 'competitiveCircle', data)
+            const data = res.data || []
+            this.$set(this.searchFormData, 'competitiveCircle', data.map(item => {
+              item.disabledChildren = [params.submodel]
+              return item
+            }))
             const compCircle = data.find(item => item.selected) || data[0]
             if (compCircle) {
               this.$set(this.dataForm, 'compCircle', compCircle.value)
@@ -866,22 +990,7 @@ export default {
             resolve()
           })
           .catch(err => {
-            reject(err)
-          })
-      })
-    },
-
-    setDefaultCompCircle() { // 记录默认选择竞品圈
-      return new Promise((resolve, reject) => {
-        saveBrowsingHistory({
-          'recordType': 2,
-          'refferId': this.dataForm.compCircle
-        })
-          .then(response => {
-            this.getCompCircles()
-            resolve(response)
-          })
-          .catch(err => {
+            this.$set(this.spinning, 'params', false)
             reject(err)
           })
       })
@@ -893,7 +1002,7 @@ export default {
       tableList.forEach(row => {
         const item = {}
         for (const x in row) {
-          if (x === 'key') {
+          if (x === 'value') {
             continue
           } else {
             item[x] = row[x]
@@ -908,13 +1017,13 @@ export default {
       return new Promise((resolve, reject) => {
         this.spinning.save = true
         saveCompCircle({
-          'circleList': circleList.map(compCircle => {
+          circleList: circleList.map(compCircle => {
             return {
-              name: compCircle.value,
-              compSubModelIds: compCircle.children.map(submodel => submodel.key)
+              name: compCircle.text,
+              compSubModelIds: compCircle.children.map(submodel => submodel.value)
             }
           }),
-          'subModelId': params.subModelId
+          subModelId: params.subModel
         })
           .then(response => {
             this.getCompCircles().then(() => {

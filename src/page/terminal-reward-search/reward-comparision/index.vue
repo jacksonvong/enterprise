@@ -133,6 +133,12 @@ export default {
         return {
         }
       }
+    },
+    limitHeight: {
+      type: [Number, Boolean],
+      default() {
+        return false
+      }
     }
   },
   data() {
@@ -200,7 +206,8 @@ export default {
       }
       this.tableWidth = $('#tableListRef').width() + 'px'
       this.tdModelWidth = { width: $('#tdModel').outerWidth(true) + 'px' }
-      this.maxHeight = window.innerHeight - $('#tableListRef').offset().top - 14 + 'px'
+      // 添加了 limitHeight 属性可以自定义高度
+      this.maxHeight = typeof this.limitHeight === 'number' ? this.limitHeight + 'px' : window.innerHeight - $('#tableListRef').offset().top - 14 + 'px'
     },
     handleScroll(event) {
       if (this.$refs.tableHeaderRef) {

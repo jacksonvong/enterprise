@@ -1,7 +1,7 @@
 <template>
   <div>
     <a-card
-      :title="$t('及竞品月度激励走势',[])"
+      :title="$t('modelTerminalSupportAnalysis.month.incentiveTrend', [])"
       :body-style="{padding: '16px 24px'}">
       <span slot="extra" class="extra-header-download">
         <iw-download
@@ -16,10 +16,10 @@
       </div>
     </a-card>
     <a-card
-      :title="$t('月度激励节奏情况')"
+      :title="$t('modelTerminalSupportAnalysis.month.incentiveRhythm')"
       :body-style="{padding: '16px 24px'}">
       <div class="model-select-wrapper">
-        <span style="color: #181C28;">{{ $t('选择车型：') }}</span>
+        <span style="color: #181C28;">{{ $t('modelTerminalSupportAnalysis.common.chooseModel') }}</span>
         <span>
           <a-button type="primary" class="model-select-item">本品</a-button>
           <a-button class="model-select-item">竞品1</a-button>
@@ -29,6 +29,7 @@
         </span>
       </div>
       <a-table
+        :pagination="false"
         :columns="condition.columns"
         :data-source="condition.data"
         bordered>
@@ -46,154 +47,102 @@
         </div>
       </a-table>
     </a-card>
+    <a-card
+      :title="$t('年月激励结构 VS 年月激励结构')"
+      :body-style="{padding: '16px 24px'}">
+      <div slot="extra" class="extra-wrapper">
+        <span class="extra-query">
+          <span style="position: relative; right: 12px;top: 4px">
+            <button class="chart-button" style="margin-right: 4px" @click="onChangeChartType('bar')">
+              <a-icon type="bar-chart" :style="chartButtonStyle" :class="{ selected: query.chartType === 'bar' }" />
+            </button>
+            <button class="chart-button" @click="onChangeChartType('pie')">
+              <a-icon type="pie-chart" :style="chartButtonStyle" :class="{ selected: query.chartType === 'pie' }" />
+            </button>
+          </span>
+          <a-radio-group v-model="query.type" size="small">
+            <a-radio-button value="a">{{ $t('modelTerminalSupportAnalysis.month.bonusType') }}</a-radio-button>
+            <a-radio-button value="b">{{ $t('modelTerminalSupportAnalysis.month.bonusSubtype') }}</a-radio-button>
+          </a-radio-group>
+        </span>
+        <span class="extra-header-download">
+          <iw-download
+            type="simple"
+            download-api="/market-overview-export/manf-rank"
+            :download-params="{
+            }"
+          />
+        </span>
+      </div>
+      <div>
+        <iw-chart-comparison
+          :timeline="timeline"
+          :comparison-bar-data="comparisonBarData"
+          :comparison-pie-data="comparisonPieData"
+          :chart-type="query.chartType" />
+      </div>
+    </a-card>
   </div>
 </template>
 <script>
-import { Card, Button, Divider, Table, Select } from 'ant-design-vue'
+import { Card, Button, Table, Select, Radio, Icon } from 'ant-design-vue'
 import IwDownload from '@/components/download/index'
 import IwChart from '@/components/charts'
+import IwChartComparison from './chart-comparison'
+import {
+  getMonthSaleTrend,
+  getMonthStimulateCondition,
+  getMonthStimulateStructureComparison,
+  getMonthStimulateStructureComparisonPieList
+} from '@/api/model-terminal-support-analysis'
+import { Chart } from '@/utils/charts'
 
 export default {
   components: {
     ACard: Card,
     AButton: Button,
-    ADivider: Divider,
+    ARadioGroup: Radio.Group,
+    ARadioButton: Radio.Button,
+    AIcon: Icon,
     ATable: Table,
     ASelect: Select,
     IwDownload,
-    IwChart
+    IwChart,
+    IwChartComparison
   },
   data() {
     return {
-      optPrice: {
-        color: ['#6398f5', '#36c585', '#f9826f', '#ffaa42'],
-        tooltip: {
-          trigger: 'axis'
-        },
-        legend: {
-          data: ['邮件营销', '联盟广告'],
-          bottom: '-5px'
-        },
-        dataZoom: [
-          {
-            type: 'slider',
-            show: true,
-            bottom: '26px',
-            handleIcon:
-              'M10.7,11.9H9.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4h1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7v-1.2h6.6z M13.3,22H6.7v-1.2h6.6z M13.3,19.6H6.7v-1.2h6.6z',
-            handleSize: '50%',
-            start: 1,
-            end: 50
-          }
-        ],
-        grid: {
-          top: '30px',
-          left: '16px',
-          right: '16px',
-          bottom: '66px',
-          containLabel: true
-        },
-        xAxis: {
-          type: 'category',
-          data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
-        },
-        yAxis: [
-          {
-            type: 'value',
-            name: '销量',
-            nameLocation: 'end',
-            splitLine: { // 网格线
-              lineStyle: {
-                type: 'dashed' // 设置网格线类型 dotted：虚线   solid:实线
-              },
-              show: true // 隐藏或显示
-            }
-          }
-        ],
-        series: [
-          {
-            smooth: true,
-            name: '邮件营销',
-            type: 'line',
-            barMaxWidth: '38px',
-            data: [120, 132, 101, 134, 90, 230, 210],
-            yAxisIndex: 0,
-            label: {
-              show: true
-            },
-            symbolSize: 6
-          },
-          {
-            smooth: true,
-            name: '联盟广告',
-            type: 'line',
-            stack: '总量',
-            data: [220, 182, 191, 234, 290, 330, 310],
-            yAxisIndex: 0,
-            label: {
-              show: true
-            },
-            symbolSize: 6
-          }
-        ]
-
-      },
+      optPrice: {},
       condition: {
-        data: [
-          {
-            model: 'A7',
-            a: '提车奖励',
-            b: '提车奖励',
-            months: [null]
-          },
-          {
-            model: 'A7',
-            a: '零售奖励',
-            b: '',
-            months: [
-              {
-                detail: [
-                  '销量提升补充支持 : 9,000',
-                  '国五车型额外销售支持: 4'
-                ]
-              }
-            ]
-          },
-          {
-            model: 'A7',
-            a: '专项奖励',
-            b: '',
-            months: [
-              {
-                detail: [
-                  '销量提升补充支持 : 9,000',
-                  '国五车型额外销售支持: 4'
-                ]
-              }
-            ]
-          },
-          {
-            model: 'A7',
-            a: '人员奖励',
-            b: '',
-            months: [
-              {
-                detail: [
-                  '销量提升补充支持 : 9,000',
-                  '国五车型额外销售支持: 4'
-                ]
-              }
-            ]
-          }
-        ],
+        data: [],
         columns: []
-      }
+      },
+      query: {
+        type: 'a',
+        chartType: 'bar' // pie
+      },
+      chartButtonStyle: {
+        fontSize: '22px',
+        color: '#B3B3C8'
+      },
+      timeline: [],
+      comparisonBarData: [],
+      comparisonPieData: {}
     }
   },
   mounted() {
-    this.getTableData()
+    this.init()
   },
   methods: {
+    init() {
+      this.getMonthSaleTrend()
+      this.getMonthStimulateCondition()
+      this.getMonthStimulateStructureComparison()
+      this.getMonthStimulateStructureComparisonPieList()
+    },
+    onChangeChartType(type) {
+      this.query.chartType = type
+    },
     getTableData() {
       this.condition.columns = [
         {
@@ -213,13 +162,13 @@ export default {
         },
         {
           title: this.$t('奖励大项'),
-          dataIndex: 'a',
+          dataIndex: 'big',
           width: 100,
           align: 'center'
         },
         {
           title: this.$t('奖励小项'),
-          dataIndex: 'b',
+          dataIndex: 'little',
           width: 100,
           align: 'center'
         },
@@ -230,6 +179,47 @@ export default {
           scopedSlots: { customRender: 'detail' }
         }
       ]
+    },
+    getMonthSaleTrend() {
+      return getMonthSaleTrend()
+        .then(res => {
+          this.optPrice = new Chart('line', res.data, {
+            yAxis: { name: '%' },
+            smooth: true,
+            field: { type: 'percent' }
+          }).getChart()
+        })
+    },
+    getMonthStimulateCondition() {
+      return getMonthStimulateCondition()
+        .then(res => {
+          this.condition.data = res.data
+          this.getTableData()
+        })
+    },
+    getMonthStimulateStructureComparison(params) {
+      return getMonthStimulateStructureComparison(params)
+        .then(res => {
+          this.timeline = res.data[0].timeList
+          this.comparisonBarData = res.data[0].options.map(item => {
+            return new Chart('bar', item, {
+              legend: {
+                top: 10,
+                type: 'scroll'
+              },
+              grid: {
+                top: 50,
+                right: 30
+              }
+            }).getChart()
+          })
+        })
+    },
+    getMonthStimulateStructureComparisonPieList(params) {
+      return getMonthStimulateStructureComparisonPieList(params)
+        .then(res => {
+          this.comparisonPieData = res.data[0]
+        })
     }
   }
 }
@@ -251,5 +241,20 @@ export default {
       margin: 0 7px;
       width: 92px;
     }
+  }
+  .extra-query {
+    position: relative;
+    line-height: 16px;
+    top: 0;
+    right: 40px;
+  }
+  .chart-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: relative;
+  }
+  .selected {
+    color: #2E5AA6 !important;
   }
 </style>

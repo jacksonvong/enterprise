@@ -98,9 +98,20 @@ export function saveCompCircle(data) {
 }
 
 // 保存浏览记录
-export function saveBrowsingHistory(data) {
+export function memoryCondition(data) {
   return request({
-    url: '/enterprise/common/save-browsing-history',
+    url: '/enterprise/common/memory-condition',
+    method: 'post',
+    data: {
+      data
+    }
+  })
+}
+
+// 保存浏览记录
+export function saveSelfHistory(data) {
+  return request({
+    url: '/enterprise/common/save-self-history',
     method: 'post',
     data: {
       data
@@ -122,7 +133,7 @@ export function getDefaultManfbrand(data) {
 // 获取默认的记录
 export function getDefaultSubmodel(data) {
   return request({
-    url: '/enterprise/common/get-default-submodel',
+    url: '/enterprise/common/get-month-sale-subMobel',
     method: 'post',
     data: {
       data

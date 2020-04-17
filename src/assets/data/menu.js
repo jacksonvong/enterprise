@@ -17,7 +17,7 @@ export default [
       {
         'menuId': 108,
         'pid': null,
-        'title': '生产商品牌',
+        'title': '厂商品牌',
         'node': '0',
         'code': null,
         'icon': 'icon-che',
@@ -31,7 +31,7 @@ export default [
           {
             'menuId': 1081,
             'pid': null,
-            'title': '生产商品牌概况',
+            'title': '厂商品牌概况',
             'node': '0',
             'code': null,
             'icon': 'icon-che',

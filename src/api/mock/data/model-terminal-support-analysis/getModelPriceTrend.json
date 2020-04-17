@@ -1,0 +1,45 @@
+{
+  "result_code": "200",
+  "result_msg": "执行成功",
+  "data": {
+    "legend": {
+      "data": [
+        "全车系销量(辆)",
+        "市场指导价(万元)"
+      ]
+    },
+    "xAxis": {
+      "type": "category",
+      "data": [
+        "201810",
+        "201811",
+        "201812"
+      ]
+    },
+    "yAxis": {
+      "type": "value",
+      "name": "销量"
+    },
+    "series": [
+      {
+        "name": "全车系销量(辆)",
+        "type": "bar",
+        "data": [
+          120,
+          132,
+          101
+        ]
+      },
+      {
+        "smooth": true,
+        "name": "市场指导价(万元)",
+        "type": "line",
+        "data": [
+          220,
+          182,
+          191
+        ]
+      }
+    ]
+  }
+}

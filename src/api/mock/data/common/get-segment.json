@@ -1,0 +1,219 @@
+{
+  "status": "200", 
+  "message": "测试数据", 
+  "data": [
+    {
+      "value": "-1",
+      "text": "整体市场", 
+      "children": [
+        {
+          "value": 1001, 
+          "text": "A00", 
+          "children": [
+            {
+              "value": 2001, 
+              "text": "A00"
+            }
+          ]
+        }, 
+        {
+          "value": 1002, 
+          "text": "A0",
+          "children": [
+            {
+              "value": 2003, 
+              "text": "A0-H"
+            }, 
+            {
+              "value": 2002, 
+              "text": "A0-L"
+            }
+          ]
+        }, 
+        {
+          "value": 1003, 
+          "text": "A", 
+          "children": [
+            {
+              "value": 2007, 
+              "text": "A-S"
+            }, 
+            {
+              "value": 2004, 
+              "text": "A-L"
+            }, 
+            {
+              "value": 2006, 
+              "text": "A-H"
+            }, 
+            {
+              "value": 2005, 
+              "text": "A-M"
+            }
+          ]
+        }, 
+        {
+          "value": 1004, 
+          "text": "B", 
+          "children": [
+            {
+              "value": 2010, 
+              "text": "B-H"
+            }, 
+            {
+              "value": 2009, 
+              "text": "B-M"
+            }, 
+            {
+              "value": 2008, 
+              "text": "B-L"
+            }
+          ]
+        }, 
+        {
+          "value": 1005, 
+          "text": "C", 
+          "children": [
+            {
+              "value": 2012, 
+              "text": "C-H"
+            }, 
+            {
+              "value": 2011, 
+              "text": "C-L"
+            }
+          ]
+        }, 
+        {
+          "value": 1006, 
+          "text": "D",
+          "children": [
+            {
+              "value": 2013, 
+              "text": "D"
+            }
+          ]
+        }, 
+        {
+          "value": 1007, 
+          "text": "A0-SUV",
+          "children": [
+            {
+              "value": 2015, 
+              "text": "A0-SUV-H"
+            }, 
+            {
+              "value": 2014, 
+              "text": "A0-SUV-L"
+            }
+          ]
+        }, 
+        {
+          "value": 1008, 
+          "text": "A-SUV", 
+          "children": [
+            {
+              "value": 2016, 
+              "text": "A-SUV-L"
+            }, 
+            {
+              "value": 2017, 
+              "text": "A-SUV-M"
+            }, 
+            {
+              "value": 2018, 
+              "text": "A-SUV-H"
+            }
+          ]
+        }, 
+        {
+          "value": 1009, 
+          "text": "B-SUV", 
+          "children": [
+            {
+              "value": 2019, 
+              "text": "B-SUV-L"
+            }, 
+            {
+              "value": 2021, 
+              "text": "B-SUV-H"
+            }, 
+            {
+              "value": 2020, 
+              "text": "B-SUV-M"
+            }
+          ]
+        }, 
+        {
+          "value": 1010, 
+          "text": "C-SUV", 
+          "children": [
+            {
+              "value": 2023, 
+              "text": "C-SUV-H"
+            }, 
+            {
+              "value": 2022, 
+              "text": "C-SUV-L", 
+              "values": "379"
+            }
+          ]
+        }, 
+        {
+          "value": 1011, 
+          "text": "D-SUV", 
+          "children": [
+            {
+              "value": 2024, 
+              "text": "D-SUV"
+            }
+          ]
+        }, 
+        {
+          "value": 1012, 
+          "text": "A-MPV", 
+          "children": [
+            {
+              "value": 2026, 
+              "text": "A-MPV-H"
+            }, 
+            {
+              "value": 2025, 
+              "text": "A-MPV-L"
+            }
+          ]
+        }, 
+        {
+          "value": 1013, 
+          "text": "B-MPV", 
+          "children": [
+            {
+              "value": 2028, 
+              "text": "B-MPV-M", 
+              "values": "143,176"
+            }, 
+            {
+              "value": 2027, 
+              "text": "B-MPV-L", 
+              "values": "235"
+            }, 
+            {
+              "value": 2029, 
+              "text": "B-MPV-H"
+            }
+          ]
+        }, 
+        {
+          "value": 1014, 
+          "text": "跑车", 
+          "children": [
+            {
+              "value": 2030, 
+              "text": "跑车"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "result_code": "200",
+  "result_msg": "执行成功",
+  "data": {
+    "legend": {
+      "data": [
+        "年度固定折扣",
+        "年度考核奖励",
+        "月度激励"
+      ]
+    },
+
+    "xAxis": {
+      "type": "category",
+      "data": [
+        "A7",
+        "云100"
+      ]
+    },
+    "yAxis": [
+      {
+        "type": "value",
+        "nameLocation": "end",
+        "splitLine": {
+          "lineStyle": {
+            "type": "dashed"
+          },
+          "show": true
+        }
+      }
+    ],
+    "series": [
+      {
+        "name": "年度固定折扣",
+        "type": "bar",
+        "data": [
+          120,
+          56
+        ],
+        "stack": "1"
+      },
+      {
+        "name": "年度考核奖励",
+        "type": "bar",
+        "data": [
+          34,
+          33
+        ],
+        "stack": "1"
+      },
+      {
+        "name": "月度激励",
+        "type": "bar",
+        "data": [
+          34,
+          33
+        ],
+        "stack": "1"
+      }
+    ]
+  }
+}

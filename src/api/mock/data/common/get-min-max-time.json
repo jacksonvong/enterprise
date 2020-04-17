@@ -1,0 +1,10 @@
+{
+  "status": "200", 
+  "message": "测试数据", 
+  "data": { 
+    "startYm": 201701,
+    "endYm": 207003,
+    "selected": 201912
+  }
+}
+        

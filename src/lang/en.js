@@ -1,6 +1,7 @@
 import manfbrandOverview from './manfbrand-overview/en'
 import modelOverview from './model-overview/en'
 import terminalExcitionSearch from './terminal-excition-search/en'
+import modelTerminalSupportAnalysis from './model-terminal-support-analysis/en'
 
 export default {
   login: {
@@ -46,5 +47,6 @@ export default {
   },
   manfbrandOverview,
   modelOverview,
-  terminalExcitionSearch
+  terminalExcitionSearch,
+  modelTerminalSupportAnalysis
 }

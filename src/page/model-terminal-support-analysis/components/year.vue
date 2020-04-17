@@ -1,7 +1,7 @@
 <template>
   <div>
     <a-card
-      :title="$t('及竞品年度激励对比',[])"
+      :title="$t('modelTerminalSupportAnalysis.year.annualIncentive',[])"
       :body-style="{padding: '16px 24px'}">
       <span slot="extra" class="extra-header-download">
         <iw-download
@@ -12,94 +12,173 @@
         />
       </span>
       <div style="height: 400px">
-        <iw-chart :options="mainOpt"></iw-chart>
+        <iw-chart :options="mainOpt" />
+      </div>
+    </a-card>
+    <a-card
+      :body-style="{padding: '16px 24px'}"
+    >
+      <div slot="title">
+        <span>{{ $t('modelTerminalSupportAnalysis.year.structureComparison', []) }}</span>
+        <span style="position:absolute; top: 9px;">
+          <iw-popover
+            trigger="hover"
+            placement="right-start"
+            :body-style="{padding: '10px'}"
+            :offset="{top: -17}"
+            :show-arrow="true"
+            :width="null"
+            popper-class="iw-popover-desc"
+          >
+            <div slot="reference">
+              <div class="question-circle">
+                <a-icon class="question" type="question" />
+              </div>
+            </div>
+            <div class="description">
+              <div class="title">全局说明</div>
+              <p>全局说明...</p>
+            </div>
+          </iw-popover>
+        </span>
+      </div>
+      <div slot="extra" class="extra-wrapper">
+        <span class="extra-query">
+          <span style="position: relative; right: 12px;top: 4px">
+            <button class="chart-button" style="margin-right: 4px" @click="onChangeChartType('bar')">
+              <a-icon type="bar-chart" :style="chartButtonStyle" :class="{ selected: query.chartType === 'bar' }" />
+            </button>
+            <button class="chart-button" @click="onChangeChartType('pie')">
+              <a-icon type="pie-chart" :style="chartButtonStyle" :class="{ selected: query.chartType === 'pie' }" />
+            </button>
+          </span>
+          <a-radio-group v-model="query.type" size="small">
+            <a-radio-button value="a">{{ $t('modelTerminalSupportAnalysis.month.bonusType') }}</a-radio-button>
+            <a-radio-button value="b">{{ $t('modelTerminalSupportAnalysis.month.bonusSubtype') }}</a-radio-button>
+          </a-radio-group>
+        </span>
+        <span class="extra-header-download">
+          <iw-download
+            type="simple"
+            download-api="/market-overview-export/manf-rank"
+            :download-params="{
+            }"
+          />
+        </span>
+      </div>
+      <div>
+        <iw-chart-comparison
+          :timeline="timeline"
+          :comparison-bar-data="comparisonBarData"
+          :comparison-pie-data="comparisonPieData"
+          :chart-type="query.chartType" />
       </div>
     </a-card>
   </div>
 </template>
 <script>
-import { Card, Button, Divider, Table, Select } from 'ant-design-vue'
+import { Card, Radio, Icon } from 'ant-design-vue'
 import IwDownload from '@/components/download/index'
 import IwChart from '@/components/charts'
+import {
+  getYearStimulateComparison,
+  getYearStimulateStructureComparison,
+  getYearStimulateStructureComparisonPieList
+} from '@/api/model-terminal-support-analysis'
+import IwChartComparison from './chart-comparison'
+import { Chart } from '@/utils/charts'
 
 export default {
   components: {
     ACard: Card,
-    AButton: Button,
-    ADivider: Divider,
-    ATable: Table,
-    ASelect: Select,
     IwDownload,
-    IwChart
+    IwChart,
+    ARadioGroup: Radio.Group,
+    ARadioButton: Radio.Button,
+    AIcon: Icon,
+    IwChartComparison
   },
   data() {
     return {
       // 单车型与竞品年度激励对比
-      mainOpt: {
-        color: ['#6398f5', '#80cbc4'],
-        tooltip: {
-          trigger: 'axis'
-        },
-        legend: {
-          data: ['年度固定折扣', '年度考核奖励'],
-          bottom: '-5px'
-        },
-        dataZoom: [
-          {
-            type: 'slider',
-            show: true,
-            bottom: '26px',
-            handleIcon:
-              'M10.7,11.9H9.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4h1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7v-1.2h6.6z M13.3,22H6.7v-1.2h6.6z M13.3,19.6H6.7v-1.2h6.6z',
-            handleSize: '50%'
-          }
-        ],
-        grid: {
-          top: '30px',
-          left: '16px',
-          right: '16px',
-          bottom: '66px',
-          containLabel: true
-        },
-        xAxis: {
-          type: 'category',
-          data: ['A7', '云100']
-        },
-        yAxis: [
-          {
-            type: 'value',
-            nameLocation: 'end',
-            splitLine: { // 网格线
-              lineStyle: {
-                type: 'dashed' // 设置网格线类型 dotted：虚线   solid:实线
+      mainOpt: {},
+      query: {
+        type: 'a',
+        chartType: 'bar' // pie
+      },
+      chartButtonStyle: {
+        fontSize: '22px',
+        color: '#B3B3C8'
+      },
+      timeline: [],
+      comparisonBarData: [],
+      comparisonPieData: {}
+    }
+  },
+  mounted() {
+    this.init()
+  },
+  methods: {
+    init() {
+      this.getYearStimulateComparison()
+      this.getYearStimulateStructureComparison()
+      this.getYearStimulateStructureComparisonPieList()
+    },
+    onChangeChartType(type) {
+      this.query.chartType = type
+    },
+    getYearStimulateComparison(params) {
+      return getYearStimulateComparison(params)
+        .then(res => {
+          // this.mainOpt = res.data
+          this.mainOpt = new Chart('bar', res.data, {
+            color: ['#6398f5', '#80cbc4'],
+            yAxis: { name: '%' },
+            field: { type: 'percent' }
+          }).getChart()
+        })
+    },
+    getYearStimulateStructureComparison(params) {
+      return getYearStimulateStructureComparison(params)
+        .then(res => {
+          this.timeline = res.data[0].timeList
+          this.comparisonBarData = res.data[0].options.map(item => {
+            return new Chart('bar', item, {
+              legend: {
+                top: 10,
+                type: 'scroll'
               },
-              show: true // 隐藏或显示
-            }
-          }
-        ],
-        series: [
-          {
-            smooth: true,
-            name: '年度固定折扣',
-            type: 'bar',
-            barMaxWidth: '38px',
-            data: [120, 56],
-            yAxisIndex: 0,
-            stack: '1'
-          },
-          {
-            smooth: true,
-            name: '年度考核奖励',
-            type: 'bar',
-            barMaxWidth: '38px',
-            data: [34, 33],
-            yAxisIndex: 0,
-            stack: '1'
-          }
-        ]
-
-      }
+              grid: {
+                top: 50,
+                right: 30
+              }
+            }).getChart()
+          })
+        })
+    },
+    getYearStimulateStructureComparisonPieList(params) {
+      return getYearStimulateStructureComparisonPieList(params)
+        .then(res => {
+          this.comparisonPieData = res.data[0]
+        })
     }
   }
 }
 </script>
+<style lang="scss" scoped>
+  .extra-query {
+    position: relative;
+    line-height: 16px;
+    top: 0;
+    right: 40px;
+  }
+  .chart-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: relative;
+  }
+  .selected {
+    color: #2E5AA6 !important;
+  }
+</style>

@@ -1,0 +1,172 @@
+{
+  "result_code": "200",
+  "result_msg": "执行成功",
+  "data": [
+    {
+      "timeList": [
+        "2020",
+        "2019"
+      ],
+      "options": [
+        {
+          "legend": {
+            "data": [
+              "固定折扣",
+              "评比奖励",
+              "销售奖励",
+              "满意度奖励"
+            ]
+          },
+          "xAxis": {
+            "type": "value"
+          },
+          "yAxis": {
+            "type": "category",
+            "data": [
+              "A7",
+              "云100",
+              "E100"
+            ]
+          },
+          "series": [
+            {
+              "name": "固定折扣",
+              "type": "bar",
+              "stack": "总量",
+              "label": {
+                "show": true,
+                "position": "insideRight"
+              },
+              "data": [
+                320,
+                302,
+                301
+              ]
+            },
+            {
+              "name": "评比奖励",
+              "type": "bar",
+              "stack": "总量",
+              "label": {
+                "show": true,
+                "position": "insideRight"
+              },
+              "data": [
+                120,
+                132,
+                101
+              ]
+            },
+            {
+              "name": "销售奖励",
+              "type": "bar",
+              "stack": "总量",
+              "label": {
+                "show": true,
+                "position": "insideRight"
+              },
+              "data": [
+                120,
+                132,
+                101
+              ]
+            },
+            {
+              "name": "满意度奖励",
+              "type": "bar",
+              "stack": "总量",
+              "label": {
+                "show": true,
+                "position": "insideRight"
+              },
+              "data": [
+                120,
+                132,
+                101
+              ]
+            }
+          ]
+        },
+        {
+          "legend": {
+            "data": [
+              "固定折扣",
+              "评比奖励",
+              "销售奖励",
+              "满意度奖励"
+            ]
+          },
+          "xAxis": {
+            "type": "value"
+          },
+          "yAxis": {
+            "type": "category",
+            "data": [
+              "A7",
+              "云100",
+              "E100"
+            ]
+          },
+          "series": [
+            {
+              "name": "固定折扣",
+              "type": "bar",
+              "stack": "总量",
+              "label": {
+                "show": true,
+                "position": "insideRight"
+              },
+              "data": [
+                320,
+                302,
+                301
+              ]
+            },
+            {
+              "name": "评比奖励",
+              "type": "bar",
+              "stack": "总量",
+              "label": {
+                "show": true,
+                "position": "insideRight"
+              },
+              "data": [
+                120,
+                132,
+                101
+              ]
+            },
+            {
+              "name": "销售奖励",
+              "type": "bar",
+              "stack": "总量",
+              "label": {
+                "show": true,
+                "position": "insideRight"
+              },
+              "data": [
+                120,
+                132,
+                101
+              ]
+            },
+            {
+              "name": "满意度奖励",
+              "type": "bar",
+              "stack": "总量",
+              "label": {
+                "show": true,
+                "position": "insideRight"
+              },
+              "data": [
+                120,
+                132,
+                101
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

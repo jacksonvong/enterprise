@@ -1,0 +1,113 @@
+{
+  "status": "200", 
+  "message": "测试数据", 
+  "data": [
+    {
+      "text": "A", 
+      "value": "1", 
+      "selected": false, 
+      "children": [
+        {
+          "text": "奥迪(进口)", 
+          "value": "5", 
+          "selected": false
+        }
+      ]
+    }, 
+    {
+      "text": "B", 
+      "value": "2", 
+      "selected": false, 
+      "children": [
+        {
+          "text": "宝马(进口)", 
+          "value": "15", 
+          "selected": false
+        }, 
+        {
+          "text": "奔驰(进口)", 
+          "value": "7", 
+          "selected": false
+        }, 
+        {
+          "text": "北京汽车", 
+          "value": "12", 
+          "selected": false
+        }, 
+        {
+          "text": "北京奔驰-奔驰", 
+          "value": "8", 
+          "selected": false
+        }, 
+        {
+          "text": "比亚迪", 
+          "value": "21", 
+          "selected": false
+        }, 
+        {
+          "text": "奔驰-迈巴赫(进口)", 
+          "value": "6", 
+          "selected": false
+        }, 
+        {
+          "text": "北汽幻速", 
+          "value": "16", 
+          "selected": false
+        }, 
+        {
+          "text": "北京现代-现代", 
+          "value": "13", 
+          "selected": false
+        }
+      ]
+    }, 
+    {
+      "text": "G", 
+      "value": "3", 
+      "selected": false, 
+      "children": [
+        {
+          "text": "广汽讴歌", 
+          "value": "371", 
+          "selected": false
+        }
+      ]
+    }, 
+    {
+      "text": "O", 
+      "value": "4", 
+      "selected": false, 
+      "children": [
+        {
+          "text": "讴歌(进口)", 
+          "value": "98", 
+          "selected": false
+        }
+      ]
+    }, 
+    {
+      "text": "S", 
+      "value": "5", 
+      "selected": false, 
+      "children": [
+        {
+          "text": "上汽通用-别克", 
+          "value": "115", 
+          "selected": false
+        }
+      ]
+    }, 
+    {
+      "text": "W", 
+      "value": "6", 
+      "selected": false, 
+      "children": [
+        {
+          "text": "沃尔沃亚太", 
+          "value": "129", 
+          "selected": false
+        }
+      ]
+    }
+  ]
+}

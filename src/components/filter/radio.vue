@@ -13,7 +13,7 @@
       </a-radio-button>
     </a-radio-group>
     <a-radio-group
-      v-model="dataForm.moneyOrRatio"
+      v-model="dataForm.dataType"
       class="iw-filter-radio-item"
       size="small"
       @change="handleMoneyOrRatioChange">
@@ -52,18 +52,18 @@ export default {
     return {
       dataForm: {
         segmentType: 1,
-        moneyOrRatio: 1,
+        dataType: 1,
         monthOrQuarter: 1
       }
     }
   },
   methods: {
-    handleSegmentTypeChange(value) {
-      console.log(value)
+    handleSegmentTypeChange() {
+      this.$store.dispatch('setCondition', { segmentType: this.dataForm.segmentType })
       this.$emit('change', this.dataFormFilter())
     },
-    handleMoneyOrRatioChange(value) {
-      console.log(value)
+    handleMoneyOrRatioChange() {
+      this.$store.dispatch('setCondition', { dataType: this.dataForm.dataType })
       this.$emit('change', this.dataFormFilter())
     },
     handleMonthOrQuarterChange(value) {

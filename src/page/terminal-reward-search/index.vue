@@ -4,7 +4,7 @@
     <div :style="{'padding-top': $store.state.app.filter!=='fixed' ? '10px' : '94px'}" class="main-content">
       <iw-filter
         :id="$store.state.app.filter!=='fixed'?'overview-analyse':''"
-        :show="{dataTimeType: true, dimensionType: true, subModel: true, reward: true}"
+        :show="{dataTimeType: true, dimension: true, subModel: true, reward: true}"
         :multiple="{segment: true, manfBrand: true, subModel: true}"
         :data-time-range="true"
         @change="changeDataForm"
@@ -52,7 +52,7 @@ export default {
           tab: this.$t('奖励项分类明细')
         }
       ],
-      filterForm: {},
+      dataForm: {},
       rewardComparision: {
         data: {}
       },
@@ -61,23 +61,35 @@ export default {
       }
     }
   },
+  watch: {
+    dataForm: {
+      handler() {
+        if (this.dataForm.dataTime) {
+          this.getData()
+        }
+      }
+    }
+  },
   created() {
-    this.getTimeInfo()
-    this.getTypeInfo()
+    if (this.dataForm.dataTime) {
+      this.getData()
+    }
   },
   methods: {
     onTabChange(value) {
       this.titleKey = value
     },
     changeDataForm(form) {
-      console.log(form)
-      this.filterForm = { ...this.filterForm, ...form }
+      this.dataForm = { ...this.dataForm, ...form }
+    },
+    getData() {
+      this.getTimeInfo()
+      this.getTypeInfo()
     },
     getTimeInfo() {
       return new Promise((resolve, reject) => {
         getTimeInfo({
         }).then(res => {
-          console.log(res)
           const data = res.data || []
           this.rewardComparision.data = data[0] || {}
           resolve(res)
@@ -88,7 +100,6 @@ export default {
       return new Promise((resolve, reject) => {
         getTypeInfo({
         }).then(res => {
-          console.log(res)
           const data = res.data || []
           this.rewardCategoryDetail.data = data[0] || {}
           resolve(res)

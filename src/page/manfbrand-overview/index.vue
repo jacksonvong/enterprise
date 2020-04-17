@@ -8,7 +8,8 @@
         :multiple="{ manfBrand: true }"
         @change="handleFilterChange"
       />
-      <a-card>
+      {{ manfbrandValue }}
+      <a-card ref="cardContainer" :body-style="{padding: '15px 20px'}">
         <div slot="title">
           <span>{{ $t('manfbrandOverview.overview.title') }}</span>
           <span style="position:absolute; top: 9px;">
@@ -41,7 +42,7 @@
         </div>
         <div slot="extra">
           <iw-manfbrand
-            v-model="manfbrandValue"
+            v-model="manfBrand"
             :data="manfbrandOptions"
             :default-value="defaultManfbrand"
             :loading="manfBrandOptionsLoading"
@@ -71,7 +72,7 @@
             class="overview-list clearfix">
             <template v-for="(item, key) in overviewData">
               <iw-brand-item
-                v-if="overviewPageIds.includes(item.manfBrandId)"
+                v-if="overviewPageIds.includes(item.id)"
                 :key="key"
                 :item="item"
                 class="overview-list-item"
@@ -82,8 +83,8 @@
           <iw-empty v-else :status="listStatus" style="height: 260px;" />
           <div v-if="overviewData.length > pageSize" style="text-align: center;">
             <a-pagination
-              :current="currentPage"
-              :total="totalPageSize"
+              :current="page"
+              :total="total"
               :show-quick-jumper="false"
               :show-size-changer="false"
               :page-size="pageSize"
@@ -113,14 +114,15 @@
             header-cell-class-name="iw-table-header"
             cell-class-name="iw-table-cell">
             <iw-table-column
-              label="添加关注">
+              label="添加关注"
+              :width="80">
               <template slot-scope="scope">
                 <iw-popover
                   v-if="manfbrandValue.includes(scope.row.id)"
                   v-model="scope.row.visible"
                   :offset="{left: -10}"
                   :width="null"
-                  :body-style="{padding: '10px'}"
+                  :body-style="{padding: '10px', textAlign: 'center'}"
                   popper-class="iw-popover-attension"
                   placement="top"
                   show-arrow>
@@ -134,7 +136,7 @@
                     style="width: 40px;" />
                   <div>
                     <div class="message">
-                      是否取消关注生产商品牌？
+                      是否取消关注厂商品牌？
                     </div>
                     <div class="buttons">
                       <iw-button size="mini" type="primary" @click="handleRemoveItem(scope.row, scope.row.id)">
@@ -157,7 +159,7 @@
             </iw-table-column>
             <iw-table-column
               prop="name"
-              label="生产商品牌"
+              label="厂商品牌"
               :render-header="renderHeader" />
             <iw-table-column
               prop="totalExcitationValue"
@@ -249,10 +251,11 @@ export default {
       dataForm: {
       },
       overviewData: [],
+      manfBrand: [],
       manfbrandValue: [], // 如: 7-7格式
       // 卡片
-      currentPage: 1,
-      totalPageSize: 0,
+      page: 1,
+      total: 0,
       pageSize: document.body.clientWidth > 1499 ? 12 : 8,
       listLoading: false,
       listStatus: 200,
@@ -271,41 +274,55 @@ export default {
       visible: false
     }
   },
+  computed: {
+    sidebar() {
+      return this.$store.getters.sidebar.opened
+    }
+  },
   watch: {
+    sidebar() {
+      this.init()
+    },
     dataForm: {
       handler() {
-        if (this.dataForm.ym) {
+        if (this.dataForm.dataTime) {
+          this.init()
           this.getData()
         }
       }
     }
   },
-  created() {
+  mounted() {
     window.addEventListener('resize', _.debounce(() => {
-      if (document.body.clientWidth > 1499) {
-        this.currentPage = 1
-        this.pageSize = 12
-      } else {
-        this.currentPage = 1
-        this.pageSize = 8
-      }
+      this.init()
     }, 100))
-    if (this.dataForm.ym) {
+    if (this.dataForm.dataTime) {
       this.getData()
     }
   },
   methods: {
+    init() {
+      const width = this.$refs['cardContainer'] && this.$refs['cardContainer'].$el
+        ? this.$refs['cardContainer'].$el.offsetWidth
+        : document.body.clientWidth
+      const pageSize = parseInt((width - 42) / 250) * 2
+      this.page = 1
+      this.pageSize = pageSize
+
+      if (this.dataForm.dataTime) {
+        this.getOverviewPageIds()
+      }
+    },
     handleFilterChange(form) {
       this.dataForm = { ...this.dataForm, ...form }
-      console.log(this.dataForm)
     },
     handleFilterRadioChange(form) {
       this.dataForm = { ...this.dataForm, ...form }
-      console.log(this.dataForm)
     },
 
     // 卡片
     handleToTopItem(item) {
+      console.log(this.manfbrandValue, item)
       const index = _.indexOf(this.manfbrandValue, item.id)
       const top = this.manfbrandValue.splice(index, 1)
       this.manfbrandValue = [
@@ -321,13 +338,13 @@ export default {
         this.getOverviewPageIds()
       }
       this.saveOrder().then(callback)
-      this.currentPage = 1
+      this.page = 1
     },
-    handleRemoveItem(item, key = item.manfBrandId) {
+    handleRemoveItem(item, key = item.id) {
+      debugger
       const index = this.manfbrandValue.findIndex(id => id === key)
       this.manfbrandValue.splice(index, 1)
       item.visible = false
-      console.log(index, this.manfbrandValue)
       const callback = () => {
         this.overviewData.splice(index, 1)
         message.info('取消关注成功')
@@ -340,13 +357,13 @@ export default {
       this.getTableData()
     },
     handlePageChage(page) {
-      this.currentPage = page
+      this.page = page
       this.getOverviewPageIds()
     },
     getCardData(params) {
       return new Promise((resolve, reject) => {
         getTerminalAnalyzeData({
-          ym: this.dataForm.ym,
+          ym: this.dataForm.dataTime,
           maxYm: this.dataForm.maxYm,
           dataSource: this.dataForm.dataSource,
           moneyOrRatio: this.dataForm.dataType,
@@ -355,8 +372,8 @@ export default {
           ...params
         }).then(res => {
           this.overviewData = res.data || []
-          this.manfbrandValue = this.overviewData.map(item => item.manfBrandId)
-          this.totalPageSize = this.overviewData.length
+          this.manfbrandValue = [this.overviewData.map(item => item.id)]
+          this.total = this.overviewData.length
           this.getOverviewPageIds()
           resolve(res)
         }).catch(res => {
@@ -365,16 +382,17 @@ export default {
       })
     },
     getOverviewPageIds() {
-      const startIndex = (this.currentPage - 1) * this.pageSize
+      const startIndex = (this.page - 1) * this.pageSize
       const endIndex = startIndex + this.pageSize > this.overviewData.length ? this.overviewData.length : startIndex + this.pageSize
       const overviewPageData = this.overviewData.slice(startIndex, endIndex)
-      this.overviewPageIds = overviewPageData.map(item => item.manfBrandId)
-      console.log(this.overviewPageIds)
+      this.overviewPageIds = overviewPageData.map(item => item.id)
     },
     getManfBrand() {
       getManfBrandData({
-        loadType: 'attentionBrand',
-        endYmId: this.dataForm.ym
+        // loadType: 'attentionBrand',
+        // endYmId: this.dataForm.dataTime
+        selectedId: '',
+        ymId: this.dataForm.dataTime
       })
         .then(res => {
           const data = res.data
@@ -387,8 +405,8 @@ export default {
         })
     },
     handleManfbrandChange(value, texts) {
-      this.manfbrandValue = value
-      this.currentPage = 1
+      this.manfbrand = value
+      this.page = 1
       this.saveOrder().then(res => {
         this.getCardData()
       })
@@ -397,7 +415,7 @@ export default {
       this.listLoading = true
       return new Promise((resolve, reject) => {
         saveOrder({
-          ids: this.manfbrandValue.join(',')
+          ids: this.manfbrandValue.toString()
         })
           .then(res => {
             this.listLoading = false
@@ -413,7 +431,7 @@ export default {
     // 表格
     renderHeader(h, { column, _self }) {
       if (column.property === 'name') {
-        return moment(this.dataForm.ym, 'YYYYMM').format('YYYY年MM月')
+        return moment(this.dataForm.dataTime, 'YYYYMM').format('YYYY年MM月')
       }
       if (column.property === 'sales') {
         return (_self.tableData && _self.tableData[0] ? _self.tableData[0].salesMonth : '') + '销量/同比'
@@ -424,9 +442,7 @@ export default {
         message.info('添加关注成功')
         // testing...
         this.overviewData = [res.data[0], ...this.overviewData]
-        console.log(this.overviewData)
         this.manfbrandValue = [item.id, ...this.manfbrandValue]
-        console.log(this.manfbrandValue)
         this.saveOrder()
       })
     },

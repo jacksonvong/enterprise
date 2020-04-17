@@ -1,0 +1,280 @@
+{
+  "result_code": "200",
+  "result_msg": "执行成功",
+  "data": [
+    {
+      "timeList": [
+        "2020",
+        "2019"
+      ],
+      "series": [
+        {
+          "data": [
+            {
+              "proportion": "8.8",
+              "name": "提车达成奖励",
+              "value": "1894",
+              "ratio": "0.7"
+            },
+            {
+              "proportion": "0.6",
+              "name": "综合满意度奖励",
+              "value": "137",
+              "ratio": "0.1"
+            },
+            {
+              "proportion": "0.8",
+              "name": "服务满意度奖励",
+              "value": "181",
+              "ratio": "0.1"
+            },
+            {
+              "proportion": "1.5",
+              "name": "销售满意度奖励",
+              "value": "326",
+              "ratio": "0.1"
+            },
+            {
+              "proportion": "4.1",
+              "name": "综合管理奖励",
+              "value": "882",
+              "ratio": "0.3"
+            },
+            {
+              "proportion": "1.3",
+              "name": "服务管理奖励",
+              "value": "279",
+              "ratio": "0.1"
+            },
+            {
+              "proportion": "1.7",
+              "name": "销售管理奖励",
+              "value": "366",
+              "ratio": "0.1"
+            },
+            {
+              "proportion": "1.1",
+              "name": "市占率奖励",
+              "value": "232",
+              "ratio": "0.1"
+            },
+            {
+              "proportion": "11.7",
+              "name": "零售达成奖励",
+              "value": "2509",
+              "ratio": "1.0"
+            },
+            {
+              "proportion": "0.6",
+              "name": "综合评比奖励",
+              "value": "122",
+              "ratio": "0.0"
+            },
+            {
+              "proportion": "0.1",
+              "name": "售后评比奖励",
+              "value": "18",
+              "ratio": "0.0"
+            },
+            {
+              "proportion": "0.3",
+              "name": "销售评比奖励",
+              "value": "57",
+              "ratio": "0.0"
+            },
+            {
+              "proportion": "67.4",
+              "name": "固定折扣",
+              "value": "14478",
+              "ratio": "5.6"
+            }
+          ],
+          "center": [
+            "50%",
+            "50%"
+          ],
+          "label": {
+            "normal": {
+              "show": true,
+              "position": "inside"
+            }
+          },
+          "type": "pie",
+          "radius": "45%"
+        },
+        {
+          "data": [
+            {
+              "proportion": "8.8",
+              "name": "提车达成奖励",
+              "value": "1894",
+              "ratio": "0.7"
+            },
+            {
+              "proportion": "0.6",
+              "name": "综合满意度奖励",
+              "value": "137",
+              "ratio": "0.1"
+            },
+            {
+              "proportion": "0.8",
+              "name": "服务满意度奖励",
+              "value": "181",
+              "ratio": "0.1"
+            },
+            {
+              "proportion": "1.5",
+              "name": "销售满意度奖励",
+              "value": "326",
+              "ratio": "0.1"
+            },
+            {
+              "proportion": "4.1",
+              "name": "综合管理奖励",
+              "value": "882",
+              "ratio": "0.3"
+            },
+            {
+              "proportion": "1.3",
+              "name": "服务管理奖励",
+              "value": "279",
+              "ratio": "0.1"
+            },
+            {
+              "proportion": "1.7",
+              "name": "销售管理奖励",
+              "value": "366",
+              "ratio": "0.1"
+            },
+            {
+              "proportion": "1.1",
+              "name": "市占率奖励",
+              "value": "232",
+              "ratio": "0.1"
+            },
+            {
+              "proportion": "11.7",
+              "name": "零售达成奖励",
+              "value": "2509",
+              "ratio": "1.0"
+            },
+            {
+              "proportion": "0.6",
+              "name": "综合评比奖励",
+              "value": "122",
+              "ratio": "0.0"
+            },
+            {
+              "proportion": "0.1",
+              "name": "售后评比奖励",
+              "value": "18",
+              "ratio": "0.0"
+            },
+            {
+              "proportion": "0.3",
+              "name": "销售评比奖励",
+              "value": "57",
+              "ratio": "0.0"
+            },
+            {
+              "proportion": "67.4",
+              "name": "固定折扣",
+              "value": "14478",
+              "ratio": "5.6"
+            }
+          ],
+          "center": [
+            "50%",
+            "50%"
+          ],
+          "label": {
+            "normal": {
+              "show": true,
+              "position": "inside"
+            }
+          },
+          "type": "pie",
+          "radius": "45%"
+        },
+        {
+          "data": [
+            {
+              "proportion": "69.6",
+              "name": "固定折扣",
+              "value": "32448",
+              "ratio": "7.5"
+            },
+            {
+              "proportion": "3.5",
+              "name": "提车达成奖励",
+              "value": "1622",
+              "ratio": "0.4"
+            },
+            {
+              "proportion": "27.0",
+              "name": "零售达成奖励",
+              "value": "12573",
+              "ratio": "2.9"
+            }
+          ],
+          "center": [
+            "50%",
+            "50%"
+          ],
+          "label": {
+            "normal": {
+              "show": true,
+              "position": "inside"
+            }
+          },
+          "type": "pie",
+          "radius": "45%"
+        },
+        {
+          "data": [
+            {
+              "proportion": "69.6",
+              "name": "固定折扣",
+              "value": "32595",
+              "ratio": "7.5"
+            },
+            {
+              "proportion": "3.5",
+              "name": "提车达成奖励",
+              "value": "1629",
+              "ratio": "0.4"
+            },
+            {
+              "proportion": "27.0",
+              "name": "零售达成奖励",
+              "value": "12631",
+              "ratio": "2.9"
+            }
+          ],
+          "center": [
+            "50%",
+            "50%"
+          ],
+          "label": {
+            "normal": {
+              "show": true,
+              "position": "inside"
+            }
+          },
+          "type": "pie",
+          "radius": "45%"
+        }
+      ],
+      "nameList": [
+        {
+          "import": false,
+          "name": "B-SUV级细分市场"
+        },
+        {
+          "import": false,
+          "name": "GLC级"
+        }
+      ]
+    }
+  ]
+}

@@ -75,6 +75,12 @@ export default {
         return {
         }
       }
+    },
+    limitHeight: {
+      type: [Number, Boolean],
+      default() {
+        return false
+      }
     }
   },
   data() {
@@ -154,8 +160,8 @@ export default {
       this.rewardSubClassWidth = { width: this.subClassWidth + 'px' }
       this.rewardNameWidth = { width: this.nameWidth + 'px' }
       this.firstPolicyWidth = { width: $('#firstPolicy').outerWidth(true) + 'px' }
-
-      this.maxHeight = window.innerHeight - $('#tableListRef').offset().top - 14
+      // 添加了 limitHeight 属性可以自定义高度
+      this.maxHeight = typeof this.limitHeight === 'number' ? this.limitHeight : window.innerHeight - $('#tableListRef').offset().top - 14
     },
     getLastTdHeight(item, tdModelHeight) {
       let lastTdHeight = tdModelHeight / (item.itemNum + item.cycleList.length)

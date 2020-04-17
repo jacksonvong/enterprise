@@ -1,0 +1,203 @@
+{
+  "result_code": "200", 
+  "result_msg": "执行成功", 
+  "data": [
+    {
+      "importTag": [
+        false, 
+        false, 
+        false, 
+        false, 
+        false, 
+        false, 
+        false, 
+        false, 
+        false, 
+        false, 
+        false, 
+        false, 
+        false, 
+        false, 
+        false
+      ], 
+      "YMaxNum": "87667.5", 
+      "series": [
+        {
+          "stack": "one", 
+          "data": [
+            {
+              "curryearFlag": "", 
+              "value2": "2018年<br/>C级", 
+              "value": "53032"
+            }, 
+            {
+              "curryearFlag": "", 
+              "value2": "2019年<br/>C级", 
+              "value": "51485"
+            }, 
+            {
+              "curryearFlag": "", 
+              "value2": "2020年<br/>C级", 
+              "value": "51446"
+            }, 
+            {
+              "value2": "", 
+              "value": "0"
+            }, 
+            {
+              "curryearFlag": "", 
+              "value2": "2018年<br/>云100", 
+              "value": "0"
+            }, 
+            {
+              "curryearFlag": "", 
+              "value2": "2019年<br/>云100", 
+              "value": "0"
+            }, 
+            {
+              "curryearFlag": "", 
+              "value2": "2020年<br/>云100", 
+              "value": "0"
+            }, 
+            {
+              "value2": "", 
+              "value": "0"
+            }, 
+            {
+              "curryearFlag": "", 
+              "value2": "2018年<br/>E20", 
+              "value": "0"
+            }, 
+            {
+              "curryearFlag": "", 
+              "value2": "2019年<br/>E20", 
+              "value": "0"
+            }, 
+            {
+              "curryearFlag": "", 
+              "value2": "2020年<br/>E20", 
+              "value": "0"
+            }, 
+            {
+              "value2": "", 
+              "value": "0"
+            }, 
+            {
+              "curryearFlag": "", 
+              "value2": "2018年<br/>E100", 
+              "value": "0"
+            }, 
+            {
+              "curryearFlag": "", 
+              "value2": "2019年<br/>E100", 
+              "value": "0"
+            }, 
+            {
+              "curryearFlag": "", 
+              "value2": "2020年<br/>E100", 
+              "value": "0"
+            }
+          ], 
+          "name": "固定折扣", 
+          "type": "bar"
+        }, 
+        {
+          "stack": "one", 
+          "data": [
+            {
+              "value2": "2018年<br/>C级", 
+              "value": "23201"
+            }, 
+            {
+              "value2": "2019年<br/>C级", 
+              "value": "22524"
+            }, 
+            {
+              "value2": "2020年<br/>C级", 
+              "value": "22507"
+            }, 
+            {
+              "value2": "", 
+              "value": "0"
+            }, 
+            {
+              "value2": "2018年<br/>云100", 
+              "value": "0"
+            }, 
+            {
+              "value2": "2019年<br/>云100", 
+              "value": "0"
+            }, 
+            {
+              "value2": "2020年<br/>云100", 
+              "value": "0"
+            }, 
+            {
+              "value2": "", 
+              "value": "0"
+            }, 
+            {
+              "value2": "2018年<br/>E20", 
+              "value": "0"
+            }, 
+            {
+              "value2": "2019年<br/>E20", 
+              "value": "0"
+            }, 
+            {
+              "value2": "2020年<br/>E20", 
+              "value": "0"
+            }, 
+            {
+              "value2": "", 
+              "value": "0"
+            }, 
+            {
+              "value2": "2018年<br/>E100", 
+              "value": "0"
+            }, 
+            {
+              "value2": "2019年<br/>E100", 
+              "value": "0"
+            }, 
+            {
+              "value2": "2020年<br/>E100", 
+              "value": "0"
+            }
+          ], 
+          "name": "考核奖励", 
+          "type": "bar"
+        }
+      ], 
+      "legend": {
+        "data": [
+          "固定折扣", 
+          "考核奖励"
+        ]
+      }, 
+      "titleText": "C级及竞品年度激励对比", 
+      "yAxis": {
+        "type": "value"
+      },
+      "xAxis": {
+        "data": [
+          "2018年\n\nC级", 
+          "2019年", 
+          "2020年", 
+          "",
+          "2018年\n\n云100", 
+          "2019年", 
+          "2020年", 
+          "",
+          "2018年\n\nE20", 
+          "2019年", 
+          "2020年", 
+          "",
+          "2018年\n\nE100", 
+          "2019年", 
+          "2020年"
+        ]
+      }
+    }
+  ]
+}

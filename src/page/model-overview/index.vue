@@ -5,7 +5,6 @@
       <iw-filter
         :id="$store.state.app.filter!=='fixed'?'overview-analyse':''"
         :show="{ dataTimeType: true, dataSource: true, manfBrand: true, dataType: true }"
-        :multiple="{ manfBrand: true }"
         @change="handleFilterChange"
       />
       <a-card ref="cardContainer" :body-style="{padding: '15px 20px'}">
@@ -39,6 +38,33 @@
             </iw-popover>
           </span>
         </div>
+        <div slot="extra">
+          <iw-submodel
+            v-model="subModelValue_2"
+            :data="subModelOptions"
+            :loading="subModelOptionsLoading"
+            :title="$t('modelOverview.overview.addManfbrandTitle')"
+            :filters="subModelFilter"
+            :selected-filter="selectedFilter"
+            :option-props="{ value: 'value', label: 'text', children: 'children' }"
+            :show-letter="showLetter"
+            :min="1"
+            show-search
+            show-selected
+            show-check-all
+            is-modal
+            multiple
+            size="mini"
+            placement="bottomLeft"
+            style="width: 120px; float: right; padding-right: 20px;"
+            @filterChange="handleSubModelFilterChange"
+            @change="handleSubModelChange"
+          >
+            <iw-button slot="reference" type="primary" size="mini" style="float: right;">
+              {{ $t('modelOverview.overview.addManfbrand') }}
+            </iw-button>
+          </iw-submodel>
+        </div>
         <a-spin :spinning="card_2.loading">
           <ul
             v-if="card_2.data&&card_2.data.length"
@@ -50,8 +76,8 @@
                 :key="key"
                 :item="item"
                 class="overview-list-item"
-                @toTop="value => handleToTopItem(value, __mySubOrMyAttention_2)"
-                @remove="value => handleRemoveItem(value, __mySubOrMyAttention_2)" />
+                @toTop="value => handleToTopItem(value, '2')"
+                @remove="value => handleRemoveItem(value, '2')" />
             </template>
           </ul>
           <iw-empty v-else :status="card_2.status" style="height: 260px;" />
@@ -78,7 +104,6 @@
           <iw-submodel
             v-model="subModelValue_3"
             :data="subModelOptions"
-            :default-value="defaultSubModelValue"
             :loading="subModelOptionsLoading"
             :title="$t('modelOverview.overview.addManfbrandTitle')"
             :filters="subModelFilter"
@@ -195,10 +220,10 @@
             </iw-table-column>
             <iw-table-column
               prop="name"
-              width="120"
+              width="150"
               label="车型">
               <template slot-scope="scope">
-                <div v-if="scope.$index===0">
+                <div v-if="scope.$index===0" class="">
                   <iw-select
                     v-model="segmentId"
                     :data="segmentOptions"
@@ -206,6 +231,7 @@
                       value: 'value',
                       label:'text'
                     }"
+                    style="width: 120px"
                     size="mini"
                     @change="handleSegmentChange" />
                 </div>
@@ -330,15 +356,12 @@ export default {
       dataForm: {
       },
       showLetter: false,
+      subModelValue_2: [],
       subModelValue_3: [],
       subModelOptionsLoading: false,
-      defaultSubModelValue: [],
       subModelOptions: [],
-      subModelFilter: [
-        { value: '0', text: '细分市场' },
-        { value: '1', text: '厂商品牌' }
-      ],
-      selectedFilter: 0,
+      subModelFilter: [],
+      selectedFilter: 1,
       subModelData: {},
 
       segmentId: '',
@@ -385,7 +408,8 @@ export default {
     },
     dataForm: {
       handler() {
-        if (this.dataForm.ym) {
+        if (this.dataForm.dataTime) {
+          this.init()
           this.getData()
         }
       },
@@ -396,7 +420,7 @@ export default {
     window.addEventListener('resize', _.debounce(() => {
       this.init()
     }, 100))
-    if (this.dataForm.ym) {
+    if (this.dataForm.dataTime) {
       this.getData()
     }
   },
@@ -405,30 +429,22 @@ export default {
       const width = this.$refs['cardContainer'] && this.$refs['cardContainer'].$el
         ? this.$refs['cardContainer'].$el.offsetWidth
         : document.body.clientWidth
-      console.log('width', width)
-      if (width >= 1542) {
-        this['card_2'].page = this['card_3'].page = 1
-        this['card_2'].pageSize = this['card_3'].pageSize = 12
-      } else if (width >= 1302) {
-        this['card_2'].page = this['card_3'].page = 1
-        this['card_2'].pageSize = this['card_3'].pageSize = 10
-      } else {
-        this['card_2'].page = this['card_3'].page = 1
-        this['card_2'].pageSize = this['card_3'].pageSize = 8
-      }
-      if (this.dataForm.ym) {
+      const pageSize = parseInt((width - 42) / 250) * 2
+      this['card_2'].page = this['card_3'].page = 1
+      this['card_2'].pageSize = this['card_3'].pageSize = pageSize
+
+      if (this.dataForm.dataTime) {
         this.getOverviewPageIds(__mySubOrMyAttention_2)
         this.getOverviewPageIds(__mySubOrMyAttention_3)
       }
     },
     handleFilterChange(form) {
-      console.log('form', form)
       this.dataForm = { ...this.dataForm, ...form }
     },
     handleSubModelFilterChange(value) {
-      this.showLetter = value === '1'
+      this.showLetter = value === 2
       this.selectedFilter = value
-      this.subModelOptions = this.subModelData[value]
+      this.subModelOptions = this.subModelData[value - 1]
     },
     handleToTopItem(item, type = __mySubOrMyAttention_3) {
       const index = _.indexOf(this['subModelValue_' + type], item.id)
@@ -437,6 +453,7 @@ export default {
         ...top,
         ...this['subModelValue_' + type]
       ]
+      console.log(index, top)
       const callback = () => {
         const topItem = this['card_' + type].data.splice(index, 1)
         this['card_' + type].data = [
@@ -476,12 +493,12 @@ export default {
       }
       return new Promise((resolve, reject) => {
         getTerminalAnalyzeData({
-          ym: this.dataForm.ym,
+          ym: this.dataForm.dataTime,
           maxYm: this.dataForm.maxYm,
           dataSource: this.dataForm.dataSource,
           moneyOrRatio: this.dataForm.dataType,
           isQuarter: this.dataForm.dataTimeType,
-          mySubOrMyAttention: 3,
+          ids: '',
           ...params
         }).then(res => {
           this['card_' + params.mySubOrMyAttention].data = res.data || []
@@ -518,12 +535,18 @@ export default {
     },
     getSubModelData() {
       this.subModelOptionsLoading = true
-      getSubModelData()
+      getSubModelData({
+        selectedId: '',
+        ymId: this.dataForm.dataTime
+      })
         .then(res => {
           const data = res.data || {}
-          this.subModelData = data || []
-          this.selectedFilter = 0
-          this.subModelOptions = this.subModelData[this.selectedFilter] // 细分市场分组
+          this.subModelData = data.data // 竞品圈中的车型选择
+          this.subModelFilter = data.title.map((title, index) => {
+            return { value: index + 1, text: title }
+          })
+          this.selectedFilter = 1
+          this.subModelOptions = this.subModelData[this.selectedFilter - 1] // 细分市场分组
           this.subModelOptionsLoading = false
         })
     },
@@ -546,10 +569,10 @@ export default {
     // 表格
     renderHeader(h, { column, _self }) {
       if (column.property === 'msrp') {
-        return column.label + '(' + moment(this.dataForm.ym, 'YYYYMM').format('M月') + ')'
+        return column.label + '(' + moment(this.dataForm.dataTime, 'YYYYMM').format('M月') + ')'
       }
       if (column.property === 'tp') {
-        return column.label + '(' + moment(this.dataForm.ym, 'YYYYMM').format('M月') + ')'
+        return column.label + '(' + moment(this.dataForm.dataTime, 'YYYYMM').format('M月') + ')'
       }
       if (column.property === 'sales') {
         return column.label + '(' + (_self.tableData.data && _self.tableData.data[0] ? _self.tableData.data[0].salesMonth : '') + ')'
@@ -584,7 +607,7 @@ export default {
     getTableData() {
       this.tableData.loading = true
       getTerminalAnalyzeTableData({
-        ym: this.dataForm.ym,
+        ym: this.dataForm.dataTime,
         maxYm: this.dataForm.maxYm,
         dataSource: this.dataForm.dataSource,
         moneyOrRatio: this.dataForm.dataType,
@@ -627,6 +650,18 @@ export default {
   .buttons {
     margin-bottom: 4px;
     text-align: right;
+  }
+}
+.model-overview {
+  .iw-table {
+    .iw-select-reference .iw-input {
+      .iw-input__inner {
+        border-color: #2e5aa6;
+      }
+      .iw-input__value input {
+        color: #2e5aa6;
+      }
+    }
   }
 }
 </style>

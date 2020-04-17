@@ -5,7 +5,7 @@
       <iw-filter
         :id="$store.state.app.filter!=='fixed'?'overview-analyse':''"
         :show="{ dataTimeType: true, dataSource: true, subModel: true, competitor: true, versionType: true, version: true }"
-        :multiple="{subModel: true}"
+        :multiple="{subModel: false}"
         @change="handleFilterChange"
       />
       <iw-filter-radio @change="handleFilterRadioChange" />
@@ -134,32 +134,32 @@ export default {
       tabListTitle: [
         {
           key: '1',
-          tab: this.$t('总激励分析'),
+          tab: this.$t('modelTerminalSupportAnalysis.tabs.total'),
           component: 'IwTotal'
         },
         {
           key: '2',
-          tab: this.$t('年度激励分析'),
+          tab: this.$t('modelTerminalSupportAnalysis.tabs.year'),
           component: 'IwYear'
         },
         {
           key: '3',
-          tab: this.$t('月度激励分析'),
+          tab: this.$t('modelTerminalSupportAnalysis.tabs.month'),
           component: 'IwMonth'
         },
         {
           key: '4',
-          tab: this.$t('利润分析'),
+          tab: this.$t('modelTerminalSupportAnalysis.tabs.profit'),
           component: 'IwProfit'
         },
         {
           key: '5',
-          tab: this.$t('格局分析'),
+          tab: this.$t('modelTerminalSupportAnalysis.tabs.situation'),
           component: 'IwSituation'
         },
         {
           key: '6',
-          tab: this.$t('单车价格策略分析'),
+          tab: this.$t('modelTerminalSupportAnalysis.tabs.modelPrice'),
           component: 'IwModelPrice'
         }
       ]
@@ -168,7 +168,7 @@ export default {
   watch: {
     dataForm: {
       handler() {
-        if (this.dataForm.ym) {
+        if (this.dataForm.dataTime) {
           this.getData()
         }
       },
@@ -179,7 +179,7 @@ export default {
     window.addEventListener('resize', _.debounce(() => {
       this.init()
     }, 100))
-    if (this.dataForm.ym) {
+    if (this.dataForm.dataTime) {
       this.getData()
     }
   },
@@ -203,7 +203,7 @@ export default {
     },
     getTableData() {
       getSingleModelTerminalAnalyzeData({
-        ym: this.dataForm.ym,
+        ym: this.dataForm.dataTime,
         maxYm: this.dataForm.maxYm,
         dataSource: this.dataForm.dataSource,
         moneyOrRatio: this.dataForm.dataType,
