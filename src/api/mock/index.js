@@ -9,15 +9,15 @@ function fromJSONFile(filename) {
 }
 const proxy = {
   // 查询条件
-  // 'POST /api/enterprise/common/get-data-source': fromJSONFile('common/get-datasource'),
-  // 'POST /api/enterprise/common/get-min-max-time': fromJSONFile('common/get-min-max-time'),
-  // 'POST /api/enterprise/common/get-manfbrand': fromJSONFile('common/get-manfbrand'),
-  // 'POST /api/enterprise/common/get-segment': fromJSONFile('common/get-segment'),
-  // 'POST /api/enterprise/common/get-reward': fromJSONFile('common/get-reward'),
-  // 'POST /api/enterprise/common/get-version': fromJSONFile('common/get-version'),
-  // 'POST /api/enterprise/common/get-submodel': fromJSONFile('common/get-submodel'),
-  // 'POST /api/enterprise/common/get-submodel-comp-circle': fromJSONFile('common/get-submodel-comp-circle'),
-  // 'POST /api/enterprise/common/memory-condition': fromJSONFile('common/memory-condition'),
+  'POST /api/enterprise/common/get-data-source': fromJSONFile('common/get-datasource'),
+  'POST /api/enterprise/common/get-min-max-time': fromJSONFile('common/get-min-max-time'),
+  'POST /api/enterprise/common/get-manfbrand': fromJSONFile('common/get-manfbrand'),
+  'POST /api/enterprise/common/get-segment': fromJSONFile('common/get-segment'),
+  'POST /api/enterprise/common/get-reward': fromJSONFile('common/get-reward'),
+  'POST /api/enterprise/common/get-version': fromJSONFile('common/get-version'),
+  'POST /api/enterprise/common/get-submodel': fromJSONFile('common/get-submodel'),
+  'POST /api/enterprise/common/get-submodel-comp-circle': fromJSONFile('common/get-submodel-comp-circle'),
+  'POST /api/enterprise/common/memory-condition': fromJSONFile('common/memory-condition'),
   // 厂商品牌
   'POST /api/enterprise/manfbrand-overview/getTerminalAnalyzeTableData': fromJSONFile('manfbrand-overview/getTerminalAnalyzeTableData'),
   'POST /api/enterprise/manfbrand-overview/getTerminalAnalyzeData': fromJSONFile('manfbrand-overview/getTerminalAnalyzeData'),

@@ -48,8 +48,7 @@ export default {
   },
   methods: {
     handleRemoveItem(item) {
-      console.log(item)
-      this.$emit('remove', item, item.manfBrandId)
+      this.$emit('remove', item, item.id)
     },
     JumpToTop(item) {
       this.$emit('toTop', item)

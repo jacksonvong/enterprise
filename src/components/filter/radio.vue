@@ -26,7 +26,7 @@
     </a-radio-group>
     <a-radio-group
       v-if="false"
-      v-model="dataForm.monthOrQuarter"
+      v-model="dataForm.dataTimeType"
       class="iw-filter-radio-item"
       size="small"
       @change="handleMonthOrQuarterChange">
@@ -51,10 +51,18 @@ export default {
   data() {
     return {
       dataForm: {
-        segmentType: 1,
-        dataType: 1,
-        monthOrQuarter: 1
+        segmentType: this.$store.getters.condition.segmentType,
+        dataType: this.$store.getters.condition.dataType,
+        dataTimeType: this.$store.getters.condition.dataTimeType
       }
+    }
+  },
+  created() {
+    const { segmentType, dataType, dataTimeType } = this.$store.getters.condition
+    this.dataForm = {
+      segmentType,
+      dataType,
+      dataTimeType
     }
   },
   methods: {
@@ -67,7 +75,7 @@ export default {
       this.$emit('change', this.dataFormFilter())
     },
     handleMonthOrQuarterChange(value) {
-      console.log(value)
+      this.$store.dispatch('setCondition', { dataTimeType: this.dataForm.dataTimeType })
       this.$emit('change', this.dataFormFilter())
     },
     dataFormFilter() {

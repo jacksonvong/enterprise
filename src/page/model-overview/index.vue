@@ -58,7 +58,7 @@
             placement="bottomLeft"
             style="width: 120px; float: right; padding-right: 20px;"
             @filterChange="handleSubModelFilterChange"
-            @change="handleSubModelChange"
+            @change="handleSubModelChange2"
           >
             <iw-button slot="reference" type="primary" size="mini" style="float: right;">
               {{ $t('modelOverview.overview.addManfbrand') }}
@@ -120,7 +120,7 @@
             placement="bottomLeft"
             style="width: 120px; float: right; padding-right: 20px;"
             @filterChange="handleSubModelFilterChange"
-            @change="handleSubModelChange"
+            @change="handleSubModelChange3"
           >
             <iw-button slot="reference" type="primary" size="mini" style="float: right;">
               {{ $t('modelOverview.overview.addManfbrand') }}
@@ -468,12 +468,23 @@ export default {
       const index = this['subModelValue_' + type].findIndex(id => id === item.id)
       this['subModelValue_' + type].splice(index, 1)
       const callback = () => {
-        this['card_' + type].data.splice(index, 1)
         message.info('取消关注成功')
+        this['card_' + type].data.splice(index, 1)
+        this['card_' + type].total = this['card_' + type].data.length
+        this.getOverviewPageIds(type)
       }
-      this.saveOrder().then(callback)
+      this.saveOrder(type).then(callback)
     },
-    handleSubModelChange() {},
+    handleSubModelChange2() {
+      this.saveOrder(__mySubOrMyAttention_2).then(res => {
+        this.getCardData({ mySubOrMyAttention: __mySubOrMyAttention_2 })
+      })
+    },
+    handleSubModelChange3() {
+      this.saveOrder(__mySubOrMyAttention_3).then(res => {
+        this.getCardData({ mySubOrMyAttention: __mySubOrMyAttention_3 })
+      })
+    },
     // API
     async getData() {
       this.getSubModelData()
@@ -582,8 +593,11 @@ export default {
       this.getCardData({ ids: item.id, mySubOrMyAttention: '3' }).then(res => {
         message.info('添加关注成功')
         // testing...
-        this['card_' + type].data = [res.data[0], ...this['card_' + type].data]
+        const item = res.data[0]
+        this['card_' + type].data = [item, ...this['card_' + type].data]
+        this['card_' + type].total = this['card_' + type].data.length
         this['subModelValue_' + type] = [item.id, ...this['subModelValue_' + type]]
+        this.getOverviewPageIds(type)
         this.saveOrder()
       })
     },

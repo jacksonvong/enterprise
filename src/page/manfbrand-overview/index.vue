@@ -8,7 +8,6 @@
         :multiple="{ manfBrand: true }"
         @change="handleFilterChange"
       />
-      {{ manfbrandValue }}
       <a-card ref="cardContainer" :body-style="{padding: '15px 20px'}">
         <div slot="title">
           <span>{{ $t('manfbrandOverview.overview.title') }}</span>
@@ -42,7 +41,7 @@
         </div>
         <div slot="extra">
           <iw-manfbrand
-            v-model="manfBrand"
+            v-model="manfBrandValue"
             :data="manfbrandOptions"
             :default-value="defaultManfbrand"
             :loading="manfBrandOptionsLoading"
@@ -118,7 +117,7 @@
               :width="80">
               <template slot-scope="scope">
                 <iw-popover
-                  v-if="manfbrandValue.includes(scope.row.id)"
+                  v-if="manfBrandValue[0].includes(scope.row.id)"
                   v-model="scope.row.visible"
                   :offset="{left: -10}"
                   :width="null"
@@ -154,7 +153,7 @@
                   theme="twoTone"
                   type="star"
                   class="attension-star"
-                  @click="handleStarChange(scope.row, manfbrandValue.includes(scope.row.id))" />
+                  @click="handleStarChange(scope.row, manfBrandValue[0].includes(scope.row.id))" />
               </template>
             </iw-table-column>
             <iw-table-column
@@ -251,8 +250,7 @@ export default {
       dataForm: {
       },
       overviewData: [],
-      manfBrand: [],
-      manfbrandValue: [], // 如: 7-7格式
+      manfBrandValue: [], // 如: 7-7格式
       // 卡片
       page: 1,
       total: 0,
@@ -322,12 +320,12 @@ export default {
 
     // 卡片
     handleToTopItem(item) {
-      console.log(this.manfbrandValue, item)
-      const index = _.indexOf(this.manfbrandValue, item.id)
-      const top = this.manfbrandValue.splice(index, 1)
-      this.manfbrandValue = [
+      console.log(this.manfBrandValue[0], item)
+      const index = _.indexOf(this.manfBrandValue[0], item.id)
+      const top = this.manfBrandValue[0].splice(index, 1)
+      this.manfBrandValue[0] = [
         ...top,
-        ...this.manfbrandValue
+        ...this.manfBrandValue[0]
       ]
       const callback = () => {
         const topItem = this.overviewData.splice(index, 1)
@@ -341,9 +339,8 @@ export default {
       this.page = 1
     },
     handleRemoveItem(item, key = item.id) {
-      debugger
-      const index = this.manfbrandValue.findIndex(id => id === key)
-      this.manfbrandValue.splice(index, 1)
+      const index = this.manfBrandValue[0].findIndex(id => id === key)
+      this.manfBrandValue[0].splice(index, 1)
       item.visible = false
       const callback = () => {
         this.overviewData.splice(index, 1)
@@ -372,7 +369,7 @@ export default {
           ...params
         }).then(res => {
           this.overviewData = res.data || []
-          this.manfbrandValue = [this.overviewData.map(item => item.id)]
+          this.manfBrandValue = [this.overviewData.map(item => item.id)]
           this.total = this.overviewData.length
           this.getOverviewPageIds()
           resolve(res)
@@ -415,7 +412,7 @@ export default {
       this.listLoading = true
       return new Promise((resolve, reject) => {
         saveOrder({
-          ids: this.manfbrandValue.toString()
+          ids: this.manfBrandValue[0].toString()
         })
           .then(res => {
             this.listLoading = false
@@ -442,7 +439,7 @@ export default {
         message.info('添加关注成功')
         // testing...
         this.overviewData = [res.data[0], ...this.overviewData]
-        this.manfbrandValue = [item.id, ...this.manfbrandValue]
+        this.manfBrandValue = [[item.id, ...this.manfBrandValue[0]]]
         this.saveOrder()
       })
     },

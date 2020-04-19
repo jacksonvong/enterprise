@@ -138,7 +138,7 @@ const defaultSeriesOptions = {
   },
   pie: {
     radius: ['40%', '70%'],
-    avoidLabelOverlap: false,
+    avoidLabelOverlap: true,
     label: {
       show: false,
       position: 'center'
@@ -282,7 +282,7 @@ function labelFormatter(param, config) {
   var value = param.value
   const field = config.fields.find(field => { return param.seriesName === field.name }) || config.field || {}
   if (param.seriesType === 'pie') {
-    val = `${param.name}${toThousand(param.value)} (${toPercent(param.percent, 1)})`
+    val = `${param.name}${toThousand(param.value)} (${toPercent(param.percent / 100, 1)})`
   } else {
     if (Object.keys(field).length) {
       switch (field.type) {
